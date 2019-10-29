@@ -1,0 +1,28 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/BitArray.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/Naive_bit_array/n_bit_array.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/basic_functions.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Body.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/Body.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Header.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/Header.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/PD.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/PD.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/Tests.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/bit_operations/bit_op.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o"
+  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/main.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/main.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

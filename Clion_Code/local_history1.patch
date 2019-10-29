@@ -1,0 +1,417 @@
+Index: PD/Header.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- PD/Header.cpp	(date 1572261382462)
++++ PD/Header.cpp	(date 1572261382462)
+@@ -47,15 +47,15 @@
+     index = end / HEADER_BLOCK_SIZE;
+ 
+     for (uint8_t i = size - 1; i > index; --i) {
+-        this->H[i] = (this->H[i] >> 1) | ((this->H[i - 1] & 1) << (HEADER_BLOCK_SIZE - 1));
++        this->H[i] = ((ulong) (H[i]) >> 1ul) | (H[i - 1] & 1ul) << ((ulong) (HEADER_BLOCK_SIZE - 1));
+     }
+ 
+     uint8_t bit_index = end % HEADER_BLOCK_SIZE;
+     uint8_t shift = HEADER_BLOCK_SIZE - bit_index;
+-    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? (H[index] >> shift) << shift : 0;
++    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? (((ulong) H[index]) >> shift) << shift : 0;
+ //    HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
+-    HEADER_BLOCK_TYPE lower = (this->H[index] >> 1) & (MASK(shift));
+-    this->H[index] = (upper | lower | SL(shift - 1));
++    HEADER_BLOCK_TYPE lower = ((ulong) H[index] >> 1ul) & (MASK(shift));
++    this->H[index] = ((ulong) upper | lower | SL((ulong) shift - 1));
+     /*
+     shift = block_size - index
+     upper = (n >> shift) << shift
+@@ -73,178 +73,38 @@
+     if (index == size - 1) {
+         uint8_t bit_index = (end - 1) % HEADER_BLOCK_SIZE;
+         uint8_t shift = HEADER_BLOCK_SIZE - bit_index;
+-        HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? (H[index] >> shift) << shift : 0;
++        HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? ((ulong) H[index] >> shift) << shift : 0;
+ //        HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
+-        HEADER_BLOCK_TYPE mid = (this->H[index] << 1) & (MASK(shift));
++        HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & (MASK(shift));
+ //        HEADER_BLOCK_TYPE lower = (this->H[index + 1]) >> (HEADER_BLOCK_SIZE - 1);
+         this->H[index] = upper | mid;
+ 
+-        assert(H[index] ^ SL(bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
++        assert(H[index] ^ SL((ulong)bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
+     }
+-    HEADER_BLOCK_TYPE lower = (this->H[index + 1]) >> (HEADER_BLOCK_SIZE - 1);
++    HEADER_BLOCK_TYPE lower = ((ulong) H[index + 1]) >> ((ulong)(HEADER_BLOCK_SIZE - 1));
+ 
+-    for (uint8_t i = index + 1; i < this->size - 1; ++i) {
+-        this->H[i] = (this->H[i] << 1) | (this->H[i + 1] >> ((HEADER_BLOCK_SIZE - 1)));
++    for (size_t i = index + 1; i < this->size - 1; ++i) {
++        this->H[i] = ((ulong)H[i] << 1ul) | ((ulong)H[i + 1] >> ((ulong)(HEADER_BLOCK_SIZE - 1)));
+     }
+-    this->H[this->size - 1] <<= 1;
++    this->H[this->size - 1] <<= 1ul;
+ 
+     uint8_t bit_index = (end - 1) % HEADER_BLOCK_SIZE;
+     uint8_t shift = HEADER_BLOCK_SIZE - bit_index;
+-    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? (H[index] >> shift) << shift : 0;
++    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? ((ulong)H[index] >> shift) << shift : 0;
+ //    HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
+-    HEADER_BLOCK_TYPE mid = (this->H[index] << 1) & (MASK(shift));
++    HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & (MASK(shift));
+ 
+-    this->H[index] = upper | mid | lower;// | SL(shift);
+-    assert(H[index] ^ SL(bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
++    this->H[index] = (ulong) upper | mid | lower;// | SL(shift);
++    assert(H[index] ^ SL((ulong)bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
+ }
+ 
+ void Header::get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index) {
+-    size_t valid_start_index = -1, valid_end_index = -1;
+     get_interval_att(H, size, quotient, start_index, end_index);
+     validate_get_interval(quotient);
+-
++    /*//    size_t valid_start_index = -1, valid_end_index = -1;
+     //    vector_get_interval(quotient, &valid_start_index, &valid_end_index);
+     //    assert(valid_start_index == *start_index);
+-    //    assert(valid_end_index == *end_index);
+-}
+-
+-
+-void get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index) {
+-    if (quotient == 0) {
+-        *start_index = 0;
+-        size_t b = 1 << (HEADER_BLOCK_SIZE - 1);
+-
+-        if (a[0] < b) {
+-            *end_index = 0;
+-            return;
+-        }
+-
+-        size_t one_counter = 1;
+-        b >>= 1ULL;
+-        for (size_t a_index = 0; a_index < a_size; ++a_index) {
+-            for (int i = 0; i < HEADER_BLOCK_SIZE; ++i) {
+-                if (a[a_index] & b)
+-                    one_counter++;
+-                else {
+-                    *end_index = one_counter;
+-                    return;
+-                }
+-                b >>= 1ULL;
+-            }
+-            b = 1 << (HEADER_BLOCK_SIZE - 1);
+-        }
+-        assert(false);
+-/*
+-        for (int i = 0; i <; ++i) {
+-
+-        }
+-
+-        bool cond = true;
+-        size_t i = 0;
+-        uint b;
+-
+-        size_t zero_counter = 1;
+-        size_t array_index = -1;
+-        size_t bit_index = 0;
+-
+-        while (cond) {
+-            for (i; i < HEADER_BLOCK_SIZE; i++) {
+-                if (b & (a[array_index]))
+-                    bit_index++;
+-                else {
+-                    cond = false;
+-                    break;
+-                }
+-                b >>= 1;
+-            }
+-            b = SL((HEADER_BLOCK_SIZE - 1));
+-            i = 0;
+-            array_index++;
+-        }
+-        *end_index = bit_index + 1;
+-        for (int i = 0; i < a_size; ++i) {
+-            auto reversed = (a[i]) ^((MASK(HEADER_BLOCK_SIZE)));
+-            u32 floor_log = floor_log2(reversed);
+-            *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
+-
+-        }
+-        auto reversed = (a[index]) ^((MASK(HEADER_BLOCK_SIZE)));
+-        u32 floor_log = floor_log2(reversed);
+-        *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
+-//        if ()
+-        size_t index = 0;
+-        while (true) {
+-            if (a[index] == 0) {
+-                index++;
+-                continue;
+-            }
+-            auto reversed = (a[index]) ^((MASK(HEADER_BLOCK_SIZE)));
+-            u32 floor_log = floor_log2(reversed);
+-            *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
+-            return;*/
+-        /*
+-//            cout << "reversed is: " << reversed << endl;
+-
+-//            cout << "floor_log: " << floor_log << endl;
+-//            cout << "res: " << HEADER_BLOCK_SIZE - floor_log - 1 << endl;
+-        return;
+-        if (floor_log) {
+-            cout << "msb is: " << floor_log << endl;
+-            cout << "res: " << HEADER_BLOCK_SIZE - floor_log << endl;
+-            *end_index = HEADER_BLOCK_SIZE - floor_log;
+-            return;
+-        }*/
+-    }
+-    uint b;
+-    size_t zero_counter = 1;
+-    size_t array_index = -1;
+-    size_t bit_index = 0;
+-
+-    bool cond = true;
+-    while (cond) {
+-        assert(zero_counter <= quotient);
+-        array_index++;
+-        b = SL((HEADER_BLOCK_SIZE - 1));
+-        for (int i = 0; i < HEADER_BLOCK_SIZE; ++i) {
+-            if (not(b & (a[array_index]))) {
+-                zero_counter++;
+-                if (zero_counter > quotient) {
+-                    cond = false;
+-                    break;
+-                }
+-            }
+-            bit_index++;
+-            b >>= 1;
+-        }
+-    }
+-    *start_index = bit_index + 1;
+-    b >>= 1;
+-//    assert(b);
+-    size_t i = (*start_index) % HEADER_BLOCK_SIZE;
+-
+-
+-    /*else {
+-       array_index++;
+-       *start_index = 0;
+-       b = (1ULL << (HEADER_BLOCK_SIZE - 1));
+-   }*/
+-    cond = true;
+-    while (cond) {
+-        for (i; i < HEADER_BLOCK_SIZE; i++) {
+-            if (b & (a[array_index]))
+-                bit_index++;
+-            else {
+-                cond = false;
+-                break;
+-            }
+-            b >>= 1;
+-        }
+-        b = SL((HEADER_BLOCK_SIZE - 1));
+-        i = 0;
+-        array_index++;
+-    }
+-    *end_index = bit_index + 1;
+-
++    //    assert(valid_end_index == *end_index);*/
+ }
+ 
+ 
+@@ -268,7 +128,7 @@
+                 to_break = true;
+                 break;
+             }
+-            if (not (a[i] & b))
++            if (not(a[i] & b))
+                 zero_counter++;
+ 
+             b >>= 1ul;
+@@ -280,13 +140,13 @@
+     ulong b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1 - j);
+     for (size_t i = continue_from_a_index; i < a_size; ++i) {
+         for (j; j < HEADER_BLOCK_SIZE; ++j) {
+-            if (not (a[i] & b)) {
++            if (not(a[i] & b)) {
+                 *end_index = i * HEADER_BLOCK_SIZE + j;
+                 return;
+             }
+             b >>= 1ul;
+         }
+-        ulong b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1);
++        b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1);
+         j = 0;
+     }
+     assert(false);
+@@ -312,11 +172,11 @@
+ void Header::header_to_bool_array(bool *a) {
+     size_t counter = 0;
+     for (size_t i = 0; i < size; ++i) {
+-        size_t b = 1ULL << (HEADER_BLOCK_SIZE - 1);
++        size_t b = 1ULL << (ulong)(HEADER_BLOCK_SIZE - 1);
+         for (int j = 0; j < HEADER_BLOCK_SIZE; ++j) {
+             a[counter] = H[i] & b;
+             counter++;
+-            b >>= 1;
++            b >>= 1ul;
+         }
+     }
+ }
+@@ -393,11 +253,11 @@
+     size_t i = lim;
+ 
+     if (bits_left_counter == 1)
+-        a[a_index] = H[(i * 4)] << 24 | H[(i * 4 + 1)] << 16 | H[(i * 4) + 2] << 8;
++        a[a_index] = (ulong)H[(i * 4)] << 24ul | (ulong)H[(i * 4 + 1)] << 16ul | (ulong)H[(i * 4) + 2] << 8ul;
+     else if (bits_left_counter == 2)
+-        a[a_index] = H[(i * 4)] << 24 | H[(i * 4 + 1)] << 16;
++        a[a_index] = (ulong)H[(i * 4)] << 24ul | (ulong)H[(i * 4 + 1)] << 16ul;
+     else if (bits_left_counter == 3)
+-        a[a_index] = H[(i * 4)] << 24;
++        a[a_index] = (ulong)H[(i * 4)] << 24ul;
+ 
+     else {
+         assert(const_factor == 4);
+@@ -503,3 +363,143 @@
+     os << "H: " << header.H;
+     return os;
+ }
++
++
++void
++get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index) {
++    if (quotient == 0) {
++        *start_index = 0;
++        size_t b = 1 << (HEADER_BLOCK_SIZE - 1);
++
++        if (a[0] < b) {
++            *end_index = 0;
++            return;
++        }
++
++        size_t one_counter = 1;
++        b >>= 1ULL;
++        for (size_t a_index = 0; a_index < a_size; ++a_index) {
++            for (int i = 0; i < HEADER_BLOCK_SIZE; ++i) {
++                if (a[a_index] & b)
++                    one_counter++;
++                else {
++                    *end_index = one_counter;
++                    return;
++                }
++                b >>= 1ULL;
++            }
++            b = 1 << (HEADER_BLOCK_SIZE - 1);
++        }
++        assert(false);
++/*
++        for (int i = 0; i <; ++i) {
++
++        }
++
++        bool cond = true;
++        size_t i = 0;
++        uint b;
++
++        size_t zero_counter = 1;
++        size_t array_index = -1;
++        size_t bit_index = 0;
++
++        while (cond) {
++            for (i; i < HEADER_BLOCK_SIZE; i++) {
++                if (b & (a[array_index]))
++                    bit_index++;
++                else {
++                    cond = false;
++                    break;
++                }
++                b >>= 1;
++            }
++            b = SL((HEADER_BLOCK_SIZE - 1));
++            i = 0;
++            array_index++;
++        }
++        *end_index = bit_index + 1;
++        for (int i = 0; i < a_size; ++i) {
++            auto reversed = (a[i]) ^((MASK(HEADER_BLOCK_SIZE)));
++            u32 floor_log = floor_log2(reversed);
++            *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
++
++        }
++        auto reversed = (a[index]) ^((MASK(HEADER_BLOCK_SIZE)));
++        u32 floor_log = floor_log2(reversed);
++        *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
++//        if ()
++        size_t index = 0;
++        while (true) {
++            if (a[index] == 0) {
++                index++;
++                continue;
++            }
++            auto reversed = (a[index]) ^((MASK(HEADER_BLOCK_SIZE)));
++            u32 floor_log = floor_log2(reversed);
++            *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
++            return;*/
++        /*
++//            cout << "reversed is: " << reversed << endl;
++
++//            cout << "floor_log: " << floor_log << endl;
++//            cout << "res: " << HEADER_BLOCK_SIZE - floor_log - 1 << endl;
++        return;
++        if (floor_log) {
++            cout << "msb is: " << floor_log << endl;
++            cout << "res: " << HEADER_BLOCK_SIZE - floor_log << endl;
++            *end_index = HEADER_BLOCK_SIZE - floor_log;
++            return;
++        }*/
++    }
++    uint b;
++    size_t zero_counter = 1;
++    size_t array_index = -1;
++    size_t bit_index = 0;
++
++    bool cond = true;
++    while (cond) {
++        assert(zero_counter <= quotient);
++        array_index++;
++        b = SL((HEADER_BLOCK_SIZE - 1));
++        for (int i = 0; i < HEADER_BLOCK_SIZE; ++i) {
++            if (not(b & (a[array_index]))) {
++                zero_counter++;
++                if (zero_counter > quotient) {
++                    cond = false;
++                    break;
++                }
++            }
++            bit_index++;
++            b >>= 1;
++        }
++    }
++    *start_index = bit_index + 1;
++    b >>= 1;
++//    assert(b);
++    size_t i = (*start_index) % HEADER_BLOCK_SIZE;
++
++
++    /*else {
++       array_index++;
++       *start_index = 0;
++       b = (1ULL << (HEADER_BLOCK_SIZE - 1));
++   }*/
++    cond = true;
++    while (cond) {
++        for (i; i < HEADER_BLOCK_SIZE; i++) {
++            if (b & (a[array_index]))
++                bit_index++;
++            else {
++                cond = false;
++                break;
++            }
++            b >>= 1;
++        }
++        b = SL((HEADER_BLOCK_SIZE - 1));
++        i = 0;
++        array_index++;
++    }
++    *end_index = bit_index + 1;
++
++}
