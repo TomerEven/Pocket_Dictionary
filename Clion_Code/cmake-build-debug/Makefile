@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/88/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/92/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/88/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/92/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/88/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/92/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/88/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/92/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -285,32 +285,167 @@ PD/PD.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/PD.cpp.s
 .PHONY : PD/PD.cpp.s
 
-Tests/Tests.o: Tests/Tests.cpp.o
+Safe_PD/safe_PD.o: Safe_PD/safe_PD.cpp.o
 
-.PHONY : Tests/Tests.o
+.PHONY : Safe_PD/safe_PD.o
 
 # target to build an object file
-Tests/Tests.cpp.o:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o
-.PHONY : Tests/Tests.cpp.o
+Safe_PD/safe_PD.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o
+.PHONY : Safe_PD/safe_PD.cpp.o
 
-Tests/Tests.i: Tests/Tests.cpp.i
+Safe_PD/safe_PD.i: Safe_PD/safe_PD.cpp.i
 
-.PHONY : Tests/Tests.i
+.PHONY : Safe_PD/safe_PD.i
 
 # target to preprocess a source file
-Tests/Tests.cpp.i:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.i
-.PHONY : Tests/Tests.cpp.i
+Safe_PD/safe_PD.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.i
+.PHONY : Safe_PD/safe_PD.cpp.i
 
-Tests/Tests.s: Tests/Tests.cpp.s
+Safe_PD/safe_PD.s: Safe_PD/safe_PD.cpp.s
 
-.PHONY : Tests/Tests.s
+.PHONY : Safe_PD/safe_PD.s
 
 # target to generate assembly for a file
-Tests/Tests.cpp.s:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.s
-.PHONY : Tests/Tests.cpp.s
+Safe_PD/safe_PD.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.s
+.PHONY : Safe_PD/safe_PD.cpp.s
+
+Safe_PD/v_Body.o: Safe_PD/v_Body.cpp.o
+
+.PHONY : Safe_PD/v_Body.o
+
+# target to build an object file
+Safe_PD/v_Body.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o
+.PHONY : Safe_PD/v_Body.cpp.o
+
+Safe_PD/v_Body.i: Safe_PD/v_Body.cpp.i
+
+.PHONY : Safe_PD/v_Body.i
+
+# target to preprocess a source file
+Safe_PD/v_Body.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.i
+.PHONY : Safe_PD/v_Body.cpp.i
+
+Safe_PD/v_Body.s: Safe_PD/v_Body.cpp.s
+
+.PHONY : Safe_PD/v_Body.s
+
+# target to generate assembly for a file
+Safe_PD/v_Body.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.s
+.PHONY : Safe_PD/v_Body.cpp.s
+
+Safe_PD/v_Header.o: Safe_PD/v_Header.cpp.o
+
+.PHONY : Safe_PD/v_Header.o
+
+# target to build an object file
+Safe_PD/v_Header.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o
+.PHONY : Safe_PD/v_Header.cpp.o
+
+Safe_PD/v_Header.i: Safe_PD/v_Header.cpp.i
+
+.PHONY : Safe_PD/v_Header.i
+
+# target to preprocess a source file
+Safe_PD/v_Header.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.i
+.PHONY : Safe_PD/v_Header.cpp.i
+
+Safe_PD/v_Header.s: Safe_PD/v_Header.cpp.s
+
+.PHONY : Safe_PD/v_Header.s
+
+# target to generate assembly for a file
+Safe_PD/v_Header.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.s
+.PHONY : Safe_PD/v_Header.cpp.s
+
+Tests/benchmark_tests.o: Tests/benchmark_tests.cpp.o
+
+.PHONY : Tests/benchmark_tests.o
+
+# target to build an object file
+Tests/benchmark_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o
+.PHONY : Tests/benchmark_tests.cpp.o
+
+Tests/benchmark_tests.i: Tests/benchmark_tests.cpp.i
+
+.PHONY : Tests/benchmark_tests.i
+
+# target to preprocess a source file
+Tests/benchmark_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.i
+.PHONY : Tests/benchmark_tests.cpp.i
+
+Tests/benchmark_tests.s: Tests/benchmark_tests.cpp.s
+
+.PHONY : Tests/benchmark_tests.s
+
+# target to generate assembly for a file
+Tests/benchmark_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s
+.PHONY : Tests/benchmark_tests.cpp.s
+
+Tests/old_benchmark_tests.o: Tests/old_benchmark_tests.cpp.o
+
+.PHONY : Tests/old_benchmark_tests.o
+
+# target to build an object file
+Tests/old_benchmark_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o
+.PHONY : Tests/old_benchmark_tests.cpp.o
+
+Tests/old_benchmark_tests.i: Tests/old_benchmark_tests.cpp.i
+
+.PHONY : Tests/old_benchmark_tests.i
+
+# target to preprocess a source file
+Tests/old_benchmark_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.i
+.PHONY : Tests/old_benchmark_tests.cpp.i
+
+Tests/old_benchmark_tests.s: Tests/old_benchmark_tests.cpp.s
+
+.PHONY : Tests/old_benchmark_tests.s
+
+# target to generate assembly for a file
+Tests/old_benchmark_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.s
+.PHONY : Tests/old_benchmark_tests.cpp.s
+
+Tests/validation_tests.o: Tests/validation_tests.cpp.o
+
+.PHONY : Tests/validation_tests.o
+
+# target to build an object file
+Tests/validation_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o
+.PHONY : Tests/validation_tests.cpp.o
+
+Tests/validation_tests.i: Tests/validation_tests.cpp.i
+
+.PHONY : Tests/validation_tests.i
+
+# target to preprocess a source file
+Tests/validation_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.i
+.PHONY : Tests/validation_tests.cpp.i
+
+Tests/validation_tests.s: Tests/validation_tests.cpp.s
+
+.PHONY : Tests/validation_tests.s
+
+# target to generate assembly for a file
+Tests/validation_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.s
+.PHONY : Tests/validation_tests.cpp.s
 
 bit_operations/bit_op.o: bit_operations/bit_op.cpp.o
 
@@ -393,9 +528,24 @@ help:
 	@echo "... PD/PD.o"
 	@echo "... PD/PD.i"
 	@echo "... PD/PD.s"
-	@echo "... Tests/Tests.o"
-	@echo "... Tests/Tests.i"
-	@echo "... Tests/Tests.s"
+	@echo "... Safe_PD/safe_PD.o"
+	@echo "... Safe_PD/safe_PD.i"
+	@echo "... Safe_PD/safe_PD.s"
+	@echo "... Safe_PD/v_Body.o"
+	@echo "... Safe_PD/v_Body.i"
+	@echo "... Safe_PD/v_Body.s"
+	@echo "... Safe_PD/v_Header.o"
+	@echo "... Safe_PD/v_Header.i"
+	@echo "... Safe_PD/v_Header.s"
+	@echo "... Tests/benchmark_tests.o"
+	@echo "... Tests/benchmark_tests.i"
+	@echo "... Tests/benchmark_tests.s"
+	@echo "... Tests/old_benchmark_tests.o"
+	@echo "... Tests/old_benchmark_tests.i"
+	@echo "... Tests/old_benchmark_tests.s"
+	@echo "... Tests/validation_tests.o"
+	@echo "... Tests/validation_tests.i"
+	@echo "... Tests/validation_tests.s"
 	@echo "... bit_operations/bit_op.o"
 	@echo "... bit_operations/bit_op.i"
 	@echo "... bit_operations/bit_op.s"

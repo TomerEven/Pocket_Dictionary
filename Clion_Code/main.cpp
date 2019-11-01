@@ -1,6 +1,6 @@
 #include <iostream>
 #include "PD/Header.h"
-#include "Tests/Tests.h"
+#include "Tests/validation_tests.h"
 
 
 using namespace std;
@@ -62,6 +62,13 @@ int main() {
             r0(reps);
         }
     }
+
+    r0(128);
+    cout << "r tests done!" << endl;
+    s0(128);
+    s0(128);
+    s0(128);
+    s0(128);
 //    cout  << r0(128, 0) << endl;
 
 

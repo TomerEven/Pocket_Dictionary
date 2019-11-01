@@ -12,7 +12,7 @@ Header::Header(size_t m, size_t f, size_t l) : capacity(0), max_capacity(f) {
     size = (number_of_bits / HEADER_BLOCK_SIZE) + 1;
     H = new HEADER_BLOCK_TYPE[size]();
 
-    this->vec.resize(number_of_bits);
+//    this->vec.resize(number_of_bits);
 }
 
 bool Header::lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
@@ -25,8 +25,8 @@ void Header::insert(uint_fast16_t quotient, size_t *start_index, size_t *end_ind
     get_quotient_start_and_end_index(quotient, start_index, end_index);
     push(quotient, *start_index, *end_index);
 
-    vector_insert(quotient);
-    validate_get_interval(quotient);
+//    vector_insert(quotient);
+//    validate_get_interval(quotient);
 
     capacity++;
 }
@@ -35,8 +35,8 @@ void Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *end_ind
     get_quotient_start_and_end_index(quotient, start_index, end_index);
     pull(quotient, *start_index, *end_index);
 
-    vector_remove(quotient);
-    validate_get_interval(quotient);
+//    vector_remove(quotient);
+//    validate_get_interval(quotient);
 
     capacity--;
 }
@@ -99,23 +99,14 @@ void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
 }
 
 void Header::get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index) {
-    get_interval_att(H, size, quotient, start_index, end_index);
-    validate_get_interval(quotient);
-    /*//    size_t valid_start_index = -1, valid_end_index = -1;
-    //    vector_get_interval(quotient, &valid_start_index, &valid_end_index);
-    //    assert(valid_start_index == *start_index);
-    //    assert(valid_end_index == *end_index);*/
+    get_interval_attempt(H, size, quotient, start_index, end_index);
+//    validate_get_interval(quotient);
+
 }
 
-
 void
-get_interval_att(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index) {
-    size_t zero_counter = -1, continue_from_a_index = 0, continue_from_bit_index = 0;
-    /*size_t bit_counter = 0;
-
-//    while (bit_counter < a_size * HEADER_BLOCK_SIZE){
-//
-//    }*/
+get_interval_attempt(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index) {
+    size_t zero_counter = -1, continue_from_a_index = 0, continue_from_bit_index = -1;
     bool to_break = false;
     for (size_t i = 0; i < a_size; ++i) {
         ulong b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1);
@@ -135,11 +126,12 @@ get_interval_att(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, siz
         }
         if (to_break) break;
     }
-    //todo finish this.
+    assert(continue_from_bit_index >= 0);
+
     size_t j = continue_from_bit_index;
     ulong b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1 - j);
     for (size_t i = continue_from_a_index; i < a_size; ++i) {
-        for (j; j < HEADER_BLOCK_SIZE; ++j) {
+        for (; j < HEADER_BLOCK_SIZE; ++j) {
             if (not(a[i] & b)) {
                 *end_index = i * HEADER_BLOCK_SIZE + j;
                 return;
@@ -160,7 +152,6 @@ void Header::print() {
     cout << "]" << endl;
 
 }
-
 
 void Header::print_as_bool_array() {
     size_t a_size = size * HEADER_BLOCK_SIZE;
@@ -265,6 +256,19 @@ void Header::header_to_word_array(uint32_t *a, size_t a_size) {
     }
 }
 
+ostream &operator<<(ostream &os, const Header &header) {
+    os << "H: " << header.H;
+    return os;
+}
+
+size_t Header::get_size() const {
+    return size;
+}
+
+uint8_t *Header::get_h() const {
+    return H;
+}
+
 
 /*
 void Header::print_bool_array(bool *a, size_t a_size) {
@@ -275,9 +279,7 @@ void Header::print_bool_array(bool *a, size_t a_size) {
     cout << "]" << endl;
 }*/
 
-size_t Header::get_size() const {
-    return size;
-}
+/*
 
 void Header::vector_get_interval(size_t quotient, size_t *start_index, size_t *end_index) {
     size_t zero_counter = -1, continue_from_index = 0;
@@ -326,7 +328,7 @@ uint32_t Header::sum_vector() {
 void Header::validate_get_interval(size_t quotient) {
     size_t a = -1, b = -1, va = -1, vb = -1, c = -1, d = -1;
     vector_get_interval(quotient, &va, &vb);
-    get_interval_att(H, size, quotient, &c, &d);
+    get_interval_attempt(H, size, quotient, &c, &d);
     bool cond2 = (c == va) && (d == vb);
     if (not cond2) {
         cout << "header as word is: ";
@@ -337,6 +339,7 @@ void Header::validate_get_interval(size_t quotient) {
     }
     assert(c == va);
     assert(d == vb);
+*/
 /*
 //        cout << endl;
 //        cout << endl;
@@ -345,24 +348,24 @@ void Header::validate_get_interval(size_t quotient) {
 //        cout << endl;
 //        cout << endl;
         cout << "vector sum is: " << sum_vector() << endl;
-*/
+*//*
 
+
+*/
 /*
     //    get_interval_old(H, size, quotient, &a, &b);
 //    bool cond = (a == va) && (b == vb);
 //    if (cond and !cond2){
 //        cout << a << ", " << b << endl;
-//        get_interval_att(H, size, quotient, &c, &d);
+//        get_interval_attempt(H, size, quotient, &c, &d);
 //    }
 //    assert(not (cond2 ^ cond));
+*//*
+
+}
 */
-}
 
 
-ostream &operator<<(ostream &os, const Header &header) {
-    os << "H: " << header.H;
-    return os;
-}
 
 
 void

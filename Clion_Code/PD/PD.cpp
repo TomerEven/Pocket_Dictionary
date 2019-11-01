@@ -7,6 +7,7 @@
 
 PD::PD(size_t m, size_t f, size_t l) : header(m, f, l), body(m, f, l), capacity(0), max_capacity(f) {}
 
+
 bool PD::lookup(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
     if (not header.lookup(quotient, &start_index, &end_index))
@@ -18,10 +19,10 @@ bool PD::lookup(size_t quotient, FP_TYPE remainder) {
     return body.wrap_lookup(body_start, body_end, remainder);
 }
 
+
 void PD::insert(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
     this->header.insert(quotient, &start_index, &end_index);
-    //TODO CHECK THIS.
     assert(quotient <= start_index);
     assert(start_index <= end_index);
     size_t body_start = start_index - quotient;
@@ -51,8 +52,8 @@ void PD::header_pp() {
 
 void PD::print() {
     header.pretty_print();
-    body.print_consecutive_with_vector();
-    body.naive_print_with_vector();
+//    body.print_consecutive_with_vector();
+//    body.naive_print_with_vector();
 
 }
 

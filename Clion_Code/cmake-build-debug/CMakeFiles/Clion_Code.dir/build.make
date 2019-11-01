@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/88/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/92/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/88/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/92/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -148,18 +148,18 @@ CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/bit_operations/bit_op.cpp -o CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.s
 
-CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
-CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Tests/Tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/Tests.cpp
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Tests/validation_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/validation_tests.cpp
 
-CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/Tests.cpp > CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.i
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/validation_tests.cpp > CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.i
 
-CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/Tests.cpp -o CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.s
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/validation_tests.cpp -o CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.s
 
 CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o: ../Global_functions/basic_functions.cpp
@@ -174,6 +174,71 @@ CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/basic_functions.cpp -o CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s
 
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Safe_PD/safe_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.cpp
+
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.cpp > CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.i
+
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.cpp -o CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.s
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../Safe_PD/v_Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.cpp
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.cpp > CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.i
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.cpp -o CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.s
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../Safe_PD/v_Body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Body.cpp
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Body.cpp > CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.i
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Body.cpp -o CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.s
+
+CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: ../Tests/old_benchmark_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/old_benchmark_tests.cpp
+
+CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/old_benchmark_tests.cpp > CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.i
+
+CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/old_benchmark_tests.cpp -o CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.s
+
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Tests/benchmark_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp
+
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp > CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.i
+
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp -o CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s
+
 # Object files for target Clion_Code
 Clion_Code_OBJECTS = \
 "CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o" \
@@ -183,8 +248,13 @@ Clion_Code_OBJECTS = \
 "CMakeFiles/Clion_Code.dir/PD/Header.cpp.o" \
 "CMakeFiles/Clion_Code.dir/PD/Body.cpp.o" \
 "CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o" \
-"CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o" \
-"CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o"
+"CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o"
 
 # External object files for target Clion_Code
 Clion_Code_EXTERNAL_OBJECTS =
@@ -196,11 +266,16 @@ Clion_Code: CMakeFiles/Clion_Code.dir/PD/PD.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/PD/Header.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/PD/Body.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o
-Clion_Code: CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/build.make
 Clion_Code: CMakeFiles/Clion_Code.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Clion_Code"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable Clion_Code"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Clion_Code.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

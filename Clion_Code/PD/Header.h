@@ -2,6 +2,8 @@
 // Created by tomer on 10/24/19.
 //
 
+
+
 #ifndef CLION_CODE_HEADER_H
 #define CLION_CODE_HEADER_H
 
@@ -12,7 +14,6 @@
 #include <ctgmath>
 #include "../bit_operations/bit_op.h"
 #include "../Global_functions/basic_functions.h"
-
 
 
 #define HEADER_BLOCK_SIZE (8)
@@ -27,7 +28,6 @@
 #define INTEGER_ROUND(a, b) (((a)/(b)) + ((a)%(b) != 0))
 
 
-
 class Header {
     size_t capacity;
     size_t max_capacity;
@@ -35,7 +35,7 @@ class Header {
     HEADER_BLOCK_TYPE *H;
 
     /** For testing*/
-    vector<bool> vec;
+//    vector<bool> vec;
 public:
     Header(size_t m, size_t f, size_t l);
 
@@ -47,6 +47,23 @@ public:
 
     void remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
+    /**
+     * Moves bits starting from end, one bit to the left.
+     * @param quotient
+     * @param start
+     * @param end
+     */
+    void pull(uint_fast16_t quotient, size_t start, size_t end);
+    /**
+     * Moves bits starting from end, one bit to the right.
+     * @param quotient
+     * @param start
+     * @param end
+     */
+    void push(uint_fast16_t quotient, size_t start, size_t end);
+
+    /** Helpers */
+
     void print_as_word();
 
     void pretty_print();
@@ -57,21 +74,19 @@ public:
 
     /**Functions for vector*/
 
-    void vector_get_interval(size_t quotient, size_t *start_index, size_t *end_index);
+    /*void vector_get_interval(size_t quotient, size_t *start_index, size_t *end_index);
 
     void vector_insert(size_t quotient);
 
     void vector_remove(uint_fast16_t quotient);
 
     uint32_t sum_vector();
-
+*/
     /**Functions for validation*/
 
-    uint32_t sum_header();
+//    uint32_t sum_header();
 
-    void validate_get_interval(size_t quotient);
-
-    friend ostream &operator<<(ostream &os, const Header &header);
+//    void validate_get_interval(size_t quotient);
 
 
     void header_to_word_array(uint32_t *a, size_t a_size);
@@ -80,23 +95,36 @@ public:
 
 //    void print_bool_array(bool *a, size_t a_size);
 
-    void pull(uint_fast16_t quotient, size_t start, size_t end);
-
-    void push(uint_fast16_t quotient, size_t start, size_t end);
 
     size_t get_size() const;
+
+    uint8_t *get_h() const;
+
+    friend ostream &operator<<(ostream &os, const Header &header);
 
 //public:
 //    size_t get_max_capacity();
 };
 
 
-// TODO OUT OF BOUND ERROR WILL OCCUR IF QUOTIENT DOES NOT BELONG TO [M].
 void
 get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index);
 
+/*TODO: 1) OUT OF BOUND ERROR WILL OCCUR IF QUOTIENT DOES NOT BELONG TO [M].
+      2) more efficient implementation.*/
+/**
+ *
+ * @param a
+ * @param a_size: a's length.
+ * @param quotient:
+ * @param start_index: Denote the index of the (quotient - 1)th zero by i.
+ * This function set *start_index to i + 1.
+ * @param end_index: Denote the index of the (quotient)th zero by j.
+ * This function set *end_index to j.
+ */
 void
-get_interval_att(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index);
+get_interval_attempt(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index,
+                     size_t *end_index);
 
 
 #endif //CLION_CODE_HEADER_H

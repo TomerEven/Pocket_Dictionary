@@ -2,10 +2,13 @@
 // Created by tomer on 11/7/18.
 //
 
+/**
+ * Old attempt to implement a packed array.
+ */
+
 #ifndef INHERITANCE_BITARRAY_H
 #define INHERITANCE_BITARRAY_H
 
-//#include "../GlobalFunctions/globalFunction.h"
 #include <iostream>
 #include <assert.h>
 #include <vector>

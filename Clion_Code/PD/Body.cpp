@@ -1,7 +1,6 @@
 //
 // Created by tomer on 10/24/19.
 //
-//TODO FIND_HELPER CALLED BY LAST CASE bits_left is wrong. ****h5 h_h3*****
 
 #include "Body.h"
 
@@ -13,117 +12,39 @@ Body::Body(size_t m, size_t f, size_t l) : fp_size(l), capacity(0), max_capacity
     B = new BODY_BLOCK_TYPE[size]();
     for (size_t i = 0; i < size; ++i) B[i] = 0;
 
-    this->vec.resize(max_capacity * fp_size);
-    //    size_t temp = (capacity * (dataSize + MB)) / BODY_BLOCK_SIZE;
-//    temp += ((capacity * (dataSize + MB)) % BODY_BLOCK_SIZE != 0);
-//    assert(temp == size);
+//    this->vec.resize(max_capacity * fp_size);
 
 }
 
 bool Body::wrap_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     return lookup(abstract_body_start_index, abstract_body_end_index, remainder);
 }
 
 void Body::wrap_insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     insert(abstract_body_start_index, abstract_body_end_index, remainder);
-    vector_insert(abstract_body_start_index, abstract_body_end_index, remainder);
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+//    vector_insert(abstract_body_start_index, abstract_body_end_index, remainder);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 }
 
 void Body::wrap_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     remove(abstract_body_start_index, abstract_body_end_index, remainder);
-    vector_remove(abstract_body_start_index, abstract_body_end_index, remainder);
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+//    vector_remove(abstract_body_start_index, abstract_body_end_index, remainder);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 
 }
-
 
 bool Body::lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = 0, p_bit_index = 0;
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
-    return find_att(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index) == 1;
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+    return find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index) == 1;
 //    return find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index) == 1;
-    /* TODO change FP_TYPE_SIZE to fp_size.
-     * BODY_BLOCK_TYPE mask = MASK(fp_size);
-    size_t b_start_index = (abstract_body_start_index * fp_size) / BODY_BLOCK_SIZE;
-    size_t b_end_index = (abstract_body_start_index * fp_size) / BODY_BLOCK_SIZE;
-    size_t compared_counter = 0, comparing_lim = abstract_body_end_index - abstract_body_start_index;
-
-    for (size_t i = b_start_index; i <= b_end_index; ++i) {
-        size_t bit_index = (i * fp_size) % BODY_BLOCK_SIZE;
-        size_t bits_left = BODY_BLOCK_SIZE - bit_index;
-        BODY_BLOCK_TYPE cell = B[i];
-        while ((bits_left > FP_TYPE_SIZE) and (compared_counter <= comparing_lim)) {
-            compared_counter++;
-            size_t right_shift = bits_left - fp_size;
-            // size_t right_shift = BODY_BLOCK_SIZE - (i * fp_size) % BODY_BLOCK_SIZE - fp_size;
-            BODY_BLOCK_TYPE slot = (cell >> (right_shift)) & mask;
-            if (remainder > slot) {
-                bits_left -= FP_TYPE_SIZE;
-                continue;
-            } else
-                return remainder == slot;
-        }
-        if (compared_counter > comparing_lim)
-            return false;
-
-        compared_counter++;
-        if (bits_left == 0) {
-            BODY_BLOCK_TYPE slot = cell & mask;
-            if (remainder < slot)
-                continue;
-            else
-                return remainder == slot;
-        } else {
-            size_t bits_to_take_from_current_cell = FP_TYPE_SIZE + bits_left;
-            size_t bits_to_take_from_next_cell = -bits_left;
-            BODY_BLOCK_TYPE slot = (cell & MASK(bits_to_take_from_current_cell)) << bits_to_take_from_next_cell;
-            BODY_BLOCK_TYPE slot_lower = B[i + 1] >> (BODY_BLOCK_SIZE - bits_to_take_from_next_cell);
-            slot |= slot_lower;
-            assert(slot == (slot & mask));
-            if (slot == remainder)
-                return true;
-            else if (remainder > slot)
-                return false;
-        }
-    }
-    assert(false);
-*/
-/*
-
-    size_t start_address = abstract_body_start_index * fp_size;
-    size_t length = (abstract_body_end_index - abstract_body_start_index) * fp_size;
-
-    size_t aIndex = start_address / BODY_BLOCK_SIZE, bitIndex = start_address % BODY_BLOCK_SIZE;
-    size_t bitsFromRight = MOD_INVERSE(bitIndex);
-    BODY_BLOCK_TYPE res = B[aIndex];
-    if (bitIndex + length < BODY_BLOCK_SIZE) {
-        BODY_BLOCK_TYPE temp = ON((bitsFromRight + 1), (bitsFromRight + 1 - length));
-        res &= temp;
-        size_t shift_right = ++bitsFromRight - length;
-        res >>= shift_right;
-    } else if (bitIndex + length == BODY_BLOCK_SIZE) {
-        res &= MASK(bitsFromRight + 1);
-    } else {
-        size_t temp_length = bitIndex + length - BODY_BLOCK_SIZE;
-        res &= get_bits(start_address, length - temp_length);
-        res <<= temp_length;
-        res += get_bits((aIndex + 1) * BODY_BLOCK_SIZE, temp_length);
-    }
-    return res;
-
-    size_t b_start_index = abstract_body_start_index * fp_size / BODY_BLOCK_SIZE;
-    size_t bits_left = fp_size % BODY_BLOCK_SIZE;
-    size_t bits_left_comp = fp_size % BODY_BLOCK_SIZE;
-    if (bits_left)
-
-*/
 
 }
 
+/*
 int Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder,
                       size_t *p_B_index, size_t *p_bit_index) {
 
@@ -149,7 +70,8 @@ int Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_end
     *p_bit_index = vector_end_index % BODY_BLOCK_SIZE;
     return 2;
 
-    /*if (this->compare_remainder_and_vector(i, remainder)) {
+    */
+/*if (this->compare_remainder_and_vector(i, remainder)) {
         *p_B_index = i / BODY_BLOCK_SIZE;
         *p_bit_index = i % BODY_BLOCK_SIZE;
         return 1;
@@ -157,12 +79,15 @@ int Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_end
     *p_B_index = vector_end_index / BODY_BLOCK_SIZE;
     *p_bit_index = vector_end_index % BODY_BLOCK_SIZE;
     return 2;*/
+/*
+
 }
+*/
 
 
 int
-Body::find_att(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder, size_t *p_B_index,
-               size_t *p_bit_index) {
+Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder, size_t *p_B_index,
+                   size_t *p_bit_index) {
 
     if (abstract_body_start_index == abstract_body_end_index) {
         *p_B_index = (abstract_body_start_index * fp_size) / BODY_BLOCK_SIZE;
@@ -190,17 +115,17 @@ Body::find_att(size_t abstract_body_start_index, size_t abstract_body_end_index,
             BODY_BLOCK_TYPE current_remainder = (current_cell >> (shift)) & MASK(fp_size);
             if (remainder <= current_remainder) {
                 if (CASE_PRINT) cout << "a2" << endl;
-                return find_helper_att(remainder == current_remainder, B_index, bits_left_to_read_inside_slot,
-                                       p_B_index,
-                                       p_bit_index);
+                return find_helper_attempt(remainder == current_remainder, B_index, bits_left_to_read_inside_slot,
+                                           p_B_index,
+                                           p_bit_index);
             }
         } else if (bits_left_to_read_inside_slot == fp_size) {
             BODY_BLOCK_TYPE current_remainder = current_cell & MASK(fp_size);
             if (remainder <= current_remainder) {
                 if (CASE_PRINT) cout << "a3" << endl;
-                return find_helper_att(remainder == current_remainder, B_index, bits_left_to_read_inside_slot,
-                                       p_B_index,
-                                       p_bit_index);
+                return find_helper_attempt(remainder == current_remainder, B_index, bits_left_to_read_inside_slot,
+                                           p_B_index,
+                                           p_bit_index);
             }
         } else {
             size_t number_of_bits_to_read_from_next_slot = fp_size - bits_left_to_read_inside_slot;
@@ -214,9 +139,9 @@ Body::find_att(size_t abstract_body_start_index, size_t abstract_body_end_index,
             BODY_BLOCK_TYPE current_remainder = upper | lower;
             if (remainder <= current_remainder) {
                 if (CASE_PRINT) cout << "a4" << endl;
-                return find_helper_att(remainder == current_remainder, B_index, bits_left_to_read_inside_slot,
-                                       p_B_index,
-                                       p_bit_index);
+                return find_helper_attempt(remainder == current_remainder, B_index, bits_left_to_read_inside_slot,
+                                           p_B_index,
+                                           p_bit_index);
             }
         }
         total_bit_counter += fp_size;
@@ -228,7 +153,7 @@ Body::find_att(size_t abstract_body_start_index, size_t abstract_body_end_index,
 }
 
 int
-Body::find_helper_att(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index, size_t *p_bit_index) {
+Body::find_helper_attempt(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index, size_t *p_bit_index) {
     *p_B_index = current_b_index;
     *p_bit_index = BODY_BLOCK_SIZE - bits_left;
     return 2 - did_find;
@@ -237,9 +162,9 @@ Body::find_helper_att(bool did_find, size_t current_b_index, size_t bits_left, s
 
 void Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = -1, bit_index = -1;
-    auto res = find_att(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
+    auto res = find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
 //    auto res = find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 
     /*
     size_t my_bit_index = abstract_body_end_index * fp_size;
@@ -257,8 +182,8 @@ void Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_ind
 */
     size_t left_bit_index = BODY_BLOCK_SIZE - bit_index;
     for (size_t i = size - 1; i > B_index; --i) {
-        B[i] = (B[i] >> fp_size) | ((B[i - 1] & MASK(fp_size)) << (BODY_BLOCK_SIZE - fp_size));
-        /**B[i] = (B[i] >> fp_size) | ((B[i - 1] ) << (BODY_BLOCK_SIZE - fp_size));*/
+        B[i] = (B[i] >> fp_size) | ((B[i - 1] ) << (BODY_BLOCK_SIZE - fp_size));
+//        B[i] = (B[i] >> fp_size) | ((B[i - 1] & MASK(fp_size)) << (BODY_BLOCK_SIZE - fp_size));
     }
 
     if (BODY_BLOCK_SIZE >= fp_size + bit_index) {
@@ -291,8 +216,8 @@ void Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_ind
 
 void Body::remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = -1, bit_index = 0;
-    auto res = find_att(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
-    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
+    auto res = find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
+//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     if (res == 2) {
         cout << "Trying to delete element with remainder that is not in the Body." << endl;
         return;
@@ -376,6 +301,7 @@ void Body::remove(size_t abstract_body_start_index, size_t abstract_body_end_ind
     }
 }
 
+/*
 
 bool Body::vector_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = 0, p_bit_index = 0;
@@ -406,6 +332,7 @@ void Body::vector_remove(size_t abstract_body_start_index, size_t abstract_body_
         vec[vec.size() - fp_size + i] = false;
 
 }
+*/
 
 
 void Body::store_consecutive_remainders(uint32_t *a) {
@@ -469,11 +396,6 @@ void Body::print_consecutive() {
     cout << "]" << endl;*/
 }
 
-void Body::print_consecutive_with_vector() {
-    print_consecutive();
-    print_vector_by_unpacking(&vec, fp_size);
-}
-
 void Body::naive_print() {
     print_array(B, size);
     /*cout << "[" << B[0];
@@ -481,6 +403,12 @@ void Body::naive_print() {
         cout << ", " << B[i];
     }
     cout << "]" << endl;*/
+}
+/*
+
+void Body::print_consecutive_with_vector() {
+    print_consecutive();
+    print_vector_by_unpacking(&vec, fp_size);
 }
 
 void Body::naive_print_with_vector() {
@@ -534,7 +462,7 @@ void Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_
 
         cout << "\nPrints end" << endl;
 
-        find_att(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
+        find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
         vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
         assert(false);
     }
@@ -547,27 +475,32 @@ void Body::vector_push(size_t vector_bit_counter) {
 
 BODY_BLOCK_TYPE Body::read_FP_from_vector_by_index(size_t bit_start_index) {
     return ::read_FP_from_vector_by_index(&vec, bit_start_index, fp_size);
-    /*assert(bit_start_index + fp_size <= vec.size());
+    */
+/*assert(bit_start_index + fp_size <= vec.size());
     BODY_BLOCK_TYPE res = vec[bit_start_index];
     for (size_t i = 1; i < fp_size; ++i) {
         res <<= 1ul;
         res |= vec[i];
     }
-    return res;*/
+    return res;*//*
+
 }
 
 void Body::write_FP_to_vector_by_index(size_t index, FP_TYPE remainder) {
     ::write_FP_to_vector_by_index(&vec, index, remainder, fp_size);
-    /*size_t valid_size = vec.size();
+    */
+/*size_t valid_size = vec.size();
     assert(index + fp_size <= vec.size());
     ulong b = 1ULL << (fp_size - 1);
 //    vec[index] = (remainder & b) != 0;
     for (size_t i = 0; i < fp_size; ++i) {
         vec[index + i] = (remainder & b) != 0;
         b >>= 1ul;
-    }*/
+    }*//*
+
 }
 
+*/
 
 /*
 BODY_BLOCK_TYPE Body::get_mb(size_t qIndex) {
@@ -669,7 +602,6 @@ Body::find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_
             bit_index = BODY_BLOCK_SIZE - bits_to_take_from_next_cell;
 
             /*if (remainder == slot){
-                //TODO error here (or in find_helper)
                 *p_B_index = i;
                 *p_bit_index = BODY_BLOCK_SIZE - bits_left;
                 return 1;
@@ -723,4 +655,16 @@ int Body::find_helper(bool did_find, size_t current_b_index, size_t bits_left, s
         *p_bit_index = BODY_BLOCK_SIZE - bits_left;
         return 2;
     }*/
+}
+
+size_t Body::get_fp_size() const {
+    return fp_size;
+}
+
+size_t Body::get_size() const {
+    return size;
+}
+
+uint32_t *Body::get_b() const {
+    return B;
 }

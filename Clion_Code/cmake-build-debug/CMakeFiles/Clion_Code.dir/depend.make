@@ -25,12 +25,38 @@ CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../PD/Body.h
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../PD/Header.h
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../PD/PD.cpp
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../PD/PD.h
+CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../Safe_PD/v_Body.h
+CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../Safe_PD/v_Header.h
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../bit_operations/bit_op.h
+
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../PD/Body.h
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../PD/Header.h
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Safe_PD/safe_PD.cpp
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Safe_PD/safe_PD.h
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Safe_PD/v_Body.h
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Safe_PD/v_Header.h
+CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../bit_operations/bit_op.h
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../PD/Body.h
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../Safe_PD/v_Body.cpp
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../Safe_PD/v_Body.h
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../bit_operations/bit_op.h
+
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../PD/Header.h
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../Safe_PD/v_Header.cpp
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../Safe_PD/v_Header.h
+CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../bit_operations/bit_op.h
 
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../PD/Body.h
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../PD/Header.h
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../PD/PD.h
+CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Safe_PD/safe_PD.h
+CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Safe_PD/v_Body.h
+CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Safe_PD/v_Header.h
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Tests/Tests.cpp
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../Tests/Tests.h
 CMakeFiles/Clion_Code.dir/Tests/Tests.cpp.o: ../bit_operations/bit_op.h
@@ -42,6 +68,9 @@ CMakeFiles/Clion_Code.dir/main.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../PD/Body.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../PD/Header.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../PD/PD.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../Safe_PD/safe_PD.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../Safe_PD/v_Body.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../Safe_PD/v_Header.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Tests/Tests.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../main.cpp

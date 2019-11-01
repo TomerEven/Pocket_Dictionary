@@ -120,10 +120,40 @@
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/PD.h">
 			<Option target="Clion_Code"/>
 		</Unit>
-		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/Tests.cpp">
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.cpp">
 			<Option target="Clion_Code"/>
 		</Unit>
-		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/Tests.h">
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Body.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Body.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/old_benchmark_tests.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/old_benchmark_tests.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/validation_tests.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/validation_tests.h">
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/bit_operations/bit_op.cpp">
