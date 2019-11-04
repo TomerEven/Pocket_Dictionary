@@ -204,6 +204,87 @@ Global_functions/basic_functions.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s
 .PHONY : Global_functions/basic_functions.cpp.s
 
+Hash/Hash.o: Hash/Hash.cpp.o
+
+.PHONY : Hash/Hash.o
+
+# target to build an object file
+Hash/Hash.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o
+.PHONY : Hash/Hash.cpp.o
+
+Hash/Hash.i: Hash/Hash.cpp.i
+
+.PHONY : Hash/Hash.i
+
+# target to preprocess a source file
+Hash/Hash.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.i
+.PHONY : Hash/Hash.cpp.i
+
+Hash/Hash.s: Hash/Hash.cpp.s
+
+.PHONY : Hash/Hash.s
+
+# target to generate assembly for a file
+Hash/Hash.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.s
+.PHONY : Hash/Hash.cpp.s
+
+Hash/MurmurHash3.o: Hash/MurmurHash3.cpp.o
+
+.PHONY : Hash/MurmurHash3.o
+
+# target to build an object file
+Hash/MurmurHash3.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o
+.PHONY : Hash/MurmurHash3.cpp.o
+
+Hash/MurmurHash3.i: Hash/MurmurHash3.cpp.i
+
+.PHONY : Hash/MurmurHash3.i
+
+# target to preprocess a source file
+Hash/MurmurHash3.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.i
+.PHONY : Hash/MurmurHash3.cpp.i
+
+Hash/MurmurHash3.s: Hash/MurmurHash3.cpp.s
+
+.PHONY : Hash/MurmurHash3.s
+
+# target to generate assembly for a file
+Hash/MurmurHash3.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.s
+.PHONY : Hash/MurmurHash3.cpp.s
+
+Hash/Permutation.o: Hash/Permutation.cpp.o
+
+.PHONY : Hash/Permutation.o
+
+# target to build an object file
+Hash/Permutation.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o
+.PHONY : Hash/Permutation.cpp.o
+
+Hash/Permutation.i: Hash/Permutation.cpp.i
+
+.PHONY : Hash/Permutation.i
+
+# target to preprocess a source file
+Hash/Permutation.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.i
+.PHONY : Hash/Permutation.cpp.i
+
+Hash/Permutation.s: Hash/Permutation.cpp.s
+
+.PHONY : Hash/Permutation.s
+
+# target to generate assembly for a file
+Hash/Permutation.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.s
+.PHONY : Hash/Permutation.cpp.s
+
 PD/Body.o: PD/Body.cpp.o
 
 .PHONY : PD/Body.o
@@ -285,6 +366,114 @@ PD/PD.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/PD.cpp.s
 .PHONY : PD/PD.cpp.s
 
+PD/spare_pd.o: PD/spare_pd.cpp.o
+
+.PHONY : PD/spare_pd.o
+
+# target to build an object file
+PD/spare_pd.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o
+.PHONY : PD/spare_pd.cpp.o
+
+PD/spare_pd.i: PD/spare_pd.cpp.i
+
+.PHONY : PD/spare_pd.i
+
+# target to preprocess a source file
+PD/spare_pd.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.i
+.PHONY : PD/spare_pd.cpp.i
+
+PD/spare_pd.s: PD/spare_pd.cpp.s
+
+.PHONY : PD/spare_pd.s
+
+# target to generate assembly for a file
+PD/spare_pd.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.s
+.PHONY : PD/spare_pd.cpp.s
+
+POW2C/pow2c_filter.o: POW2C/pow2c_filter.cpp.o
+
+.PHONY : POW2C/pow2c_filter.o
+
+# target to build an object file
+POW2C/pow2c_filter.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o
+.PHONY : POW2C/pow2c_filter.cpp.o
+
+POW2C/pow2c_filter.i: POW2C/pow2c_filter.cpp.i
+
+.PHONY : POW2C/pow2c_filter.i
+
+# target to preprocess a source file
+POW2C/pow2c_filter.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.i
+.PHONY : POW2C/pow2c_filter.cpp.i
+
+POW2C/pow2c_filter.s: POW2C/pow2c_filter.cpp.s
+
+.PHONY : POW2C/pow2c_filter.s
+
+# target to generate assembly for a file
+POW2C/pow2c_filter.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.s
+.PHONY : POW2C/pow2c_filter.cpp.s
+
+SID/CSD.o: SID/CSD.cpp.o
+
+.PHONY : SID/CSD.o
+
+# target to build an object file
+SID/CSD.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o
+.PHONY : SID/CSD.cpp.o
+
+SID/CSD.i: SID/CSD.cpp.i
+
+.PHONY : SID/CSD.i
+
+# target to preprocess a source file
+SID/CSD.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/SID/CSD.cpp.i
+.PHONY : SID/CSD.cpp.i
+
+SID/CSD.s: SID/CSD.cpp.s
+
+.PHONY : SID/CSD.s
+
+# target to generate assembly for a file
+SID/CSD.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/SID/CSD.cpp.s
+.PHONY : SID/CSD.cpp.s
+
+SID/SID.o: SID/SID.cpp.o
+
+.PHONY : SID/SID.o
+
+# target to build an object file
+SID/SID.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/SID/SID.cpp.o
+.PHONY : SID/SID.cpp.o
+
+SID/SID.i: SID/SID.cpp.i
+
+.PHONY : SID/SID.i
+
+# target to preprocess a source file
+SID/SID.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/SID/SID.cpp.i
+.PHONY : SID/SID.cpp.i
+
+SID/SID.s: SID/SID.cpp.s
+
+.PHONY : SID/SID.s
+
+# target to generate assembly for a file
+SID/SID.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/SID/SID.cpp.s
+.PHONY : SID/SID.cpp.s
+
 Safe_PD/safe_PD.o: Safe_PD/safe_PD.cpp.o
 
 .PHONY : Safe_PD/safe_PD.o
@@ -365,6 +554,33 @@ Safe_PD/v_Header.s: Safe_PD/v_Header.cpp.s
 Safe_PD/v_Header.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.s
 .PHONY : Safe_PD/v_Header.cpp.s
+
+Simple_Crate/s_crate.o: Simple_Crate/s_crate.cpp.o
+
+.PHONY : Simple_Crate/s_crate.o
+
+# target to build an object file
+Simple_Crate/s_crate.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o
+.PHONY : Simple_Crate/s_crate.cpp.o
+
+Simple_Crate/s_crate.i: Simple_Crate/s_crate.cpp.i
+
+.PHONY : Simple_Crate/s_crate.i
+
+# target to preprocess a source file
+Simple_Crate/s_crate.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.i
+.PHONY : Simple_Crate/s_crate.cpp.i
+
+Simple_Crate/s_crate.s: Simple_Crate/s_crate.cpp.s
+
+.PHONY : Simple_Crate/s_crate.s
+
+# target to generate assembly for a file
+Simple_Crate/s_crate.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.s
+.PHONY : Simple_Crate/s_crate.cpp.s
 
 Tests/benchmark_tests.o: Tests/benchmark_tests.cpp.o
 
@@ -519,6 +735,15 @@ help:
 	@echo "... Global_functions/basic_functions.o"
 	@echo "... Global_functions/basic_functions.i"
 	@echo "... Global_functions/basic_functions.s"
+	@echo "... Hash/Hash.o"
+	@echo "... Hash/Hash.i"
+	@echo "... Hash/Hash.s"
+	@echo "... Hash/MurmurHash3.o"
+	@echo "... Hash/MurmurHash3.i"
+	@echo "... Hash/MurmurHash3.s"
+	@echo "... Hash/Permutation.o"
+	@echo "... Hash/Permutation.i"
+	@echo "... Hash/Permutation.s"
 	@echo "... PD/Body.o"
 	@echo "... PD/Body.i"
 	@echo "... PD/Body.s"
@@ -528,6 +753,18 @@ help:
 	@echo "... PD/PD.o"
 	@echo "... PD/PD.i"
 	@echo "... PD/PD.s"
+	@echo "... PD/spare_pd.o"
+	@echo "... PD/spare_pd.i"
+	@echo "... PD/spare_pd.s"
+	@echo "... POW2C/pow2c_filter.o"
+	@echo "... POW2C/pow2c_filter.i"
+	@echo "... POW2C/pow2c_filter.s"
+	@echo "... SID/CSD.o"
+	@echo "... SID/CSD.i"
+	@echo "... SID/CSD.s"
+	@echo "... SID/SID.o"
+	@echo "... SID/SID.i"
+	@echo "... SID/SID.s"
 	@echo "... Safe_PD/safe_PD.o"
 	@echo "... Safe_PD/safe_PD.i"
 	@echo "... Safe_PD/safe_PD.s"
@@ -537,6 +774,9 @@ help:
 	@echo "... Safe_PD/v_Header.o"
 	@echo "... Safe_PD/v_Header.i"
 	@echo "... Safe_PD/v_Header.s"
+	@echo "... Simple_Crate/s_crate.o"
+	@echo "... Simple_Crate/s_crate.i"
+	@echo "... Simple_Crate/s_crate.s"
 	@echo "... Tests/benchmark_tests.o"
 	@echo "... Tests/benchmark_tests.i"
 	@echo "... Tests/benchmark_tests.s"

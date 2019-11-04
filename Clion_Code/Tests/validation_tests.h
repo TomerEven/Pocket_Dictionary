@@ -34,7 +34,7 @@ bool s0(size_t reps, bool to_print = 0);
 
 bool r1(size_t reps, bool to_print);
 
-bool vector_rw_t1()
+bool vector_rw_t1();
 
 
 

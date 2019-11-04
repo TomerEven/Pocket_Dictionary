@@ -33,12 +33,23 @@ void Header::insert(uint_fast16_t quotient, size_t *start_index, size_t *end_ind
 
 void Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     get_quotient_start_and_end_index(quotient, start_index, end_index);
+    assert (*end_index > *start_index); //deleting from empty run.
+
     pull(quotient, *start_index, *end_index);
 
 //    vector_remove(quotient);
 //    validate_get_interval(quotient);
-
     capacity--;
+}
+
+bool Header::conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
+    //todo
+    /*get_quotient_start_and_end_index(quotient, start_index, end_index);
+    assert (*end_index > *start_index); //deleting from empty run.
+
+    pull(quotient, *start_index, *end_index);
+
+    capacity--;*/
 }
 
 void Header::push(uint_fast16_t quotient, size_t start, size_t end) {
@@ -67,7 +78,6 @@ void Header::push(uint_fast16_t quotient, size_t start, size_t end) {
 
 void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
     size_t index;
-    assert (end > start); //deleting from empty run.
 
     index = (end - 1) / HEADER_BLOCK_SIZE;
     if (index == size - 1) {

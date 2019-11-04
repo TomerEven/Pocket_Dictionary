@@ -1,3 +1,4 @@
+/*
 //
 // Created by tomer on 10/29/19.
 //
@@ -332,4 +333,4 @@ size_t test_count_files(const string &path) {
         return counter;
     }
     return -1;
-}
+}*/

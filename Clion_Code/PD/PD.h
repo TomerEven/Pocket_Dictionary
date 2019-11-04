@@ -7,6 +7,7 @@
 
 #include "Header.h"
 #include "Body.h"
+
 /*
 #include "../Safe_PD/v_Header.h"
 #include "../Safe_PD/v_Body.h"
@@ -24,11 +25,30 @@ public:
 
     void insert(size_t quotient, FP_TYPE remainder);
 
+    /**
+     *
+     * @param quotient
+     * @param remainder
+     * Error will occur if the element is not in the body.
+     */
     void remove(size_t quotient, FP_TYPE remainder);
+
+
+    /**
+     * Removes the element only if it is in the PD.
+     * @param quotient
+     * @param remainder
+     * @return true if the element was removed, false otherwise.
+     */
+    bool conditional_remove(size_t quotient, FP_TYPE remainder);
 
     void header_pp();
 
     void print();
+
+    bool is_full();
+
+    size_t get_capacity() const;
 
 private:
 

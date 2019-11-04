@@ -27,7 +27,7 @@
 #define FP_TYPE uint32_t
 
 #define SL(p) (1ULL <<(p))
-#define MASK(p)  ( (1ULL <<(p))  - 1ULL)
+//#define MASK(perm)  ( (1ULL <<(perm))  - 1ULL)
 #define MB_BIT(n) (1ULL << (MB - (n)))
 #define ON(a, b) (MASK(a) ^ MASK(b))
 #define OFF(a, b) (~(MASK(a) ^ MASK(b)))
@@ -60,6 +60,8 @@ public:
     void insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
     void remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
+
+    bool conditional_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
     bool wrap_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 

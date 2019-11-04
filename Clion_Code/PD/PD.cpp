@@ -46,6 +46,37 @@ void PD::remove(size_t quotient, FP_TYPE remainder) {
     capacity--;
 }
 
+
+bool PD::conditional_remove(size_t quotient, FP_TYPE remainder) {
+    size_t start_index = -1, end_index = -1;
+    if (not this->header.lookup(quotient, &start_index, &end_index))
+        return false;
+
+    assert(quotient <= start_index);
+    assert(start_index <= end_index);
+
+    size_t body_start = start_index - quotient;
+    size_t body_end = end_index - quotient;
+    if (this->body.conditional_remove(body_start, body_end, remainder)) {
+        this->header.pull(quotient, start_index, end_index);
+        capacity--;
+        return true;
+    }
+    return false;
+}
+
+
+/*
+bool PD::conditional_remove(size_t quotient, FP_TYPE remainder) {
+    //todo: more efficient implementation, which saves the place the element was found.
+    if (lookup(quotient, remainder)){
+        remove(quotient, remainder);
+        return true;
+    }
+    return false;
+}
+*/
+
 void PD::header_pp() {
     header.pretty_print();
 }
@@ -70,4 +101,12 @@ uint8_t
 PD::get_body_abstract_end_index(size_t header_interval_start_index, size_t header_interval_end_index, size_t quotient) {
     return header_interval_end_index - quotient;
 
+}
+
+size_t PD::get_capacity() const {
+    return capacity;
+}
+
+bool PD::is_full() {
+    return capacity == max_capacity;
 }

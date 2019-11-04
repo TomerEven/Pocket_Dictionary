@@ -1,3 +1,4 @@
+/*
 //
 // Created by tomer on 10/29/19.
 //
@@ -40,6 +41,7 @@ validate_adaptiveness(size_t expected_el_num, double eps, size_t insertion_num, 
                       ostream &os);
 
 
+*/
 /**
  *
  * @param n maximal number of elements expected to be in the filter.
@@ -51,7 +53,8 @@ validate_adaptiveness(size_t expected_el_num, double eps, size_t insertion_num, 
  * @param remote_opt An attempt to improve Remote use.
  * @param naive_check Performs test without using the Remote.
  * @param to_cout Print the full test results to cout or to files in Output directory.
- */
+ *//*
+
 void auto_rates(size_t n, double eps, size_t insertion_reps, size_t lookup_reps, bool is_adaptive, bool call_adapt,
                 bool remote_opt, bool naive_check, Remote_name remote_name, bool to_cout);
 
@@ -87,3 +90,4 @@ size_t test_count_files(const string &path);
 
 
 #endif //CLION_CODE_OLD_BENCHMARK_TESTS_H
+*/

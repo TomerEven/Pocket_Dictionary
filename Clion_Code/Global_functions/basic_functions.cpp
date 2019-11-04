@@ -176,3 +176,7 @@ string my_bin(size_t n, size_t length) {
     return s;
 }
 
+int loglog2(int x) {
+    log(x);
+}
+

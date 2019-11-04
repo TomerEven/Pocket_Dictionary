@@ -102,6 +102,24 @@
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/basic_functions.h">
 			<Option target="Clion_Code"/>
 		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Hash.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Hash.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/MurmurHash3.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/MurmurHash3.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Permutation.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Permutation.h">
+			<Option target="Clion_Code"/>
+		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Body.cpp">
 			<Option target="Clion_Code"/>
 		</Unit>
@@ -120,6 +138,30 @@
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/PD.h">
 			<Option target="Clion_Code"/>
 		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_filter.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_filter.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/SID/CSD.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/SID/CSD.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/SID/SID.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/SID/SID.h">
+			<Option target="Clion_Code"/>
+		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.cpp">
 			<Option target="Clion_Code"/>
 		</Unit>
@@ -136,6 +178,12 @@
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Simple_Crate/s_crate.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Simple_Crate/s_crate.h">
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp">

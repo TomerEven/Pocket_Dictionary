@@ -13,6 +13,8 @@
 #include <algorithm>
 #include <ctgmath>
 
+#define MASK(p)  ( (1ULL <<(p)) - 1ULL)
+
 using namespace std;
 
 void print_array(int *a, size_t a_size);
@@ -48,6 +50,8 @@ void vector_to_word_array(const vector<bool> *v, uint32_t *a, size_t a_size);
 unsigned int naive_msb32(unsigned int x);
 
 string my_bin(size_t n, size_t length = 32);
+
+
 
 #endif //CLION_CODE_BASIC_FUNCTIONS_H
 

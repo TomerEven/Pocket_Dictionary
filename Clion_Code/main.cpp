@@ -1,6 +1,8 @@
 #include <iostream>
 #include "PD/Header.h"
 #include "Tests/validation_tests.h"
+#include "POW2C/pow2c_filter.h"
+#include "Tests/benchmark_tests.h"
 
 
 using namespace std;
@@ -47,8 +49,28 @@ void change_v_by_pointer(vector<int> *v);
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
+
+
+//    pow2c_filter a(4, 5, 5, 10);
+//    string s1 = "tomer";
+//    a.insert(&s1);
+//    cout << a.lookup(&s1) << endl;
+//
+    stringstream s;
+    size_t pd_num = 512, fp_size = 6, m = 128, pd_capacity = 128;
+
+    for (int i = 0; i < 20; ++i) {
+        auto load_factor = (i) * (0.05);
+        cout << "load_factor is: " << load_factor << endl;
+        b0(pd_num, load_factor, pd_capacity, m, fp_size, pd_capacity * pd_num, s);
+    }
+    /*cout  << log(M_E) << endl;
+    cout  << log(1) << endl;
+    cout  << log(2) << endl;
+    cout  << log2(2) << endl;
+    cout  << ceil(log2(3)) << endl;*/
 //    assert(sizeof(int) == sizeof(uint32_t));
-    assert (t1());
+    /*assert (t1());
     assert (t2());
     assert(t3());
     assert(t4());
@@ -68,7 +90,7 @@ int main() {
     s0(128);
     s0(128);
     s0(128);
-    s0(128);
+    s0(128);*/
 //    cout  << r0(128, 0) << endl;
 
 

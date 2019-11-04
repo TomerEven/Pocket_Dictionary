@@ -20,7 +20,7 @@
 #define HEADER_BLOCK_TYPE uint8_t
 
 #define SL(p) (1ULL <<(p))
-#define MASK(p)  ( (1ULL <<(p))  - 1ULL)
+//#define MASK(perm)  ( (1ULL <<(perm)) - 1ULL)
 #define MB_BIT(n) (1ULL << (MB - (n)))
 #define ON(a, b) (MASK(a) ^ MASK(b))
 #define OFF(a, b) (~(MASK(a) ^ MASK(b)))
@@ -47,6 +47,8 @@ public:
 
     void remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
+    bool conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
+
     /**
      * Moves bits starting from end, one bit to the left.
      * @param quotient
@@ -54,6 +56,7 @@ public:
      * @param end
      */
     void pull(uint_fast16_t quotient, size_t start, size_t end);
+
     /**
      * Moves bits starting from end, one bit to the right.
      * @param quotient
