@@ -285,6 +285,87 @@ Hash/Permutation.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.s
 .PHONY : Hash/Permutation.cpp.s
 
+Naive_PD/naive_Body.o: Naive_PD/naive_Body.cpp.o
+
+.PHONY : Naive_PD/naive_Body.o
+
+# target to build an object file
+Naive_PD/naive_Body.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o
+.PHONY : Naive_PD/naive_Body.cpp.o
+
+Naive_PD/naive_Body.i: Naive_PD/naive_Body.cpp.i
+
+.PHONY : Naive_PD/naive_Body.i
+
+# target to preprocess a source file
+Naive_PD/naive_Body.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.i
+.PHONY : Naive_PD/naive_Body.cpp.i
+
+Naive_PD/naive_Body.s: Naive_PD/naive_Body.cpp.s
+
+.PHONY : Naive_PD/naive_Body.s
+
+# target to generate assembly for a file
+Naive_PD/naive_Body.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.s
+.PHONY : Naive_PD/naive_Body.cpp.s
+
+Naive_PD/naive_Header.o: Naive_PD/naive_Header.cpp.o
+
+.PHONY : Naive_PD/naive_Header.o
+
+# target to build an object file
+Naive_PD/naive_Header.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o
+.PHONY : Naive_PD/naive_Header.cpp.o
+
+Naive_PD/naive_Header.i: Naive_PD/naive_Header.cpp.i
+
+.PHONY : Naive_PD/naive_Header.i
+
+# target to preprocess a source file
+Naive_PD/naive_Header.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.i
+.PHONY : Naive_PD/naive_Header.cpp.i
+
+Naive_PD/naive_Header.s: Naive_PD/naive_Header.cpp.s
+
+.PHONY : Naive_PD/naive_Header.s
+
+# target to generate assembly for a file
+Naive_PD/naive_Header.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.s
+.PHONY : Naive_PD/naive_Header.cpp.s
+
+Naive_PD/naive_PD.o: Naive_PD/naive_PD.cpp.o
+
+.PHONY : Naive_PD/naive_PD.o
+
+# target to build an object file
+Naive_PD/naive_PD.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o
+.PHONY : Naive_PD/naive_PD.cpp.o
+
+Naive_PD/naive_PD.i: Naive_PD/naive_PD.cpp.i
+
+.PHONY : Naive_PD/naive_PD.i
+
+# target to preprocess a source file
+Naive_PD/naive_PD.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.i
+.PHONY : Naive_PD/naive_PD.cpp.i
+
+Naive_PD/naive_PD.s: Naive_PD/naive_PD.cpp.s
+
+.PHONY : Naive_PD/naive_PD.s
+
+# target to generate assembly for a file
+Naive_PD/naive_PD.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.s
+.PHONY : Naive_PD/naive_PD.cpp.s
+
 PD/Body.o: PD/Body.cpp.o
 
 .PHONY : PD/Body.o
@@ -419,6 +500,33 @@ POW2C/pow2c_filter.s: POW2C/pow2c_filter.cpp.s
 POW2C/pow2c_filter.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.s
 .PHONY : POW2C/pow2c_filter.cpp.s
+
+POW2C/pow2c_naive_filter.o: POW2C/pow2c_naive_filter.cpp.o
+
+.PHONY : POW2C/pow2c_naive_filter.o
+
+# target to build an object file
+POW2C/pow2c_naive_filter.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o
+.PHONY : POW2C/pow2c_naive_filter.cpp.o
+
+POW2C/pow2c_naive_filter.i: POW2C/pow2c_naive_filter.cpp.i
+
+.PHONY : POW2C/pow2c_naive_filter.i
+
+# target to preprocess a source file
+POW2C/pow2c_naive_filter.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.i
+.PHONY : POW2C/pow2c_naive_filter.cpp.i
+
+POW2C/pow2c_naive_filter.s: POW2C/pow2c_naive_filter.cpp.s
+
+.PHONY : POW2C/pow2c_naive_filter.s
+
+# target to generate assembly for a file
+POW2C/pow2c_naive_filter.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.s
+.PHONY : POW2C/pow2c_naive_filter.cpp.s
 
 SID/CSD.o: SID/CSD.cpp.o
 
@@ -744,6 +852,15 @@ help:
 	@echo "... Hash/Permutation.o"
 	@echo "... Hash/Permutation.i"
 	@echo "... Hash/Permutation.s"
+	@echo "... Naive_PD/naive_Body.o"
+	@echo "... Naive_PD/naive_Body.i"
+	@echo "... Naive_PD/naive_Body.s"
+	@echo "... Naive_PD/naive_Header.o"
+	@echo "... Naive_PD/naive_Header.i"
+	@echo "... Naive_PD/naive_Header.s"
+	@echo "... Naive_PD/naive_PD.o"
+	@echo "... Naive_PD/naive_PD.i"
+	@echo "... Naive_PD/naive_PD.s"
 	@echo "... PD/Body.o"
 	@echo "... PD/Body.i"
 	@echo "... PD/Body.s"
@@ -759,6 +876,9 @@ help:
 	@echo "... POW2C/pow2c_filter.o"
 	@echo "... POW2C/pow2c_filter.i"
 	@echo "... POW2C/pow2c_filter.s"
+	@echo "... POW2C/pow2c_naive_filter.o"
+	@echo "... POW2C/pow2c_naive_filter.i"
+	@echo "... POW2C/pow2c_naive_filter.s"
 	@echo "... SID/CSD.o"
 	@echo "... SID/CSD.i"
 	@echo "... SID/CSD.s"

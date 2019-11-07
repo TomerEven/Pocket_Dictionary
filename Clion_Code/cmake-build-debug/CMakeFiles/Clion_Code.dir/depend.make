@@ -21,6 +21,22 @@ CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o: ../Hash/MurmurHash3.h
 CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o: ../Hash/Permutation.cpp
 CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o: ../Hash/Permutation.h
 
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: ../Naive_PD/naive_Body.cpp
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: ../Naive_PD/naive_Body.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: ../PD/Body.h
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: ../Naive_PD/naive_Header.cpp
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: ../Naive_PD/naive_Header.h
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Naive_PD/naive_Body.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Naive_PD/naive_Header.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Naive_PD/naive_PD.cpp
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Naive_PD/naive_PD.h
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../PD/Body.h
+
 CMakeFiles/Clion_Code.dir/PD/Body.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Clion_Code.dir/PD/Body.cpp.o: ../PD/Body.cpp
 CMakeFiles/Clion_Code.dir/PD/Body.cpp.o: ../PD/Body.h
@@ -61,6 +77,17 @@ CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o: ../POW2C/pow2c_filter.h
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o: ../Safe_PD/v_Body.h
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o: ../Safe_PD/v_Header.h
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o: ../bit_operations/bit_op.h
+
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Hash/Hash.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Hash/MurmurHash3.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Hash/Permutation.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Naive_PD/naive_Body.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Naive_PD/naive_Header.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../Naive_PD/naive_PD.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../PD/Body.h
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../POW2C/pow2c_naive_filter.cpp
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../POW2C/pow2c_naive_filter.h
 
 CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o: ../SID/CSD.cpp
@@ -109,15 +136,20 @@ CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Global_functions/basic
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Hash/Hash.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Hash/MurmurHash3.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Hash/Permutation.h
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Naive_PD/naive_Body.h
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Naive_PD/naive_Header.h
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Naive_PD/naive_PD.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../PD/Body.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../PD/Header.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../PD/PD.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../POW2C/pow2c_filter.h
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../POW2C/pow2c_naive_filter.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Safe_PD/safe_PD.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Safe_PD/v_Body.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Safe_PD/v_Header.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Tests/benchmark_tests.cpp
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Tests/benchmark_tests.h
+CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Tests/validation_tests.h
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../bit_operations/bit_op.h
 
 CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: ../Global_functions/basic_functions.h
@@ -132,12 +164,21 @@ CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: ../Tests/old_benchmar
 CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: ../bit_operations/bit_op.h
 
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Hash/Hash.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Hash/MurmurHash3.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Hash/Permutation.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Naive_PD/naive_Body.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Naive_PD/naive_Header.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Naive_PD/naive_PD.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../PD/Body.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../PD/Header.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../PD/PD.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../POW2C/pow2c_filter.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../POW2C/pow2c_naive_filter.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Safe_PD/safe_PD.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Safe_PD/v_Body.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Safe_PD/v_Header.h
+CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Tests/benchmark_tests.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Tests/validation_tests.cpp
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Tests/validation_tests.h
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../bit_operations/bit_op.h
@@ -149,10 +190,14 @@ CMakeFiles/Clion_Code.dir/main.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Hash/Hash.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Hash/MurmurHash3.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Hash/Permutation.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../Naive_PD/naive_Body.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../Naive_PD/naive_Header.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../Naive_PD/naive_PD.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../PD/Body.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../PD/Header.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../PD/PD.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../POW2C/pow2c_filter.h
+CMakeFiles/Clion_Code.dir/main.cpp.o: ../POW2C/pow2c_naive_filter.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Safe_PD/safe_PD.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Safe_PD/v_Body.h
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../Safe_PD/v_Header.h

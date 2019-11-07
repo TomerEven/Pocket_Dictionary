@@ -3,10 +3,13 @@
 #include "Tests/validation_tests.h"
 #include "POW2C/pow2c_filter.h"
 #include "Tests/benchmark_tests.h"
+#include "POW2C/pow2c_naive_filter.h"
 
+//todo: naive pow2c_naive_filter validation. benchmark comparing. profiling.
 
 using namespace std;
 
+//#define SEP ("################################################################")
 
 u32 msbDeBruijn32(u32 v) {
     static const int MultiplyDeBruijnBitPosition[32] =
@@ -46,24 +49,141 @@ void my_resize(vector<int> *v, size_t new_size);
 
 void change_v_by_pointer(vector<int> *v);
 
+void rotate_right(vector<int> *vec, size_t start_index, size_t end_index);
+
+void validate_rank();
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
+/*
 
+    uint32_t a[2] = {1,1};
+    uint64_t t = *a,r = (1ULL<<32ul) | 1ul;
 
-//    pow2c_filter a(4, 5, 5, 10);
-//    string s1 = "tomer";
-//    a.insert(&s1);
-//    cout << a.lookup(&s1) << endl;
-//
-    stringstream s;
-    size_t pd_num = 512, fp_size = 6, m = 128, pd_capacity = 128;
-
-    for (int i = 0; i < 20; ++i) {
-        auto load_factor = (i) * (0.05);
-        cout << "load_factor is: " << load_factor << endl;
-        b0(pd_num, load_factor, pd_capacity, m, fp_size, pd_capacity * pd_num, s);
+    bool b = (t == r);
+    if (!b){
+        printf("got %zu instead of %zu\n",t, r);
     }
+    cout << b << endl;
+*/
+//    validate_rank();
+    /*cout << my_bit_rank(0,1) << endl;
+    cout << my_bit_rank(0,0) << endl;
+    cout << my_bit_rank(~0UL,1) << endl;
+    cout << my_bit_rank(~0UL,0) << endl;
+    cout << bit_rank(0,1) << endl;
+    cout << bit_rank(0,0) << endl;
+    cout << bit_rank(~0UL,1) << endl;
+    cout << bit_rank(~0UL,0) << endl;
+    cout << bit_rank(~0UL,2) << endl;
+    cout << endl;
+    cout << bit_rank(0,-1) << endl;
+    cout << bit_rank(~0UL,-1) << endl;
+    cout << bit_rank(~0UL,-2) << endl;
+    *//*uint64_t x = 2, y = 3, z = 7, t = 1, w = -1, a = 43690;
+
+    cout << bit_rank(t, 0) << endl;
+    cout << bit_rank(t, 1) << endl;
+    cout << bit_rank(x, 0) << endl;
+    cout << bit_rank(x, 1) << endl;
+    cout << bit_rank(y, 0) << endl;
+    cout << bit_rank(y, 1) << endl;
+    cout << bit_rank(z, 0) << endl;
+    cout << bit_rank(z, 1) << endl;
+    cout << bit_rank(z, 2) << endl;
+    cout << bit_rank(z, 3) << endl;
+    cout << bit_rank(z, 4) << endl;
+
+    cout << x << ", " << count(x, 0) << endl;
+    cout << w << ", " << count(z, 0) << endl;
+    cout << w << ", " << count(z, 16) << endl;
+    cout << w << ", " << count(z, 32) << endl;
+    cout << w << ", " << count(z, 48) << endl;
+    cout << w << ", " << count(z, 64) << endl;
+
+    for (int i = -16; i < 16; ++i) {
+        cout << i << ":\t" << count(a, i) << endl;
+    }
+    for (u_long i = 0; i < 64; ++i) {
+        uint64_t temp = (1ull << i) - 1;
+        cout << temp << ":\t" << count(temp, i) << endl;
+    }
+    std::cout << "End!" << std::endl;
+
+    return 1;*/
+    /*  int a[10] = {1,2,3,4,5,6,7,8,9,10};
+      vector<int> v;
+      for (int i = 0; i < 10; ++i) v.push_back(i);
+
+      print_vector(&v);
+      rotate_right(&v, 1, 0);
+      print_vector(&v);
+      rotate_right(&v, 1, 7);
+      print_vector(&v);
+
+      return 1;
+  */
+//    return 1;
+    assert(filter_r0(32, 0.75, 128 + 32, 64, 12));
+    assert(filter_naive_r0(32, 0.75, 128 + 32, 64, 12));
+
+
+
+/*
+//    PD d1 = PD(m, f, l);
+//    naive_PD d2 = naive_PD(m, f, l);
+//    safe_PD d3 = safe_PD(m, f, l);
+//    pow2c_naive_filter d = pow2c_naive_filter(pd_num, l, m, f);
+//    r0_core_template(256, &d1, m, f, l);
+//    r0_core_template(256, &d2, m, f, l);
+//    r0_core_template(256, &d3, m, f, l);
+*/
+
+    /*pow2c_naive_filter d(pd_num, m, f, l);
+    string a = "a", b = "b", c = "c", e = "e";
+
+    d.insert(&a);
+    assert(d.lookup(&a));
+    d.remove(&a);
+    assert(!d.lookup(&a));
+    d.insert(&a);
+    d.insert(&b);
+    d.insert(&c);
+    d.insert(&e);
+    assert(d.lookup(&a));
+    assert(d.lookup(&b));
+    assert(d.lookup(&c));
+    assert(d.lookup(&e));
+    d.remove(&e);
+    assert(!d.lookup(&e));
+    d.remove(&c);
+    assert(!d.lookup(&c));
+    d.remove(&b);
+    assert(!d.lookup(&b));
+    d.remove(&a);
+    assert(!d.lookup(&a));
+*/
+
+
+//    cout << filter_r1(pd_num, 0.75, m, f, l) << endl;
+//    cout << filter_r0(pd_num, 0.75, m, f, l) << endl;
+//    cout << filter_naive_r0(pd_num, 0.75, m, f, l) << endl;
+//    r0(128);
+
+stringstream s;
+    size_t pd_num = 1<<12, fp_size = 6, m = 32, pd_capacity = 32;
+
+    for (int i = 0; i < 11; ++i) {
+        auto load_factor = (i) * (0.1);
+//        cout << "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU" << endl;
+        cout << "load_factor is: " << load_factor << ". ";
+        b0(pd_num, load_factor, pd_capacity, m, fp_size, pd_capacity * pd_num, s);
+        cout << "----------------------------------------------------------------" << endl;
+//        b0_naive(pd_num, load_factor, pd_capacity, m, fp_size, pd_capacity * pd_num, s);
+//        cout << "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" << endl;
+    }
+
+
     /*cout  << log(M_E) << endl;
     cout  << log(1) << endl;
     cout  << log(2) << endl;
@@ -220,4 +340,36 @@ void vector_printing() {
 //    change_v_by_pointer(&v);
 //    print_vector(&v);
 //    cout << v.size() << endl;
+}
+
+void rotate_right(vector<int> *vec, size_t start_index, size_t end_index) {
+    rotate(vec->rbegin(), vec->rbegin() + 1, vec->rend() - end_index);
+}
+
+void validate_counter() {
+    size_t reps = 1ULL << 10;
+    for (int i = 0; i < reps; ++i) {
+        uint32_t temp = rand();
+        if (bit_count(temp) != my_count(temp)) {
+            cout << i << ", " << temp << ":\t" << bit_count(temp) << ", " << my_count(temp) << endl;
+            break;
+        }
+    }
+}
+
+void validate_rank() {
+    size_t reps = 1ULL << 10;
+    for (int i = 0; i < reps; ++i) {
+        uint64_t temp = rand();
+        uint32_t rank = rand() % 64;
+        if (!rank) continue;
+        auto res = bit_rank(temp, rank), exp = my_bit_rank(temp, rank);
+
+        if (res != exp and exp != 64) {
+            printf("i=%d, (temp, rank) = (%zu,%u).\t res:%u, exp:%u\n", i, temp, rank, res, exp);
+//            cout << i << "| " << temp << ", " << rank << ":\t" << bit_rank(temp, rank) << ", "
+//                 << my_bit_rank(temp, rank) << endl;
+            break;
+        }
+    }
 }

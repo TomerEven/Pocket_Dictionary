@@ -16,6 +16,10 @@ Body::Body(size_t m, size_t f, size_t l) : fp_size(l), capacity(0), max_capacity
 
 }
 
+//Body::~Body() {
+//    delete[] B;
+//}
+
 bool Body::wrap_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
 //    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     return lookup(abstract_body_start_index, abstract_body_end_index, remainder);
@@ -24,14 +28,14 @@ bool Body::wrap_lookup(size_t abstract_body_start_index, size_t abstract_body_en
 void Body::wrap_insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
 //    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     insert(abstract_body_start_index, abstract_body_end_index, remainder);
-//    vector_insert(abstract_body_start_index, abstract_body_end_index, remainder);
+//    insert(abstract_body_start_index, abstract_body_end_index, remainder);
 //    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 }
 
 void Body::wrap_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
 //    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
     remove(abstract_body_start_index, abstract_body_end_index, remainder);
-//    vector_remove(abstract_body_start_index, abstract_body_end_index, remainder);
+//    remove(abstract_body_start_index, abstract_body_end_index, remainder);
 //    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 
 }
@@ -390,12 +394,12 @@ bool Body::conditional_remove(size_t abstract_body_start_index, size_t abstract_
 
 /*
 
-bool Body::vector_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
+bool Body::lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = 0, p_bit_index = 0;
     return vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index) == 1;
 }
 
-void Body::vector_insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
+void Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = 0, p_bit_index = 0;
     auto res = vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index);
     size_t vector_bit_counter = B_index * BODY_BLOCK_SIZE + p_bit_index;
@@ -404,7 +408,7 @@ void Body::vector_insert(size_t abstract_body_start_index, size_t abstract_body_
 
 }
 
-void Body::vector_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
+void Body::remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = 0, p_bit_index = 0;
     auto res = vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index);
     if (res == 2) {

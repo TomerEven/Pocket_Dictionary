@@ -18,6 +18,9 @@
 #define HASH_BLOCK_TYPE uint32_t
 #define HASH_BLOCK_SIZE (32)
 #define MAX_MULTI (1ULL<<10)
+#define D_TYPE uint32_t
+#define D_TYPE_SIZE (32)
+
 
 using namespace std;
 

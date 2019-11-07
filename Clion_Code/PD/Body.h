@@ -47,6 +47,7 @@ class Body {
 public:
     Body(size_t m, size_t f, size_t l);
 
+//    ~Body();
     /**
      *
      * @param abstract_body_start_index if quotient = x ,and quotient's run started in the i'th index in the header,
@@ -128,11 +129,11 @@ public:
 
     void naive_print_with_vector();
 
-    bool vector_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
+    bool lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
-    void vector_insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
+    void insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
-    void vector_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
+    void remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
     int
     vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder, size_t *p_B_index,

@@ -14,6 +14,7 @@
 #include <ctgmath>
 
 #define MASK(p)  ( (1ULL <<(p)) - 1ULL)
+#define MASK32 (4294967295ul)
 
 using namespace std;
 
@@ -23,7 +24,7 @@ void print_array(uint32_t *a, size_t a_size);
 
 void print_bool_array(bool *a, size_t a_size);
 
-void print_array_as_consecutive_memory(uint32_t *a, size_t a_size);
+void print_array_as_consecutive_memory(const uint32_t *a, size_t a_size);
 
 //string n_to_32bin(uint32_t n);
 
@@ -50,7 +51,6 @@ void vector_to_word_array(const vector<bool> *v, uint32_t *a, size_t a_size);
 unsigned int naive_msb32(unsigned int x);
 
 string my_bin(size_t n, size_t length = 32);
-
 
 
 #endif //CLION_CODE_BASIC_FUNCTIONS_H

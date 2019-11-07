@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.15)
 project(Clion_Code)
 
 set(CMAKE_CXX_STANDARD 14)
+#SET(CMAKE_CXX_FLAGS "-O3")
+#SET(CMAKE_C_FLAGS "-O3")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
 add_executable(Clion_Code
         Global_functions/basic_functions.cpp Global_functions/basic_functions.h
@@ -25,4 +29,4 @@ add_executable(Clion_Code
         Bit_Array/Naive_bit_array/n_bit_array.cpp Bit_Array/Naive_bit_array/n_bit_array.h
         bit_operations/bit_op.cpp bit_operations/bit_op.h
         main.cpp
-        Simple_Crate/s_crate.cpp Simple_Crate/s_crate.h PD/spare_pd.cpp PD/spare_pd.h SID/SID.cpp SID/SID.h SID/CSD.cpp SID/CSD.h POW2C/pow2c_filter.cpp POW2C/pow2c_filter.h Hash/Permutation.cpp Hash/Permutation.h)
+        Simple_Crate/s_crate.cpp Simple_Crate/s_crate.h PD/spare_pd.cpp PD/spare_pd.h SID/SID.cpp SID/SID.h SID/CSD.cpp SID/CSD.h POW2C/pow2c_filter.cpp POW2C/pow2c_filter.h Hash/Permutation.cpp Hash/Permutation.h Naive_PD/naive_PD.cpp Naive_PD/naive_PD.h Naive_PD/naive_Header.cpp Naive_PD/naive_Header.h Naive_PD/naive_Body.cpp Naive_PD/naive_Body.h POW2C/pow2c_naive_filter.cpp POW2C/pow2c_naive_filter.h)

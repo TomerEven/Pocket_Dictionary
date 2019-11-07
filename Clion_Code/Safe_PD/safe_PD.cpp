@@ -20,6 +20,9 @@ bool safe_PD::lookup(size_t quotient, FP_TYPE remainder) {
 
 
 void safe_PD::insert(size_t quotient, FP_TYPE remainder) {
+    if (capacity == max_capacity) {
+        cout << "Tyring to insert to full safe_PD!!!" << endl;
+    }
     size_t start_index = -1, end_index = -1;
     v_header.insert(quotient, &start_index, &end_index);
     assert(quotient <= start_index);

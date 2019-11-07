@@ -31,7 +31,7 @@ void print_bool_array(bool *a, size_t a_size) {
 }
 
 
-void print_array_as_consecutive_memory(uint32_t *a, size_t a_size) {
+void print_array_as_consecutive_memory(const uint32_t *a, size_t a_size) {
     for (size_t i = 0; i < a_size; ++i) {
         cout << my_bin(a[i]);
     }

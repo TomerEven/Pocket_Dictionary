@@ -9,8 +9,6 @@
 #include "../Hash/Hash.h"
 #include "../Hash/Permutation.h"
 
-#define D_TYPE uint32_t
-#define D_TYPE_SIZE (32)
 
 class pow2c_filter {
     vector<PD> pd_vec;
@@ -21,7 +19,7 @@ class pow2c_filter {
     Permutation perm;
 
 public:
-    pow2c_filter(size_t size, size_t fp_size, size_t interval_length, size_t single_pd_capacity);
+    pow2c_filter(size_t size, size_t interval_length, size_t single_pd_capacity, size_t fp_size);
 
     bool lookup(string *s);
 

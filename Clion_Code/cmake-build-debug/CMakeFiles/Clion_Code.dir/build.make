@@ -343,6 +343,58 @@ CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Permutation.cpp -o CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.s
 
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Naive_PD/naive_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_PD.cpp
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_PD.cpp > CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.i
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_PD.cpp -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.s
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: ../Naive_PD/naive_Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Header.cpp
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Header.cpp > CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.i
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Header.cpp -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.s
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: ../Naive_PD/naive_Body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Body.cpp
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Body.cpp > CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.i
+
+CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Body.cpp -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.s
+
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../POW2C/pow2c_naive_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_naive_filter.cpp
+
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_naive_filter.cpp > CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.i
+
+CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_naive_filter.cpp -o CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.s
+
 # Object files for target Clion_Code
 Clion_Code_OBJECTS = \
 "CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o" \
@@ -366,7 +418,11 @@ Clion_Code_OBJECTS = \
 "CMakeFiles/Clion_Code.dir/SID/SID.cpp.o" \
 "CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o" \
 "CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o" \
-"CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o"
+"CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o" \
+"CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o" \
+"CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o"
 
 # External object files for target Clion_Code
 Clion_Code_EXTERNAL_OBJECTS =
@@ -393,9 +449,13 @@ Clion_Code: CMakeFiles/Clion_Code.dir/SID/SID.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o
+Clion_Code: CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/build.make
 Clion_Code: CMakeFiles/Clion_Code.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable Clion_Code"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable Clion_Code"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Clion_Code.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

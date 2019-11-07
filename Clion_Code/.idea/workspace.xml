@@ -27,13 +27,13 @@
   <component name="PropertiesComponent">
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/POW2C/pow2c_filter.cpp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/PD/Body.cpp" />
+    <property name="settings.editor.selected.configurable" value="dynamic.analysis.tools.profiler" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/POW2C/pow2c_filter.cpp" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -72,7 +72,14 @@
       <workItem from="1571905937343" duration="50426000" />
       <workItem from="1572172712336" duration="15568000" />
       <workItem from="1572245238334" duration="57248000" />
-      <workItem from="1572600976445" duration="3139000" />
+      <workItem from="1572600976445" duration="4505000" />
+      <workItem from="1572779975523" duration="4000" />
+      <workItem from="1572798208385" duration="23889000" />
+      <workItem from="1572967534334" duration="8975000" />
+      <workItem from="1573047700746" duration="11994000" />
+      <workItem from="1573060265154" duration="3520000" />
+      <workItem from="1573068376419" duration="1176000" />
+      <workItem from="1573113077284" duration="12681000" />
     </task>
     <servers />
   </component>
@@ -85,24 +92,49 @@
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <condition expression="abstract_body_end_index == 7 and abstract_body_start_index == 6" language="ObjectiveC" />
           <url>file://$PROJECT_DIR$/PD/Body.cpp</url>
-          <line>58</line>
+          <line>62</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Tests/validation_tests.cpp</url>
-          <line>23</line>
+          <line>24</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/PD/Body.cpp</url>
-          <line>463</line>
+          <line>554</line>
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="NONE" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <condition expression="remainder == 10287406" language="ObjectiveC" />
           <url>file://$PROJECT_DIR$/PD/Body.cpp</url>
-          <line>32</line>
+          <line>36</line>
           <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tests/benchmark_tests.cpp</url>
+          <line>312</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tests/benchmark_tests.cpp</url>
+          <line>341</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/POW2C/pow2c_naive_filter.cpp</url>
+          <line>84</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/PD/Header.cpp</url>
+          <line>227</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/PD/Header.cpp</url>
+          <line>47</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

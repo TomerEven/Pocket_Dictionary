@@ -16,8 +16,8 @@
 #include "../Global_functions/basic_functions.h"
 
 
-#define HEADER_BLOCK_SIZE (8)
-#define HEADER_BLOCK_TYPE uint8_t
+#define HEADER_BLOCK_SIZE (32)
+#define HEADER_BLOCK_TYPE uint32_t
 
 #define SL(p) (1ULL <<(p))
 //#define MASK(perm)  ( (1ULL <<(perm)) - 1ULL)
@@ -38,6 +38,8 @@ class Header {
 //    vector<bool> vec;
 public:
     Header(size_t m, size_t f, size_t l);
+
+//    ~Header();
 
     void get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index);
 
@@ -77,11 +79,11 @@ public:
 
     /**Functions for vector*/
 
-    /*void vector_get_interval(size_t quotient, size_t *start_index, size_t *end_index);
+    /*void get_interval(size_t quotient, size_t *start_index, size_t *end_index);
 
-    void vector_insert(size_t quotient);
+    void insert(size_t quotient);
 
-    void vector_remove(uint_fast16_t quotient);
+    void remove(uint_fast16_t quotient);
 
     uint32_t sum_vector();
 */
@@ -101,9 +103,10 @@ public:
 
     size_t get_size() const;
 
-    uint8_t *get_h() const;
+    HEADER_BLOCK_TYPE *get_h() const;
 
     friend ostream &operator<<(ostream &os, const Header &header);
+
 
 //public:
 //    size_t get_max_capacity();
@@ -129,5 +132,10 @@ void
 get_interval_attempt(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index,
                      size_t *end_index);
 
+void
+get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index,
+                     size_t *end_index);
 
+
+bool validate_get_interval_functions(const HEADER_BLOCK_TYPE *arr, size_t a_size, size_t quotient);
 #endif //CLION_CODE_HEADER_H
