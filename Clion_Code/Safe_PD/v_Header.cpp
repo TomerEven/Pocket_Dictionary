@@ -4,7 +4,7 @@
 
 #include "v_Header.h"
 
-v_Header::v_Header(size_t m, size_t f, size_t l) : header(m, f, l) {
+v_Header::v_Header(size_t m, size_t f, size_t l) : header(m, f, l), const_header(true) {
     size_t number_of_bits = ((m + f) << 1ULL) + 1;
     if (HEADER_BLOCK_SIZE != (8 * sizeof(HEADER_BLOCK_TYPE))) {
         assert(false);
@@ -21,15 +21,17 @@ bool v_Header::lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_i
 
 void v_Header::insert(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     validate_get_interval(quotient);
-    header.insert(quotient, start_index, end_index);
     vector_insert(quotient);
+    header.insert(quotient, start_index, end_index);
+    const_header.insert(quotient, start_index, end_index);
     validate_get_interval(quotient);
 }
 
 void v_Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     validate_get_interval(quotient);
-    header.remove(quotient, start_index, end_index);
     vector_remove(quotient);
+    header.remove(quotient, start_index, end_index);
+    const_header.remove(quotient, start_index, end_index);
     validate_get_interval(quotient);
 }
 
@@ -72,17 +74,28 @@ void v_Header::vector_remove(uint_fast16_t quotient) {
 
 
 void v_Header::validate_get_interval(size_t quotient) {
-    size_t va = -1, vb = -1, c = -1, d = -1;
-    vector_get_interval(quotient, &va, &vb);
-    get_interval_attempt(header.get_h(), header.get_size(), quotient, &c, &d);
-    bool cond2 = (c == va) && (d == vb);
-    if (not cond2) {
+    size_t s1 = -1, e1 = -1, s2 = -2, e2 = -2, s3 = -3, e3 = -3;
+    vector_get_interval(quotient, &s1, &e1);
+    get_interval_attempt(header.get_h(), header.get_size(), quotient, &s2, &e2);
+    const_header.get_interval(quotient, &s3, &e3);
+    bool cond = (s1 == s2 and s1 == s3) && (e1 == e2 and e1 == e3);
+    if (not cond) {
+        cout << s1 << ", " << e1 << endl;
+        cout << s2 << ", " << e2 << endl;
+        cout << s3 << ", " << e3 << endl;
         cout << "header as word is: ";
         header.print_as_word();
         cout << "vector as word is: ";
         print_vector_as_words(&vec);
-
+        cout << "const_header is: ";
+        const_header.print();
     }
-    assert(c == va);
-    assert(d == vb);
+    assert(s3 == s1 and s2 == s1);
+    assert(e3 == e1 and e2 == e1);
+}
+
+void v_Header::print() {
+    header.print();
+    const_header.print();
+    print_vector_as_words(&vec);
 }

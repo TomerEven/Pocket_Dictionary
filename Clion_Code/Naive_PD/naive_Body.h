@@ -5,6 +5,7 @@
 #ifndef CLION_CODE_NAIVE_BODY_H
 #define CLION_CODE_NAIVE_BODY_H
 
+#include "../Global_functions/macros.h"
 #include "../Global_functions/basic_functions.h"
 #include "../PD/Body.h"
 

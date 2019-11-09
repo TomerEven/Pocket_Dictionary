@@ -5,14 +5,23 @@
 #include "Header.h"
 
 Header::Header(size_t m, size_t f, size_t l) : capacity(0), max_capacity(f) {
-    size_t number_of_bits = ((m + f) << 1ULL) + 1;
+    size_t number_of_bits = ((m + f) << 1ULL);
     if (HEADER_BLOCK_SIZE != (8 * sizeof(HEADER_BLOCK_TYPE))) {
         assert(false);
     }
-    size = (number_of_bits / HEADER_BLOCK_SIZE) + 1;
+    size = (number_of_bits / HEADER_BLOCK_SIZE);
     H = new HEADER_BLOCK_TYPE[size]();
 
 //    this->vec.resize(number_of_bits);
+}
+
+Header::Header(size_t f) : capacity(0), max_capacity(f) {
+    size_t number_of_bits = f << 1ul;
+    if (HEADER_BLOCK_SIZE != (8 * sizeof(HEADER_BLOCK_TYPE))) {
+        assert(false);
+    }
+    size = (number_of_bits / HEADER_BLOCK_SIZE);
+    H = new HEADER_BLOCK_TYPE[size]();
 }
 
 //Header::~Header() {
@@ -21,7 +30,7 @@ Header::Header(size_t m, size_t f, size_t l) : capacity(0), max_capacity(f) {
 
 bool Header::lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     this->get_quotient_start_and_end_index(quotient, start_index, end_index);
-    return *start_index != *end_index;
+    return *start_index < *end_index;
 }
 
 void Header::insert(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
@@ -37,7 +46,7 @@ void Header::insert(uint_fast16_t quotient, size_t *start_index, size_t *end_ind
 
 void Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     get_quotient_start_and_end_index(quotient, start_index, end_index);
-    assert (*end_index > *start_index); //deleting from empty run.
+    if (DB) assert (*end_index > *start_index); //deleting from empty run.
 
     pull(quotient, *start_index, *end_index);
 
@@ -93,7 +102,11 @@ void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
 //        HEADER_BLOCK_TYPE lower = (this->H[index + 1]) >> (HEADER_BLOCK_SIZE - 1);
         this->H[index] = upper | mid;
 
-        assert(H[index] ^ SL((ulong) bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
+        //Making sure the run's end, marked by zero, is not deleted.
+        if (DB) assert(H[index] ^ SL((ulong) bit_index - 2));
+
+//        cout << "here" << endl;
+        return;
     }
     HEADER_BLOCK_TYPE lower = ((ulong) H[index + 1]) >> ((ulong) (HEADER_BLOCK_SIZE - 1));
 
@@ -113,8 +126,9 @@ void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
 }
 
 void Header::get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index) {
-    get_interval_attempt(H, size, quotient, start_index, end_index);
+//    get_interval_attempt(H, size, quotient, start_index, end_index);
 //    get_interval_by_rank(H, size, quotient, start_index, end_index);
+    get_interval_by_rank2(H, size, quotient, start_index, end_index);
 //    validate_get_interval(quotient);
 
 }
@@ -127,7 +141,7 @@ get_interval_attempt(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient,
     for (size_t i = 0; i < a_size; ++i) {
         ulong b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1);
         for (int j = 0; j < HEADER_BLOCK_SIZE; ++j) {
-            assert(b > 0);
+            if (DB) assert(b > 0);
             if (zero_counter == quotient - 1) {
                 *start_index = i * HEADER_BLOCK_SIZE + j;
                 continue_from_a_index = i;
@@ -142,7 +156,7 @@ get_interval_attempt(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient,
         }
         if (to_break) break;
     }
-    assert(continue_from_bit_index >= 0);
+    if (DB) assert(continue_from_bit_index >= 0);
 
     size_t j = continue_from_bit_index;
     ulong b = 1ULL << (ulong) (HEADER_BLOCK_SIZE - 1 - j);
@@ -177,8 +191,9 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
         else if (cz == quotient) {
             uint64_t slot = ((ulong) (a[i]) << 32ul) | 4294967295ul;
             uint32_t bit_pos = bit_rank(~slot, quotient);
-            assert(bit_pos < HEADER_BLOCK_SIZE);
-            *start_index = (i + (bit_pos + 1 == HEADER_BLOCK_SIZE)) * HEADER_BLOCK_SIZE + (bit_pos + 1) % HEADER_BLOCK_SIZE;
+            if (DB) assert(bit_pos < HEADER_BLOCK_SIZE);
+            *start_index =
+                    (i + (bit_pos + 1 == HEADER_BLOCK_SIZE)) * HEADER_BLOCK_SIZE + (bit_pos + 1) % HEADER_BLOCK_SIZE;
             size_t j = i + 1;
             while (a[j] == MASK32) j++;
             uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
@@ -202,10 +217,10 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
             }
             return;*/
         } else {
-            assert(quotient < HEADER_BLOCK_SIZE);
+            if (DB) assert(quotient < HEADER_BLOCK_SIZE);
             uint64_t slot = ((ulong) (a[i]) << 32ul) | 4294967295ul;
             uint32_t bit_pos = bit_rank(~slot, quotient);
-            assert(bit_pos < HEADER_BLOCK_SIZE);
+            if (DB) assert(bit_pos < HEADER_BLOCK_SIZE);
             *start_index = i * HEADER_BLOCK_SIZE + bit_rank(~slot, quotient) + 1;
             *end_index = i * HEADER_BLOCK_SIZE + bit_rank(~slot, quotient + 1);
 //            cout << "h3" << endl;
@@ -215,6 +230,28 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
     }
     assert(false);
 }
+
+void get_interval_by_rank2(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index,
+                           size_t *end_index) {
+    if (quotient == 0) {
+        *start_index = 0;
+//        *end_index = bit_rank(~slot, 1);
+        *end_index = __builtin_clz(~a[0]);
+        if (*end_index == 32) *end_index += __builtin_clz(~a[1]);
+        return;
+    }
+    uint64_t slot = ((ulong) (a[0]) << 32ul) | a[1];
+    *start_index = bit_rank(~slot, quotient) + 1;
+    if (*start_index == 64) {
+        *end_index = 64;
+        return;
+    }
+//    size_t i = *start_index / HEADER_BLOCK_SIZE, mask_bit = HEADER_BLOCK_SIZE - (*start_index % HEADER_BLOCK_SIZE);
+//    *end_index = __builtin_clz(~a[i] & MASK(mask_bit));
+    *end_index = bit_rank(~slot, quotient + 1);
+
+}
+
 
 bool validate_get_interval_functions(const HEADER_BLOCK_TYPE *arr, size_t a_size, size_t quotient) {
     size_t va = -1, vb = -1, c = -1, d = -1;
@@ -230,7 +267,7 @@ bool validate_get_interval_functions(const HEADER_BLOCK_TYPE *arr, size_t a_size
     }
     assert(c == va);
     assert(d == vb);
-
+    return true;
 }
 
 void Header::print() {
@@ -558,4 +595,56 @@ get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, siz
     }
     *end_index = bit_index + 1;
 
+}
+
+void static_push(HEADER_BLOCK_TYPE *H, size_t size, size_t end) {
+    size_t index;
+    index = end / HEADER_BLOCK_SIZE;
+
+    for (uint_fast16_t i = size - 1; i > index; --i) {
+        H[i] = ((ulong) (H[i]) >> 1ul) | (H[i - 1] & 1ul) << ((ulong) (HEADER_BLOCK_SIZE - 1));
+    }
+
+    uint_fast16_t bit_index = end % HEADER_BLOCK_SIZE;
+    uint_fast16_t shift = HEADER_BLOCK_SIZE - bit_index;
+    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? (((ulong) H[index]) >> shift) << shift : 0;
+    HEADER_BLOCK_TYPE lower = ((ulong) H[index] >> 1ul) & (MASK(shift));
+    H[index] = ((ulong) upper | lower | SL(shift - 1ul));
+
+}
+
+void static_pull(HEADER_BLOCK_TYPE *H, size_t size, size_t end) {
+    size_t index;
+
+    index = (end - 1) / HEADER_BLOCK_SIZE;
+    if (index == size - 1) {
+        uint_fast16_t bit_index = (end - 1) % HEADER_BLOCK_SIZE;
+        uint_fast16_t shift = HEADER_BLOCK_SIZE - bit_index;
+        HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? ((ulong) H[index] >> shift) << shift : 0;
+//        HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
+        HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & (MASK(shift));
+//        HEADER_BLOCK_TYPE lower = (this->H[index + 1]) >> (HEADER_BLOCK_SIZE - 1);
+        H[index] = upper | mid;
+
+        //Making sure the run's end, marked by zero, is not deleted.
+        if (DB) assert(H[index] ^ SL((ulong) bit_index - 2));
+
+        cout << "here" << endl;
+        return;
+    }
+    HEADER_BLOCK_TYPE lower = ((ulong) H[index + 1]) >> ((ulong) (HEADER_BLOCK_SIZE - 1));
+
+    for (size_t i = index + 1; i < size - 1; ++i) {
+        H[i] = ((ulong) H[i] << 1ul) | ((ulong) H[i + 1] >> ((ulong) (HEADER_BLOCK_SIZE - 1)));
+    }
+    H[size - 1] <<= 1ul;
+
+    uint_fast16_t bit_index = (end - 1) % HEADER_BLOCK_SIZE;
+    uint_fast16_t shift = HEADER_BLOCK_SIZE - bit_index;
+    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? ((ulong) H[index] >> shift) << shift : 0;
+//    HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
+    HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & (MASK(shift));
+
+    H[index] = (ulong) upper | mid | lower;// | SL(shift);
+//todo: why here?    assert(H[index] ^ SL((ulong)bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
 }

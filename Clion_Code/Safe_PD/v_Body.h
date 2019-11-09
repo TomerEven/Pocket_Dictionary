@@ -6,9 +6,11 @@
 #define CLION_CODE_V_BODY_H
 
 #include "../PD/Body.h"
+#include "../Constant_size_PD/const_Body.h"
 
 class v_Body {
     Body body;
+    const_Body const_body;
     vector<bool> vec;
 
 public:
@@ -43,6 +45,7 @@ public:
 
     void vector_push(size_t vector_bit_counter);
 
+    void print();
 };
 
 

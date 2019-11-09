@@ -6,7 +6,6 @@
 
 safe_PD::safe_PD(size_t m, size_t f, size_t l) : v_header(m, f, l), v_body(m, f, l), capacity(0), max_capacity(f) {}
 
-
 bool safe_PD::lookup(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
     if (not v_header.lookup(quotient, &start_index, &end_index))
@@ -17,7 +16,6 @@ bool safe_PD::lookup(size_t quotient, FP_TYPE remainder) {
     size_t body_end = end_index - quotient;
     return v_body.lookup(body_start, body_end, remainder);
 }
-
 
 void safe_PD::insert(size_t quotient, FP_TYPE remainder) {
     if (capacity == max_capacity) {
@@ -46,4 +44,9 @@ void safe_PD::remove(size_t quotient, FP_TYPE remainder) {
     size_t body_end = end_index - quotient;
     v_body.remove(body_start, body_end, remainder);
     capacity--;
+}
+
+void safe_PD::print() {
+    v_header.print();
+    v_body.print();
 }

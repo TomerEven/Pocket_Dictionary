@@ -17,12 +17,10 @@
 #include <zconf.h>
 #include <vector>
 #include <cstdint>
-
-#define MOD_INVERSE(n) (BODY_BLOCK_SIZE - (n) - 1)
-
-typedef unsigned int u32;
+#include "../Global_functions/macros.h"
 
 using namespace std;
+typedef unsigned int u32;
 
 
 unsigned int msb32(register unsigned int x);
@@ -78,7 +76,7 @@ inline bool is_bit_rank_valid(uint64_t slot, uint32_t rank, uint32_t res);
 
 uint32_t my_bit_rank(uint64_t slot, uint32_t rank);
 
-size_t array_zero_count(const uint32_t * a, size_t a_size);
+size_t array_zero_count(const uint32_t *a, size_t a_size);
 
 
 #endif //CLION_CODE_BIT_OP_H

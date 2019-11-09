@@ -177,6 +177,87 @@ Bit_Array/Naive_bit_array/n_bit_array.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.s
 .PHONY : Bit_Array/Naive_bit_array/n_bit_array.cpp.s
 
+Constant_size_PD/const_Body.o: Constant_size_PD/const_Body.cpp.o
+
+.PHONY : Constant_size_PD/const_Body.o
+
+# target to build an object file
+Constant_size_PD/const_Body.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o
+.PHONY : Constant_size_PD/const_Body.cpp.o
+
+Constant_size_PD/const_Body.i: Constant_size_PD/const_Body.cpp.i
+
+.PHONY : Constant_size_PD/const_Body.i
+
+# target to preprocess a source file
+Constant_size_PD/const_Body.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.i
+.PHONY : Constant_size_PD/const_Body.cpp.i
+
+Constant_size_PD/const_Body.s: Constant_size_PD/const_Body.cpp.s
+
+.PHONY : Constant_size_PD/const_Body.s
+
+# target to generate assembly for a file
+Constant_size_PD/const_Body.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.s
+.PHONY : Constant_size_PD/const_Body.cpp.s
+
+Constant_size_PD/const_Header.o: Constant_size_PD/const_Header.cpp.o
+
+.PHONY : Constant_size_PD/const_Header.o
+
+# target to build an object file
+Constant_size_PD/const_Header.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o
+.PHONY : Constant_size_PD/const_Header.cpp.o
+
+Constant_size_PD/const_Header.i: Constant_size_PD/const_Header.cpp.i
+
+.PHONY : Constant_size_PD/const_Header.i
+
+# target to preprocess a source file
+Constant_size_PD/const_Header.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.i
+.PHONY : Constant_size_PD/const_Header.cpp.i
+
+Constant_size_PD/const_Header.s: Constant_size_PD/const_Header.cpp.s
+
+.PHONY : Constant_size_PD/const_Header.s
+
+# target to generate assembly for a file
+Constant_size_PD/const_Header.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.s
+.PHONY : Constant_size_PD/const_Header.cpp.s
+
+Constant_size_PD/const_PD.o: Constant_size_PD/const_PD.cpp.o
+
+.PHONY : Constant_size_PD/const_PD.o
+
+# target to build an object file
+Constant_size_PD/const_PD.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o
+.PHONY : Constant_size_PD/const_PD.cpp.o
+
+Constant_size_PD/const_PD.i: Constant_size_PD/const_PD.cpp.i
+
+.PHONY : Constant_size_PD/const_PD.i
+
+# target to preprocess a source file
+Constant_size_PD/const_PD.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.i
+.PHONY : Constant_size_PD/const_PD.cpp.i
+
+Constant_size_PD/const_PD.s: Constant_size_PD/const_PD.cpp.s
+
+.PHONY : Constant_size_PD/const_PD.s
+
+# target to generate assembly for a file
+Constant_size_PD/const_PD.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.s
+.PHONY : Constant_size_PD/const_PD.cpp.s
+
 Global_functions/basic_functions.o: Global_functions/basic_functions.cpp.o
 
 .PHONY : Global_functions/basic_functions.o
@@ -473,6 +554,33 @@ PD/spare_pd.s: PD/spare_pd.cpp.s
 PD/spare_pd.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.s
 .PHONY : PD/spare_pd.cpp.s
+
+POW2C/const_filter.o: POW2C/const_filter.cpp.o
+
+.PHONY : POW2C/const_filter.o
+
+# target to build an object file
+POW2C/const_filter.cpp.o:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o
+.PHONY : POW2C/const_filter.cpp.o
+
+POW2C/const_filter.i: POW2C/const_filter.cpp.i
+
+.PHONY : POW2C/const_filter.i
+
+# target to preprocess a source file
+POW2C/const_filter.cpp.i:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.i
+.PHONY : POW2C/const_filter.cpp.i
+
+POW2C/const_filter.s: POW2C/const_filter.cpp.s
+
+.PHONY : POW2C/const_filter.s
+
+# target to generate assembly for a file
+POW2C/const_filter.cpp.s:
+	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.s
+.PHONY : POW2C/const_filter.cpp.s
 
 POW2C/pow2c_filter.o: POW2C/pow2c_filter.cpp.o
 
@@ -840,6 +948,15 @@ help:
 	@echo "... Bit_Array/Naive_bit_array/n_bit_array.o"
 	@echo "... Bit_Array/Naive_bit_array/n_bit_array.i"
 	@echo "... Bit_Array/Naive_bit_array/n_bit_array.s"
+	@echo "... Constant_size_PD/const_Body.o"
+	@echo "... Constant_size_PD/const_Body.i"
+	@echo "... Constant_size_PD/const_Body.s"
+	@echo "... Constant_size_PD/const_Header.o"
+	@echo "... Constant_size_PD/const_Header.i"
+	@echo "... Constant_size_PD/const_Header.s"
+	@echo "... Constant_size_PD/const_PD.o"
+	@echo "... Constant_size_PD/const_PD.i"
+	@echo "... Constant_size_PD/const_PD.s"
 	@echo "... Global_functions/basic_functions.o"
 	@echo "... Global_functions/basic_functions.i"
 	@echo "... Global_functions/basic_functions.s"
@@ -873,6 +990,9 @@ help:
 	@echo "... PD/spare_pd.o"
 	@echo "... PD/spare_pd.i"
 	@echo "... PD/spare_pd.s"
+	@echo "... POW2C/const_filter.o"
+	@echo "... POW2C/const_filter.i"
+	@echo "... POW2C/const_filter.s"
 	@echo "... POW2C/pow2c_filter.o"
 	@echo "... POW2C/pow2c_filter.i"
 	@echo "... POW2C/pow2c_filter.s"

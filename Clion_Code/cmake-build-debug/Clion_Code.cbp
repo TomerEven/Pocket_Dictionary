@@ -96,10 +96,31 @@
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/Naive_bit_array/n_bit_array.h">
 			<Option target="Clion_Code"/>
 		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Body.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Body.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Header.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Header.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_PD.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_PD.h">
+			<Option target="Clion_Code"/>
+		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/basic_functions.cpp">
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/basic_functions.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/macros.h">
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Hash.cpp">
@@ -160,6 +181,12 @@
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.h">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/const_filter.cpp">
+			<Option target="Clion_Code"/>
+		</Unit>
+		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/const_filter.h">
 			<Option target="Clion_Code"/>
 		</Unit>
 		<Unit filename="/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_filter.cpp">

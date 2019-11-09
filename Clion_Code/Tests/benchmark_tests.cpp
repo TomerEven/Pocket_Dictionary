@@ -2,7 +2,6 @@
 // Created by tomer on 10/29/19.
 //
 
-#include "validation_tests.h"
 #include "benchmark_tests.h"
 
 string rand_string(int minLength, int charsNum, int numOfDiffLength) {
@@ -22,6 +21,46 @@ void set_init(size_t size, set<string> *mySet, int minLength, int charsNum) {
 void vector_lexicographic_init(size_t size, vector<string> *vec, int minLength, int charsNum) {
     size_t start_val = (1ul << (ulong) minLength) - 1;
     for (size_t i = 0; i < size; ++i) vec->push_back(to_string(start_val++));
+}
+
+ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
+    clock_t startRunTime = clock();
+    set<string> member_set, nom_set;
+
+    clock_t t0 = clock();
+    size_t n = ceil(f * number_of_pds * load_factor);
+    set_init(n, &member_set);
+    double member_set_init_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+
+    t0 = clock();
+    pow2c_filter a(number_of_pds, m, f, l);
+    double init_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+
+    t0 = clock();
+    for (auto iter : member_set) a.insert(&iter);
+    double insertion_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+
+    t0 = clock();
+    set_init(lookup_reps, &nom_set);
+    double nom_set_init_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+    double set_ratio = nom_set.size() / (double) lookup_reps;
+
+    // [TN, FP, TP]
+    int counter[3] = {0, 0, 0};
+    t0 = clock();
+//    for (auto iter : nom_set) ++counter[w.lookup_verifier(&iter, call_adapt)];
+    for (auto iter : nom_set) a.lookup(&iter);
+
+    double lookup_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+    double total_run_time = (clock() - startRunTime) / ((double) CLOCKS_PER_SEC);
+
+
+    test_printer(n, 0, lookup_reps, false, set_ratio, counter, member_set_init_time, nom_set_init_time,
+                 init_time, insertion_time, lookup_time, total_run_time, os);
+
+//    os << a;
+    return os;
+
 }
 
 ostream &
@@ -65,26 +104,27 @@ b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, 
 
 }
 
-ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
+ostream &const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                            ostream &os) {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
     clock_t t0 = clock();
-    size_t n = ceil(f * number_of_pds * load_factor);
+    size_t n = ceil((double) f * number_of_pds * load_factor);
     set_init(n, &member_set);
-    double member_set_init_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
 
     t0 = clock();
-    pow2c_filter a(number_of_pds, m, f, l);
-    double init_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+    const_filter a(number_of_pds, m, f, l);
+    double init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
 
     t0 = clock();
     for (auto iter : member_set) a.insert(&iter);
-    double insertion_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+    double insertion_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
 
     t0 = clock();
     set_init(lookup_reps, &nom_set);
-    double nom_set_init_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
+    double nom_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
     double set_ratio = nom_set.size() / (double) lookup_reps;
 
     // [TN, FP, TP]
@@ -93,8 +133,8 @@ ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t 
 //    for (auto iter : nom_set) ++counter[w.lookup_verifier(&iter, call_adapt)];
     for (auto iter : nom_set) a.lookup(&iter);
 
-    double lookup_time = (clock() - t0) / ((double) CLOCKS_PER_SEC);
-    double total_run_time = (clock() - startRunTime) / ((double) CLOCKS_PER_SEC);
+    double lookup_time = (double) (clock() - t0) / (CLOCKS_PER_SEC);
+    double total_run_time = (double) (clock() - startRunTime) / (CLOCKS_PER_SEC);
 
 
     test_printer(n, 0, lookup_reps, false, set_ratio, counter, member_set_init_time, nom_set_init_time,

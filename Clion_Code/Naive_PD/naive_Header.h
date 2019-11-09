@@ -6,6 +6,7 @@
 #define CLION_CODE_NAIVE_HEADER_H
 
 #include "../Global_functions/basic_functions.h"
+#include "../Global_functions/macros.h"
 
 class naive_Header {
     vector<bool> vec;
@@ -27,6 +28,9 @@ public:
     void remove_att(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
     void pull(size_t start_index);
+
+    vector<bool> *get_vec();
+
 
 private:
 //    naive_Header(naive_Header &naive_header);

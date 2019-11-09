@@ -8,8 +8,8 @@
 #include <zconf.h>
 #include <cstdint>
 
-// P31 = (1<<31) - 1.
-#define P31 (2147483647)
+#include "../Global_functions/macros.h"
+
 
 /**
  * Primitive roots and their inverse modulo (1<<31) - 1.

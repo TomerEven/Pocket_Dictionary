@@ -30,6 +30,7 @@ public:
 
     void remove(size_t quotient, FP_TYPE remainder);
 
+    void print();
 };
 
 

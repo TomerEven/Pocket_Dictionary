@@ -4,7 +4,7 @@
 
 #include "v_Body.h"
 
-v_Body::v_Body(size_t m, size_t f, size_t l) : body(m, f, l) {
+v_Body::v_Body(size_t m, size_t f, size_t l) : body(m, f, l), const_body() {
     if (BODY_BLOCK_SIZE != (8 * sizeof(BODY_BLOCK_TYPE)))
         assert(false);
     this->vec.resize(f * l);
@@ -19,16 +19,18 @@ bool v_Body::lookup(size_t abstract_body_start_index, size_t abstract_body_end_i
 
 void v_Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
-    body.insert(abstract_body_start_index, abstract_body_end_index, remainder);
     vector_insert(abstract_body_start_index, abstract_body_end_index, remainder);
+    body.insert(abstract_body_start_index, abstract_body_end_index, remainder);
+    const_body.insert(abstract_body_start_index, abstract_body_end_index, remainder);
     validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 
 }
 
 void v_Body::remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
-    body.remove(abstract_body_start_index, abstract_body_end_index, remainder);
     vector_remove(abstract_body_start_index, abstract_body_end_index, remainder);
+    body.remove(abstract_body_start_index, abstract_body_end_index, remainder);
+    const_body.remove(abstract_body_start_index, abstract_body_end_index, remainder);
     validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 
 
@@ -93,21 +95,21 @@ int v_Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_e
 
 void v_Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
 //    return;
-    size_t a = -1, b = 0, c = -1, d = 0;
-    auto r1 = body.find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
-    auto r2 = vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
-
-    bool c1 = r1 == r2;
-    bool c2 = c1 and (a == c);
-    bool c3 = c2 and (b == d);
+    size_t s1 = -1, e1 = -1, s2 = -2, e2 = -2, s3 = -3, e3 = -3;
+    auto r2 = vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &s2, &e2);
+    auto r1 = body.find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &s1, &e1);
+    auto r3 = const_body.find(abstract_body_start_index, abstract_body_end_index, remainder, &s3);
+    bool c1 = r1 == r2 and r1 == r3;
+    bool c2 = c1 and (s1 == s2);// and s1 == s3);
+    bool c3 = c2 and (e1 == e2);
 
     if (!c3) {
         cout << "Error start" << endl;
 
         printf("abst_start_index = %zu, abst_end_index = %zu\n", abstract_body_start_index, abstract_body_end_index);
-        printf("actual result(r1) = %d, expected result(r2) = %d\n", r1, r2);
-        printf("actual B_index(a)= %zu, expected B_index(c) = %zu\n", a, c);
-        printf("actual bit_index(b) = %zu, expected bit_index(d) = %zu\n", b, d);
+        printf("actual result(r1) = %d2, expected result(r2) = %d2\n", r1, r2);
+        printf("actual B_index(s1)= %zu, expected B_index(s2) = %zu\n", s1, s2);
+        printf("actual bit_index(e1) = %zu, expected bit_index(e2) = %zu\n", e1, e2);
 
         cout << "vector print_with no spaces" << endl;
         print_bool_vector_no_spaces(&vec);
@@ -126,8 +128,9 @@ void v_Body::validate_find(size_t abstract_body_start_index, size_t abstract_bod
 
         cout << "\nPrints end" << endl;
 
-        body.find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
-        vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
+        vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &s2, &e2);
+        body.find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &s1, &e1);
+        const_body.find(abstract_body_start_index, abstract_body_end_index, remainder, &s3);
         assert(false);
     }
 }
@@ -135,5 +138,12 @@ void v_Body::validate_find(size_t abstract_body_start_index, size_t abstract_bod
 void v_Body::vector_push(size_t vector_bit_counter) {
     for (size_t i = vec.size() - 1; i >= vector_bit_counter + body.get_fp_size(); --i)
         vec[i] = vec[i - body.get_fp_size()];
+}
+
+void v_Body::print() {
+    body.print_consecutive();
+    const_body.print();
+    print_vector_by_unpacking(&vec, 8);
+
 }
 

@@ -14,9 +14,23 @@
 #include "../Naive_PD/naive_PD.h"
 #include "../POW2C/pow2c_filter.h"
 #include "../POW2C/pow2c_naive_filter.h"
+#include "benchmark_tests.h"
+#include "../Constant_size_PD/const_PD.h"
 
+void break_point_helper();
 
 bool validate_header_get_interval_function(size_t reps);
+
+bool validate_push_function(size_t reps);
+
+bool validate_pull_function(size_t reps);
+
+/**
+ * smashing stack for some reason.
+ * @param reps
+ * @return
+ */
+bool validate_header_type(size_t reps);
 
 bool t1(bool to_print = false);
 
@@ -34,15 +48,21 @@ bool t5(size_t m, size_t f, size_t l, bool to_print = false);
  * @param to_print
  * @return
  */
-bool r0(size_t reps, bool to_print = 0);
+bool validate_PD_single_run(size_t reps, bool to_print = 0);
 
+bool validate_const_PD(size_t reps, bool to_print = 0);
 
 template<class T>
 bool r0_core_template(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print = 0);
 
 bool r0_core(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print = 0);
 
-bool s0(size_t reps, bool to_print = 0);
+
+bool validate_PD_by_load_factor(size_t reps, float load_factor, size_t m = 32, size_t f = 32, bool to_print = 0);
+
+bool validate_safe_PD(size_t reps, bool to_print = 0);
+
+bool validate_safe_PD_const_case(size_t reps, bool to_print = 0);
 
 bool naive_pd_r0(size_t reps, bool to_print = 0);
 

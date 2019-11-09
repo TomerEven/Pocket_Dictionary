@@ -13,10 +13,10 @@
 #include <algorithm>
 #include <ctgmath>
 
-#define MASK(p)  ( (1ULL <<(p)) - 1ULL)
-#define MASK32 (4294967295ul)
 
 using namespace std;
+
+void print_array(uint8_t *a, size_t a_size);
 
 void print_array(int *a, size_t a_size);
 
@@ -38,7 +38,7 @@ void print_vector_by_unpacking(vector<bool> *v, size_t unpack_size);
 
 void print_bool_vector_no_spaces(vector<bool> *v);
 
-uint32_t read_FP_from_vector_by_index(vector<bool> *v, size_t bit_start_index, size_t fp_size);
+uint32_t read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size);
 
 void write_FP_to_vector_by_index(vector<bool> *v, size_t index, uint32_t remainder, size_t fp_size);
 
@@ -47,6 +47,10 @@ void to_vector(vector<bool> *vec, const uint32_t *a, size_t a_size);
 void to_vector(vector<bool> *vec, uint8_t *a, size_t a_size);
 
 void vector_to_word_array(const vector<bool> *v, uint32_t *a, size_t a_size);
+
+int compare_vector_and_array(const vector<bool> *v, const uint8_t *a);
+
+int compare_vector_and_array(const vector<bool> *v, const uint32_t *a);
 
 unsigned int naive_msb32(unsigned int x);
 

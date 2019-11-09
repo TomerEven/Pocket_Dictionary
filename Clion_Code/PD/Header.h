@@ -14,18 +14,7 @@
 #include <ctgmath>
 #include "../bit_operations/bit_op.h"
 #include "../Global_functions/basic_functions.h"
-
-
-#define HEADER_BLOCK_SIZE (32)
-#define HEADER_BLOCK_TYPE uint32_t
-
-#define SL(p) (1ULL <<(p))
-//#define MASK(perm)  ( (1ULL <<(perm)) - 1ULL)
-#define MB_BIT(n) (1ULL << (MB - (n)))
-#define ON(a, b) (MASK(a) ^ MASK(b))
-#define OFF(a, b) (~(MASK(a) ^ MASK(b)))
-//#define MOD_INVERSE(n) (HEADER_BLOCK_SIZE - (n) - 1)
-#define INTEGER_ROUND(a, b) (((a)/(b)) + ((a)%(b) != 0))
+#include "../Global_functions/macros.h"
 
 
 class Header {
@@ -39,15 +28,17 @@ class Header {
 public:
     Header(size_t m, size_t f, size_t l);
 
-//    ~Header();
+    Header(size_t f);
 
-    void get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index);
+//    ~Header();
 
     bool lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
     void insert(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
     void remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
+
+    void get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index);
 
     bool conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
@@ -136,6 +127,15 @@ void
 get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index,
                      size_t *end_index);
 
+void
+get_interval_by_rank2(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index,
+                      size_t *end_index);
+
 
 bool validate_get_interval_functions(const HEADER_BLOCK_TYPE *arr, size_t a_size, size_t quotient);
+
+void static_push(HEADER_BLOCK_TYPE *H, size_t size, size_t end);
+
+void static_pull(HEADER_BLOCK_TYPE *H, size_t size, size_t end);
+
 #endif //CLION_CODE_HEADER_H

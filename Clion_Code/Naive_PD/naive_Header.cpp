@@ -9,8 +9,8 @@ naive_Header::naive_Header(size_t m, size_t f, size_t l) : max_capacity(f), capa
     this->vec.resize(number_of_bits);
 }
 
-naive_Header::naive_Header(vector<bool> *vector) : max_capacity((vector->size()-1)/2), capacity(-42),
-                                                         vec(*vector) {}
+naive_Header::naive_Header(vector<bool> *vector) : max_capacity((vector->size() - 1) / 2), capacity(-42),
+                                                   vec(*vector) {}
 
 bool naive_Header::lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     get_interval(quotient, start_index, end_index);
@@ -35,19 +35,19 @@ void naive_Header::insert_att(size_t quotient, size_t *start_index, size_t *end_
     temp.insert(quotient, start_index, end_index);
 */
     this->get_interval(quotient, start_index, end_index);
-    rotate(vec.rbegin(), vec.rbegin() + 1,vec.rend() - *end_index );
+    rotate(vec.rbegin(), vec.rbegin() + 1, vec.rend() - *end_index);
     vec[*end_index] = true;
     vec[vec.size() - 1] = false;
 
-  /*  if (vec != temp.vec){
-        cout << "Bad insertion" << endl;
-        print_vector_as_words(&vec);
-        print_vector_as_words(&temp.vec);
-        print_vector(&vec);
-        print_vector(&temp.vec);
+    /*  if (vec != temp.vec){
+          cout << "Bad insertion" << endl;
+          print_vector_as_words(&vec);
+          print_vector_as_words(&temp.vec);
+          print_vector(&vec);
+          print_vector(&temp.vec);
 
-        assert(false);
-    }*/
+          assert(false);
+      }*/
 }
 
 void naive_Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
@@ -84,5 +84,13 @@ void naive_Header::get_interval(size_t quotient, size_t *start_index, size_t *en
         }
     }
     assert(false);
+}
+
+vector<bool> *naive_Header::get_vec() {
+    return &vec;
+}
+
+void naive_Header::remove_att(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
+
 }
 

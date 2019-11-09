@@ -7,19 +7,13 @@
 
 #include "MurmurHash3.h"
 #include "../Global_functions/basic_functions.h"
+#include "../Global_functions/macros.h"
 #include <iostream>
 #include <cstring>
 #include <random>
 #include <assert.h>
 
 
-#define DEFAULT_SEED 2
-#define SECOND_SEED 42
-#define HASH_BLOCK_TYPE uint32_t
-#define HASH_BLOCK_SIZE (32)
-#define MAX_MULTI (1ULL<<10)
-#define D_TYPE uint32_t
-#define D_TYPE_SIZE (32)
 
 
 using namespace std;

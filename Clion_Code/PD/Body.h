@@ -17,7 +17,9 @@
 #include <ctgmath>
 //#include "../bit_operations/bit_op.h"
 #include "../Global_functions/basic_functions.h"
+#include "../Global_functions/macros.h"
 
+/*
 #define INTEGER_ROUND(a, b) (((a)/(b)) + ((a)%(b) != 0))
 
 
@@ -34,6 +36,7 @@
 //#define MOD_INVERSE(n) (BODY_BLOCK_SIZE - (n) - 1)
 
 #define CASE_PRINT (0)
+*/
 
 class Body {
     size_t fp_size;

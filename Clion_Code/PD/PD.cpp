@@ -12,8 +12,9 @@ bool PD::lookup(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
     if (not header.lookup(quotient, &start_index, &end_index))
         return false;
-    assert(quotient <= start_index);
-    assert(start_index <= end_index);
+    if (DB) assert(quotient <= start_index);
+    if (DB) assert(start_index <= end_index);
+//    end_index = max(start_index, end_index);
     size_t body_start = start_index - quotient;
     size_t body_end = end_index - quotient;
     return body.wrap_lookup(body_start, body_end, remainder);
@@ -23,8 +24,9 @@ bool PD::lookup(size_t quotient, FP_TYPE remainder) {
 void PD::insert(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
     this->header.insert(quotient, &start_index, &end_index);
-    assert(quotient <= start_index);
-    assert(start_index <= end_index);
+//    end_index = max(start_index, end_index);
+    if (DB) assert(quotient <= start_index);
+    if (DB) assert(start_index <= end_index);
     size_t body_start = start_index - quotient;
     size_t body_end = end_index - quotient;
 
@@ -37,9 +39,10 @@ void PD::insert(size_t quotient, FP_TYPE remainder) {
 void PD::remove(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
     this->header.remove(quotient, &start_index, &end_index);
+//    end_index = max(start_index, end_index);
 
-    assert(quotient <= start_index);
-    assert(start_index <= end_index);
+    if (DB) assert(quotient <= start_index);
+    if (DB) assert(start_index <= end_index);
     size_t body_start = start_index - quotient;
     size_t body_end = end_index - quotient;
     this->body.wrap_remove(body_start, body_end, remainder);

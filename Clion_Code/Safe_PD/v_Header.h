@@ -6,10 +6,12 @@
 #define CLION_CODE_V_HEADER_H
 
 #include "../PD/Header.h"
+#include "../Constant_size_PD/const_Header.h"
 
 
 class v_Header {
     Header header;
+    const_Header const_header;
     vector<bool> vec;
 
 public:
@@ -29,6 +31,7 @@ public:
 
     void vector_remove(uint_fast16_t quotient);
 
+    void print();
 };
 
 

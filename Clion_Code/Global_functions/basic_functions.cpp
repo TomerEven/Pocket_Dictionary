@@ -4,7 +4,17 @@
 
 #include "basic_functions.h"
 
-void print_array(uint32_t *a, size_t a_size) {
+void print_array(uint8_t *a, size_t a_size) {
+    cout << "[" << (int) a[0];
+    for (size_t i = 1; i < a_size; ++i) {
+        cout << ", " << (int) a[i];
+    }
+    cout << "]" << endl;
+
+}
+
+
+void print_array(int *a, size_t a_size) {
     cout << "[" << a[0];
     for (size_t i = 1; i < a_size; ++i) {
         cout << ", " << a[i];
@@ -13,7 +23,7 @@ void print_array(uint32_t *a, size_t a_size) {
 
 }
 
-void print_array(int *a, size_t a_size) {
+void print_array(uint32_t *a, size_t a_size) {
     cout << "[" << a[0];
     for (size_t i = 1; i < a_size; ++i) {
         cout << ", " << a[i];
@@ -138,7 +148,7 @@ void vector_to_word_array(const vector<bool> *v, uint32_t *a, size_t a_size) {
     }
 }
 
-uint32_t read_FP_from_vector_by_index(vector<bool> *v, size_t bit_start_index, size_t fp_size) {
+uint32_t read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size) {
     assert(bit_start_index + fp_size <= v->size());
 
 //    BODY_BLOCK_TYPE res = v->at(bit_start_index);
@@ -161,9 +171,8 @@ void write_FP_to_vector_by_index(vector<bool> *v, size_t index, uint32_t remaind
 }
 
 
-
 string my_bin(size_t n, size_t length) {
-    string s = "";
+    string s;
     ulong b = 1ull << (ulong) (32 - 1);
     for (int i = 0; i < 32; ++i) {
         if (b & n)
@@ -175,6 +184,26 @@ string my_bin(size_t n, size_t length) {
 //    cout << s << endl;
     return s;
 }
+
+int compare_vector_and_array(const vector<bool> *v, const uint8_t *a) {
+    size_t size = min(v->size(), sizeof(a) / sizeof(a[0]));
+    size_t step = sizeof(a[0]) * sizeof(char);
+    for (size_t i = 0; i < size; i += step) {
+        if (a[i] != read_FP_from_vector_by_index(v, i, step)) return i;
+    }
+    return -1;
+
+}
+
+int compare_vector_and_array(const vector<bool> *v, const uint32_t *a) {
+    size_t size = min(v->size(), sizeof(a) / sizeof(a[0]));
+    size_t step = sizeof(a[0]) * sizeof(char);
+    for (size_t i = 0; i < size; i += step) {
+        if (a[i] != read_FP_from_vector_by_index(v, i, step)) return i;
+    }
+    return -1;
+}
+
 
 int loglog2(int x) {
     log(x);
