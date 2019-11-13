@@ -4,23 +4,18 @@
 
 #include "Header.h"
 
-Header::Header(size_t m, size_t f, size_t l) : capacity(0), max_capacity(f) {
-    size_t number_of_bits = ((m + f) << 1ULL);
+Header::Header(size_t m, size_t f, size_t l) : capacity(0), max_capacity(f), size(get_initialize_size(m, f)) {
     if (HEADER_BLOCK_SIZE != (8 * sizeof(HEADER_BLOCK_TYPE))) {
         assert(false);
     }
-    size = (number_of_bits / HEADER_BLOCK_SIZE);
     H = new HEADER_BLOCK_TYPE[size]();
-
-//    this->vec.resize(number_of_bits);
 }
 
-Header::Header(size_t f) : capacity(0), max_capacity(f) {
+Header::Header(size_t f) : capacity(0), max_capacity(f), size(get_initialize_size(f, f)) {
     size_t number_of_bits = f << 1ul;
     if (HEADER_BLOCK_SIZE != (8 * sizeof(HEADER_BLOCK_TYPE))) {
         assert(false);
     }
-    size = (number_of_bits / HEADER_BLOCK_SIZE);
     H = new HEADER_BLOCK_TYPE[size]();
 }
 
@@ -34,40 +29,24 @@ bool Header::lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_ind
 }
 
 void Header::insert(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
-    assert(capacity < max_capacity);
+    if (DB) assert(capacity < max_capacity);
+    //Todo: no need to find the start_index, only the end_index.
     get_quotient_start_and_end_index(quotient, start_index, end_index);
     push(quotient, *start_index, *end_index);
-
-//    insert(quotient);
-//    validate_get_interval(quotient);
 
     capacity++;
 }
 
 void Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     get_quotient_start_and_end_index(quotient, start_index, end_index);
-    if (DB) assert (*end_index > *start_index); //deleting from empty run.
-
+    if (DB) assert (*end_index > *start_index); //deleting from empty interval.
     pull(quotient, *start_index, *end_index);
-
-//    remove(quotient);
-//    validate_get_interval(quotient);
     capacity--;
 }
 
-bool Header::conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
-    //todo
-    /*get_quotient_start_and_end_index(quotient, start_index, end_index);
-    assert (*end_index > *start_index); //deleting from empty run.
-
-    pull(quotient, *start_index, *end_index);
-
-    capacity--;*/
-}
 
 void Header::push(uint_fast16_t quotient, size_t start, size_t end) {
     size_t index;
-//    get_quotient_start_and_end_index(quotient, &start, &end);
     index = end / HEADER_BLOCK_SIZE;
 
     for (uint_fast16_t i = size - 1; i > index; --i) {
@@ -76,36 +55,22 @@ void Header::push(uint_fast16_t quotient, size_t start, size_t end) {
 
     uint_fast16_t bit_index = end % HEADER_BLOCK_SIZE;
     uint_fast16_t shift = HEADER_BLOCK_SIZE - bit_index;
-    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? (((ulong) H[index]) >> shift) << shift : 0;
-//    HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
-    HEADER_BLOCK_TYPE lower = ((ulong) H[index] >> 1ul) & (MASK(shift));
-    this->H[index] = ((ulong) upper | lower | SL((ulong) shift - 1));
-    /*
-    shift = block_size - index
-    upper = (n >> shift) << shift
-    lower = (n >> 1) & ((1 << shift) - 1)
-    return upper + lower
-    */
+    ulong mask = MASK(shift);
+    ulong upper = H[index] & (~mask);
+    HEADER_BLOCK_TYPE lower = ((ulong) H[index] >> 1ul) & mask;
+    this->H[index] = (upper | lower | SL(shift - 1ul));
 
 }
 
 void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
-    size_t index;
-
-    index = (end - 1) / HEADER_BLOCK_SIZE;
+    size_t index = (end - 1) / HEADER_BLOCK_SIZE;
     if (index == size - 1) {
         uint_fast16_t bit_index = (end - 1) % HEADER_BLOCK_SIZE;
         uint_fast16_t shift = HEADER_BLOCK_SIZE - bit_index;
-        HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? ((ulong) H[index] >> shift) << shift : 0;
-//        HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
-        HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & (MASK(shift));
-//        HEADER_BLOCK_TYPE lower = (this->H[index + 1]) >> (HEADER_BLOCK_SIZE - 1);
+        ulong mask = MASK(shift);
+        ulong upper = H[index] & (~mask);
+        HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & mask;
         this->H[index] = upper | mid;
-
-        //Making sure the run's end, marked by zero, is not deleted.
-        if (DB) assert(H[index] ^ SL((ulong) bit_index - 2));
-
-//        cout << "here" << endl;
         return;
     }
     HEADER_BLOCK_TYPE lower = ((ulong) H[index + 1]) >> ((ulong) (HEADER_BLOCK_SIZE - 1));
@@ -117,18 +82,22 @@ void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
 
     uint_fast16_t bit_index = (end - 1) % HEADER_BLOCK_SIZE;
     uint_fast16_t shift = HEADER_BLOCK_SIZE - bit_index;
-    HEADER_BLOCK_TYPE upper = (shift < HEADER_BLOCK_SIZE) ? ((ulong) H[index] >> shift) << shift : 0;
-//    HEADER_BLOCK_TYPE upper = (this->H[index] >> shift) << shift;
-    HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & (MASK(shift));
-
-    this->H[index] = (ulong) upper | mid | lower;// | SL(shift);
-//todo: why here?    assert(H[index] ^ SL((ulong)bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
+    ulong mask = MASK(shift);
+    ulong upper = H[index] & (~mask);
+    HEADER_BLOCK_TYPE mid = ((ulong) H[index] << 1ul) & mask;
+    H[index] = upper | mid | lower;// | SL(shift);
 }
 
+/**
+ * Used as a wrapper here, for different implementation of get_interval function.
+ * @param quotient
+ * @param start_index
+ * @param end_index
+ */
 void Header::get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index) {
 //    get_interval_attempt(H, size, quotient, start_index, end_index);
-//    get_interval_by_rank(H, size, quotient, start_index, end_index);
-    get_interval_by_rank2(H, size, quotient, start_index, end_index);
+    get_interval_by_rank(H, size, quotient, start_index, end_index);
+//    get_interval_by_rank2(H, size, quotient, start_index, end_index);
 //    validate_get_interval(quotient);
 
 }
@@ -180,13 +149,14 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
         *start_index = 0;
         size_t j = 0;
         while (a[j] == MASK32) j++;
-        uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
-        *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
+        *end_index = (j) * HEADER_BLOCK_SIZE + __builtin_clz(~a[j]);
+//        uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+//        *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
 //        cout << "h0" << endl;
         return;
     }
     for (size_t i = 0; i < a_size; ++i) {
-        auto cz = bit_count(~a[i]);
+        auto cz = popcnt64(~a[i]);
         if (cz < quotient) quotient -= cz;
         else if (cz == quotient) {
             uint64_t slot = ((ulong) (a[i]) << 32ul) | 4294967295ul;
@@ -196,8 +166,9 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
                     (i + (bit_pos + 1 == HEADER_BLOCK_SIZE)) * HEADER_BLOCK_SIZE + (bit_pos + 1) % HEADER_BLOCK_SIZE;
             size_t j = i + 1;
             while (a[j] == MASK32) j++;
-            uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
-            *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
+            *end_index = (j) * HEADER_BLOCK_SIZE + __builtin_clz(~a[j]);
+//            uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+//            *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
 //            cout << "h5" << endl;
             return;
             /*if (bit_pos == HEADER_BLOCK_SIZE - 1) {
@@ -457,7 +428,6 @@ void Header::validate_get_interval(size_t quotient) {
     assert(d == vb);
 */
 
-
 void
 get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index) {
     if (quotient == 0) {
@@ -648,3 +618,13 @@ void static_pull(HEADER_BLOCK_TYPE *H, size_t size, size_t end) {
     H[index] = (ulong) upper | mid | lower;// | SL(shift);
 //todo: why here?    assert(H[index] ^ SL((ulong)bit_index - 2)); //Making sure the run's end, marked by zero, is not deleted.
 }
+
+//bool Header::conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
+//    //todo
+//    /*get_quotient_start_and_end_index(quotient, start_index, end_index);
+//    assert (*end_index > *start_index); //deleting from empty run.
+//
+//    pull(quotient, *start_index, *end_index);
+//
+//    capacity--;*/
+//}

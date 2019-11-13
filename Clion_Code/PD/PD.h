@@ -8,18 +8,18 @@
 #include "Header.h"
 #include "Body.h"
 
-/*
-#include "../Safe_PD/v_Header.h"
-#include "../Safe_PD/v_Body.h"
-*/
 
 class PD {
     Header header;
     Body body;
     size_t capacity;
-    size_t max_capacity;
+    const size_t max_capacity;
+
 public:
     PD(size_t m, size_t f, size_t l);
+
+    virtual ~PD();
+//    virtual ~PD();
 
     bool lookup(size_t quotient, FP_TYPE remainder);
 

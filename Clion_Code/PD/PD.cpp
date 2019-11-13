@@ -7,6 +7,12 @@
 
 PD::PD(size_t m, size_t f, size_t l) : header(m, f, l), body(m, f, l), capacity(0), max_capacity(f) {}
 
+PD::~PD() = default;
+
+//PD::~PD() {
+//    delete(&header);
+//    delete &body;
+//}
 
 bool PD::lookup(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
@@ -35,6 +41,7 @@ void PD::insert(size_t quotient, FP_TYPE remainder) {
     this->body.wrap_insert(body_start, body_end, remainder);
     capacity++;
 }
+
 
 void PD::remove(size_t quotient, FP_TYPE remainder) {
     size_t start_index = -1, end_index = -1;
@@ -69,17 +76,6 @@ bool PD::conditional_remove(size_t quotient, FP_TYPE remainder) {
 }
 
 
-/*
-bool PD::conditional_remove(size_t quotient, FP_TYPE remainder) {
-    //todo: more efficient implementation, which saves the place the element was found.
-    if (lookup(quotient, remainder)){
-        remove(quotient, remainder);
-        return true;
-    }
-    return false;
-}
-*/
-
 void PD::header_pp() {
     header.pretty_print();
 }
@@ -113,5 +109,6 @@ size_t PD::get_capacity() const {
 bool PD::is_full() {
     return capacity == max_capacity;
 }
+
 
 

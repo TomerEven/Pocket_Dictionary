@@ -5,14 +5,12 @@
 #include "Body.h"
 
 
-Body::Body(size_t m, size_t f, size_t l) : fp_size(l), capacity(0), max_capacity(f) {
+Body::Body(size_t m, size_t f, size_t l) : fp_size(l), capacity(0), max_capacity(f),
+                                           size(INTEGER_ROUND((max_capacity * fp_size), (BODY_BLOCK_SIZE))) {
     if (BODY_BLOCK_SIZE != (8 * sizeof(BODY_BLOCK_TYPE)))
         assert(false);
-    size = INTEGER_ROUND((max_capacity * fp_size), (BODY_BLOCK_SIZE));
     B = new BODY_BLOCK_TYPE[size]();
     for (size_t i = 0; i < size; ++i) B[i] = 0;
-
-//    this->vec.resize(max_capacity * fp_size);
 
 }
 
@@ -48,52 +46,13 @@ bool Body::lookup(size_t abstract_body_start_index, size_t abstract_body_end_ind
 
 }
 
-/*
-int Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder,
-                      size_t *p_B_index, size_t *p_bit_index) {
-
-    size_t vector_start_index = abstract_body_start_index * fp_size;
-    size_t vector_end_index = abstract_body_end_index * fp_size;
-    size_t i = vector_start_index;
-    for (; i < vector_end_index; i += fp_size) {
-        auto temp = read_FP_from_vector_by_index(i);
-        if (temp < remainder)
-            continue;
-        else if (temp == remainder) {
-            *p_B_index = i / BODY_BLOCK_SIZE;
-            *p_bit_index = i % BODY_BLOCK_SIZE;
-            return 1;
-        } else {
-            *p_B_index = i / BODY_BLOCK_SIZE;
-            *p_bit_index = i % BODY_BLOCK_SIZE;
-            return 2;
-        }
-    }
-    assert(i == vector_end_index);
-    *p_B_index = vector_end_index / BODY_BLOCK_SIZE;
-    *p_bit_index = vector_end_index % BODY_BLOCK_SIZE;
-    return 2;
-
-    */
-/*if (this->compare_remainder_and_vector(i, remainder)) {
-        *p_B_index = i / BODY_BLOCK_SIZE;
-        *p_bit_index = i % BODY_BLOCK_SIZE;
-        return 1;
-    }
-    *p_B_index = vector_end_index / BODY_BLOCK_SIZE;
-    *p_bit_index = vector_end_index % BODY_BLOCK_SIZE;
-    return 2;*/
-/*
-
-}
-*/
-
 
 int
 Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder,
                    size_t *p_B_index,
                    size_t *p_bit_index) {
 
+    /*Empty case. */
     if (abstract_body_start_index == abstract_body_end_index) {
         *p_B_index = (abstract_body_start_index * fp_size) / BODY_BLOCK_SIZE;
         *p_bit_index = (abstract_body_start_index * fp_size) % BODY_BLOCK_SIZE;
@@ -102,10 +61,6 @@ Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_in
     }
 
     size_t total_bit_counter = abstract_body_start_index * fp_size;
-    /*
-//    size_t b_start_index = (abstract_body_start_index * fp_size) / BODY_BLOCK_SIZE;
-//    size_t b_end_index = (abstract_body_end_index * fp_size) / BODY_BLOCK_SIZE;
-*/
     size_t comparing_counter = 0, comparing_lim = abstract_body_end_index - abstract_body_start_index;
 
     for (; comparing_counter < comparing_lim; ++comparing_counter) {
@@ -114,6 +69,7 @@ Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_in
         size_t bits_left_to_read_inside_slot = BODY_BLOCK_SIZE - bit_index_inside_slot;
 
         BODY_BLOCK_TYPE current_cell = B[B_index];
+        /*More than fp_size bits remain in B[B_index].*/
         if (bits_left_to_read_inside_slot > fp_size) {
             ulong shift = bits_left_to_read_inside_slot - fp_size;
             if (DB) assert(shift < BODY_BLOCK_SIZE);
@@ -124,6 +80,7 @@ Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_in
                                            p_B_index,
                                            p_bit_index);
             }
+            /*Exactly fp_size bits remain in B[B_index].*/
         } else if (bits_left_to_read_inside_slot == fp_size) {
             BODY_BLOCK_TYPE current_remainder = current_cell & MASK(fp_size);
             if (remainder <= current_remainder) {
@@ -132,6 +89,7 @@ Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_in
                                            p_B_index,
                                            p_bit_index);
             }
+            /*Less than fp_size bits remain in B[B_index].*/
         } else {
             size_t number_of_bits_to_read_from_next_slot = fp_size - bits_left_to_read_inside_slot;
             ulong upper_shift = fp_size - bits_left_to_read_inside_slot;
@@ -157,59 +115,39 @@ Body::find_attempt(size_t abstract_body_start_index, size_t abstract_body_end_in
     return 2;
 }
 
+/*
 int
 Body::find_helper_attempt(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index,
                           size_t *p_bit_index) {
     *p_B_index = current_b_index;
     *p_bit_index = BODY_BLOCK_SIZE - bits_left;
     return 2 - did_find;
-    return (did_find) ? 1 : 2;
-}
+}*/
 
 void Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = -1, bit_index = -1;
     auto res = find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
-//    auto res = find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &bit_index);
-//    validate_find(abstract_body_start_index, abstract_body_end_index, remainder);
 
-    /*
-    size_t my_bit_index = abstract_body_end_index * fp_size;
-//    if (res == 2) {
-//        my_bit_index += fp_size;
-//    }
-    size_t exp_B_index = (my_bit_index) / BODY_BLOCK_SIZE;
-    size_t exp_bit_index = (my_bit_index) % BODY_BLOCK_SIZE;
-    bool cond = (exp_B_index == B_index) and (exp_bit_index == bit_index);
-    if (!cond) {
-        printf("exp_B_index: %zu, B_index: %zu\n", exp_B_index, B_index);
-        printf("exp_bit_index: %zu, bit_index: %zu\n", exp_bit_index, bit_index);
-    }
-    assert(cond);
-*/
     size_t left_bit_index = BODY_BLOCK_SIZE - bit_index;
     for (size_t i = size - 1; i > B_index; --i) {
         B[i] = (B[i] >> fp_size) | ((B[i - 1]) << (BODY_BLOCK_SIZE - fp_size));
-//        B[i] = (B[i] >> fp_size) | ((B[i - 1] & MASK(fp_size)) << (BODY_BLOCK_SIZE - fp_size));
     }
 
     if (BODY_BLOCK_SIZE >= fp_size + bit_index) {
-
-        size_t shift = left_bit_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
-        /*BODY_BLOCK_TYPE upper = (B[B_index] >> shift) << shift;*/
+        ulong mask = MASK(left_bit_index);
+        ulong upper = B[B_index] & (~mask);
         BODY_BLOCK_TYPE mid = remainder << (left_bit_index - fp_size);
-        BODY_BLOCK_TYPE lower = (B[B_index] >> fp_size) & (MASK(BODY_BLOCK_SIZE - (bit_index + fp_size)));
+        BODY_BLOCK_TYPE lower = (B[B_index] >> fp_size) & (MASK(left_bit_index - fp_size));
         B[B_index] = (upper | lower | mid);
-
-//        assert(fp_size - shift <= 0);
+        if (DB) assert(left_bit_index - fp_size >= 0);
     } else { // Prevents negative shifting.
         size_t shift = left_bit_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
-//        BODY_BLOCK_TYPE upper = (B[B_index] >> shift) << shift;
-        BODY_BLOCK_TYPE lower = remainder >> (fp_size - shift);
+        ulong mask = MASK(left_bit_index);
+        ulong upper = B[B_index] & (~mask);
+        BODY_BLOCK_TYPE lower = remainder >> (fp_size - left_bit_index);
         B[B_index] = (upper | lower);
 
-        assert(fp_size - shift > 0);
+        if (DB) assert(fp_size - shift > 0);
 
         //same amount that remainder was shifted right by. (fp_size - shift)
         size_t bits_left = fp_size - shift; // bits_left =  fp_size + bit_index - BODY_BLOCK_SIZE
@@ -235,75 +173,48 @@ void Body::remove(size_t abstract_body_start_index, size_t abstract_body_end_ind
     if (B_index == size - 1) {
         assert(bit_index + fp_size <= BODY_BLOCK_SIZE);
 
-        ulong shift = left_fp_start_index;
-        assert(shift >= 0);
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
-        BODY_BLOCK_TYPE mid = (B[B_index] & MASK(shift - fp_size)) << fp_size;
-        assert(shift >= fp_size);
+//        ulong shift = left_fp_start_index;
+        if (DB) assert(left_fp_start_index >= 0);
+        ulong mask = MASK(left_fp_start_index);
+        ulong upper = B[B_index] & (~mask);
+        BODY_BLOCK_TYPE mid = (B[B_index] & MASK(left_fp_start_index - fp_size)) << fp_size;
+        if (DB) assert(left_fp_start_index >= fp_size);
         B[B_index] = (upper | mid);
         return;
     }
 
     if (BODY_BLOCK_SIZE >= fp_size + bit_index) {
         ulong shift = left_fp_start_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
+        ulong mask = MASK(left_fp_start_index);
+        ulong upper = B[B_index] & (~mask);
         BODY_BLOCK_TYPE mid = (B[B_index] & MASK(left_fp_start_index - fp_size)) << fp_size;
         BODY_BLOCK_TYPE lower = (B[B_index + 1]) >> (BODY_BLOCK_SIZE - fp_size);
         B[B_index] = (upper | lower | mid);
 
-        assert(shift >= fp_size);
-        assert(BODY_BLOCK_SIZE - fp_size >= 0);
+        if (DB) assert(shift >= fp_size);
+        if (DB) assert(BODY_BLOCK_SIZE - fp_size >= 0);
 
         for (size_t i = B_index + 1; i < size - 1; ++i) {
             B[i] = (B[i] << fp_size) | (B[i + 1] >> (BODY_BLOCK_SIZE - fp_size));
         }
         B[size - 1] <<= fp_size;
 
-        /*
-    //        BODY_BLOCK_TYPE mid = remainder << (bit_index - fp_size);
-
-            //        BODY_BLOCK_TYPE lower = (B[B_index] & MASK(shift - fp_size)) << fp_size;
-        //
-        //        BODY_BLOCK_TYPE lower = (B[B_index] & MASK(shift)) & (MASK(BODY_BLOCK_SIZE - (bit_index + fp_size)));
-        //        BODY_BLOCK_TYPE lower = (B[B_index] >> fp_size) & (MASK(BODY_BLOCK_SIZE - (bit_index + fp_size)));
-    */
     } else {
-        /*cout << "/n$$$$$$$$$$$$$$$" << endl;
-        print_array_as_consecutive_memory(B, size);
-        cout << "$$$$$$$$$$$$$$$/n" << endl;*/
         ulong shift = left_fp_start_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
+        ulong mask = MASK(left_fp_start_index);
+        ulong upper = B[B_index] & (~mask);
         ulong lower_shift = BODY_BLOCK_SIZE - fp_size;
         BODY_BLOCK_TYPE lower = B[B_index + 1] >> lower_shift;
         lower &= MASK(left_fp_start_index);
         B[B_index] = upper | lower;
-        /*
-        ulong shift = left_fp_start_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
-//        BODY_BLOCK_TYPE mid = (B[B_index] & MASK(shift - fp_size)) << fp_size;
-        size_t next_slot_bit_index = (bit_index + fp_size) % BODY_BLOCK_SIZE;
-        size_t next_slot_bits_left_to_read = BODY_BLOCK_SIZE - next_slot_bit_index;
 
-        size_t extra_shift = fp_size - left_fp_start_index;
-        size_t lower_shift = (BODY_BLOCK_SIZE - fp_size + extra_shift);
-        BODY_BLOCK_TYPE lower = (B[B_index + 1]) >> (lower_shift);
-        *//*BODY_BLOCK_TYPE lower = (lower_shift < BODY_BLOCK_SIZE) ? (B[B_index + 1]) >> (lower_shift) : 0;*//*
-//        BODY_BLOCK_TYPE lower = (B[B_index + 1]) >> (BODY_BLOCK_SIZE - fp_size + extra_shift);
-        B[B_index] = (upper | lower);// | mid);*/
-        /*cout << "/n$$$$$$$$$$$$$$$" << endl;
-        print_array_as_consecutive_memory(B, size);
-        cout << "$$$$$$$$$$$$$$$/n" << endl;
-*/
         for (size_t i = B_index + 1; i < size - 1; ++i) {
             B[i] = (B[i] << fp_size) | (B[i + 1] >> (BODY_BLOCK_SIZE - fp_size));
         }
         B[size - 1] <<= fp_size;
 
-        assert(0 <= shift and shift < fp_size);
-        assert(0 <= lower_shift and lower_shift < BODY_BLOCK_SIZE);
-        /*      cout << "/n$$$$$$$$$$$$$$$" << endl;
-              print_array_as_consecutive_memory(B, size);
-              cout << "$$$$$$$$$$$$$$$/n" << endl;*/
+        if (DB) assert(0 <= shift and shift < fp_size);
+        if (DB) assert(0 <= lower_shift and lower_shift < BODY_BLOCK_SIZE);
     }
 }
 
@@ -322,74 +233,46 @@ bool Body::conditional_remove(size_t abstract_body_start_index, size_t abstract_
         assert(bit_index + fp_size <= BODY_BLOCK_SIZE);
 
         ulong shift = left_fp_start_index;
-        assert(shift >= 0);
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
+        if (DB) assert(shift >= 0);
+        ulong mask = MASK(left_fp_start_index);
+        ulong upper = B[B_index] & (~mask);
         BODY_BLOCK_TYPE mid = (B[B_index] & MASK(shift - fp_size)) << fp_size;
-        assert(shift >= fp_size);
+        if (DB) assert(shift >= fp_size);
         B[B_index] = (upper | mid);
         return true;
     }
 
     if (BODY_BLOCK_SIZE >= fp_size + bit_index) {
         ulong shift = left_fp_start_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
+        ulong mask = MASK(left_fp_start_index);
+        ulong upper = B[B_index] & (~mask);
         BODY_BLOCK_TYPE mid = (B[B_index] & MASK(left_fp_start_index - fp_size)) << fp_size;
         BODY_BLOCK_TYPE lower = (B[B_index + 1]) >> (BODY_BLOCK_SIZE - fp_size);
         B[B_index] = (upper | lower | mid);
 
-        assert(shift >= fp_size);
-        assert(BODY_BLOCK_SIZE - fp_size >= 0);
+        if (DB) assert(shift >= fp_size);
+        if (DB) assert(BODY_BLOCK_SIZE - fp_size >= 0);
 
         for (size_t i = B_index + 1; i < size - 1; ++i) {
             B[i] = (B[i] << fp_size) | (B[i + 1] >> (BODY_BLOCK_SIZE - fp_size));
         }
         B[size - 1] <<= fp_size;
-
-        /*
-    //        BODY_BLOCK_TYPE mid = remainder << (bit_index - fp_size);
-
-            //        BODY_BLOCK_TYPE lower = (B[B_index] & MASK(shift - fp_size)) << fp_size;
-        //
-        //        BODY_BLOCK_TYPE lower = (B[B_index] & MASK(shift)) & (MASK(BODY_BLOCK_SIZE - (bit_index + fp_size)));
-        //        BODY_BLOCK_TYPE lower = (B[B_index] >> fp_size) & (MASK(BODY_BLOCK_SIZE - (bit_index + fp_size)));
-    */
     } else {
-        /*cout << "/n$$$$$$$$$$$$$$$" << endl;
-        print_array_as_consecutive_memory(B, size);
-        cout << "$$$$$$$$$$$$$$$/n" << endl;*/
         ulong shift = left_fp_start_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
+        ulong mask = MASK(left_fp_start_index);
+        ulong upper = B[B_index] & (~mask);
         ulong lower_shift = BODY_BLOCK_SIZE - fp_size;
         BODY_BLOCK_TYPE lower = B[B_index + 1] >> lower_shift;
         lower &= MASK(left_fp_start_index);
         B[B_index] = upper | lower;
-        /*
-        ulong shift = left_fp_start_index;
-        BODY_BLOCK_TYPE upper = (shift < BODY_BLOCK_SIZE) ? (B[B_index] >> shift) << shift : 0;
-//        BODY_BLOCK_TYPE mid = (B[B_index] & MASK(shift - fp_size)) << fp_size;
-        size_t next_slot_bit_index = (bit_index + fp_size) % BODY_BLOCK_SIZE;
-        size_t next_slot_bits_left_to_read = BODY_BLOCK_SIZE - next_slot_bit_index;
-
-        size_t extra_shift = fp_size - left_fp_start_index;
-        size_t lower_shift = (BODY_BLOCK_SIZE - fp_size + extra_shift);
-        BODY_BLOCK_TYPE lower = (B[B_index + 1]) >> (lower_shift);
-        *//*BODY_BLOCK_TYPE lower = (lower_shift < BODY_BLOCK_SIZE) ? (B[B_index + 1]) >> (lower_shift) : 0;*//*
-//        BODY_BLOCK_TYPE lower = (B[B_index + 1]) >> (BODY_BLOCK_SIZE - fp_size + extra_shift);
-        B[B_index] = (upper | lower);// | mid);*/
-        /*cout << "/n$$$$$$$$$$$$$$$" << endl;
-        print_array_as_consecutive_memory(B, size);
-        cout << "$$$$$$$$$$$$$$$/n" << endl;
-*/
+        B[B_index] = (upper | lower);// | mid);
         for (size_t i = B_index + 1; i < size - 1; ++i) {
             B[i] = (B[i] << fp_size) | (B[i + 1] >> (BODY_BLOCK_SIZE - fp_size));
         }
         B[size - 1] <<= fp_size;
 
-        assert(0 <= shift and shift < fp_size);
-        assert(0 <= lower_shift and lower_shift < BODY_BLOCK_SIZE);
-        /*      cout << "/n$$$$$$$$$$$$$$$" << endl;
-              print_array_as_consecutive_memory(B, size);
-              cout << "$$$$$$$$$$$$$$$/n" << endl;*/
+        if (DB) assert(0 <= shift and shift < fp_size);
+        if (DB) assert(0 <= lower_shift and lower_shift < BODY_BLOCK_SIZE);
     }
     return true;
 }
@@ -670,6 +553,7 @@ int Body::find_helper(bool did_find, size_t current_b_index, size_t bits_left, s
     return 2;
 }
 
+
 size_t Body::get_fp_size() const {
     return fp_size;
 }
@@ -681,3 +565,39 @@ size_t Body::get_size() const {
 uint32_t *Body::get_b() const {
     return B;
 }
+
+/*
+int Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder,
+                      size_t *p_B_index, size_t *p_bit_index) {
+
+    size_t vector_start_index = abstract_body_start_index * fp_size;
+    size_t vector_end_index = abstract_body_end_index * fp_size;
+    size_t i = vector_start_index;
+    for (; i < vector_end_index; i += fp_size) {
+        auto temp = read_FP_from_vector_by_index(i);
+        if (temp < remainder)
+            continue;
+        else if (temp == remainder) {
+            *p_B_index = i / BODY_BLOCK_SIZE;
+            *p_bit_index = i % BODY_BLOCK_SIZE;
+            return 1;
+        } else {
+            *p_B_index = i / BODY_BLOCK_SIZE;
+            *p_bit_index = i % BODY_BLOCK_SIZE;
+            return 2;
+        }
+    }
+    assert(i == vector_end_index);
+    *p_B_index = vector_end_index / BODY_BLOCK_SIZE;
+    *p_bit_index = vector_end_index % BODY_BLOCK_SIZE;
+    return 2;
+
+    */
+/*if (this->compare_remainder_and_vector(i, remainder)) {
+        *p_B_index = i / BODY_BLOCK_SIZE;
+        *p_bit_index = i % BODY_BLOCK_SIZE;
+        return 1;
+    }
+    *p_B_index = vector_end_index / BODY_BLOCK_SIZE;
+    *p_bit_index = vector_end_index % BODY_BLOCK_SIZE;
+    return 2;*/

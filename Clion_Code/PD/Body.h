@@ -1,10 +1,11 @@
 //
 // Created by tomer on 10/24/19.
 //
-
-
 /**
  * The core of the code is in the function find_attempt.
+ * Abstract_index i is the index the i'th remainder will be stored, inside an unpacked list,
+ * containing the remainders (one remainder in each index). In other words, suppose to represent the i'th
+ * remainder stored inside Body.
  */
 
 #ifndef CLION_CODE_BODY_H
@@ -15,46 +16,24 @@
 #include <vector>
 #include <algorithm>
 #include <ctgmath>
-//#include "../bit_operations/bit_op.h"
 #include "../Global_functions/basic_functions.h"
 #include "../Global_functions/macros.h"
 
-/*
-#define INTEGER_ROUND(a, b) (((a)/(b)) + ((a)%(b) != 0))
-
-
-#define BODY_BLOCK_SIZE (32)
-#define BODY_BLOCK_TYPE uint32_t
-#define FP_TYPE_SIZE (32)
-#define FP_TYPE uint32_t
-
-#define SL(p) (1ULL <<(p))
-//#define MASK(perm)  ( (1ULL <<(perm))  - 1ULL)
-#define MB_BIT(n) (1ULL << (MB - (n)))
-#define ON(a, b) (MASK(a) ^ MASK(b))
-#define OFF(a, b) (~(MASK(a) ^ MASK(b)))
-//#define MOD_INVERSE(n) (BODY_BLOCK_SIZE - (n) - 1)
-
-#define CASE_PRINT (0)
-*/
-
 class Body {
-    size_t fp_size;
     size_t capacity;
-    size_t max_capacity;
-    size_t size;
+    const size_t fp_size;
+    const size_t max_capacity;
+    const size_t size;
     BODY_BLOCK_TYPE *B;
 
-    /** For testing*/
-//    vector<bool> vec;
 public:
     Body(size_t m, size_t f, size_t l);
 
 //    ~Body();
+
     /**
      *
-     * @param abstract_body_start_index if quotient = x ,and quotient's run started in the i'th index in the header,
-     * start_index should be i - x + 1.
+     * @param abstract_body_start_index: see class documentation.
      * @param abstract_body_end_index
      * @param remainder
      * @return
@@ -65,6 +44,14 @@ public:
 
     void remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
+    /**
+     * Used with choice of two technique. First, check if the element belong to body.
+     * If it is, remove it and return True. Otherwise, return false.
+     * @param abstract_body_start_index
+     * @param abstract_body_end_index
+     * @param remainder
+     * @return
+     */
     bool conditional_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
     bool wrap_lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
@@ -77,7 +64,7 @@ public:
     /**
      *
      * @param abstract_body_start_index: remainder first possible location,
-     * assuming the body is an array of remainder.
+     * assuming the body is an abstract list of remainders, instead of array of packed remainder.
      * @param abstract_body_end_index: the remainder last possible location.
      * @param remainder
      * @param p_B_index: the actual body.B index in which the remainder is, or where it should be inserted.
@@ -110,12 +97,13 @@ private:
 
     int find_helper(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index, size_t *p_bit_index);
 
-    int
-    find_helper_attempt(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index,
-                        size_t *p_bit_index);
 
 public:
     /**Function used for printing*/
+    /**
+     * Store each remainder in different slot inside the array a;
+     * @param a = uint32_t[max_capacity].
+     */
     void store_consecutive_remainders(uint32_t *a);
 
     void print_consecutive();
@@ -162,6 +150,12 @@ public:
     uint32_t *get_b() const;
 };
 
+static inline int find_helper_attempt(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index,
+                                      size_t *p_bit_index) {
+    *p_B_index = current_b_index;
+    *p_bit_index = BODY_BLOCK_SIZE - bits_left;
+    return 2 - did_find;
+}
 
 #endif //CLION_CODE_BODY_H
 

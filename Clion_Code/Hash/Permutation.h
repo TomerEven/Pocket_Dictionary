@@ -1,6 +1,14 @@
 //
 // Created by tomer on 11/4/19.
 //
+/**
+ * This file as an attempt to create simple permutation, using the fact that
+ * a multiplicative group of integers modulo any prime is cyclic.
+ * The prime is p = (2**31 - 1).
+ * Given element x (in the group and there for smaller than p) The operation on x that will attempt
+ * to act as a permutation is multiplying x by one of the group generator r, also known as a primitive root.
+ *
+ */
 
 #ifndef CLION_CODE_PERMUTATION_H
 #define CLION_CODE_PERMUTATION_H
@@ -24,6 +32,8 @@ public:
     Permutation(size_t mod);
 
     uint32_t get_perm(size_t el);
+
+    uint64_t get_perm64(uint64_t el);
 
     uint32_t get_perm_inv(size_t el);
 

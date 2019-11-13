@@ -1,0 +1,13 @@
+Hashing:
+Check faster hash function.
+Fix permutation of zero.
+
+Template:
+Making all testing function as templates.
+Setting PD as an interface.
+
+Memory:
+Invalid_Free?
+
+Cuckoo filter:
+Start using it.

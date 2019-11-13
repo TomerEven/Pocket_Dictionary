@@ -4,8 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/BitArray.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o"
-  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/Naive_bit_array/n_bit_array.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Body.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Header.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_PD.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o"
@@ -19,7 +17,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Body.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/Body.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Header.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/Header.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/PD.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/PD.cpp.o"
-  "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/const_filter.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_filter.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o"
   "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_naive_filter.cpp" "/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o"

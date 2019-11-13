@@ -21,9 +21,13 @@ void break_point_helper();
 
 bool validate_header_get_interval_function(size_t reps);
 
+bool validate_get_interval_function_constant(size_t reps);
+
 bool validate_push_function(size_t reps);
 
 bool validate_pull_function(size_t reps);
+
+bool validate_rank_function(size_t reps);
 
 /**
  * smashing stack for some reason.

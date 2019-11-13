@@ -14,8 +14,6 @@
 #include <assert.h>
 
 
-
-
 using namespace std;
 
 class Hash {
@@ -38,6 +36,15 @@ public:
     uint32_t hash(string *elementP) const;
 
     uint32_t dataHash(string *elementP) const;
+
+    uint64_t hash64(uint64_t el);
+
+    inline uint32_t hash32(uint32_t el) {
+        uint32_t a = 0, b = 0;
+        MurmurHash3_x86_32(&el, (int) (64), DEFAULT_SEED, &a);
+        MurmurHash3_x86_32(&el, (int) (64), SECOND_SEED, &b);
+        return a + multiConst * b;
+    }
 
     /**
      * Calculate the fingerprint on an element (elementP) using double hashing.

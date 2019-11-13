@@ -31,6 +31,8 @@ public:
 
     void split_print(size_t hash_index, size_t *pd_index, D_TYPE *quotient, D_TYPE *remainder);
 
+    size_t get_capacity();
+
 };
 
 

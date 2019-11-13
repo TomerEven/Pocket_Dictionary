@@ -4,7 +4,7 @@
 
 #include "const_Header.h"
 
-const_Header::const_Header(bool preventing_empty_constructor) : w1(0), w2(0) {}
+const_Header::const_Header() : w1(0), w2(0) {}
 
 bool const_Header::lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_index) {
     get_interval(quotient, start_index, end_index);
@@ -22,6 +22,7 @@ void const_Header::remove(uint_fast16_t quotient, size_t *start_index, size_t *e
     get_interval(quotient, start_index, end_index);
     pull(*end_index);
 }
+/*
 
 void const_Header::get_interval(size_t quotient, size_t *start_index, size_t *end_index) {
     if (quotient == 0) {
@@ -37,6 +38,7 @@ void const_Header::get_interval(size_t quotient, size_t *start_index, size_t *en
 //    size_t i = *start_index / HEADER_BLOCK_SIZE, mask_bit = HEADER_BLOCK_SIZE - (*start_index % HEADER_BLOCK_SIZE);
 //    *end_index = __builtin_clz(~a[i] & MASK(mask_bit));
 }
+*/
 
 void const_Header::push(size_t end) {
     if (end < D_TYPE_SIZE) {
@@ -120,10 +122,10 @@ void const_Header::pull(size_t end) {
 
 */
 }
-
+/*
 size_t const_Header::get_capacity() {
-    return bit_count(w1) + bit_count(w2);
-}
+    return __builtin_popcount(w1) + __builtin_popcount(w2);
+}*/
 
 void const_Header::get_w1w2(uint32_t *p1, uint32_t *p2) {
     *p1 = w1;

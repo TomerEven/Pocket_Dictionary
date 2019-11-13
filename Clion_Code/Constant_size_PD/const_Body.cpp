@@ -56,6 +56,7 @@ const_Body::conditional_remove(size_t abstract_body_start_index, size_t abstract
     return true;
 }
 
+/*
 int
 const_Body::find(size_t abstract_body_start_index, size_t abstract_body_end_index, uint8_t remainder,
                  size_t *p_B_index) {
@@ -71,6 +72,7 @@ const_Body::find(size_t abstract_body_start_index, size_t abstract_body_end_inde
     *p_B_index = abstract_body_end_index;
     return 2;
 }
+*/
 
 void const_Body::print() {
 //    cout << "body is: ";

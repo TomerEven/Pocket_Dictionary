@@ -950,6 +950,27 @@ bool validate_header_get_interval_function(size_t reps) {
     return true;
 }
 
+
+bool validate_get_interval_function_constant(size_t reps) {
+    const size_t a_size = 2;
+    HEADER_BLOCK_TYPE a[a_size];
+    for (size_t j = 0; j < reps; ++j) {
+        for (size_t i = 0; i < a_size; ++i) {
+            a[i] = random();
+        }
+        auto zero_count = array_zero_count(a, a_size);
+        uint32_t q = random() % zero_count;
+//        cout << j << ":\t";
+        size_t s1 = 0, e1 = 0, s2 = -1, e2 = 0;
+        get_interval_attempt(a, a_size, q, &s1, &e1);
+        get_interval(a[0], a[1], q, &s2, &e2);
+        if (not(s1 == s2 and e1 == e2)) return false;
+        validate_get_interval_functions(a, a_size, q);
+    }
+    return true;
+}
+
+
 bool validate_push_function(size_t reps) {
     size_t a_size = 2;
     HEADER_BLOCK_TYPE a[a_size];
@@ -1007,9 +1028,36 @@ bool validate_pull_function(size_t reps) {
     return true;
 }
 
+bool validate_rank_function(size_t reps) {
+    const size_t a_size = 2;
+    HEADER_BLOCK_TYPE a[a_size];
+//    D_TYPE w1, w2, val1, val2;
+    for (size_t j = 0; j < reps; ++j) {
+        for (unsigned int &i : a) i = random();
+        size_t s1 = 0, e1 = 0, s2 = -1, e2 = -1;
+        auto zero_count = array_zero_count(a, a_size);
+        uint32_t q = random() % zero_count;
+
+        get_interval_attempt(a, a_size, q, &s1, &e1);
+        get_interval_by_rank(a, a_size, q, &s2, &e2);
+
+        bool c1 = (s1 == s2);
+        bool c2 = (e1 == e2);
+        if (c1 && c2) continue;
+
+        break_point_helper();
+        cout << q << endl;
+        cout << s1 << ", " << e1 << endl;
+        cout << s2 << ", " << e2 << endl;
+        return false;
+
+    }
+    return true;
+}
+
 bool validate_header_type(size_t reps) {
     naive_Header naive_header(32, 32, 42);
-    const_Header const_header(1);
+    auto const_header = const_Header();
 
 //    for (size_t i = 0; i < reps; ++i) {
     for (size_t j = 0; j < 32; ++j) {

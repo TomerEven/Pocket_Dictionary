@@ -15,7 +15,7 @@ class const_PD {
     //Max capacity is 32.
 
 public:
-    const_PD(bool preventing_empty_constructor);
+    explicit const_PD(bool preventing_empty_constructor);
 
     bool lookup(size_t quotient, uint8_t remainder);
 

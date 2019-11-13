@@ -13,6 +13,12 @@ pow2c_naive_filter::pow2c_naive_filter(size_t size, size_t interval_length, size
     quotient_length = ceil(log2(single_pd_capacity + 1));
     pd_index_length = ceil(log2(size));
 
+    //otherwise need to use other hash function.
+    if (quotient_length + pd_index_length + fp_size > 32) {
+        cout << "need to use bigger hash function." << endl;
+        assert(false);
+    }
+
 }
 
 bool pow2c_naive_filter::lookup(string *s) {
@@ -41,12 +47,16 @@ void pow2c_naive_filter::insert(string *s) {
     split(hash1, &pd_index1, &q1, &r1);
     split(hash2, &pd_index2, &q2, &r2);
 
+//    cout << pd_index1 << ", " << pd_index2 << endl;
+
+
     if (pd_vec[pd_index2].get_capacity() <= pd_vec[pd_index1].get_capacity()) {
         pd_vec[pd_index2].insert(q2, r2);
     } else {
         pd_vec[pd_index1].insert(q1, r1);
     }
     capacity++;
+//    get_capacity();
 }
 
 void pow2c_naive_filter::remove(string *s) {
@@ -58,6 +68,8 @@ void pow2c_naive_filter::remove(string *s) {
 
     split(hash1, &pd_index1, &q1, &r1);
     split(hash2, &pd_index2, &q2, &r2);
+
+//    cout << pd_index1 << ", " << pd_index2 << endl;
 
     /*
     bool will_be_removed_from_first = pd_vec[pd_index1].lookup(q1, r1);
@@ -97,4 +109,13 @@ void pow2c_naive_filter::split(size_t hash_index, size_t *pd_index, D_TYPE *quot
 
 void pow2c_naive_filter::split_print(size_t hash_index, size_t *pd_index, D_TYPE *quotient, D_TYPE *remainder) {
     printf("hash_index: %zu, pd_index: %zu, quotient: %u, remainder: %u", hash_index, *pd_index, *quotient, *remainder);
+}
+
+size_t pow2c_naive_filter::get_capacity() {
+    size_t s = 0;
+    for (auto d: pd_vec) {
+        s += d.get_capacity();
+    }
+    assert(s == capacity);
+    return capacity;
 }

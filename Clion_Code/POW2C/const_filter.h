@@ -22,12 +22,47 @@ public:
 
     bool lookup(string *s);
 
+    bool lookup(uint32_t s);
+
     void insert(string *s);
+
+    void insert(uint32_t s);
 
     void remove(string *s);
 
-    void split(size_t hash_index, size_t *pd_index, D_TYPE *quotient, D_TYPE *remainder);
+    void remove(uint32_t s);
 
+    inline void split(size_t hash_index, size_t *pd_index, D_TYPE *quotient, D_TYPE *remainder) {
+        *remainder = hash_index & MASK(fp_size);
+        hash_index >>= fp_size;
+        *quotient = hash_index & MASK(quotient_length);
+        hash_index >>= quotient_length;
+        *pd_index = hash_index & MASK(pd_index_length);
+    }
+
+    inline void wrap_split32(uint32_t s, size_t *pd_index1, size_t *pd_index2, D_TYPE *q1, D_TYPE *q2, D_TYPE *r1,
+                             D_TYPE *r2) {
+        size_t hash1 = h.hash32(s) << 1ul;
+        size_t hash2 = (perm.get_perm(h.hash32(s)) << 1ul) | 1ul;
+        split(hash1, pd_index1, q1, r1);
+        split(hash2, pd_index2, q2, r2);
+    }
+
+    size_t get_occupancy();
+
+    size_t find_min_occupancy();
+
+    size_t find_max_occupancy();
+
+    size_t count_min_occupancy();
+
+    size_t count_max_occupancy();
+
+    double absolute_mean_deviation();
+
+    double squared_deviation();
+
+    void print_stats();
 };
 
 

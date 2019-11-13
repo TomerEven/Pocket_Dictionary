@@ -19,12 +19,10 @@
 
 class Header {
     size_t capacity;
-    size_t max_capacity;
-    size_t size;
+    const size_t max_capacity;
+    const size_t size;
     HEADER_BLOCK_TYPE *H;
 
-    /** For testing*/
-//    vector<bool> vec;
 public:
     Header(size_t m, size_t f, size_t l);
 
@@ -38,9 +36,15 @@ public:
 
     void remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
+    /**
+     * Stores the interval of all the remainders with the given quotient.
+     * @param quotient
+     * @param start_index: The beginning of the interval. Points to the first bit after the (q - 1)'th zero.
+     * @param end_index: Equal to *start_index + length of the interval.
+     */
     void get_quotient_start_and_end_index(size_t quotient, size_t *start_index, size_t *end_index);
 
-    bool conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
+//    bool conditional_remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
     /**
      * Moves bits starting from end, one bit to the left.
@@ -84,13 +88,9 @@ public:
 
 //    void validate_get_interval(size_t quotient);
 
-
     void header_to_word_array(uint32_t *a, size_t a_size);
 
     void header_to_bool_array(bool *a);
-
-//    void print_bool_array(bool *a, size_t a_size);
-
 
     size_t get_size() const;
 
@@ -99,10 +99,11 @@ public:
     friend ostream &operator<<(ostream &os, const Header &header);
 
 
-//public:
-//    size_t get_max_capacity();
 };
 
+static size_t get_initialize_size(size_t m, size_t f) {
+    return ((m + f) << 1ULL) / HEADER_BLOCK_SIZE;
+}
 
 void
 get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, size_t *start_index, size_t *end_index);

@@ -4,7 +4,7 @@
 
 #include "v_Header.h"
 
-v_Header::v_Header(size_t m, size_t f, size_t l) : header(m, f, l), const_header(true) {
+v_Header::v_Header(size_t m, size_t f, size_t l) : header(m, f, l), const_header() {
     size_t number_of_bits = ((m + f) << 1ULL) + 1;
     if (HEADER_BLOCK_SIZE != (8 * sizeof(HEADER_BLOCK_TYPE))) {
         assert(false);

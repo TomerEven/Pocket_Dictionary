@@ -123,60 +123,6 @@ Clion_Code/fast:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/build
 .PHONY : Clion_Code/fast
 
-Bit_Array/BitArray.o: Bit_Array/BitArray.cpp.o
-
-.PHONY : Bit_Array/BitArray.o
-
-# target to build an object file
-Bit_Array/BitArray.cpp.o:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o
-.PHONY : Bit_Array/BitArray.cpp.o
-
-Bit_Array/BitArray.i: Bit_Array/BitArray.cpp.i
-
-.PHONY : Bit_Array/BitArray.i
-
-# target to preprocess a source file
-Bit_Array/BitArray.cpp.i:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.i
-.PHONY : Bit_Array/BitArray.cpp.i
-
-Bit_Array/BitArray.s: Bit_Array/BitArray.cpp.s
-
-.PHONY : Bit_Array/BitArray.s
-
-# target to generate assembly for a file
-Bit_Array/BitArray.cpp.s:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.s
-.PHONY : Bit_Array/BitArray.cpp.s
-
-Bit_Array/Naive_bit_array/n_bit_array.o: Bit_Array/Naive_bit_array/n_bit_array.cpp.o
-
-.PHONY : Bit_Array/Naive_bit_array/n_bit_array.o
-
-# target to build an object file
-Bit_Array/Naive_bit_array/n_bit_array.cpp.o:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o
-.PHONY : Bit_Array/Naive_bit_array/n_bit_array.cpp.o
-
-Bit_Array/Naive_bit_array/n_bit_array.i: Bit_Array/Naive_bit_array/n_bit_array.cpp.i
-
-.PHONY : Bit_Array/Naive_bit_array/n_bit_array.i
-
-# target to preprocess a source file
-Bit_Array/Naive_bit_array/n_bit_array.cpp.i:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.i
-.PHONY : Bit_Array/Naive_bit_array/n_bit_array.cpp.i
-
-Bit_Array/Naive_bit_array/n_bit_array.s: Bit_Array/Naive_bit_array/n_bit_array.cpp.s
-
-.PHONY : Bit_Array/Naive_bit_array/n_bit_array.s
-
-# target to generate assembly for a file
-Bit_Array/Naive_bit_array/n_bit_array.cpp.s:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.s
-.PHONY : Bit_Array/Naive_bit_array/n_bit_array.cpp.s
-
 Constant_size_PD/const_Body.o: Constant_size_PD/const_Body.cpp.o
 
 .PHONY : Constant_size_PD/const_Body.o
@@ -527,33 +473,6 @@ PD/PD.s: PD/PD.cpp.s
 PD/PD.cpp.s:
 	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/PD.cpp.s
 .PHONY : PD/PD.cpp.s
-
-PD/spare_pd.o: PD/spare_pd.cpp.o
-
-.PHONY : PD/spare_pd.o
-
-# target to build an object file
-PD/spare_pd.cpp.o:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o
-.PHONY : PD/spare_pd.cpp.o
-
-PD/spare_pd.i: PD/spare_pd.cpp.i
-
-.PHONY : PD/spare_pd.i
-
-# target to preprocess a source file
-PD/spare_pd.cpp.i:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.i
-.PHONY : PD/spare_pd.cpp.i
-
-PD/spare_pd.s: PD/spare_pd.cpp.s
-
-.PHONY : PD/spare_pd.s
-
-# target to generate assembly for a file
-PD/spare_pd.cpp.s:
-	$(MAKE) -f CMakeFiles/Clion_Code.dir/build.make CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.s
-.PHONY : PD/spare_pd.cpp.s
 
 POW2C/const_filter.o: POW2C/const_filter.cpp.o
 
@@ -942,12 +861,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Clion_Code"
 	@echo "... edit_cache"
-	@echo "... Bit_Array/BitArray.o"
-	@echo "... Bit_Array/BitArray.i"
-	@echo "... Bit_Array/BitArray.s"
-	@echo "... Bit_Array/Naive_bit_array/n_bit_array.o"
-	@echo "... Bit_Array/Naive_bit_array/n_bit_array.i"
-	@echo "... Bit_Array/Naive_bit_array/n_bit_array.s"
 	@echo "... Constant_size_PD/const_Body.o"
 	@echo "... Constant_size_PD/const_Body.i"
 	@echo "... Constant_size_PD/const_Body.s"
@@ -987,9 +900,6 @@ help:
 	@echo "... PD/PD.o"
 	@echo "... PD/PD.i"
 	@echo "... PD/PD.s"
-	@echo "... PD/spare_pd.o"
-	@echo "... PD/spare_pd.i"
-	@echo "... PD/spare_pd.s"
 	@echo "... POW2C/const_filter.o"
 	@echo "... POW2C/const_filter.i"
 	@echo "... POW2C/const_filter.s"

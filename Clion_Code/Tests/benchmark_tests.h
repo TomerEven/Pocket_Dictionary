@@ -10,25 +10,41 @@
 #include <fstream>
 #include <tuple>
 #include <random>
+#include <chrono>
+#include <iomanip>
 
-#include "../Global_functions/basic_functions.h"
-#include "../PD/PD.h"
+
+//#include "../Global_functions/basic_functions.h"
+//#include "../PD/PD.h"
 #include "../Safe_PD/safe_PD.h"
 #include "../POW2C/pow2c_filter.h"
 #include "../POW2C/pow2c_naive_filter.h"
 #include "../POW2C/const_filter.h"
 #include "validation_tests.h"
+#include "/usr/local/include/cuckoofilter/cuckoofilter.h"
 
 
 #define MIN_ELEMENT_LENGTH 8
 #define MIN_CHAR_RANGE 32
 #define MIN_LENGTH_RANGE 8
+#define WIDTH 24
 #define QR_TUPLE tuple<uint32_t ,uint32_t>
 
+using cuckoofilter::CuckooFilter;
+
+typedef chrono::microseconds ms;
+typedef chrono::nanoseconds ns;
+
+static bool to_print_header = true;
+
+vector<uint64_t> random_vector(size_t size);
 
 string rand_string(int minLength, int charsNum, int numOfDiffLength = MIN_LENGTH_RANGE);
 
 void set_init(size_t size, set<string> *mySet, int minLength = MIN_ELEMENT_LENGTH, int charsNum = MIN_CHAR_RANGE);
+
+void vec_init(size_t size, vector<uint32_t> *my_vec);
+//void vec_init(size_t size, vector<string> *my_vec);
 
 void vector_lexicographic_init(size_t size, vector<string> *vec, int minLength = MIN_ELEMENT_LENGTH,
                                int charsNum = MIN_CHAR_RANGE);
@@ -40,11 +56,35 @@ ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t 
 ostream &
 b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os);
 
+ostream &filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                      ostream &os);
+
 ostream &
 const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
                    ostream &os);
 
+ostream &
+const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                     ostream &os);
+
+ostream &
+cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
+                    ostream &os);
+
+template<class T>
+ostream &
+template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+               ostream &os);
+
+
 void b1(size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os);
+
+void test_table_header_print();
+
+ostream &
+test_table(size_t n, double eps, size_t lookups_num, double set_ratio, int *counter, ulong member_set_init_time,
+           ulong nom_set_init_time, ulong init_time, ulong insertion_time, ulong lookup_time, ulong total_run_time,
+           ostream &os);
 
 
 ostream &
@@ -60,5 +100,7 @@ bool filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f
 bool filter_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l);
 
 bool filter_naive_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l);
+
+bool const_filter_r0(size_t number_of_pds, float load_factor, size_t l);
 
 #endif //CLION_CODE_BENCHMARK_TESTS_H

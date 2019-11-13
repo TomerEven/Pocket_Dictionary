@@ -70,22 +70,9 @@ CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Global_functions/basic_functions.cpp -o CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.s
 
-CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
-CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o: ../Bit_Array/BitArray.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/BitArray.cpp
-
-CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/BitArray.cpp > CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.i
-
-CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/BitArray.cpp -o CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.s
-
 CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o: ../Hash/Hash.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Hash.cpp
 
 CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.i: cmake_force
@@ -98,7 +85,7 @@ CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o: ../Hash/MurmurHash3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/MurmurHash3.cpp
 
 CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.i: cmake_force
@@ -111,7 +98,7 @@ CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/PD/Header.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/PD/Header.cpp.o: ../PD/Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Clion_Code.dir/PD/Header.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Clion_Code.dir/PD/Header.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/PD/Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Header.cpp
 
 CMakeFiles/Clion_Code.dir/PD/Header.cpp.i: cmake_force
@@ -124,7 +111,7 @@ CMakeFiles/Clion_Code.dir/PD/Header.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/PD/Body.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/PD/Body.cpp.o: ../PD/Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Clion_Code.dir/PD/Body.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Clion_Code.dir/PD/Body.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/PD/Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/Body.cpp
 
 CMakeFiles/Clion_Code.dir/PD/Body.cpp.i: cmake_force
@@ -137,7 +124,7 @@ CMakeFiles/Clion_Code.dir/PD/Body.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.o: ../PD/PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Clion_Code.dir/PD/PD.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Clion_Code.dir/PD/PD.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/PD/PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/PD.cpp
 
 CMakeFiles/Clion_Code.dir/PD/PD.cpp.i: cmake_force
@@ -150,7 +137,7 @@ CMakeFiles/Clion_Code.dir/PD/PD.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o: ../Safe_PD/v_Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Header.cpp
 
 CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.i: cmake_force
@@ -163,7 +150,7 @@ CMakeFiles/Clion_Code.dir/Safe_PD/v_Header.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o: ../Safe_PD/v_Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/v_Body.cpp
 
 CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.i: cmake_force
@@ -176,7 +163,7 @@ CMakeFiles/Clion_Code.dir/Safe_PD/v_Body.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o: ../Safe_PD/safe_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Safe_PD/safe_PD.cpp
 
 CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.i: cmake_force
@@ -189,7 +176,7 @@ CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o: ../Tests/validation_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/validation_tests.cpp
 
 CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.i: cmake_force
@@ -202,7 +189,7 @@ CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o: ../Tests/old_benchmark_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/old_benchmark_tests.cpp
 
 CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.i: cmake_force
@@ -215,7 +202,7 @@ CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o: ../Tests/benchmark_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp
 
 CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.i: cmake_force
@@ -226,22 +213,9 @@ CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Tests/benchmark_tests.cpp -o CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.s
 
-CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
-CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o: ../Bit_Array/Naive_bit_array/n_bit_array.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/Naive_bit_array/n_bit_array.cpp
-
-CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/Naive_bit_array/n_bit_array.cpp > CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.i
-
-CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Bit_Array/Naive_bit_array/n_bit_array.cpp -o CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.s
-
 CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o: ../bit_operations/bit_op.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/bit_operations/bit_op.cpp
 
 CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.i: cmake_force
@@ -254,7 +228,7 @@ CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/main.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Clion_Code.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Clion_Code.dir/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/main.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/main.cpp
 
 CMakeFiles/Clion_Code.dir/main.cpp.i: cmake_force
@@ -267,7 +241,7 @@ CMakeFiles/Clion_Code.dir/main.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o: ../Simple_Crate/s_crate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Simple_Crate/s_crate.cpp
 
 CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.i: cmake_force
@@ -278,22 +252,9 @@ CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Simple_Crate/s_crate.cpp -o CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.s
 
-CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
-CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o: ../PD/spare_pd.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.cpp
-
-CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.cpp > CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.i
-
-CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/PD/spare_pd.cpp -o CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.s
-
 CMakeFiles/Clion_Code.dir/SID/SID.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/SID/SID.cpp.o: ../SID/SID.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Clion_Code.dir/SID/SID.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Clion_Code.dir/SID/SID.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/SID/SID.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/SID/SID.cpp
 
 CMakeFiles/Clion_Code.dir/SID/SID.cpp.i: cmake_force
@@ -306,7 +267,7 @@ CMakeFiles/Clion_Code.dir/SID/SID.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o: ../SID/CSD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/SID/CSD.cpp
 
 CMakeFiles/Clion_Code.dir/SID/CSD.cpp.i: cmake_force
@@ -319,7 +280,7 @@ CMakeFiles/Clion_Code.dir/SID/CSD.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o: ../POW2C/pow2c_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_filter.cpp
 
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.i: cmake_force
@@ -332,7 +293,7 @@ CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o: ../Hash/Permutation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Hash/Permutation.cpp
 
 CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.i: cmake_force
@@ -345,7 +306,7 @@ CMakeFiles/Clion_Code.dir/Hash/Permutation.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o: ../Naive_PD/naive_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_PD.cpp
 
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.i: cmake_force
@@ -358,7 +319,7 @@ CMakeFiles/Clion_Code.dir/Naive_PD/naive_PD.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o: ../Naive_PD/naive_Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Header.cpp
 
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.i: cmake_force
@@ -371,7 +332,7 @@ CMakeFiles/Clion_Code.dir/Naive_PD/naive_Header.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o: ../Naive_PD/naive_Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Naive_PD/naive_Body.cpp
 
 CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.i: cmake_force
@@ -384,7 +345,7 @@ CMakeFiles/Clion_Code.dir/Naive_PD/naive_Body.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o: ../POW2C/pow2c_naive_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/pow2c_naive_filter.cpp
 
 CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.i: cmake_force
@@ -397,7 +358,7 @@ CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o: ../Constant_size_PD/const_Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Header.cpp
 
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.i: cmake_force
@@ -410,7 +371,7 @@ CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o: ../Constant_size_PD/const_Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_Body.cpp
 
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.i: cmake_force
@@ -423,7 +384,7 @@ CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o: ../Constant_size_PD/const_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/Constant_size_PD/const_PD.cpp
 
 CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.i: cmake_force
@@ -436,7 +397,7 @@ CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.s: cmake_force
 
 CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o: CMakeFiles/Clion_Code.dir/flags.make
 CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o: ../POW2C/const_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/POW2C/const_filter.cpp
 
 CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.i: cmake_force
@@ -450,7 +411,6 @@ CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.s: cmake_force
 # Object files for target Clion_Code
 Clion_Code_OBJECTS = \
 "CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o" \
-"CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o" \
 "CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o" \
 "CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o" \
 "CMakeFiles/Clion_Code.dir/PD/Header.cpp.o" \
@@ -462,11 +422,9 @@ Clion_Code_OBJECTS = \
 "CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o" \
 "CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o" \
 "CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o" \
-"CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o" \
 "CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o" \
 "CMakeFiles/Clion_Code.dir/main.cpp.o" \
 "CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o" \
-"CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o" \
 "CMakeFiles/Clion_Code.dir/SID/SID.cpp.o" \
 "CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o" \
 "CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o" \
@@ -484,7 +442,6 @@ Clion_Code_OBJECTS = \
 Clion_Code_EXTERNAL_OBJECTS =
 
 Clion_Code: CMakeFiles/Clion_Code.dir/Global_functions/basic_functions.cpp.o
-Clion_Code: CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Hash/Hash.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Hash/MurmurHash3.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/PD/Header.cpp.o
@@ -496,11 +453,9 @@ Clion_Code: CMakeFiles/Clion_Code.dir/Safe_PD/safe_PD.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Tests/validation_tests.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Tests/old_benchmark_tests.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Tests/benchmark_tests.cpp.o
-Clion_Code: CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/bit_operations/bit_op.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/main.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/Simple_Crate/s_crate.cpp.o
-Clion_Code: CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/SID/SID.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/SID/CSD.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o
@@ -515,7 +470,7 @@ Clion_Code: CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o
 Clion_Code: CMakeFiles/Clion_Code.dir/build.make
 Clion_Code: CMakeFiles/Clion_Code.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable Clion_Code"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/NewProject/Pocket_Dictionary/PD_Code/Clion_Code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable Clion_Code"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Clion_Code.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

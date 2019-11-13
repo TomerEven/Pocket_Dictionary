@@ -5,7 +5,7 @@
 #include "const_PD.h"
 
 
-const_PD::const_PD(bool preventing_empty_constructor) : capacity(0), header(true), body() {}
+const_PD::const_PD(bool preventing_empty_constructor) : capacity(0), header(), body() {}
 
 bool const_PD::lookup(size_t quotient, uint8_t remainder) {
     size_t start_index = -1, end_index = -1;

@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Clion_Code.dir/Bit_Array/BitArray.cpp.o"
-  "CMakeFiles/Clion_Code.dir/Bit_Array/Naive_bit_array/n_bit_array.cpp.o"
   "CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Body.cpp.o"
   "CMakeFiles/Clion_Code.dir/Constant_size_PD/const_Header.cpp.o"
   "CMakeFiles/Clion_Code.dir/Constant_size_PD/const_PD.cpp.o"
@@ -14,7 +12,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Clion_Code.dir/PD/Body.cpp.o"
   "CMakeFiles/Clion_Code.dir/PD/Header.cpp.o"
   "CMakeFiles/Clion_Code.dir/PD/PD.cpp.o"
-  "CMakeFiles/Clion_Code.dir/PD/spare_pd.cpp.o"
   "CMakeFiles/Clion_Code.dir/POW2C/const_filter.cpp.o"
   "CMakeFiles/Clion_Code.dir/POW2C/pow2c_filter.cpp.o"
   "CMakeFiles/Clion_Code.dir/POW2C/pow2c_naive_filter.cpp.o"

@@ -111,9 +111,7 @@ bool is_bit_rank_valid(uint64_t slot, uint32_t rank, uint32_t res) {
 }
 
 uint32_t my_bit_rank(uint64_t slot, uint32_t rank) {
-    size_t lim = sizeof(slot) * CHAR_BIT;
-//    if (rank == 0) return 64;
-//    assert(rank > 0);
+    const size_t lim = sizeof(slot) * CHAR_BIT;
     ulong b = 1ULL << 63ul, count = 0;
     for (size_t i = 0; i < lim; ++i) {
         if (b & slot) { if (++count == rank) return i; }
@@ -139,13 +137,14 @@ uint64_t count(uint64_t slot, unsigned int bit_lim) {
     // r = r % 255;
     return (r * (~0UL / 255)) >> ((sizeof(slot) - 1) * CHAR_BIT);
 }
-
+/*
 uint32_t bit_count(uint32_t v) {
     v = v - ((v >> 1) & 0x55555555);                    // reuse input as temporary
     v = (v & 0x33333333) + ((v >> 2) & 0x33333333);     // temp
     return ((v + (v >> 4) & 0xF0F0F0F) * 0x1010101) >> 24; // count
 
 }
+*/
 
 uint32_t my_count(uint32_t slot) {
     size_t lim = sizeof(slot) * CHAR_BIT;
@@ -177,4 +176,24 @@ unsigned int naive_msb32(unsigned int x) {
 
 }
 
-
+/* Find the index of the n-th 1-bit in mask
+       The index of the least significant bit is 0
+       Return -1 if there is no such bit
+    */
+int find_nth_set_bit (uint32_t mask, int n)
+{
+    int t, i = n, r = 0;
+    uint32_t c1 = mask;
+    uint32_t c2 = c1 - ((c1 >> 1) & 0x55555555);
+    uint32_t c4 = ((c2 >> 2) & 0x33333333) + (c2 & 0x33333333);
+    uint32_t c8 = ((c4 >> 4) + c4) & 0x0f0f0f0f;
+    uint32_t c16 = ((c8 >> 8) + c8);
+    int c32 = (int)(((c16 >> 16) + c16) & 0x3f);
+    t = (c16    ) & 0x1f; if (i >= t) { r += 16; i -= t; }
+    t = (c8 >> r) & 0x0f; if (i >= t) { r +=  8; i -= t; }
+    t = (c4 >> r) & 0x07; if (i >= t) { r +=  4; i -= t; }
+    t = (c2 >> r) & 0x03; if (i >= t) { r +=  2; i -= t; }
+    t = (c1 >> r) & 0x01; if (i >= t) { r +=  1;         }
+    if (n >= c32) r = -1;
+    return r;
+}

@@ -12,8 +12,8 @@
 
 class naive_Body {
     vector<bool> vec;
-    size_t fp_size, capacity, max_capacity;
-
+    const size_t fp_size, max_capacity;
+    size_t capacity;
 public:
     naive_Body(size_t m, size_t f, size_t l);
 

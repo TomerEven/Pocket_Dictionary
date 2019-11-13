@@ -2,6 +2,10 @@
 // Created by tomer on 11/9/19.
 //
 
+/**
+ * Constant size body, each remainder size is 8 bits. The maximal capacity is 32.
+ */
+
 #ifndef CLION_CODE_CONST_BODY_H
 #define CLION_CODE_CONST_BODY_H
 
@@ -25,9 +29,21 @@ public:
 
     bool conditional_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, uint8_t remainder);
 
-    int
-    find(size_t abstract_body_start_index, size_t abstract_body_end_index, uint8_t remainder,
-         size_t *p_B_index);
+    inline int
+    find(size_t abstract_body_start_index, size_t abstract_body_end_index, uint8_t remainder, size_t *p_B_index) {
+        for (size_t i = abstract_body_start_index; i < abstract_body_end_index; ++i) {
+            if (remainder == B[i]) {
+                *p_B_index = i;
+                return 1;
+            } else if (remainder < B[i]) {
+                *p_B_index = i;
+                return 2;
+            }
+        }
+        *p_B_index = abstract_body_end_index;
+        return 2;
+    }
+
 
     void print();
 };
