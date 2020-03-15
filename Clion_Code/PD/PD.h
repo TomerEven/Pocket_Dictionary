@@ -5,6 +5,7 @@
 #ifndef CLION_CODE_PD_H
 #define CLION_CODE_PD_H
 
+#include <ostream>
 #include "Header.h"
 #include "Body.h"
 
@@ -13,7 +14,7 @@ class PD {
     Header header;
     Body body;
     size_t capacity;
-    const size_t max_capacity;
+    const size_t max_capacity, max_quotient;
 
 public:
     PD(size_t m, size_t f, size_t l);
@@ -44,11 +45,14 @@ public:
 
     void header_pp();
 
+
     void print();
 
     bool is_full();
 
     size_t get_capacity() const;
+
+    friend ostream &operator<<(ostream &os, const PD &pd);
 
 private:
 

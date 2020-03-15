@@ -12,9 +12,19 @@
 #include <vector>
 #include <algorithm>
 #include <ctgmath>
+#include <climits>
 
 
 using namespace std;
+
+template<typename T>
+void print_array_as_integers(T *a, size_t size);
+
+template<typename T>
+ostream& print_array_as_consecutive_memory(T *a, size_t size, ostream &os);
+
+template<typename T>
+string my_bin(T n, size_t length = 32);
 
 void print_array(uint8_t *a, size_t a_size);
 
@@ -56,6 +66,8 @@ unsigned int naive_msb32(unsigned int x);
 
 string my_bin(size_t n, size_t length = 32);
 
+
+string to_sci(double x, int add_to_counter = 0, size_t precision = 3);
 
 #endif //CLION_CODE_BASIC_FUNCTIONS_H
 

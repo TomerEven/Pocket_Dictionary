@@ -295,7 +295,7 @@ void Body::insert(size_t abstract_body_start_index, size_t abstract_body_end_ind
 
 void Body::remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
     size_t B_index = 0, p_bit_index = 0;
-    auto res = vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index);
+    auto res = vector_find_kth_interval_simple(abstract_body_start_index, abstract_body_end_index, remainder, &B_index, &p_bit_index);
     if (res == 2) {
         cout << "vector - Trying to delete element with remainder that is not in the Body." << endl;
         return;
@@ -438,7 +438,7 @@ void Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_
         cout << "\nPrints end" << endl;
 
         find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
-        vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
+        vector_find_kth_interval_simple(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
         assert(false);
     }
 }
@@ -566,8 +566,13 @@ uint32_t *Body::get_b() const {
     return B;
 }
 
+ostream &operator<<(ostream &os, const Body &body) {
+    os << "B: " << body.B;
+    return os;
+}
+
 /*
-int Body::vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder,
+int Body::vector_find_kth_interval_simple(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder,
                       size_t *p_B_index, size_t *p_bit_index) {
 
     size_t vector_start_index = abstract_body_start_index * fp_size;

@@ -41,12 +41,12 @@ unsigned int ones32(register unsigned int x);
  * The following 64-bit code selects the position of the rth 1 bit when counting from the left.
  * In other words if we start at the most significant bit and proceed to the right, counting the number of bits set to
  * 1 until we reach the desired rank, r, then the position where we stop is returned. If the rank requested exceeds the
- * count of bits set, then 64 is returned. The code may be modified for 32-bit or counting from the right.
+ * count of bits set, then 63 is returned. The code may be modified for 32-bit or counting from the right.
  * @param slot Value to find position with rank r.
  * @param rank Bit's desired rank [1-64].
  * @return Resulting position of bit with the desired rank.[1-64]
  */
-uint32_t bit_rank(uint64_t slot, uint32_t rank);
+uint32_t select_r(uint64_t slot, uint32_t rank);
 
 /*
 uint32_t select_rank_th_bit(uint64_t slot, uint32_t rank) {

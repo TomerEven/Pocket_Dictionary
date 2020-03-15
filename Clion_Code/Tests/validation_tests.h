@@ -16,6 +16,7 @@
 #include "../POW2C/pow2c_naive_filter.h"
 #include "benchmark_tests.h"
 #include "../Constant_size_PD/const_PD.h"
+#include "../Contiguous_PD/cg_PD.h"
 
 void break_point_helper();
 
@@ -46,6 +47,13 @@ bool t4(bool to_print = false);
 
 bool t5(size_t m, size_t f, size_t l, bool to_print = false);
 
+template<class T>
+bool validate_PD(size_t reps, bool to_seed, bool to_print = 0);
+
+
+template<class T>
+bool validate_PD_higher_load(size_t reps, float load_factor, bool to_seed, bool to_print = 0);
+
 /**
  * random tests.
  * @param reps
@@ -57,7 +65,7 @@ bool validate_PD_single_run(size_t reps, bool to_print = 0);
 bool validate_const_PD(size_t reps, bool to_print = 0);
 
 template<class T>
-bool r0_core_template(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print = 0);
+bool validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print, float load_factor);
 
 bool r0_core(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print = 0);
 

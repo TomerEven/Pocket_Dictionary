@@ -28,8 +28,8 @@ public:
             if (*end_index == D_TYPE_SIZE) *end_index += __builtin_clz(~w2);
         } else {
             uint64_t slot = ((ulong) (w1) << 32ul) | w2;
-            *start_index = bit_rank(~slot, quotient) + 1;
-            *end_index = bit_rank(~slot, quotient + 1);
+            *start_index = select_r(~slot, quotient) + 1;
+            *end_index = select_r(~slot, quotient + 1);
 //            *end_index = __builtin_clz(~(slot << (*start_index))) + *start_index;
         }
     }
@@ -58,9 +58,25 @@ static void get_interval(D_TYPE w1, D_TYPE w2, size_t quotient, size_t *start_in
         if (*end_index == D_TYPE_SIZE) *end_index += __builtin_clz(~w2);
     } else {
         uint64_t slot = ((ulong) (w1) << 32ul) | w2;
-        *start_index = bit_rank(~slot, quotient) + 1;
-        *end_index = bit_rank(~slot, quotient + 1);
+        *start_index = select_r(~slot, quotient) + 1;
+        *end_index = select_r(~slot, quotient + 1);
 //        *end_index = __builtin_clz(~(slot << (*start_index - 1))) + *(start_index);
+
+    }
+}
+
+static void get_interval2(D_TYPE w1, D_TYPE w2, size_t quotient, size_t *start_index, size_t *end_index) {
+    if (quotient == 0) {
+        *start_index = 0;
+        *end_index = __builtin_clz(~w1);
+        if (*end_index == D_TYPE_SIZE) *end_index += __builtin_clz(~w2);
+    } else {
+        uint64_t slot = ((ulong) (w1) << 32ul) | w2;
+        *start_index = select_r(~slot, quotient);
+
+//        *end_index = select_r(~slot, quotient + 1);
+        *end_index = __builtin_clz(~(slot << (*start_index - 1))) + (*start_index)++;
+//        (*start_index)++;
 
     }
 }

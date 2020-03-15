@@ -34,10 +34,13 @@
 ////Permutation macros
 // P31 = (1<<31) - 1.
 #define P31 (2147483647)
+#define M64  (18446744073709551615)
 #define POW2 x ((x)*(x))
+#define HASH_SEED (127)
 
 ////Debug macros
 #define DB (1)
 #define DB_PRINT (0)
+
 
 #endif //CLION_CODE_MACROS_H

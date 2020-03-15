@@ -210,42 +210,114 @@ bool validate_PD_single_run(size_t reps, bool to_print) {
 }
 
 template<class T>
-bool r0_core_template(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print) {
+bool validate_PD(size_t reps, bool to_seed, bool to_print) {
+    if (to_seed)
+        srand(clock());
+    size_t f = (rand() % (512 - 32)) + 32;
+    size_t m = f;
+    size_t l = 3 + (rand() % (31 - 3));
+
+    T d = T(m, f, l);
+
+
+    auto res = validate_PD_core<T>(reps, &d, m, f, l, to_print, 0);
+    if (to_print) {
+        cout << "m is: " << m << endl;
+        cout << "f is: " << f << endl;
+        cout << "l is: " << l << endl;
+    }
+    return res;
+}
+
+template<class T>
+bool validate_PD_higher_load(size_t reps, float load_factor, bool to_seed, bool to_print) {
+    if (to_seed)
+        srand(clock());
+    size_t f = rand() % (512 - 32) + 32;
+    size_t m = f;
+    size_t l = 11 + (rand() % (31 - 11));
+
+//    if ((m + f) % l == 0)
+//        cout << "l divides (m+f)." << endl;
+
+    T d = T(m, f, l);
+
+
+    auto res = validate_PD_core<T>(reps, &d, m, f, l, to_print, load_factor);
+    if (to_print) {
+        cout << "m is: " << m << endl;
+        cout << "f is: " << f << endl;
+        cout << "l is: " << l << endl;
+    }
+    return res;
+}
+
+
+template<class T>
+bool validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print, float load_factor) {
+    auto naive_d = naive_PD(m, f, l);
     vector<int> in_q(0), out_q(f), in_r(0), out_r(f);
+
+    bool same_res = true;
 
     for (size_t i = 0; i < f; ++i) {
         out_q[i] = rand() % m;
         out_r[i] = rand() % SL(l - 1);
     }
+    if (load_factor != 0) {
+        int lim = floor(f * load_factor);
+        for (int i = 0; i < lim; ++i) {
+            size_t index = rand() % out_q.size();
+            size_t q = out_q[index], r = out_r[index];
+            if (to_print) { cout << "in: " << q << ", " << r << endl; }
 
+            d->insert(q, r);
+            naive_d.insert(q, r);
+            in_q.push_back(q);
+            in_r.push_back(r);
+            out_q.erase(out_q.begin() + index);
+            out_r.erase(out_r.begin() + index);
+        }
+    }
     for (size_t i = 0; i < reps; ++i) {
-        if (to_print) { cout << i << "\t"; }
+        if (to_print) {
+            cout << *d;
+            cout << i << "\t";
+        }
         if (rand() % 2) {
             if (out_q.empty()) {
                 if (to_print) { cout << "emp" << endl; }
                 continue;
             }
-            if (to_print) { cout << "in" << endl; }
-
             size_t index = rand() % out_q.size();
             size_t q = out_q[index], r = out_r[index];
-            if (d->lookup(q, r)) {
-                d->lookup(q, r);
+            if (to_print) { cout << "in: " << q << ", " << r << endl; }
+
+            same_res = (d->lookup(q, r) == naive_d.lookup(q, r));
+            if (!same_res) {
+                break_point_helper();
+                cout << "case 1 fail " << i << endl;
+                return false;
+            }
+            /*    d->lookup(q, r);
                 auto it = find(in_q.begin(), in_q.end(), q);
                 if (it != in_q.end()) {
                     size_t index2 = distance(in_q.begin(), it);
                     if (in_q[index2] != r) {
+                        break_point_helper();
                         cout << "case 1 fail " << i << endl;
                         return false;
                     }
                 } else {
+                    break_point_helper();
                     cout << "case 1 fail " << i << endl;
                     return false;
-                }
-
-            }
+                }*/
             d->insert(q, r);
-            if (not d->lookup(q, r)) {
+            naive_d.insert(q, r);
+            same_res = (d->lookup(q, r) == naive_d.lookup(q, r));
+            if (!same_res) {
+                break_point_helper();
                 d->lookup(q, r);
                 cout << "case 2 fail " << i << endl;
                 return false;
@@ -263,25 +335,28 @@ bool r0_core_template(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_p
                 if (to_print) { cout << "emp" << endl; }
                 continue;
             }
-
             size_t index = rand() % in_q.size();
             size_t q = in_q[index], r = in_r[index];
-            if (to_print) { cout << "del\t" << endl; }
+            if (to_print) { cout << "del: " << q << ", " << r << endl; }
 
-            if (not d->lookup(q, r)) {
+            same_res = (d->lookup(q, r) == naive_d.lookup(q, r));
+            if (!same_res) {
+                break_point_helper();
                 d->lookup(q, r);
                 cout << "case 3 fail " << i << endl;
                 return false;
             }
 
             d->remove(q, r);
-            if (d->lookup(q, r)) {
+            naive_d.remove(q, r);
+
+            same_res = (d->lookup(q, r) == naive_d.lookup(q, r));
+            if (!same_res) {
+                break_point_helper();
                 d->lookup(q, r);
                 cout << "case 4 fail " << i << endl;
                 return false;
             }
-
-
             out_q.push_back(q);
             out_r.push_back(r);
 
@@ -289,10 +364,28 @@ bool r0_core_template(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_p
             in_r.erase(in_r.begin() + index);
         }
     }
-    cout << "validate_PD_single_run passed" << endl;
+    if (to_print) { cout << "Validation of template pd passed." << endl; }
     return true;
 
 }
+
+/*
+bool does_to_vectors_contain_two_elements_in_specific_index(){
+    auto it = find(in_q.begin(), in_q.end(), q);
+    if (it != in_q.end()) {
+        size_t index2 = distance(in_q.begin(), it);
+        if (in_q[index2] != r) {
+            break_point_helper();
+            cout << "case 1 fail " << i << endl;
+            return false;
+        }
+    } else {
+        break_point_helper();
+        cout << "case 1 fail " << i << endl;
+        return false;
+    }
+}
+*/
 
 bool r0_core(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print) {
     vector<int> in_q(0), out_q(f), in_r(0), out_r(f);
@@ -511,10 +604,11 @@ bool validate_safe_PD(size_t reps, bool to_print) {
                 if (to_print) { cout << "emp" << endl; }
                 continue;
             }
-            if (to_print) { cout << "in" << endl; }
 
             size_t index = rand() % out_q.size();
             size_t q = out_q[index], r = out_r[index];
+            if (to_print) { cout << "in: " << q << ", " << r << endl; }
+
             if (d.lookup(q, r)) {
                 d.lookup(q, r);
                 auto it = find(in_q.begin(), in_q.end(), q);
@@ -934,7 +1028,6 @@ bool vector_rw_t1() {
     return true;
 }
 
-
 bool validate_header_get_interval_function(size_t reps) {
     size_t a_size = 4;
     HEADER_BLOCK_TYPE a[a_size];
@@ -950,7 +1043,6 @@ bool validate_header_get_interval_function(size_t reps) {
     return true;
 }
 
-
 bool validate_get_interval_function_constant(size_t reps) {
     const size_t a_size = 2;
     HEADER_BLOCK_TYPE a[a_size];
@@ -961,15 +1053,25 @@ bool validate_get_interval_function_constant(size_t reps) {
         auto zero_count = array_zero_count(a, a_size);
         uint32_t q = random() % zero_count;
 //        cout << j << ":\t";
-        size_t s1 = 0, e1 = 0, s2 = -1, e2 = 0;
+        size_t s1 = 0, e1 = 0, s2 = -1, e2 = -1, s3 = -2, e3 = -2;
         get_interval_attempt(a, a_size, q, &s1, &e1);
         get_interval(a[0], a[1], q, &s2, &e2);
-        if (not(s1 == s2 and e1 == e2)) return false;
-        validate_get_interval_functions(a, a_size, q);
+        get_interval2(a[0], a[1], q, &s3, &e3);
+        bool c1 = (s1 == s2);
+        c1 &= s1 == s3;
+        bool c2 = (e1 == e2);
+        c2 &= e1 == e3;
+        if (not(c1 && c2)) {
+            cout << j;
+            cout << ": error" << endl;
+            get_interval2(a[0], a[1], q, &s3, &e3);
+            return false;
+        }
+//        if (not(s1 == s2 and e1 == e2)) return false;
+//        validate_get_interval_functions(a, a_size, q);
     }
     return true;
 }
-
 
 bool validate_push_function(size_t reps) {
     size_t a_size = 2;
@@ -1079,6 +1181,23 @@ void break_point_helper() {
 }
 
 
+template bool
+validate_PD_higher_load<cg_PD>(size_t reps, float load_factor, bool to_seed, bool to_print);
+
+template bool
+validate_PD_higher_load<PD>(size_t reps, float load_factor, bool to_seed, bool to_print);
+
+template bool
+validate_PD<cg_PD>(size_t reps, bool to_seed, bool to_print);
+
+template bool
+validate_PD<PD>(size_t reps, bool to_seed, bool to_print);
+
+template bool
+validate_PD_core<cg_PD>(size_t reps, cg_PD *d, size_t m, size_t f, size_t l, bool to_print, float load_factor);
+
+template bool
+validate_PD_core<PD>(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print, float load_factor);
 //bool interval_t0() {
 //
 //}

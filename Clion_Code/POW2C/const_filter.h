@@ -63,6 +63,9 @@ public:
     double squared_deviation();
 
     void print_stats();
+
+    /**For generic testing.*/
+    bool is_const_size() { return true; }
 };
 
 

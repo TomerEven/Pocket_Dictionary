@@ -5,7 +5,8 @@
 
 #include "PD.h"
 
-PD::PD(size_t m, size_t f, size_t l) : header(m, f, l), body(m, f, l), capacity(0), max_capacity(f) {}
+PD::PD(size_t m, size_t f, size_t l) : header(m, f, l), body(m, f, l), capacity(0), max_capacity(f),
+                                       max_quotient(m) { if (DB) assert(m >= f); }
 
 PD::~PD() = default;
 
@@ -15,6 +16,7 @@ PD::~PD() = default;
 //}
 
 bool PD::lookup(size_t quotient, FP_TYPE remainder) {
+    if (DB) assert(quotient < max_quotient);
     size_t start_index = -1, end_index = -1;
     if (not header.lookup(quotient, &start_index, &end_index))
         return false;
@@ -28,6 +30,8 @@ bool PD::lookup(size_t quotient, FP_TYPE remainder) {
 
 
 void PD::insert(size_t quotient, FP_TYPE remainder) {
+    if (DB) assert(quotient < max_quotient);
+    if (DB) assert(capacity < max_capacity);
     size_t start_index = -1, end_index = -1;
     this->header.insert(quotient, &start_index, &end_index);
 //    end_index = max(start_index, end_index);
@@ -44,6 +48,7 @@ void PD::insert(size_t quotient, FP_TYPE remainder) {
 
 
 void PD::remove(size_t quotient, FP_TYPE remainder) {
+    if (DB) assert(quotient < max_quotient);
     size_t start_index = -1, end_index = -1;
     this->header.remove(quotient, &start_index, &end_index);
 //    end_index = max(start_index, end_index);
@@ -108,6 +113,12 @@ size_t PD::get_capacity() const {
 
 bool PD::is_full() {
     return capacity == max_capacity;
+}
+
+ostream &operator<<(ostream &os, const PD &pd) {
+    os << "header: " << pd.header;
+    os << "body: " << pd.body;
+    return os;
 }
 
 

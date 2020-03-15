@@ -127,7 +127,7 @@ public:
     void remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
     int
-    vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder, size_t *p_B_index,
+    vector_find_kth_interval_simple(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder, size_t *p_B_index,
                 size_t *p_bit_index);
 
     BODY_BLOCK_TYPE read_FP_from_vector_by_index(size_t bit_start_index);
@@ -148,6 +148,8 @@ public:
     size_t get_size() const;
 
     uint32_t *get_b() const;
+
+    friend ostream &operator<<(ostream &os, const Body &body);
 };
 
 static inline int find_helper_attempt(bool did_find, size_t current_b_index, size_t bits_left, size_t *p_B_index,

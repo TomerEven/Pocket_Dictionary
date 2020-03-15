@@ -9,15 +9,13 @@
 #include "../Global_functions/macros.h"
 
 class naive_Header {
+public:
     vector<bool> vec;
     size_t max_capacity, capacity;
 
-public:
     naive_Header(size_t m, size_t f, size_t l);
 
     bool lookup(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
-
-    void get_interval(size_t quotient, size_t *start_index, size_t *end_index);
 
     void insert(size_t quotient, size_t *start_index, size_t *end_index);
 
@@ -26,6 +24,8 @@ public:
     void remove(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
 
     void remove_att(uint_fast16_t quotient, size_t *start_index, size_t *end_index);
+
+    void get_interval(size_t quotient, size_t *start_index, size_t *end_index);
 
     void pull(size_t start_index);
 

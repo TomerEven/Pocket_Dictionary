@@ -11,10 +11,10 @@
 
 
 class naive_Body {
+public:
     vector<bool> vec;
     const size_t fp_size, max_capacity;
     size_t capacity;
-public:
     naive_Body(size_t m, size_t f, size_t l);
 
     bool lookup(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
@@ -25,7 +25,7 @@ public:
 
     bool conditional_remove(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder);
 
-private:
+//protected:
     int
     vector_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder, size_t *p_B_index,
                 size_t *p_bit_index);

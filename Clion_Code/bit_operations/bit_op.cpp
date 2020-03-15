@@ -4,6 +4,7 @@
 
 #include <cassert>
 #include "bit_op.h"
+#include "my_bit_op.hpp"
 
 unsigned int msb32(register unsigned int x) {
     x |= (x >> 1);
@@ -56,7 +57,7 @@ unsigned int ones32(register unsigned int x) {
     return (x & 0x0000003f);
 }
 
-uint32_t bit_rank(uint64_t slot, uint32_t rank) {
+uint32_t select_r(uint64_t slot, uint32_t rank) {
 //    uint64_t slot;          // Input value to find position with rank rank.
 //    unsigned int rank;      // Input: bit's desired rank [1-64].
     unsigned int s;      // Output: Resulting position of bit with the desired rank.[1-64]
@@ -137,6 +138,7 @@ uint64_t count(uint64_t slot, unsigned int bit_lim) {
     // r = r % 255;
     return (r * (~0UL / 255)) >> ((sizeof(slot) - 1) * CHAR_BIT);
 }
+
 /*
 uint32_t bit_count(uint32_t v) {
     v = v - ((v >> 1) & 0x55555555);                    // reuse input as temporary
@@ -180,20 +182,43 @@ unsigned int naive_msb32(unsigned int x) {
        The index of the least significant bit is 0
        Return -1 if there is no such bit
     */
-int find_nth_set_bit (uint32_t mask, int n)
-{
+int find_nth_set_bit(uint32_t mask, int n) {
     int t, i = n, r = 0;
     uint32_t c1 = mask;
     uint32_t c2 = c1 - ((c1 >> 1) & 0x55555555);
     uint32_t c4 = ((c2 >> 2) & 0x33333333) + (c2 & 0x33333333);
     uint32_t c8 = ((c4 >> 4) + c4) & 0x0f0f0f0f;
     uint32_t c16 = ((c8 >> 8) + c8);
-    int c32 = (int)(((c16 >> 16) + c16) & 0x3f);
-    t = (c16    ) & 0x1f; if (i >= t) { r += 16; i -= t; }
-    t = (c8 >> r) & 0x0f; if (i >= t) { r +=  8; i -= t; }
-    t = (c4 >> r) & 0x07; if (i >= t) { r +=  4; i -= t; }
-    t = (c2 >> r) & 0x03; if (i >= t) { r +=  2; i -= t; }
-    t = (c1 >> r) & 0x01; if (i >= t) { r +=  1;         }
+    int c32 = (int) (((c16 >> 16) + c16) & 0x3f);
+    t = (c16) & 0x1f;
+    if (i >= t) {
+        r += 16;
+        i -= t;
+    }
+    t = (c8 >> r) & 0x0f;
+    if (i >= t) {
+        r += 8;
+        i -= t;
+    }
+    t = (c4 >> r) & 0x07;
+    if (i >= t) {
+        r += 4;
+        i -= t;
+    }
+    t = (c2 >> r) & 0x03;
+    if (i >= t) {
+        r += 2;
+        i -= t;
+    }
+    t = (c1 >> r) & 0x01;
+    if (i >= t) { r += 1; }
     if (n >= c32) r = -1;
     return r;
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

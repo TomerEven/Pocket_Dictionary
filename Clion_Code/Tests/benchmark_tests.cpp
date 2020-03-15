@@ -165,11 +165,12 @@ ostream &const_filter_rates(size_t number_of_pds, float load_factor, size_t f, s
     return os;
 }
 
+/*
 
 ostream &
 filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
     auto start_run_time = chrono::high_resolution_clock::now();
-    vector<uint32_t > member_vec, nom_vec;
+    vector<uint32_t> member_vec, nom_vec;
 
     auto t0 = chrono::high_resolution_clock::now();
     size_t n = ceil((double) f * number_of_pds * load_factor);
@@ -211,7 +212,7 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
 //    os << a;
     return os;
 }
-
+*/
 
 
 ostream &const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
@@ -393,6 +394,95 @@ ostream &template_rates(size_t number_of_pds, float load_factor, size_t f, size_
     return os;
 }
 
+template<class T>
+ostream &
+filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
+    auto start_run_time = chrono::high_resolution_clock::now();
+    set<string> member_set, nom_set;
+
+    auto t0 = chrono::high_resolution_clock::now();
+    size_t n = ceil((double) f * number_of_pds * load_factor);
+    set_init(n, &member_set);
+    auto t1 = chrono::high_resolution_clock::now();
+    auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+
+    t0 = chrono::high_resolution_clock::now();
+    T a = T(number_of_pds, m, f, l);
+    t1 = chrono::high_resolution_clock::now();
+    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
+
+    t0 = chrono::high_resolution_clock::now();
+    for (auto iter : member_set) a.insert(&iter);
+    t1 = chrono::high_resolution_clock::now();
+    auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
+
+    t0 = chrono::high_resolution_clock::now();
+    set_init(lookup_reps, &nom_set);
+    t1 = chrono::high_resolution_clock::now();
+    auto nom_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+    double set_ratio = nom_set.size() / (double) lookup_reps;
+
+    // [TN, FP, TP]
+    int counter[3] = {0, 0, 0};
+//    for (auto iter : nom_set) ++counter[w.lookup_verifier(&iter, call_adapt)];
+    t0 = chrono::high_resolution_clock::now();
+    for (auto iter : nom_set) a.lookup(&iter);
+    t1 = chrono::high_resolution_clock::now();
+    auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
+    auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
+
+    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
+               init_time, insertion_time, lookup_time, total_run_time, os);
+
+//    os << a;
+    return os;
+}
+
+ostream &
+filter_rates_simple_pd(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                       ostream &os) {
+    auto start_run_time = chrono::high_resolution_clock::now();
+    set<string> member_set, nom_set;
+
+    auto t0 = chrono::high_resolution_clock::now();
+    size_t n = ceil((double) f * number_of_pds * load_factor);
+    set_init(n, &member_set);
+    auto t1 = chrono::high_resolution_clock::now();
+    auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+
+    t0 = chrono::high_resolution_clock::now();
+    auto a = pow2c_filter(number_of_pds, m, f, l);
+    t1 = chrono::high_resolution_clock::now();
+    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
+
+    t0 = chrono::high_resolution_clock::now();
+    for (auto iter : member_set) a.insert(&iter);
+    t1 = chrono::high_resolution_clock::now();
+    auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
+
+    t0 = chrono::high_resolution_clock::now();
+    set_init(lookup_reps, &nom_set);
+    t1 = chrono::high_resolution_clock::now();
+    auto nom_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+    double set_ratio = nom_set.size() / (double) lookup_reps;
+
+    // [TN, FP, TP]
+    int counter[3] = {0, 0, 0};
+//    for (auto iter : nom_set) ++counter[w.lookup_verifier(&iter, call_adapt)];
+    t0 = chrono::high_resolution_clock::now();
+    for (auto iter : nom_set) a.lookup(&iter);
+    t1 = chrono::high_resolution_clock::now();
+    auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
+    auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
+
+    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
+               init_time, insertion_time, lookup_time, total_run_time, os);
+
+//    os << a;
+    return os;
+}
 
 void test_table_header_print() {
     if (!to_print_header)
@@ -485,6 +575,51 @@ ostream &test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive
     cout << "total_run_time: " << total_run_time << endl;
     return os;
     //    ((double) n) / _helper_init_time << "el per sec" << endl;
+
+}
+
+ostream &lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp_size, double load_factor) {
+    const size_t space = 24;
+    cout << "\t";
+    cout << setw(space) << left << "True Negative";
+    cout << "\t";
+    cout << setw(space) << left << "False Positive";
+    cout << "\t";
+    cout << setw(space) << left << "True Positive";
+    cout << "\t";
+    cout << setw(space) << left << "Load Factor" << endl;
+
+    string s1 = to_string(counter[0]) + "(" + to_string(100 * counter[0] / (double) lookup_reps).substr(0, 3) + "%)";
+    string s2 = to_string(counter[1]) + "(" + to_string(100 * counter[1] / (double) lookup_reps).substr(0, 3) + "%)";
+    string s3 = to_string(counter[2]) + "(" + to_string(100 * counter[2] / (double) lookup_reps).substr(0, 3) + "%)";
+    cout << "\t";
+    cout << left << setw(space) << left << s1;
+    cout << "\t";
+    cout << left << setw(space) << left << s2;
+    cout << "\t";
+    cout << left << setw(space) << left << s3;
+/*
+//    cout << setw(space - 8) << left << counter[1] << "(" << 100 * counter[1] / (double) lookup_reps << left << "%)";
+//    cout << setw(space) << counter[2] << "(" << 100 * counter[2] / (double) lookup_reps << left << "%)";
+*/
+    cout << "\t";
+    cout << setw(space) << left << setw(space) << load_factor << endl;
+    double exp_fp_ratio = 1 / (double) (1ull << fp_size), actual_fp_ratio = counter[1] / (double) (lookup_reps);
+    auto dev = actual_fp_ratio / exp_fp_ratio;
+    cout << "\t";
+    cout << left << setw(space) << "Expected fp ratio";
+    cout << "\t";
+    cout << left << setw(space) << "Actual fp ratio";
+    cout << "\t";
+    cout << left << setw(space) << "Deviation ratio" << endl;
+    cout << "\t";
+    cout << left << setw(space) << to_sci(exp_fp_ratio);
+    cout << "\t";
+    cout << left << setw(space) << to_sci(actual_fp_ratio);
+    cout << "\t";
+    cout << left << setw(space) << to_sci(dev) << endl;
+//    printf("Expected fp is :%f, got:%f", 1 / double(fp_size), counter[1] / (double) lookup_reps);
+//    printf("Deviation from expected value is %f .\t Load factor is %f .\n", div, load_factor);
 
 }
 
@@ -727,6 +862,7 @@ bool filter_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size
     return true;
 }
 
+
 bool filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) {
     pow2c_naive_filter d = pow2c_naive_filter(number_of_pds, m, f, l);
     set<string> member_set, non_member_set, to_be_deleted_set;
@@ -779,3 +915,253 @@ bool filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f
 
     return true;
 }
+
+template<class T>
+bool validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps) {
+    auto d = T(number_of_pds, m, f, l);
+    if (d.is_const_size()) {
+        cout << "here" << endl;
+        f = 32, m = 32, l = 8;
+    }
+    /*
+//    vector<string> member_set, non_member_set, to_be_deleted_set;
+//    vector_lexicographic_init(number_of_elements_in_the_filter / 2, &member_set);
+//    vector_lexicographic_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
+//    vector_lexicographic_init(lookup_reps, &non_member_set);
+*/
+    auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
+
+    set<string> member_set, lookup_set, to_be_deleted_set;
+    set_init(number_of_elements_in_the_filter / 2, &member_set);
+    set_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
+    set_init(lookup_reps, &lookup_set);
+
+    for (auto iter : member_set) d.insert(&iter);
+    for (auto iter : to_be_deleted_set) d.insert(&iter);
+
+    size_t counter = 0;
+    for (auto iter : member_set) {
+        counter++;
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+    }
+    for (auto iter : to_be_deleted_set) {
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+    }
+
+    size_t fp_counter = 0;
+    for (auto iter : lookup_set) {
+        bool c1, c2;
+        c1 = member_set.find(iter) != member_set.end();
+        c2 = to_be_deleted_set.find(iter) != to_be_deleted_set.end();
+        if (c1 || c2)
+            assert(d.lookup(&iter));
+//            continue;
+        if (d.lookup(&iter)) {
+            fp_counter++;
+//            cout << "False Positive:" << endl;
+        }
+    }
+    printf("False positive ratio is:%f, for l:%zu. expected ratio:%f.\n", fp_counter / (double) (lookup_set.size()), l,
+           pow(.5, l));
+
+    counter = 0;
+    for (auto iter : to_be_deleted_set) {
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+        d.remove(&iter);
+        counter++;
+    };
+
+    counter = 0;
+    for (auto iter : member_set) {
+        bool c = to_be_deleted_set.find(iter) != to_be_deleted_set.end();
+        if (c)
+            continue;
+        counter++;
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+    }
+
+    return true;
+
+}
+
+
+template<class T>
+void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps,
+                     ostream &os) {
+
+    auto d = T(number_of_pds, m, f, l);
+    if (d.is_const_size()) {
+        assert(false);
+        f = 32, m = 32, l = 8;
+    }
+
+    auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
+
+    set<string> member_set, lookup_set, to_be_deleted_set;
+    set_init(number_of_elements_in_the_filter / 2, &member_set);
+    set_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
+    set_init(lookup_reps, &lookup_set);
+
+    //Insertion.
+    for (auto iter : member_set) d.insert(&iter);
+    for (auto iter : to_be_deleted_set) d.insert(&iter);
+
+
+    //Lookup validation of member_set elements.
+    size_t counter = 0;
+    for (auto iter : member_set) {
+        counter++;
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+    }
+
+    //Lookup validation of to_be_deleted_set elements .
+    for (auto iter : to_be_deleted_set) {
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+    }
+
+    //Evaluating false-positive ratio, before performing series of deletions.
+    cout << "Before deletion" << endl;
+    // [TN, FP, TP]
+    int result_array[3] = {0, 0, 0};
+    for (auto iter : lookup_set) {
+        bool c1, c2;
+        c1 = member_set.count(iter);
+        c2 = to_be_deleted_set.count(iter);
+/*
+//        c1 = find(member_set.begin(), member_set.end(), iter) != member_set.end();
+//        c2 = find(to_be_deleted_set.begin(), to_be_deleted_set.end(), iter) != to_be_deleted_set.end();
+*/
+        bool in_filter = c1 or c2;
+        if (in_filter) cout << "in filter." << endl;
+        if (d.lookup(&iter)) {
+            if (in_filter) { result_array[2] += 1; }
+            else { result_array[1] += 1; }
+        } else {
+            if (in_filter) {
+                cout << "Had a false negative!" << endl;
+            } else {
+                result_array[0] += 1;
+            }
+        }
+    }
+    lookup_result_array_printer(result_array, lookup_reps, l, load_factor);
+
+    counter = 0;
+    for (auto iter : to_be_deleted_set) {
+        d.remove(&iter);
+        counter++;
+    };
+
+    counter = 0;
+    for (auto iter : member_set) {
+        bool c = to_be_deleted_set.count(iter);
+//        bool c = find(to_be_deleted_set.begin(), to_be_deleted_set.end(), iter) != to_be_deleted_set.end();
+        if (c) {
+            cout << "here1" << endl;
+            continue;
+        }
+        counter++;
+        if (!d.lookup(&iter)) {
+            cout << "False negative:" << endl;
+            d.lookup(&iter);
+            assert(d.lookup(&iter));
+        }
+    }
+
+    cout << "\nAfter deletion" << endl;
+    // [TN, FP, TP]
+    result_array[0] = 0;
+    result_array[1] = 0;
+    result_array[2] = 0;
+
+    for (auto iter : lookup_set) {
+        bool c1 = member_set.count(iter);
+        bool c2 = to_be_deleted_set.count(iter);
+//        bool c1 = find(member_set.begin(), member_set.end(), iter) != member_set.end();
+//        bool c2 = find(to_be_deleted_set.begin(), to_be_deleted_set.end(), iter) != to_be_deleted_set.end();
+//        bool inside_filter = c1 & !c2;
+        if (d.lookup(&iter)) {
+            if (c1) { result_array[2] += 1; }
+            else { result_array[1] += 1; }
+        } else {
+            if (c1 and (not c2)) {
+                cout << "Had a false negative!" << endl;
+            } else {
+                result_array[0] += 1;
+            }
+        }
+    }
+
+    lookup_result_array_printer(result_array, lookup_reps, l, load_factor / 2);
+}
+
+
+template bool validate_filter<pow2c_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+                                            size_t lookup_reps);
+
+template bool
+validate_filter<pow2c_naive_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+                                    size_t lookup_reps);
+
+template bool
+validate_filter<const_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+                              size_t lookup_reps);
+
+template bool
+validate_filter<gen_2Power<cg_PD>>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+                                   size_t lookup_reps);
+
+//template bool
+//validate_filter<gen_2Power<PD>>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+//                                   size_t lookup_reps);
+
+
+template void
+filter_fp_rates<const_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps,
+                              ostream &os);
+
+void eval_fp_ratio();
+
+template void
+filter_fp_rates<pow2c_naive_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+                                    size_t lookup_reps, ostream &os);
+
+template void
+filter_fp_rates<pow2c_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps,
+                              ostream &os);
+
+template void
+filter_fp_rates<gen_2Power<cg_PD>>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
+                                   size_t lookup_reps, ostream &os);
+
+template ostream &
+filter_rates<gen_2Power<cg_PD>>(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l,
+                                size_t lookup_reps, ostream &os);
+
+template ostream &
+filter_rates<gen_2Power<PD>>(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                             ostream &os);

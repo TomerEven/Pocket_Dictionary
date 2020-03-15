@@ -10,11 +10,11 @@
 #include "naive_Body.h"
 
 class naive_PD {
+public:
     naive_Header header;
     naive_Body body;
     size_t capacity, max_capacity;
 
-public:
     naive_PD(size_t m, size_t f, size_t l);
 
     bool lookup(size_t quotient, FP_TYPE remainder);

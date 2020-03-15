@@ -19,36 +19,30 @@ pow2c_naive_filter::pow2c_naive_filter(size_t size, size_t interval_length, size
         assert(false);
     }
 
+    perm_naive_vec.resize(pd_vec.size());
+    for (size_t i = 0; i < pd_vec.size(); ++i) { perm_naive_vec[i] = i; }
+    auto rng = default_random_engine{};
+    shuffle(perm_naive_vec.begin(), perm_naive_vec.end(), rng);
+
+    while (count_perm_vec_fixed_point()) {
+        shuffle(perm_naive_vec.begin(), perm_naive_vec.end(), rng);
+    }
+
 }
 
 bool pow2c_naive_filter::lookup(string *s) {
-    size_t hash1 = h(s) << 1ul;
-    size_t hash2 = (perm.get_perm(h(s)) << 1ul) | 1ul;
-
-//    printf("hash1 is %zu, hash2 is: %zu\n", hash1, hash2);
-
     size_t pd_index1 = -1, pd_index2 = -1;
     D_TYPE q1 = -2, q2 = -2, r1 = -3, r2 = -3;
-
-    split(hash1, &pd_index1, &q1, &r1);
-    split(hash2, &pd_index2, &q2, &r2);
+    wrap_split_string_att(s, &pd_index1, &pd_index2, &q1, &q2, &r1, &r2);
 
     return pd_vec[pd_index1].lookup(q1, r1) || pd_vec[pd_index2].lookup(q2, r2);
 
 }
 
 void pow2c_naive_filter::insert(string *s) {
-    size_t hash1 = h(s) << 1ul;
-    size_t hash2 = (perm.get_perm(h(s)) << 1ul) | 1ul;
-
     size_t pd_index1 = -1, pd_index2 = -1;
     D_TYPE q1 = -2, q2 = -2, r1 = -3, r2 = -3;
-
-    split(hash1, &pd_index1, &q1, &r1);
-    split(hash2, &pd_index2, &q2, &r2);
-
-//    cout << pd_index1 << ", " << pd_index2 << endl;
-
+    wrap_split_string_att(s, &pd_index1, &pd_index2, &q1, &q2, &r1, &r2);
 
     if (pd_vec[pd_index2].get_capacity() <= pd_vec[pd_index1].get_capacity()) {
         pd_vec[pd_index2].insert(q2, r2);
@@ -60,35 +54,9 @@ void pow2c_naive_filter::insert(string *s) {
 }
 
 void pow2c_naive_filter::remove(string *s) {
-    size_t hash1 = h(s) << 1ul;
-    size_t hash2 = (perm.get_perm(h(s)) << 1ul) | 1ul;
-
     size_t pd_index1 = -1, pd_index2 = -1;
     D_TYPE q1 = -2, q2 = -2, r1 = -3, r2 = -3;
-
-    split(hash1, &pd_index1, &q1, &r1);
-    split(hash2, &pd_index2, &q2, &r2);
-
-//    cout << pd_index1 << ", " << pd_index2 << endl;
-
-    /*
-    bool will_be_removed_from_first = pd_vec[pd_index1].lookup(q1, r1);
-    bool will_be_removed_from_second = pd_vec[pd_index2].lookup(q2, r2);
-    bool will_be_removed = will_be_removed_from_first || will_be_removed_from_second;
-
-    if (!will_be_removed) {
-        cout << *s << endl;
-        split_print(hash1, &pd_index1, &q1, &r1);
-        if (will_be_removed_from_first) cout << "\tand was found.";
-        cout << endl;
-        split_print(hash2, &pd_index2, &q2, &r2);
-        if (will_be_removed_from_second) cout << "\tand was found.";
-        cout << endl;
-        cout << endl;
-    }
-    bool will_fail = !(pd_vec[pd_index1].lookup(q1, r1) || pd_vec[pd_index2].lookup(q2, r2));
-
-*/
+    wrap_split_string_att(s, &pd_index1, &pd_index2, &q1, &q2, &r1, &r2);
 
     if (pd_vec[pd_index1].conditional_remove(q1, r1))
         return;
@@ -107,6 +75,25 @@ void pow2c_naive_filter::split(size_t hash_index, size_t *pd_index, D_TYPE *quot
     *pd_index = hash_index & MASK(pd_index_length);
 }
 
+void pow2c_naive_filter::wrap_split_string_att(string *s, size_t *pd_index1, size_t *pd_index2, D_TYPE *q1, D_TYPE *q2,
+                                               D_TYPE *r1, D_TYPE *r2) {
+    ulong h1 = h.hash(s) << 1ul;
+    *r1 = h1 & MASK(fp_size);
+    *r2 = *r1 | 1ul;
+    h1 >>= fp_size;
+    *q1 = h1 % (interval_length);
+    *q2 = *q1;
+    h1 >>= quotient_length;
+    *pd_index1 = h1 % pd_vec.size();
+    *pd_index2 = index_perm(*pd_index1);
+    if (*pd_index1 == *pd_index2) {
+        cout << "same pd indexes" << endl;
+        cout << *pd_index1 << endl;
+    }
+    assert(*pd_index1 < pd_vec.size());
+    assert(*pd_index2 < pd_vec.size());
+}
+
 void pow2c_naive_filter::split_print(size_t hash_index, size_t *pd_index, D_TYPE *quotient, D_TYPE *remainder) {
     printf("hash_index: %zu, pd_index: %zu, quotient: %u, remainder: %u", hash_index, *pd_index, *quotient, *remainder);
 }
@@ -118,4 +105,15 @@ size_t pow2c_naive_filter::get_capacity() {
     }
     assert(s == capacity);
     return capacity;
+}
+
+
+static size_t count_perm_vec_fixed_point() {
+    size_t counter = 0;
+    for (size_t i = 0; i < perm_naive_vec.size(); ++i) {
+        if (perm_naive_vec[i] == i) {
+            counter++;
+        };
+    }
+    return counter;
 }

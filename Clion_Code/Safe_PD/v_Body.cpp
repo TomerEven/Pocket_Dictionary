@@ -114,7 +114,7 @@ void v_Body::validate_find(size_t abstract_body_start_index, size_t abstract_bod
         cout << "vector print_with no spaces" << endl;
         print_bool_vector_no_spaces(&vec);
         cout << endl;
-        print_array_as_consecutive_memory(body.get_b(), body.get_size());
+        print_array_as_consecutive_memory<BODY_BLOCK_TYPE>(body.get_b(), body.get_size(), cout);
         cout << "Above line is B as consecutive memory" << endl;
 
         cout << "print vector as words" << endl;

@@ -151,16 +151,16 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
         while (a[j] == MASK32) j++;
         *end_index = (j) * HEADER_BLOCK_SIZE + __builtin_clz(~a[j]);
 //        uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
-//        *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
+//        *end_index = (j) * HEADER_BLOCK_SIZE + select_r(~slot2, 1);
 //        cout << "h0" << endl;
         return;
     }
     for (size_t i = 0; i < a_size; ++i) {
-        auto cz = popcnt64(~a[i]);
+        auto cz = __builtin_popcount(~a[i]);
         if (cz < quotient) quotient -= cz;
         else if (cz == quotient) {
             uint64_t slot = ((ulong) (a[i]) << 32ul) | 4294967295ul;
-            uint32_t bit_pos = bit_rank(~slot, quotient);
+            uint32_t bit_pos = select_r(~slot, quotient);
             if (DB) assert(bit_pos < HEADER_BLOCK_SIZE);
             *start_index =
                     (i + (bit_pos + 1 == HEADER_BLOCK_SIZE)) * HEADER_BLOCK_SIZE + (bit_pos + 1) % HEADER_BLOCK_SIZE;
@@ -168,7 +168,7 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
             while (a[j] == MASK32) j++;
             *end_index = (j) * HEADER_BLOCK_SIZE + __builtin_clz(~a[j]);
 //            uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
-//            *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
+//            *end_index = (j) * HEADER_BLOCK_SIZE + select_r(~slot2, 1);
 //            cout << "h5" << endl;
             return;
             /*if (bit_pos == HEADER_BLOCK_SIZE - 1) {
@@ -183,17 +183,17 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
                 size_t j = i + 1;
                 while (a[j] == MASK32) j++;
                 uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
-                *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
+                *end_index = (j) * HEADER_BLOCK_SIZE + select_r(~slot2, 1);
                 cout << "h2" << endl;
             }
             return;*/
         } else {
             if (DB) assert(quotient < HEADER_BLOCK_SIZE);
             uint64_t slot = ((ulong) (a[i]) << 32ul) | 4294967295ul;
-            uint32_t bit_pos = bit_rank(~slot, quotient);
+            uint32_t bit_pos = select_r(~slot, quotient);
             if (DB) assert(bit_pos < HEADER_BLOCK_SIZE);
-            *start_index = i * HEADER_BLOCK_SIZE + bit_rank(~slot, quotient) + 1;
-            *end_index = i * HEADER_BLOCK_SIZE + bit_rank(~slot, quotient + 1);
+            *start_index = i * HEADER_BLOCK_SIZE + select_r(~slot, quotient) + 1;
+            *end_index = i * HEADER_BLOCK_SIZE + select_r(~slot, quotient + 1);
 //            cout << "h3" << endl;
             return;
 
@@ -206,20 +206,20 @@ void get_interval_by_rank2(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quo
                            size_t *end_index) {
     if (quotient == 0) {
         *start_index = 0;
-//        *end_index = bit_rank(~slot, 1);
+//        *end_index = select_r(~slot, 1);
         *end_index = __builtin_clz(~a[0]);
         if (*end_index == 32) *end_index += __builtin_clz(~a[1]);
         return;
     }
     uint64_t slot = ((ulong) (a[0]) << 32ul) | a[1];
-    *start_index = bit_rank(~slot, quotient) + 1;
+    *start_index = select_r(~slot, quotient) + 1;
     if (*start_index == 64) {
         *end_index = 64;
         return;
     }
 //    size_t i = *start_index / HEADER_BLOCK_SIZE, mask_bit = HEADER_BLOCK_SIZE - (*start_index % HEADER_BLOCK_SIZE);
 //    *end_index = __builtin_clz(~a[i] & MASK(mask_bit));
-    *end_index = bit_rank(~slot, quotient + 1);
+    *end_index = select_r(~slot, quotient + 1);
 
 }
 

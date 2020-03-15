@@ -76,6 +76,7 @@ void naive_Header::get_interval(size_t quotient, size_t *start_index, size_t *en
         if (vec[i] == 0)
             zero_counter++;
     }
+    assert(*start_index < vec.size());
 
     for (size_t i = continue_from_index; i < vec.size(); ++i) {
         if (vec[i] == 0) {

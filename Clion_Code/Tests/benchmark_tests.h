@@ -18,6 +18,7 @@
 //#include "../PD/PD.h"
 #include "../Safe_PD/safe_PD.h"
 #include "../POW2C/pow2c_filter.h"
+#include "../POW2C/gen_2Power.h"
 #include "../POW2C/pow2c_naive_filter.h"
 #include "../POW2C/const_filter.h"
 #include "validation_tests.h"
@@ -55,9 +56,9 @@ ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t 
 
 ostream &
 b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os);
-
-ostream &filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                      ostream &os);
+//
+//ostream &filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+//                      ostream &os);
 
 ostream &
 const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
@@ -70,6 +71,14 @@ const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m
 ostream &
 cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
                     ostream &os);
+
+template<class T>
+ostream &filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os);
+
+ostream &
+filter_rates_simple_pd(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                       ostream &os);
+
 
 template<class T>
 ostream &
@@ -93,6 +102,11 @@ test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive, double 
              double nom_set_init_time, double init_time, double insertion_time, double lookup_time,
              double total_run_time, ostream &os);
 
+
+ostream & lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp_size, double load_factor);
+
+
+
 bool filter_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l);
 
 bool filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l);
@@ -102,5 +116,13 @@ bool filter_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size
 bool filter_naive_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l);
 
 bool const_filter_r0(size_t number_of_pds, float load_factor, size_t l);
+
+template<class T>
+bool validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps);
+
+template<class T>
+void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps,
+                     ostream &os);
+
 
 #endif //CLION_CODE_BENCHMARK_TESTS_H

@@ -34,7 +34,7 @@ void const_Header::get_interval(size_t quotient, size_t *start_index, size_t *en
     }
     uint64_t slot = ((ulong) (w1) << 32ul) | w2;
     *start_index = bit_rank(~slot, quotient) + 1;
-    *end_index = bit_rank(~slot, quotient + 1);
+    *end_index = select_r(~slot, quotient + 1);
 //    size_t i = *start_index / HEADER_BLOCK_SIZE, mask_bit = HEADER_BLOCK_SIZE - (*start_index % HEADER_BLOCK_SIZE);
 //    *end_index = __builtin_clz(~a[i] & MASK(mask_bit));
 }

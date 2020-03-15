@@ -4,6 +4,16 @@
 
 #include "basic_functions.h"
 
+
+template<typename T>
+void print_array_as_integers(T *a, size_t size) {
+    cout << "[" << (int) a[0];
+    for (size_t i = 1; i < size; ++i) {
+        cout << ", " << (int) a[i];
+    }
+    cout << "]" << endl;
+}
+
 void print_array(uint8_t *a, size_t a_size) {
     cout << "[" << (int) a[0];
     for (size_t i = 1; i < a_size; ++i) {
@@ -38,6 +48,15 @@ void print_bool_array(bool *a, size_t a_size) {
         cout << ", " << a[i];
     }
     cout << "]" << endl;
+}
+
+template<typename T>
+ostream& print_array_as_consecutive_memory(T *a, size_t size, ostream &os) {
+    for (size_t i = 0; i < size; ++i) {
+        os << my_bin(a[i]);
+    }
+    os << endl;
+    return os;
 }
 
 
@@ -170,6 +189,21 @@ void write_FP_to_vector_by_index(vector<bool> *v, size_t index, uint32_t remaind
     }
 }
 
+template<typename T>
+string my_bin(T n, size_t length) {
+    string s;
+    ulong shift = sizeof(T) * CHAR_BIT;
+    ulong b = 1ull << (ulong) (32 - 1);
+    for (int i = 0; i < 32; ++i) {
+        if (b & n)
+            s.append("1");
+        else
+            s.append("0");
+        b >>= 1ul;
+    }
+    return s;
+}
+
 
 string my_bin(size_t n, size_t length) {
     string s;
@@ -204,8 +238,57 @@ int compare_vector_and_array(const vector<bool> *v, const uint32_t *a) {
     return -1;
 }
 
+string to_sci(double x, int add_to_counter, size_t precision) {
+    if (x == 0) { return "0E0"; }
+    if (x < 0) { return "-" + to_sci(-x); }
+    if (round(x) == x) { return to_sci(x - 1e-5); }
+
+    string temp = to_string(x);
+    auto dot_index = temp.find('.');
+    assert(temp.find('.') != -1);
+
+    if (dot_index == 1) {
+        if (temp[0] != '0') {
+            return temp.substr(0, precision + 2) + "E" + to_string(add_to_counter);
+        }
+        int counter = 0;
+        while (x < 1) {
+            x *= 10;
+            counter--;
+        }
+        return to_sci(x, counter, precision);
+
+        /*
+        auto counter = 1;
+        for (int i = 2; i < temp.length(); ++i) {
+            if (temp[i] == '0')
+                counter++;
+            else
+                break;
+        }
+
+        string res = (to_string(temp[counter + 2]) + ".") + temp.substr(counter + 3, counter + 3 + precision);
+        res += "E-" + to_string(counter + add_to_counter);
+        return res;*/
+    }
+
+    size_t counter = 0;
+    while (x > 10) {
+        x /= 10;
+        counter++;
+    }
+    return to_sci(x, counter, precision);
+
+}
+
 
 int loglog2(int x) {
     log(x);
 }
 
+
+template void print_array_as_integers<uint32_t>(uint32_t *a, size_t size);
+
+template string my_bin<uint32_t>(uint32_t n, size_t length);
+
+template ostream& print_array_as_consecutive_memory<uint32_t>(uint32_t *a, size_t size, ostream &os);

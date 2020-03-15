@@ -28,8 +28,11 @@ static ulong inv_primitive_root_array[5] = {2059219856, 1309127614, 1139066240, 
 
 class Permutation {
     size_t mod, mult_const, mult_inv_const;
+    const bool is_naive;
 public:
     Permutation(size_t mod);
+
+    Permutation(size_t mod, bool naive_perm);
 
     uint32_t get_perm(size_t el);
 

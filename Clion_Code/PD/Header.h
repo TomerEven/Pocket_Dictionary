@@ -102,7 +102,8 @@ public:
 };
 
 static size_t get_initialize_size(size_t m, size_t f) {
-    return ((m + f) << 1ULL) / HEADER_BLOCK_SIZE;
+    //todo remove the plus 1
+    return ((m + f) << 1ULL) / HEADER_BLOCK_SIZE + 1;
 }
 
 void

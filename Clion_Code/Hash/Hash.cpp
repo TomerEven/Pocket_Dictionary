@@ -24,14 +24,17 @@ uint32_t Hash::hash(const char *elementP) const {
     uint32_t a, b;
     MurmurHash3_x86_32(elementP, (int) (strlen(elementP)), DEFAULT_SEED, &a);
     MurmurHash3_x86_32(elementP, (int) (strlen(elementP)), SECOND_SEED, &b);
-    return uint32_t(a + multiConst * b) % this->size;
-/*//    size_t mod = size;
+    return uint32_t(a + multiConst * b);
+//    return uint32_t(a + multiConst * b) % this->size;
+/*
+//    size_t mod = size;
 //    uint64_t ans0 = a % mod;
 //    uint64_t ans1 = a % this->size;
 //    auto ans2 = multiConst * (b % this->size);
 
 //    uint32_t temp = (a % size + this->multiConst * (b % this->size)) % this->size;
-//    return uint32_t((a % size + this->multiConst * (b % this->size)) % this->size);*/
+//    return uint32_t((a % size + this->multiConst * (b % this->size)) % this->size);
+*/
 }
 
 uint64_t Hash::hash64(uint64_t el) {
