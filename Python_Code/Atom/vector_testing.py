@@ -2,6 +2,20 @@ from random import *
 from math import *
 
 
+def b(n: int) -> str:
+    return bin(n)[2:]
+
+
+def b_wlz(n: int, k: int = 32) -> str:
+    temp = bin(n)[2:]
+    assert len(temp) <= k
+    return "0"*(k - len(temp)) + temp
+
+
+def slm(p: int) -> int:
+    return (1 << p) - 1
+
+
 def f(n): return 1 << (1 << n)
 
 
@@ -142,65 +156,79 @@ def get_k_set_interval(vec: str, k: int, to_counter_plus_one: bool = False) -> t
     assert False
 
 
-def select(x:int, r:int)->int:
-    assert (0< x <= ((1<<32)-1))
+def select(x: int, r: int) -> int:
+    assert (0 < x <= ((1 << 32)-1))
     s = bin(x)[2:]
-    s = "0"* (32 - len(s)) + s
+    s = "0" * (32 - len(s)) + s
     l = [i for i in range(len(s)) if s[i] == '1']
     assert (len(l) > r)
     return l[r]
 
 
-select(1<<28,0)
+def my_int(vec: str, start: int, end: int) -> int:
+    if not(start <= end <= len(vec)):
+        print(start, end, len(vec))
+    assert (start <= end <= len(vec))
+    x = 0
+    for i in range(start, end):
+        x <<= 1
+        x |= int(vec[i])
+    return x
 
-temp = bin(0x5555)[2:]
-temp
-temp.count("1")
-select(0x5555,0) + 32
-select(0x5555,6) + 32
-select(0x5555,7) + 32
 
-for n in range(10):
-    print(f(n)**2 == f(n+1))
+def v_my_int_single(vec: str, start: int, end: int) -> bool:
+    x, y = my_int(vec, start, end), int(vec[start: end], 2)
+    if x != y:
+        print(x, y)
+        return False
+    return True
 
-    print(i, f(i), f(i+1)//f(i))
 
-log2(18446744073709551615)
-(1 << 64) - 1 == 18446744073709551615
+def v_my_int(reps: int) -> bool:
+    for i in range(reps):
+        vec = b_wlz(randint(0, (1 << 32) - 1))
+        start, end = sample(range(len(vec)), 2)
+        if start > end:
+            start, end = end, start
 
+        if not v_my_int_single(vec, start, end):
+            print(i)
+            return False
+    return True
+
+def extract_symbol(start: int, end: int, i: int, val: int, next_val: int, slot_size: int = 32):
+    s_index = start // slot_size
+    e_index = end // slot_size
+    if s_index == e_index:
+        new_s = start % slot_size
+        new_e = end % slot_size
+        vec = b_wlz(val, slot_size)
+        return int(vec[new_s:new_e], 2)
+
+    new_s = start % slot_size
+    new_e = (end % slot_size) + slot_size
+    assert (new_e == (end % (slot_size << 1)))
+
+    vec = b_wlz(val, slot_size) + b(next_val, slot_size)
+    return int(vec[new_s:new_e], 2)
+
+def g(n:int, s:int, e:int, slot_size:int = 32):
+    return int(b_wlz(n, slot_size)[s:e], 2)
+
+def g2(n:int, s:int, e:int, slot_size:int = 32):
+    (n & (slm(slot_size - s))) >> (slot_size - e)
+
+###
+###
+###
+int(b_wlz(692736011)[15:23], 2)
+(x & slm(32-15)) >> (32 - 23)
+###
+###
+###
 
 def my(x: int):
     print("tomer")
-
-
-1 << 31
-2147483648 >> 31
-
-
-for i in range(3):
-    if (att(s, i) != att2(s, i)):
-        print(i)
-        break
-
-s = "001001"
-s = ""
-x = int(s, 2)
-~x
-s = bin(~x)[3:]
-s
-att(s, 1)
-att2(s, 1)
-s
-get_k_set_interval(s, 0)
-get_k_set_interval(s, 1)
-
-
-s = "0010010"
-get_k_set_interval(s, 1)
-get_k_set_interval(s, 1, True)
-s[2:6]
-att(s, 1)
-att(s, 2)
 
 
 def r_str(length: int) -> str:
@@ -231,67 +259,3 @@ def check2(reps: int) -> bool:
                 print(i)
                 return False
     return True
-
-
-check(200)
-check2(200)
-#
-# s = "011110110010110"
-# # s = "0 11110 110010110"
-# s[1]
-# s[5]
-# att(s,1)
-# naive_sol(s,1)
-# check(1<<10)
-# a = "tomer"
-# a.find("tom")
-# a.find("tom")
-# a.f
-# s3
-# s3 = r_str(8)
-# s3.count("0")
-# att(s3,0)
-# att(s3,1)
-# att(s3,2)
-# att(s3,3)
-# att(s3,4)
-# vector_get_inteval(s3,0)
-# vector_get_inteval(s3,1)
-# vector_get_inteval(s3,2)
-# vector_get_inteval(s3,3)
-# s1 = "0111010"
-# s2 = "10111010"
-# vector_get_inteval(s1,0)
-# vector_get_inteval(s2,0)
-# att(s1,0)
-# att(s2,0)
-
-
-# l1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-# l2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-len(l1)
-len(l2)
-l1[:-2] == l2
-
-for i in range(615):
-    if l1[i] != l2[i]:
-        print(i)
-        break
-
-for i in range(186, 615):
-    if l1[i] != l2[i]:
-        print(i)
-        break
-
-184/8
-l1.count(1)
-l2.count(1)
-l1[184]
-l1[185]
-l2[184]
-l2[185]
-
-l1[1]
-1 << 8
-bin(1 << 7)
-5*32 + 24

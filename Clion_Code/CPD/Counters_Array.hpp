@@ -11,15 +11,21 @@
 #include <ostream>
 #include "../Global_functions/basic_functions.h"
 #include "../bit_operations/bit_op.h"
+#include "Naive_Counter_Endec.hpp"
+
+/*
 
 #define COUNTER_TYPE uint32_t
 #define COUNTER_TYPE_SIZE (sizeof(COUNTER_TYPE) * (CHAR_BIT))
 #define COUNTER_CELL_C8 (0x55)
 #define COUNTER_CELL_C16 (0x5555)
 #define COUNTER_CELL_C32 (0x55555555)
-#define DECODE(x) ((~x) & (x << 1ul) )
+//#define DECODE(x) ((~x) & (x << 1ul) )
+*/
+
 
 class Counters_Array {
+
     COUNTER_TYPE *A;
     size_t a_size, max_capacity, max_rep, capacity = 0;
 
@@ -52,7 +58,27 @@ public:
     size_t get_ith_counter(size_t ith);
 
 
+    /**
+     * Counter of the number of distinct elements in Counter_Array.
+     * @return
+     */
+    size_t get_capacity() const;
+
+    /**
+     * Computing the capacity. Used for validation.
+     * @return
+     */
+    size_t count_capacity() const;
+
 private:
+    /**
+     *
+     * @param bit_start_index bit counter (starting from A[0]) to the bit after the delimiter which bound (before) the symbol we extract.
+     * @param bit_end_index bit counter (starting from A[0]) to the first bit of the delimiter which bound (after) the symbol we extract.
+     * @return
+     */
+    COUNTER_TYPE extract_symbol(size_t bit_start_index, size_t bit_end_index);
+
     /**
      *
      * @param index
@@ -60,15 +86,15 @@ private:
      * @param end The beginning of the *next* (after the comma in A[k-2:k])
      * *Remark* - Assuming A does not start with a comma.
      */
-    void find_counter_interval(size_t index, size_t *start, size_t *end);
+//    void find_counter_interval(size_t index, size_t *start, size_t *end);
 
 //    void find_counter_interval_naive(size_t index, size_t *start, size_t *end);
 };
 
 
-static size_t get_bit_size(size_t max_capacity, size_t max_rep);
+static auto get_bit_size(size_t max_capacity, size_t max_rep) -> size_t;
 
-static size_t get_array_size(size_t bit_size);
+static auto get_array_size(size_t bit_size) -> size_t;
 
 
 /**
@@ -87,6 +113,10 @@ find_counter_interval_naive(uint32_t *a, size_t a_size, size_t start_lim, size_t
 
 //static size_t get_longest_encoding()
 
+template <typename T>
+static auto static_extract_symbol(const T *A, size_t a_size ,size_t bit_start_index, size_t bit_end_index) -> T;
+
+auto u32_extract_symbol(const uint32_t *A, size_t a_size ,size_t bit_start_index, size_t bit_end_index) -> uint32_t;
 
 
 #endif //CLION_CODE_COUNTERS_ARRAY_HPP

@@ -2,17 +2,10 @@ import math
 from random import *
 
 
-# def new_encoding(n:int, )
-
 def add_leading_zeros(s: str, length: int) -> str:
     assert len(s) <= length
     return "0"*(length - len(s)) + s
 
-
-# def overlap_count(s:str,sub:str)->int:
-#     c = 0
-#     for i in range(len(s)):
-#         c += s[i].startswith(sub)
 
 def occurrences(string: str, sub: str) -> int:
     count = start = 0
@@ -23,12 +16,9 @@ def occurrences(string: str, sub: str) -> int:
         else:
             return count
 
-# add_leading_zeros("11",4)
-
 
 def get_all_bin_str(length: int) -> list:
     return [add_leading_zeros(bin(i)[2:], length) for i in range(1 << length)]
-    # for i in range(2 << length):
 
 
 def get_all_bin_str_up_to_length(length: int) -> list:
@@ -56,6 +46,17 @@ def check(sub: str, max_length: int = 8) -> list:
     return fl
 
 
+def get_n_words_of_sub(sub: str, n: int) -> list:
+    fl = [sub + sub]
+    temp_length = 1
+    while len(fl) < n:
+        temp_list = [add_leading_zeros(bin(i)[2:], temp_length) for i in range(1 << temp_length)]
+        temp_list = [surround_by_sub(s, sub) for s in temp_list if s.count(sub) == 0]
+        fl += temp_list
+        temp_length += 1
+    return fl[:n]
+
+
 def length_sum(l: list, sub: str) -> int:
     res = 0
     for s in l:
@@ -74,9 +75,6 @@ def compare():
         arg = (sub, len(temp), length_sum(temp, sub))
         line = "{:3} {:4} {:8}"
         print(line.format(*arg))
-
-
-compare()
 
 
 def compare2(lim: int):
@@ -154,16 +152,119 @@ def diff_between_sub_and_fixed(sub: str, number_of_symbols: int, max_length: int
     temp_length_sum = length_sum(temp, sub)
     return temp_length_sum - get_fixed_size_length_sum(number_of_symbols)
 
-def get_words(sub: str) -> list:
+
+def get_words(sub: str, max_length: int = 8) -> list:
     temp = check(sub)
     return [s[len(sub):] for s in temp]
 
 
+################################################################################
+assert(False)
+################################################################################
+
+#################################################################################
+WORDS = get_n_words_of_sub("01", 64)
+inv_words = {int(w, 2) >> 2: WORDS.index(w) + 1 for w in WORDS}
+inv_words
+l = inv_words.keys()
+list(l)[:11]
+
+
+def n_key_val_items(d: dict, n: int):
+    counter = 0
+    for k, v in d.items():
+        print(k, v)
+        counter += 1
+        if counter == n:
+            break
+
+
+101
+len(WORDS)
+WORDS[:10]
+
+
+def naive_decode(s: str) -> int:
+    assert s in WORDS
+    return WORDS.index(s) + 1
+
+
+def naive_encode(x: int) -> str:
+    assert 0 < x <= len(WORDS)
+    return WORDS[x - 1]
+
+
+def naive_update(s: str, update_val: int) -> str:
+    return naive_decode(naive_decode(s) + update_val)
+
+
+def check_inv_of_endec():
+    for i in range(1, len(WORDS) + 1):
+        if i != naive_decode(naive_encode(i)):
+            print(i, naive_decode(naive_encode(i)))
+            assert False
+    for w in WORDS:
+        # print(w)
+        if w != naive_encode(naive_decode(w)):
+            print(w, naive_encode(naive_decode(w)))
+            assert False
+
+
+def s_decode(s: str) -> int:
+    return inv_words[int(s, 2) >> 2]
+
+
+def check_s_decode():
+    for w in WORDS:
+        # print(w)
+        if s_decode(w) != naive_decode(w):
+            print(w, s_decode(w), naive_decode(w))
+            assert(False)
+
+
+check_s_decode()
+check_inv_of_endec()
+
+
+def COMMA_DECODE(x: int) -> int:
+    return (~x) & (x << 1)
+
+
+def SPLITTED_COMMA_DECODER(w1: int, w2: int) -> int:
+    return COMMA_DECODE(w1) | (w2 and (1 << 31))
+
+
+
+
+#################################################################################
+# Junk:
+l = [5, 9, 13, 17, 25, 29, 33, 49, 57, 61]
+r = [i >> 2 for i in l]
+r[1, 2, 3, 4, 6, 7, 8, 12, 14, 15]
+bin(4294967295)
+
+bin(819121254)
+bin(79907633)
+s_x = bin(x)[2:]
+s_y = bin(y)[2:]
+s_y[3:] == s_x[:len(s_y)  - 3]
+
+x,y =  819121254 >> 1, 79907633
+print(bin(x))
+print(bin(y))
+
+bin(819121254 >> 1)
+bin(79907633)
+
+for i in l:
+    print(i, i >> 2, bin(i)[2:])
 words = get_words("01")[:18]
 l = ["1" + w[:-2] for w in words]
 words
+1 <= 8 <= 7
+10 <= 10 <= 10
 l
-k = [int(i,2) for i in l]
+k = [int(i, 2) for i in l]
 k[:16]
 res = [i if i in k else -1 for i in range(33)]
 res
@@ -180,23 +281,23 @@ get_words("11")[:14]
 temp = check("01")[:10]
 temp = [s[2:] for s in temp]
 temp
-diff_between_sub_and_fixed("01",8)
-diff_between_sub_and_fixed("01",9)
-diff_between_sub_and_fixed("01",10)
-diff_between_sub_and_fixed("01",11)
-diff_between_sub_and_fixed("01",13)
-diff_between_sub_and_fixed("01",14)
-diff_between_sub_and_fixed("01",15)
-diff_between_sub_and_fixed("01",16)
-diff_between_sub_and_fixed("01",17)
-for i in range(6,18):
-    print(i,diff_between_sub_and_fixed("01",i))
-for i in range(6,18):
-    print(i,diff_between_sub_and_fixed("001",i))
-for i in range(6,18):
-    print(i,diff_between_sub_and_fixed("0011",i))
-diff_between_sub_and_fixed("001",6)
-diff_between_sub_and_fixed("001",8)
+diff_between_sub_and_fixed("01", 8)
+diff_between_sub_and_fixed("01", 9)
+diff_between_sub_and_fixed("01", 10)
+diff_between_sub_and_fixed("01", 11)
+diff_between_sub_and_fixed("01", 13)
+diff_between_sub_and_fixed("01", 14)
+diff_between_sub_and_fixed("01", 15)
+diff_between_sub_and_fixed("01", 16)
+diff_between_sub_and_fixed("01", 17)
+for i in range(6, 18):
+    print(i, diff_between_sub_and_fixed("01", i))
+for i in range(6, 18):
+    print(i, diff_between_sub_and_fixed("001", i))
+for i in range(6, 18):
+    print(i, diff_between_sub_and_fixed("0011", i))
+diff_between_sub_and_fixed("001", 6)
+diff_between_sub_and_fixed("001", 8)
 find_sub_optimal_number_rep("01")
 find_sub_optimal_number_rep("001", 18)
 find_sub_optimal_number_rep("0010")
@@ -292,14 +393,15 @@ l5
 #  12: '1100',
 #  13: '1110',
 #  14: '1111'}
-def f(x:int):
-    print(x,bin(x)[2:])
+def f(x: int):
+    print(x, bin(x)[2:])
 
-l = [0x1,0x5,0x15,0x55,0x155,0x555,0x1555]
+
+l = [0x1, 0x5, 0x15, 0x55, 0x155, 0x555, 0x1555]
 line = "{:5} {}"
 for i in l:
-    print(line.format(i,bin(i)[2:]))
-for i in ran
+    print(line.format(i, bin(i)[2:]))
+# for i in ran
 f(0x1)
 f(0x5)
 f(0x15)
@@ -309,35 +411,35 @@ f(0x155)
 0x1
 0x15
 0x15
-int(0x5,2)
-int("01"*1,2)
-int("01"*2,2)
-int("01"*3,2)
-int("01"*4,2)
-int("01"*5,2)
-int("01"*8,2)
-hex(int("01"*8,2))
-hex(int("01"*9,2))
-hex(int("01"*10,2))
-hex(int("01"*11,2))
-hex(int("01"*12,2))
+int(0x5, 2)
+int("01"*1, 2)
+int("01"*2, 2)
+int("01"*3, 2)
+int("01"*4, 2)
+int("01"*5, 2)
+int("01"*8, 2)
+hex(int("01"*8, 2))
+hex(int("01"*9, 2))
+hex(int("01"*10, 2))
+hex(int("01"*11, 2))
+hex(int("01"*12, 2))
 
-oct(int("01"*8,2))
-oct(int("01"*9,2))
-oct(int("01"*10,2))
-oct(int("01"*11,2))
-oct(int("01"*12,2))
+oct(int("01"*8, 2))
+oct(int("01"*9, 2))
+oct(int("01"*10, 2))
+oct(int("01"*11, 2))
+oct(int("01"*12, 2))
 
-int("01"*8,4)
-int("01"*8,2) + int("10"*8,2)
+int("01"*8, 4)
+int("01"*8, 2) + int("10"*8, 2)
 
 (0x5555 << 16) | (0x5555) == 0x55555555
-int("01"*32,2) == 0x5555555555555555
-int("01"*16,2) == 0x55555555
-int("01"*8,2) == 0x5555
-int("01"*4,2) == 0x55
+int("01"*32, 2) == 0x5555555555555555
+int("01"*16, 2) == 0x55555555
+int("01"*8, 2) == 0x5555
+int("01"*4, 2) == 0x55
 
-0x55<< 1
+0x55 << 1
 oct(170)
 oct(85)
 bin(0x55)[2:]

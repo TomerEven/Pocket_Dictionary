@@ -57,8 +57,37 @@ auto count_set_bits(uint32_t *a, size_t a_size) -> size_t;
 
 ////Functions used for validation.
 
+/**
+ * * Same as basic_functions::to_vector(...).
+ * @tparam T
+ * @param vec
+ * @param a
+ * @param a_size
+ */
 template<typename T>
-void to_vector(vector<bool> *vec, const T *a, size_t a_size);
+void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size);
+
+/**
+ * Same as basic_functions::vector_to_word_array(...).
+ * @tparam T
+ * @param vec
+ * @param a
+ * @param a_size
+ */
+template<typename T>
+void from_vector_to_array(const vector<bool> *vec, T *a, size_t a_size);
+
+/**
+ *
+ * @tparam T
+ * @param v
+ * @param start
+ * @param end
+ * @return With python syntax, assuming v is a string of {0,1}*: return int(v[start:end],2)
+ */
+template <typename T>
+T sub_vector_to_word(const vector<bool> *v, size_t start, size_t end);
+
 
 /**
  *
@@ -72,6 +101,7 @@ void vector_find_kth_interval_simple(vector<bool> *vec, size_t k, size_t *start_
 
 auto vector_find_first_set_bit(vector<bool> *vec) -> size_t;
 
+uint32_t vector_extract_symbol(vector<bool> *vec, size_t *start_index, size_t *end_index);
 
 //void vector_find_first_and_second_set_bits()
 #endif //CLION_CODE_MY_BIT_OP_HPP

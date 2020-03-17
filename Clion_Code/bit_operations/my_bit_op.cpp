@@ -108,18 +108,64 @@ auto count_set_bits(uint32_t *a, size_t a_size) -> size_t {
 
 
 template<typename T>
-void to_vector(vector<bool> *vec, const T *a, size_t a_size) {
-    size_t bit_in_slot = (sizeof(a[0]) * CHAR_BIT);
-    size_t vec_new_size = bit_in_slot * a_size, vec_index = 0;
+void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size) {
+    size_t slot_size = (sizeof(a[0]) * CHAR_BIT);
+    size_t vec_new_size = slot_size * a_size, vec_index = 0;
     vec->resize(vec_new_size);
     for (size_t i = 0; i < a_size; ++i) {
-        size_t b = 1ULL << (bit_in_slot - 1);
-        for (size_t j = 0; j < bit_in_slot; ++j) {
+        size_t b = 1ULL << (slot_size - 1);
+        for (size_t j = 0; j < slot_size; ++j) {
             vec->at(vec_index) = (b & a[i]);
             b >>= 1ULL;
             vec_index++;
         }
     }
+}
+
+template<typename T>
+void from_vector_to_array(const vector<bool> *vec, T *a, size_t a_size) {
+    size_t slot_size = (sizeof(a[0]) * CHAR_BIT);
+    assert(a_size * slot_size >= vec->size());
+
+    size_t expected_size = (vec->size() / slot_size) + (vec->size() % slot_size != 0);
+    assert(a_size == expected_size);
+
+    for (int i = 0; i < a_size; ++i) {
+        size_t start = i * slot_size;
+        size_t  end = start + slot_size;
+        a[i] = sub_vector_to_word<T>(vec, start, end);
+    }
+/*
+
+    for (size_t i = 0; i < a_size - 1; ++i) {
+        ulong b = (1ul << (slot_size - 1u));
+        for (int j = 0; j < slot_size; ++j) {
+            assert(b > 0);
+            if (vec->at(slot_size * i + j)) {
+                a[i] |= b;
+            }
+            b >>= 1ul;
+        }
+    }
+    ulong b = (1ul << 31ul);
+    for (size_t k = 0; k < vec->size() % slot_size; ++k) {
+        if (vec->at(slot_size * (a_size - 1) + k)) {
+            a[a_size - 1] |= b;
+        }
+        b >>= 1ul;
+    }
+*/
+}
+
+
+template<typename T>
+auto sub_vector_to_word(const vector<bool> *v, size_t start, size_t end) -> T {
+    T res = 0;
+    for (int i = start; i < end; ++i) {
+        res <<= 1u;
+        res |= v->at(i);
+    }
+    return res;
 }
 
 void vector_find_kth_interval_simple(vector<bool> *vec, size_t k, size_t *start_index, size_t *end_index) {
@@ -150,9 +196,17 @@ auto vector_find_first_set_bit(vector<bool> *vec) -> size_t {
     assert(false);
 }
 
+uint32_t vector_extract_symbol(vector<bool> *vec, size_t *start_index, size_t *end_index) {
+//    return sub_vector_to_word<()
+}
+
 
 template size_t find_first_set_bit<uint32_t>(uint32_t *a, size_t a_size);
 
 template void find_kth_interval_simple<uint32_t>(uint32_t *a, size_t a_size, size_t k, size_t *start, size_t *end);
 
-template void to_vector<uint32_t>(vector<bool> *vec, const uint32_t *a, size_t a_size);
+template void from_array_to_vector<uint32_t>(vector<bool> *vec, const uint32_t *a, size_t a_size);
+
+template void from_vector_to_array<uint32_t>(const vector<bool> *vec, uint32_t *a, size_t a_size);
+
+template uint32_t sub_vector_to_word<uint32_t>(const vector<bool> *v, size_t start, size_t end);

@@ -6,6 +6,7 @@
 #include "POW2C/pow2c_filter.h"
 #include "Tests/benchmark_tests.h"
 #include "Tests/validate_bit_op.hpp"
+#include "Tests/validate_counters.hpp"
 #include "POW2C/pow2c_naive_filter.h"
 
 
@@ -30,12 +31,17 @@ int main() {
     cout << select_r(x, 8) << endl;
     cout << select_r(y, 8) << endl;
 //    cout << select_r(x, 80) << endl;*/
+    assert(v_vec_and_array_transformation<uint32_t>(1u << 8u, 1u << 8u));
+    for (int i = 0; i < (1u<<8u); ++i) {
+        srand(clock());
+        assert(v_extract_symbol_rand<uint32_t>(1u<<8u,8));
+    }
+    assert(v_extract_symbol_rand<uint32_t>(1u<<8u,8));
 
-
-    assert(validate_find_first_and_second_set_bits_iter<uint32_t >(1u << 10u, 4));
-    assert(validate_find_first_and_second_set_bits_rand<uint32_t >(1u << 10u, 4));
-    assert(validate_find_kth_interval_iter(1u << 8u, 4));
-    assert(validate_find_kth_interval_random(1u << 12u, 8));
+//    assert(validate_find_first_and_second_set_bits_iter<uint32_t >(1u << 10u, 4));
+//    assert(validate_find_first_and_second_set_bits_rand<uint32_t >(1u << 10u, 4));
+//    assert(validate_find_kth_interval_iter(1u << 8u, 4));
+//    assert(validate_find_kth_interval_random(1u << 12u, 8));
 
     std::cout << "End!" << std::endl;
     return 0;

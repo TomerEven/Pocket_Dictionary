@@ -118,12 +118,12 @@ void print_bool_vector_no_spaces(vector<bool> *v) {
 }
 
 void to_vector(vector<bool> *vec, const uint32_t *a, size_t a_size) {
-    size_t bit_in_slot = (sizeof(a[0]) * 8);
-    size_t vec_new_size = bit_in_slot * a_size, vec_index = 0;
+    size_t slot_size = (sizeof(a[0]) * 8);
+    size_t vec_new_size = slot_size * a_size, vec_index = 0;
     vec->resize(vec_new_size);
     for (size_t i = 0; i < a_size; ++i) {
-        size_t b = 1ULL << (bit_in_slot - 1);
-        for (size_t j = 0; j < bit_in_slot; ++j) {
+        size_t b = 1ULL << (slot_size - 1);
+        for (size_t j = 0; j < slot_size; ++j) {
             vec->at(vec_index) = (b & a[i]);
             b >>= 1ULL;
             vec_index++;
