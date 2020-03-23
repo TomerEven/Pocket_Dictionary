@@ -12,6 +12,7 @@
 #include "../Global_functions/basic_functions.h"
 #include "../bit_operations/bit_op.h"
 #include "Naive_Counter_Endec.hpp"
+//#include "my_bit_op.hpp"
 
 /*
 
@@ -33,12 +34,12 @@ public:
     Counters_Array(size_t max_capacity, size_t max_rep);
 
     /**
-     * Increase the element in the "element_index" by "add_value".
+     * Updates the element in the "element_index" by "update_val".
      * @param element_index the index of the element, whose counter should be increased.
-     * @param add_value By how much that counter should be increased.
+     * @param update_val By how much that counter should be increased.
      * Todo: Deal with overflow caused by updated counter > max_rep.
      */
-    void increase_counter(size_t element_index, size_t add_value);
+    void update_counter(size_t bit_start_index, size_t bit_end_index, size_t update_val);
 
     /**
      * In case of an overflow, the elements counter should be updated to 0, and the element should be
@@ -48,27 +49,26 @@ public:
      * @return Did overflow occurred.
      * Remark: Can also be used to deal with counter decreasing.
      */
-    bool increase_counter_handle_overflow(size_t element_index, size_t add_value);
+    auto increase_counter_handle_overflow(size_t bit_start_index, size_t bit_end_index, size_t add_value) -> bool;
 
     /**
      *
      * @param ith
      * @return the value of the i'th element.
      */
-    size_t get_ith_counter(size_t ith);
-
+    auto get_ith_counter(size_t ith) -> size_t;
 
     /**
      * Counter of the number of distinct elements in Counter_Array.
      * @return
      */
-    size_t get_capacity() const;
+    auto get_capacity() const -> size_t;
 
     /**
      * Computing the capacity. Used for validation.
      * @return
      */
-    size_t count_capacity() const;
+    auto count_capacity() const -> size_t;
 
 private:
     /**
@@ -77,7 +77,9 @@ private:
      * @param bit_end_index bit counter (starting from A[0]) to the first bit of the delimiter which bound (after) the symbol we extract.
      * @return
      */
-    COUNTER_TYPE extract_symbol(size_t bit_start_index, size_t bit_end_index);
+    auto extract_symbol(size_t bit_start_index, size_t bit_end_index) -> COUNTER_TYPE;
+
+
 
     /**
      *
@@ -113,10 +115,8 @@ find_counter_interval_naive(uint32_t *a, size_t a_size, size_t start_lim, size_t
 
 //static size_t get_longest_encoding()
 
-template <typename T>
-static auto static_extract_symbol(const T *A, size_t a_size ,size_t bit_start_index, size_t bit_end_index) -> T;
-
-auto u32_extract_symbol(const uint32_t *A, size_t a_size ,size_t bit_start_index, size_t bit_end_index) -> uint32_t;
+template<typename T>
+static auto static_extract_symbol(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T;
 
 
 #endif //CLION_CODE_COUNTERS_ARRAY_HPP

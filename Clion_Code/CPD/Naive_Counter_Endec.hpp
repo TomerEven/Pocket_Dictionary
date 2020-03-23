@@ -8,6 +8,7 @@
 #include <ostream>
 #include "../Global_functions/basic_functions.h"
 #include "../bit_operations/bit_op.h"
+#include "../bit_operations/my_bit_op.hpp"
 
 #define COUNTER_TYPE uint32_t
 #define COUNTER_TYPE_SIZE (sizeof(COUNTER_TYPE) * (CHAR_BIT))
@@ -37,7 +38,7 @@ static const int decode_table[33] = {-1, 1, 2, 3, 4, -1, 6, 7, 8, -1, -1, -1, 12
  * @return
  */
 template<typename T, typename S>
-static T encode(S x);
+static auto encode(S x) -> T;
 
 
 /**
@@ -50,11 +51,11 @@ static T encode(S x);
  *         return  SYMBOLS.index(w) + 1;
  */
 template<typename T, typename S>
-static T decode(S x);
+static auto decode(S x) -> T;
 
 
 template<typename T, typename S>
-static T update(S x, int update_val);
+static auto update(S x, int update_val) -> T;
 
 /**
  *
@@ -66,7 +67,7 @@ static T update(S x, int update_val);
  * Returns 0 with there is overflow (updated counter value is bigger than MAX_COUNTER or equal to zero)
  */
 template<typename T, typename S>
-static T update_with_overflow(S x, int update_val);
+static auto update_with_overflow(S x, int update_val) -> T;
 
 /**
  *
@@ -78,7 +79,6 @@ static T update_with_overflow(S x, int update_val);
  * @param start Store the address of the first bit (relative to start_lim) in the relevant counter.
  * @param end Store the address of the last bit +1 (relative to start_lim) in the relevant counter.
  */
-
 template<typename T>
 static void
 find_counter_interval_naive(T *a, size_t a_size, size_t start_lim, size_t end_lim, size_t index, size_t *start,

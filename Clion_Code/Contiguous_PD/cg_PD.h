@@ -76,6 +76,12 @@ private:
 
     bool body_conditional_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index);
 
+
+    /**
+     * I think! Moves all elements after the element that starts at "bit_index" to their predecessor position.
+     * @param B_index
+     * @param bit_index
+     */
     void body_pull(size_t B_index, size_t bit_index);
 
 public:

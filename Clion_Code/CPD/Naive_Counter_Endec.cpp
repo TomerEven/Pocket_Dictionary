@@ -49,14 +49,14 @@ find_counter_interval_naive(T *a, size_t a_size, size_t start_lim, size_t end_li
 
 
 template<typename T, typename S>
-static T encode(S x) {
+static auto encode(S x) -> T {
     assert(0 < x < MAX_COUNTER);
-    return T((encode_table[x - 1] << 2) | 1u);
+    return T((encode_table[x - 1] << 2u) | 1u);
 }
 
 
 template<typename T, typename S>
-static T decode(S x) {
+static auto decode(S x) -> T {
     assert(0 < x < MAX_DECODE_VAL);
     T res = T(decode_table[x]);
     assert(res > 0);
@@ -64,16 +64,29 @@ static T decode(S x) {
 }
 
 template<typename T, typename S>
-T update(S x, int update_val) {
-    return encode(decode(x + update_val));
+auto update(S x, int update_val) -> T {
+    return encode<T, S>(decode<T, S>(x + update_val));
 }
 
 template<typename T, typename S>
-T update_with_overflow(S x, int update_val) {
-    auto temp_val = decode(x + update_val);
+auto update_with_overflow(S x, int update_val) -> T {
+    auto temp_val = decode<T, S>(x + update_val);
     //todo Deal with the case: temp_val < 0.
     if (temp_val == 0 or temp_val > MAX_COUNTER)
         return 0;
-    return encode(temp_val);
-    return nullptr;
+    return encode<T, S>(temp_val);
+//    return nullptr;
 }
+
+
+template uint32_t encode<uint32_t>(uint32_t x);
+
+template uint32_t decode<uint32_t>(uint32_t x);
+
+template uint32_t update<uint32_t, uint32_t>(uint32_t x, int update_val);
+
+template uint32_t update_with_overflow<uint32_t, uint32_t>(uint32_t x, int update_val);
+
+//template auto get_symbols_length_difference<uint32_t>(uint32_t x, uint32_t y) -> int;
+
+

@@ -3,6 +3,7 @@
 //
 
 #include "validate_counters.hpp"
+//#include "my_bit_op.hpp"
 
 template<typename T>
 bool v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t bit_end_index) {
@@ -10,7 +11,7 @@ bool v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t
     vector<bool> vec(a_size * slot_size);
     from_array_to_vector(&vec, a, a_size);
     auto v_res = sub_vector_to_word<T>(&vec, bit_start_index, bit_end_index);
-    auto c_res = u32_extract_symbol(a, a_size, bit_start_index, bit_end_index);
+    auto c_res = extract_symbol<T>(a, a_size, bit_start_index, bit_end_index);
 
     if (c_res == v_res) return true;
 
@@ -102,5 +103,13 @@ bool v_extract_symbol_rand(size_t reps, size_t a_size) {
 
 }
 
+auto v_get_symbols_length_difference(size_t reps) -> bool {
+    for (int i = 0; i < reps; ++i) {
+        uint32_t x = random(), y = random();
+        get_numbers_bit_length_difference<uint32_t>(x, y);
+    }
+    return true;
+}
 
 template bool v_extract_symbol_rand<COUNTER_TYPE>(size_t reps, size_t a_size);
+

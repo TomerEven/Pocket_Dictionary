@@ -7,6 +7,7 @@
 
 #include "validate_bit_op.hpp"
 #include "../CPD/Counters_Array.hpp"
+#include "../bit_operations/my_bit_op.hpp"
 
 /**
  *
@@ -22,13 +23,14 @@
  *                      (3) a[bit_start_index:bit_end_index) contains no 1's.
  */
 template<typename T>
-bool v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t bit_end_index);
+auto v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> bool;
 
 template<typename T>
-bool v_extract_symbol_iter(size_t reps, size_t a_size);
+auto v_extract_symbol_iter(size_t reps, size_t a_size) -> bool;
 
 template<typename T>
-bool v_extract_symbol_rand(size_t reps, size_t a_size);
+auto v_extract_symbol_rand(size_t reps, size_t a_size) -> bool;
 
+auto v_get_symbols_length_difference(size_t reps) -> bool;
 
 #endif //CLION_CODE_VALIDATE_COUNTERS_HPP

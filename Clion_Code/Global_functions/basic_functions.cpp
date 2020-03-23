@@ -51,7 +51,7 @@ void print_bool_array(bool *a, size_t a_size) {
 }
 
 template<typename T>
-ostream& print_array_as_consecutive_memory(T *a, size_t size, ostream &os) {
+ostream &print_array_as_consecutive_memory(T *a, size_t size, ostream &os) {
     for (size_t i = 0; i < size; ++i) {
         os << my_bin(a[i]);
     }
@@ -111,7 +111,7 @@ void print_vector_as_words(const vector<bool> *v) {
     cout << "]" << endl;*/
 }
 
-void print_bool_vector_no_spaces(vector<bool> *v) {
+void print_bool_vector_no_spaces(const vector<bool> *v) {
     for (auto b : *v)
         cout << b;
     cout << endl;
@@ -167,7 +167,7 @@ void vector_to_word_array(const vector<bool> *v, uint32_t *a, size_t a_size) {
     }
 }
 
-uint32_t read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size) {
+auto read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size) -> uint32_t {
     assert(bit_start_index + fp_size <= v->size());
 
 //    BODY_BLOCK_TYPE res = v->at(bit_start_index);
@@ -287,8 +287,136 @@ int loglog2(int x) {
 }
 
 
+void formatting() {
+    /*Taken from http://www.cplusplus.com/forum/beginner/181119/*/
+    // arbitrary test data, test repeats the same data thrice
+    std::string fname = "Ebenezer";
+    std::string lname = "Scrooge";
+    int hourWork = 23;
+    int hourRate = 5;
+    double gp = 123.48501;
+    double taxamt = 2.4392;
+    double netpay = 121.04579;
+
+    // values for controlling format
+    const int name_width = 15;
+    const int int_width = 7;
+    const int dbl_width = 12;
+    const int num_flds = 7;
+    const std::string sep = " |";
+    const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() * num_flds;
+    const std::string line = sep + std::string(total_width - 1, '-') + '|';
+
+    std::cout << line << '\n' << sep
+              << std::setw(name_width) << "var " << sep << std::setw(name_width) << "last name" << sep
+              << std::setw(int_width) << "hours" << sep << std::setw(int_width) << "rate" << sep
+              << std::setw(dbl_width) << "gross pay" << sep << std::setw(dbl_width) << "tax" << sep
+              << std::setw(dbl_width) << "net pay" << sep << '\n' << line << '\n';
+
+    for (int i = 0; i < 3; ++i) {
+        std::cout << sep << std::setw(name_width) << fname << sep << std::setw(name_width) << lname << sep
+                  << std::setw(int_width) << hourWork << sep << std::setw(int_width) << hourRate << sep
+                  << std::fixed << std::setprecision(2)
+                  << std::setw(dbl_width) << gp << sep << std::setw(dbl_width) << taxamt << sep
+                  << std::setw(dbl_width) << netpay << sep << '\n';
+    }
+    std::cout << line << '\n';
+}
+
+void table_print(size_t var_num, string *var_names, size_t *values) {
+    /*const auto var_num = 9;
+        string var_names[var_num] = {"start", "start_array_index", "start_bit_pos",
+                                     "end", "end_array_index", "end_bit_pos",
+                                     "new_end", "new_end_array_index", "new_end_bit_pos"};
+        size_t values[var_num] = {start, start / slot_size, start % slot_size,
+                                  end, end / slot_size, end % slot_size,
+                                  new_end, new_end / slot_size, new_end % slot_size};
+
+        size_t max_length = 0;
+        for (auto & var_name : var_names) {
+            max_length = max(var_name.length(), max_length);
+        }*/
+    size_t max_length = 0;
+    for (int i = 0; i < var_num; ++i) {
+        max_length = max(var_names[i].length(), max_length);
+    }
+
+    // values for controlling format
+    const int name_width = int(max_length);
+    const int int_width = 7;
+    const int dbl_width = 12;
+    const int num_flds = 7;
+    const std::string sep = " |";
+    const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() *
+                                                                             num_flds; // NOLINT(bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions)
+    const std::string line = sep + std::string(total_width - 1, '-') + '|';
+    std::cout << line << '\n' << sep << std::setw(name_width) << left << "var " << sep << std::setw(name_width)
+              << "value"
+              << sep << '\n' << line << '\n';
+
+    for (int i = 0; i < var_num; ++i) {
+        std::cout << sep << std::setw(name_width) << var_names[i] << sep << std::setw(name_width) << values[i] << sep
+                  << '\n';
+    }
+    std::cout << line << endl;
+
+}
+
+void table_print_columns(size_t var_num, size_t column_num, string *var_names, string *columns, size_t *values) {
+    /*const auto var_num = 9;
+        string var_names[var_num] = {"start", "start_array_index", "start_bit_pos",
+                                     "end", "end_array_index", "end_bit_pos",
+                                     "new_end", "new_end_array_index", "new_end_bit_pos"};
+        size_t values[var_num] = {start, start / slot_size, start % slot_size,
+                                  end, end / slot_size, end % slot_size,
+                                  new_end, new_end / slot_size, new_end % slot_size};
+
+        size_t max_length = 0;
+        for (auto & var_name : var_names) {
+            max_length = max(var_name.length(), max_length);
+        }*/
+    size_t max_length = 0;
+    for (int i = 0; i < var_num; ++i) {
+        max_length = max(var_names[i].length(), max_length);
+    }
+    for (int k = 0; k < column_num; ++k) {
+        max_length = max(columns[k].length(), max_length);
+    }
+
+    // values for controlling format
+    const int name_width = int(max_length);
+    const int int_width = 7;
+    const int dbl_width = 12;
+    const int num_flds = 7;
+    const std::string sep = " |";
+    const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() *
+                                                                             num_flds; // NOLINT(bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions)
+    const std::string line = sep + std::string(total_width - 1, '-') + '|';
+    std::cout << line << '\n' << sep << left;
+    cout << std::setw(name_width) << "var_name" << sep;
+    for (int j = 0; j < column_num; ++j) {
+        cout << std::setw(name_width) << columns[j] << sep;
+    }
+    cout << '\n' << line << '\n';
+
+    assert(var_num % column_num == 0);
+    for (int i = 0; i < var_num; ++i) {
+        std::cout << sep << std::setw(name_width) << var_names[i];
+
+        for (int j = 0; j < column_num; ++j) {
+            auto index = i * column_num + j;
+            std::cout << sep << std::setw(name_width) << values[index];
+        }
+        std::cout << '\n';
+
+    }
+    std::cout << line << endl;
+
+}
+
+
 template void print_array_as_integers<uint32_t>(uint32_t *a, size_t size);
 
 template string my_bin<uint32_t>(uint32_t n, size_t length);
 
-template ostream& print_array_as_consecutive_memory<uint32_t>(uint32_t *a, size_t size, ostream &os);
+template ostream &print_array_as_consecutive_memory<uint32_t>(uint32_t *a, size_t size, ostream &os);

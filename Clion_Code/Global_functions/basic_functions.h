@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <ctgmath>
 #include <climits>
+#include <iomanip>
 
 
 using namespace std;
@@ -21,10 +22,12 @@ template<typename T>
 void print_array_as_integers(T *a, size_t size);
 
 template<typename T>
-ostream& print_array_as_consecutive_memory(T *a, size_t size, ostream &os);
+ostream &print_array_as_consecutive_memory(T *a, size_t size, ostream &os);
 
 template<typename T>
 string my_bin(T n, size_t length = 32);
+
+
 
 void print_array(uint8_t *a, size_t a_size);
 
@@ -46,9 +49,9 @@ void print_vector_as_words(const vector<bool> *v);
 
 void print_vector_by_unpacking(vector<bool> *v, size_t unpack_size);
 
-void print_bool_vector_no_spaces(vector<bool> *v);
+void print_bool_vector_no_spaces(const vector<bool> *v);
 
-uint32_t read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size);
+auto read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size) -> uint32_t;
 
 void write_FP_to_vector_by_index(vector<bool> *v, size_t index, uint32_t remainder, size_t fp_size);
 
@@ -66,6 +69,11 @@ unsigned int naive_msb32(unsigned int x);
 
 string my_bin(size_t n, size_t length = 32);
 
+void formatting();
+
+void table_print(size_t var_num, string *var_names, size_t* values);
+
+void table_print_columns(size_t var_num, size_t column_num, string *var_names, string *columns, size_t *values);
 
 string to_sci(double x, int add_to_counter = 0, size_t precision = 3);
 

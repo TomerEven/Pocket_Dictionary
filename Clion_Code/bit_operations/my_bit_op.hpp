@@ -10,13 +10,42 @@
 #include <vector>
 #include <cstdint>
 #include <cassert>
+#include <ostream>
 #include "../Global_functions/macros.h"
 #include "bit_op.h"
+#include "../Global_functions/basic_functions.h"
+#include "../bit_operations/bit_op.h"
+#include "../bit_operations/my_bit_op.hpp"
+//#include "Naive_Counter_Endec.hpp"
 
 
 using namespace std;
 typedef unsigned int u32;
 
+
+/**
+ *
+ * @tparam T
+ * @param x
+ * @param y
+ * @return length of y - length of x.
+ */
+template<typename T>
+auto compute_diff_value_safe(T x, T y) -> int;
+
+/**
+ *
+ * @tparam T
+ * @param x
+ * @param y
+ * @return floor(log2(x)) - floor(log2(y)) (log2(0) = 0?)
+ * //todo __builtin_clz(0) == 0?
+ */
+template<typename T>
+auto get_numbers_bit_length_difference(const T x, const T y) -> int;
+
+template<typename T>
+auto get_x_bit_length(const T x) -> size_t;
 
 /**
  * Rank and Select operations definition: https://en.wikipedia.org/wiki/Succinct_data_structure#Succinct_dictionaries
@@ -55,7 +84,75 @@ void find_first_and_second_set_bits(T *a, size_t a_size, size_t *first, size_t *
 
 auto count_set_bits(uint32_t *a, size_t a_size) -> size_t;
 
+template<typename T>
+auto extract_symbol(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T;
+
+
+template<typename T>
+void update_element_att(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                        size_t a_size);
+
+
+template<typename T>
+void update_element_push_att(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                             size_t a_size);
+
+template<typename T>
+void update_element_pull_att(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                             size_t a_size);
+
+
+template<typename T>
+void update_element_pull_att_helper(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                             size_t a_size);
+
+
+template<typename T>
+void update_element(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
+
+
+template<typename T>
+void update_element_push(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
+
+template<typename T>
+void update_element_pull(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
+
+
+/**
+ * Change the value between "start" and "end" to "new_val".
+ * assertion error if new_val needs more than (end - start) bits.
+ * @tparam T
+ * @param a
+ * @param bit_start_pos
+ * @param bit_end_pos
+ * @param a_size
+ * @param new_val
+ */
+template<typename T>
+void update_element_with_fixed_size(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
+
+
+
+
 ////Functions used for validation.
+
+auto vector_last_k_bits_are_zero(vector<bool> *vec, size_t k) -> bool;
+
+/**
+ * Reads a word as type T.
+ * @tparam T
+ * @param v vector of bits.
+ * @param start beginning of thw word (included)
+ * @param end first bit after the word.
+ * @return
+ * In python syntax: return bin(vec[start:end],2)
+ * If type T does not have enough bits to store the word, the function will assert.
+ */
+template<typename T>
+auto read_T_word(const vector<bool> *v, size_t start, size_t end) -> T;
+
+template<typename T>
+auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t bits_lim) -> int;
 
 /**
  * * Same as basic_functions::to_vector(...).
@@ -85,8 +182,8 @@ void from_vector_to_array(const vector<bool> *vec, T *a, size_t a_size);
  * @param end
  * @return With python syntax, assuming v is a string of {0,1}*: return int(v[start:end],2)
  */
-template <typename T>
-T sub_vector_to_word(const vector<bool> *v, size_t start, size_t end);
+template<typename T>
+auto sub_vector_to_word(const vector<bool> *v, size_t start, size_t end) -> T;
 
 
 /**
@@ -101,7 +198,26 @@ void vector_find_kth_interval_simple(vector<bool> *vec, size_t k, size_t *start_
 
 auto vector_find_first_set_bit(vector<bool> *vec) -> size_t;
 
-uint32_t vector_extract_symbol(vector<bool> *vec, size_t *start_index, size_t *end_index);
+auto vector_extract_symbol(vector<bool> *vec, size_t *start_index, size_t *end_index) -> uint32_t;
+
+template<typename T>
+void vector_update_element_with_fixed_size(vector<bool> *vec, size_t start, size_t end, T new_val);
+
+template<typename T>
+void vector_update_element(vector<bool> *vec, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end,
+                           T new_val);
+
+template<typename T>
+void
+vector_update_push(vector<bool> *vec, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val);
+
+
+template<typename T>
+void
+vector_update_pull(vector<bool> *vec, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val);
+
+
 
 //void vector_find_first_and_second_set_bits()
+
 #endif //CLION_CODE_MY_BIT_OP_HPP

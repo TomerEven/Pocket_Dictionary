@@ -4,7 +4,6 @@
 
 #include <cassert>
 #include "bit_op.h"
-#include "my_bit_op.hpp"
 
 unsigned int msb32(register unsigned int x) {
     x |= (x >> 1);
