@@ -292,10 +292,10 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
     auto prev_val = extract_symbol<T>(a, a_size, start, end);
     auto new_end = start + get_x_bit_length<T>(new_val);
     auto new_start = start;
-    update_element_att<T>(changed_array, start, end, new_start, new_end, new_val, a_size);
+    update_element<T>(changed_array, start, end, new_start, new_end, new_val, a_size);
 //    assert(v_update_push_helper<T>(changed_array, start, end, new_start, new_end, prev_val, new_val, a_size));
 
-    update_element_att<T>(a, start, end, new_start, new_end, new_val, a_size);
+    update_element<T>(a, start, end, new_start, new_end, new_val, a_size);
     auto res = extract_symbol<T>(a, a_size, new_start, new_end);
 
     if (new_val != res) {
@@ -344,7 +344,7 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
 
     /*for (int j = 0; j < a_size; ++j) { assert(a[j] == changed_array[j]); }*/
 
-    update_element_att<T>(a, new_start, new_end, start, end, prev_val, a_size);
+    update_element<T>(a, new_start, new_end, start, end, prev_val, a_size);
     /*auto temp_cond = false;
     for (int j = 0; j < a_size; ++j) {
         if (a[j] != changed_array[j]) {
@@ -528,7 +528,7 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
 
             auto prev_val = extract_symbol<T>(a, sub_reps, start, prev_end);
             update_element_att<T>(a, start, prev_end, start, new_end, new_val, sub_reps);
-            update_element_att<T>(changed_array, start, prev_end, start, new_end, new_val, sub_reps);
+            update_element<T>(changed_array, start, prev_end, start, new_end, new_val, sub_reps);
             auto res = extract_symbol<T>(a, sub_reps, start, new_end);
 */
 
@@ -560,7 +560,7 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
                 return false;
             }
 
-            update_element_att<T>(a, start, new_end, start, prev_end, prev_val, sub_reps);
+            update_element<T>(a, start, new_end, start, prev_end, prev_val, sub_reps);
 //            bool unchanged = true;
             for (int k = 0; k < sub_reps; ++k) {
                 if (a[k] != unchanged_array[k]) {
@@ -726,7 +726,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
     vector<bool> updated_copy(*vec);*/
 
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
-    update_element_att<T>(a, prev_start, prev_end, new_start, new_end, new_val, a_size);
+    update_element<T>(a, prev_start, prev_end, new_start, new_end, new_val, a_size);
     vector_update_element<size_t>(vec, prev_start, prev_end, new_start, new_end, new_val);
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
 
@@ -739,7 +739,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
     }
 
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
-    update_element_att<T>(a, new_start, new_end, prev_start, prev_end, prev_val, a_size);
+    update_element<T>(a, new_start, new_end, prev_start, prev_end, prev_val, a_size);
     vector_update_element<size_t>(vec, new_start, new_end, prev_start, prev_end, prev_val);
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
 

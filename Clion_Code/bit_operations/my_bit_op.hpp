@@ -44,6 +44,12 @@ auto compute_diff_value_safe(T x, T y) -> int;
 template<typename T>
 auto get_numbers_bit_length_difference(const T x, const T y) -> int;
 
+/**
+ * Get the minimal number of bits one needs to store x;
+ * @tparam T
+ * @param x
+ * @return
+ */
 template<typename T>
 auto get_x_bit_length(const T x) -> size_t;
 
@@ -78,45 +84,87 @@ void word_k_select(uint32_t word, size_t k, size_t *start, size_t *end);
 template<typename T>
 auto find_first_set_bit(T *a, size_t a_size) -> size_t;
 
+/**
+ * Special case of "find_kth_interval_simple" where k is 0;
+ * @tparam T
+ * @param a
+ * @param a_size
+ * @param first
+ * @param second
+ */
 template<typename T>
 void find_first_and_second_set_bits(T *a, size_t a_size, size_t *first, size_t *second);
 
 
+/**
+ * Count the number of sets bits. ? sum of "rank" on every element ?
+ * @param a
+ * @param a_size
+ * @return
+ */
 auto count_set_bits(uint32_t *a, size_t a_size) -> size_t;
 
+/**
+ * Reads word from A.
+ * @tparam T
+ * @param A
+ * @param a_size
+ * @param bit_start_index
+ * @param bit_end_index
+ * @return
+ * In python syntax, assuming "A" is a string:
+ * return bin(A[bit_start_index:bit_end_index],2)
+ *
+ */
 template<typename T>
 auto extract_symbol(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T;
 
 
+/**
+ * Write a word to A.
+ * prev_start and prev_end are needed to know which bits to keep.
+ * @tparam T
+ * @param a
+ * @param prev_start
+ * @param prev_end
+ * @param new_start
+ * @param new_end
+ * @param new_val
+ * @param a_size
+ */
 template<typename T>
-void update_element_att(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
-                        size_t a_size);
+void update_element(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                    size_t a_size);
 
-
+/**
+ * Deals with longer element
+ * @tparam T
+ * @param a
+ * @param prev_start
+ * @param prev_end
+ * @param new_start
+ * @param new_end
+ * @param new_val
+ * @param a_size
+ */
 template<typename T>
-void update_element_push_att(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
-                             size_t a_size);
+void update_element_push(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                         size_t a_size);
 
+/**
+ * Deals with shorter element.
+ * @tparam T
+ * @param a
+ * @param prev_start
+ * @param prev_end
+ * @param new_start
+ * @param new_end
+ * @param new_val
+ * @param a_size
+ */
 template<typename T>
-void update_element_pull_att(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
-                             size_t a_size);
-
-
-template<typename T>
-void update_element_pull_att_helper(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
-                             size_t a_size);
-
-
-template<typename T>
-void update_element(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
-
-
-template<typename T>
-void update_element_push(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
-
-template<typename T>
-void update_element_pull(T *a, size_t bit_start_pos, size_t bit_end_pos, T new_val, size_t a_size);
-
+void update_element_pull(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
+                         size_t a_size);
 
 /**
  * Change the value between "start" and "end" to "new_val".

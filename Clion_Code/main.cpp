@@ -35,13 +35,13 @@ int main() {
     assert(v_vec_and_array_transformation<uint32_t>(1u << 8u, 1u << 8u));
     assert(v_update_element_with_fixed_size_rand<uint32_t>(1u << 10u, 1u << 5u));*/
 //    assert(v_vector_update_rand(1u<<12u));
-    assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
-    for (int i = 0; i < 16; ++i) {
+    /*assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
+    for (int i = 0; i < 256; ++i) {
         srand(i);
         assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
-    }
+    }*/
 //    assert(v_vector_update_rand(1u<<12u));
-//    assert(v_update_element_iter<uint32_t>(1u<<8u, 1u << 5u));
+    assert(v_update_element_iter<uint32_t>(1u<<8u, 1u << 5u));
 //    assert(v_update_element_rand<uint32_t>(1u << 4u, 1u << 5u));
 
 
