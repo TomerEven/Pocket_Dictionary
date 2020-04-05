@@ -159,17 +159,18 @@ void find_first_and_second_set_bits(T *a, size_t a_size, size_t *first, size_t *
 template<typename T>
 void update_element(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
                     size_t a_size) {
-    if (prev_start != new_start) {
+    /*if (prev_start != new_start) {
         cout << "update_element" << endl;
         cout << "weird: prev_start != new_start" << endl;
         assert(false);
-    }
-    size_t prev_val_length = prev_end - prev_start;
-    size_t new_val_length = new_end - new_start;
+    }*/
+    assert(prev_start == new_start);
+//    size_t prev_val_length = prev_end - prev_start;
+//    size_t new_val_length = new_end - new_start;
     /*
     int new_length_minus_prev = new_val_length - prev_val_length;
 
-    auto prev_val = extract_symbol<T>(a, a_size, prev_start, prev_end);
+    auto prev_val = read_word<T>(a, a_size, prev_start, prev_end);
 
     auto slot_size = sizeof(a[0]) * CHAR_BIT;
     auto start_index = prev_start / slot_size;
@@ -206,12 +207,12 @@ void update_element(T *a, size_t prev_start, size_t prev_end, size_t new_start, 
     */
 
 
-    if (prev_val_length == new_val_length) {
+    if (prev_end == new_end) {
         update_element_with_fixed_size<T>(a, prev_start, prev_end, new_val, a_size);
 //        cout << "H-1" << endl;
-    } else if (prev_val_length < new_val_length) {
+    } else if (prev_end < new_end) {
         update_element_push(a, prev_start, prev_end, new_start, new_end, new_val, a_size);
-    } else if (prev_val_length > new_val_length)
+    } else if (prev_end > new_end)
         update_element_pull(a, prev_start, prev_end, new_start, new_end, new_val, a_size);
     else {
         assert(false);
@@ -222,20 +223,20 @@ template<typename T>
 void update_element_push(T *a, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end, T new_val,
                          size_t a_size) {
 
-    assert(prev_start == new_start); // I might be assuming this is true in the loop used for shifting.
+    assert(prev_start == new_start);// I might be assuming this is true in the loop used for shifting.
     auto slot_size = sizeof(a[0]) * CHAR_BIT;
-    size_t prev_val_length = prev_end - prev_start;
-    size_t new_val_length = new_end - new_start;
-    int new_length_minus_prev = new_val_length - prev_val_length;
+    auto shift = new_end - prev_end;
+    assert((0 < shift) && (shift < slot_size));
+//    size_t prev_val_length = prev_end - prev_start;
+//    size_t new_val_length = new_end - new_start;
+//    int new_length_minus_prev = new_val_length - prev_val_length;
 
-    auto prev_val = extract_symbol<T>(a, a_size, prev_start, prev_end);
-    assert(prev_val_length < new_val_length);
+    auto prev_val = read_word<T>(a, a_size, prev_start, prev_end);
 
     auto start_index = prev_start / slot_size;
     auto new_start_index = new_start / slot_size;
     auto new_end_index = new_end / slot_size;
     auto prev_end_index = prev_end / slot_size;
-    size_t shift = new_length_minus_prev;
 
     bool case1 = (start_index < prev_end_index);
     bool case2 = (start_index == prev_end_index) and (prev_end_index < new_end_index);
@@ -243,18 +244,19 @@ void update_element_push(T *a, size_t prev_start, size_t prev_end, size_t new_st
     assert(case1 or case2 or case3);
 
 
-    assert((0 < shift) && (shift < slot_size));
     //Todo: validate loop.
     for (auto i = a_size - 1; i > new_start_index; --i) {
         a[i] = (a[i] >> shift) | (a[i - 1] << (slot_size - shift));
         assert(a[i] <= MASK(slot_size));
     }
     if (case1 or case2) {
+        assert(start_index < new_end_index);
         update_element_with_fixed_size<T>(a, new_start, new_end, new_val, a_size);
 //        cout << "H0" << endl;
         return;
 
     } else if (case3) {
+        assert(start_index == new_end_index);
         auto left_mask = slot_size - (prev_start % slot_size);
         auto right_mask = slot_size - (prev_end % slot_size);
         auto left = (left_mask) ? a[start_index] & (~MASK(left_mask)) : 0;
@@ -284,7 +286,7 @@ void update_element_pull(T *a, size_t prev_start, size_t prev_end, size_t new_st
     size_t new_val_length = new_end - new_start;
     int new_length_minus_prev = prev_val_length - new_val_length;
 
-    auto prev_val = extract_symbol<T>(a, a_size, prev_start, prev_end);
+    auto prev_val = read_word<T>(a, a_size, prev_start, prev_end);
     assert(prev_val_length > new_val_length);
 
     auto start_index = prev_start / slot_size;
@@ -327,7 +329,7 @@ void update_element_pull(T *a, size_t prev_start, size_t prev_end, size_t new_st
         bool is_mid_necessary = num_of_bits_need_to_extract > shift;
         assert(!is_mid_necessary);
         assert(num_of_bits_need_to_extract != 0);
-        auto correct_right = extract_symbol<T>(unchanged_a, a_size, prev_end, prev_end + num_of_bits_need_to_extract);
+        auto correct_right = read_word<T>(unchanged_a, a_size, prev_end, prev_end + num_of_bits_need_to_extract);
 
         auto prev_end_rem = prev_end % slot_size;
         auto left_mask = slot_size - (prev_start % slot_size);
@@ -363,7 +365,7 @@ void update_element_pull(T *a, size_t prev_start, size_t prev_end, size_t new_st
         a[a_size - 1] <<= shift;
 
         assert(num_of_bits_need_to_extract != 0);
-        auto correct_right = extract_symbol<T>(unchanged_a, a_size, prev_end, prev_end + num_of_bits_need_to_extract);
+        auto correct_right = read_word<T>(unchanged_a, a_size, prev_end, prev_end + num_of_bits_need_to_extract);
         auto prev_end_rem = prev_end % slot_size;
 
         auto bit_start_rem = prev_start % slot_size;
@@ -498,7 +500,7 @@ auto count_set_bits(uint32_t *a, size_t a_size) -> size_t {
 
 
 template<typename T>
-auto extract_symbol(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T {
+auto read_word(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T {
     if (bit_start_index == bit_end_index) {
 //        cout << "H0" << endl;
         return 0;
@@ -537,7 +539,78 @@ auto extract_symbol(const T *A, size_t a_size, size_t bit_start_index, size_t bi
         assert(false);
 }
 
+/*
+template<typename T>
+void
+read_k_words_fixed_length(const T *A, size_t a_size, size_t first_element_index, size_t element_length, T *res_array) {
+    size_t k = sizeof(res_array) / sizeof(A[res_array]);
+    uint32_t slot_size = sizeof(T) * CHAR_BIT;
+    auto start = first_element_index * element_length;
+    auto rem = start % slot_size;
+    auto total_bit_length = element_length * k;
+    auto A_length = INTEGER_ROUND(total_bit_length, slot_size);
+    size_t A_start_index = INTEGER_ROUND(start, slot_size);
+    auto bit_temp = start;
+    auto A_index = A_start_index;
+    auto bits_left = slot_size - rem;
+    for (int i = 0; i < k; ++i) {
+        if (bits_left > element_length) {
+            uint32_t shift = bits_left - element_length;
+            res_array[i] = A[A_index] >> shift;
+            bits_left = shift;
+        } else if (bits_left > element_length)
+    }
+//    assert(A_start_index)
 
+}
+*/
+
+template<typename T>
+void
+read_k_words_fixed_length_att(const T *A, size_t a_size, size_t first_element_index, size_t element_length,
+                              T *res_array, size_t k) {
+//    size_t k = sizeof(res_array) / sizeof(res_array[0]);
+    uint32_t slot_size = sizeof(T) * CHAR_BIT;
+
+    size_t total_bit_counter = (first_element_index * element_length);
+
+    size_t comparing_counter = 0;
+    size_t comparing_lim = k;
+
+    for (; comparing_counter < comparing_lim; ++comparing_counter) {
+        size_t A_index = total_bit_counter / slot_size;
+        size_t bit_index_inside_slot = total_bit_counter % slot_size;
+        size_t bits_left_to_read_inside_slot = slot_size - bit_index_inside_slot;
+
+        T current_cell = A[A_index];
+
+        /*More than element_length bits remain in B[A_index].*/
+        if (bits_left_to_read_inside_slot > element_length) {
+            ulong shift = bits_left_to_read_inside_slot - element_length;
+            if (DB) assert(shift < slot_size);
+            T current_remainder = (current_cell >> (shift)) & MASK(element_length);
+            res_array[comparing_counter] = current_remainder;
+            /*Exactly element_length bits remain in B[A_index].*/
+        } else if (bits_left_to_read_inside_slot == element_length) {
+            T current_remainder = current_cell & MASK(element_length);
+            res_array[comparing_counter] = current_remainder;
+            /*Less than element_length bits remain in B[A_index].*/
+        } else {
+            size_t number_of_bits_to_read_from_next_slot = element_length - bits_left_to_read_inside_slot;
+            ulong upper_shift = element_length - bits_left_to_read_inside_slot;
+            if (DB) assert(upper_shift >= 0 and upper_shift < slot_size);
+            ulong upper = (current_cell & MASK(bits_left_to_read_inside_slot)) << (upper_shift);
+            if (DB) assert(a_size > A_index + 1);
+            ulong lower_shift = slot_size - number_of_bits_to_read_from_next_slot;
+            if (DB) assert(0 <= lower_shift and lower_shift < slot_size);
+            ulong lower = (A[A_index + 1] >> lower_shift) & MASK(number_of_bits_to_read_from_next_slot);
+            T current_remainder = upper | lower;
+            res_array[comparing_counter] = current_remainder;
+        }
+        total_bit_counter += element_length;
+    }
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -680,9 +753,6 @@ auto vector_find_first_set_bit(vector<bool> *vec) -> size_t {
     assert(false);
 }
 
-auto vector_extract_symbol(vector<bool> *vec, size_t *start_index, size_t *end_index) -> uint32_t {
-//    return sub_vector_to_word<()
-}
 
 template<typename T>
 void vector_update_element_with_fixed_size(vector<bool> *vec, size_t start, size_t end, T new_val) {
@@ -796,7 +866,7 @@ update_element_push<uint32_t>(uint32_t *a, size_t prev_start, size_t prev_end, s
                               uint32_t new_val, size_t a_size);
 
 template auto
-extract_symbol<uint32_t>(const uint32_t *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> uint32_t;
+read_word<uint32_t>(const uint32_t *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> uint32_t;
 
 //template auto read_T_word<uint32_t>(const vector<bool> *v, size_t start, size_t end) -> uint32_t;
 
@@ -838,3 +908,10 @@ vector_update_pull<uint32_t>(vector<bool> *vec, size_t prev_start, size_t prev_e
 template void
 vector_update_pull<size_t>(vector<bool> *vec, size_t prev_start, size_t prev_end, size_t new_start, size_t new_end,
                            size_t new_val);
+
+template void
+read_k_words_fixed_length_att<uint32_t>(const uint32_t *A, size_t a_size, size_t first_element_index, size_t element_length,
+                                        uint32_t *res_array, size_t k);
+
+template void read_k_words_fixed_length_att<size_t>(const size_t *A, size_t a_size, size_t first_element_index, size_t element_length,
+                                                    size_t *res_array, size_t k);

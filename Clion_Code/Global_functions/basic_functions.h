@@ -19,10 +19,10 @@
 using namespace std;
 
 template<typename T>
-void print_array_as_integers(T *a, size_t size);
+void print_array_as_integers(const T *a, size_t size);
 
 template<typename T>
-ostream &print_array_as_consecutive_memory(T *a, size_t size, ostream &os);
+ostream &print_array_as_consecutive_memory(const  T *a, size_t size, ostream &os);
 
 template<typename T>
 string my_bin(T n, size_t length = 32);

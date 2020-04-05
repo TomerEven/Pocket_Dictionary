@@ -22,7 +22,7 @@ Counters_Array::Counters_Array(size_t max_capacity, size_t max_rep) : max_capaci
 }
 
 void Counters_Array::update_counter(size_t bit_start_index, size_t bit_end_index, size_t update_val) {
-//    auto symbol = extract_symbol(bit_start_index,bit_end_index);
+//    auto symbol = read_word(bit_start_index,bit_end_index);
 //    auto new_symbol = update<COUNTER_TYPE>(symbol, update_val);
 //    u32 shift = get_numbers_bit_length_difference<COUNTER_TYPE>(symbol, new_symbol);
 

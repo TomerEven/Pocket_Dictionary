@@ -187,10 +187,10 @@ auto v_update_element_with_fixed_size_rand(size_t reps, const size_t sub_reps) -
 
             ////Testing updating and extracting are invertible. (extract first)
 //            for (int m = 0; m < sub_reps; ++m) {assert(a[m] == changed_array[m]);}
-            auto prev_val = extract_symbol<T>(a, sub_reps, start, end);
+            auto prev_val = read_word<T>(a, sub_reps, start, end);
             update_element_with_fixed_size<T>(changed_array, start, end, prev_val, sub_reps);
 //            for (int m = 0; m < sub_reps; ++m) {assert(a[m] == changed_array[m]);}
-            assert(extract_symbol<T>(changed_array, sub_reps, start, end) == prev_val);
+            assert(read_word<T>(changed_array, sub_reps, start, end) == prev_val);
 //            for (int m = 0; m < sub_reps; ++m) {assert(a[m] == changed_array[m]);}
 
             /*cout << "prev slot is: " << a[start / slot_size] << endl;
@@ -199,7 +199,7 @@ auto v_update_element_with_fixed_size_rand(size_t reps, const size_t sub_reps) -
 
             update_element_with_fixed_size<T>(a, start, end, new_val, sub_reps);
             update_element_with_fixed_size<T>(changed_array, start, end, new_val, sub_reps);
-            auto res = extract_symbol<T>(a, sub_reps, start, end);
+            auto res = read_word<T>(a, sub_reps, start, end);
 
             /*cout << "res is: " << res << endl;
             cout << "new_val is: " << new_val << endl;*/
@@ -289,20 +289,20 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
     auto slot_size = sizeof(a[0]) * CHAR_BIT;
     size_t total_bits = slot_size * a_size;
     assert(new_val <= MASK(slot_size));
-    auto prev_val = extract_symbol<T>(a, a_size, start, end);
+    auto prev_val = read_word<T>(a, a_size, start, end);
     auto new_end = start + get_x_bit_length<T>(new_val);
     auto new_start = start;
     update_element<T>(changed_array, start, end, new_start, new_end, new_val, a_size);
 //    assert(v_update_push_helper<T>(changed_array, start, end, new_start, new_end, prev_val, new_val, a_size));
 
     update_element<T>(a, start, end, new_start, new_end, new_val, a_size);
-    auto res = extract_symbol<T>(a, a_size, new_start, new_end);
+    auto res = read_word<T>(a, a_size, new_start, new_end);
 
     if (new_val != res) {
         /*//    auto res2 = extract_symbol<T>(a, a_size, start, new_end + 1);
         //    auto r3 = extract_symbol<T>(a, a_size, start, new_end + 2);
-        //    auto r4 = extract_symbol<T>(a, a_size, start, new_end + 3);
-        //    auto r5 = extract_symbol<T>(a, a_size, start + 1, new_end + 3);
+        //    auto r4 = read_word<T>(a, a_size, start, new_end + 3);
+        //    auto r5 = read_word<T>(a, a_size, start + 1, new_end + 3);
 */
         string line = string(32, '-') + "Failed 1" + string(32, '-');
         cout << line << endl;
@@ -526,10 +526,10 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
     return true;
 /*
 
-            auto prev_val = extract_symbol<T>(a, sub_reps, start, prev_end);
+            auto prev_val = read_word<T>(a, sub_reps, start, prev_end);
             update_element_att<T>(a, start, prev_end, start, new_end, new_val, sub_reps);
             update_element<T>(changed_array, start, prev_end, start, new_end, new_val, sub_reps);
-            auto res = extract_symbol<T>(a, sub_reps, start, new_end);
+            auto res = read_word<T>(a, sub_reps, start, new_end);
 */
 
 /*
@@ -699,7 +699,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
 
     vector<bool> copy(*vec);
     auto prev_val = read_T_word<T>(vec, prev_start, prev_end);
-    auto prev_val_arr = extract_symbol<T>(a, a_size, prev_start, prev_end);
+    auto prev_val_arr = read_word<T>(a, a_size, prev_start, prev_end);
 
 
     const size_t n = 6;
@@ -709,7 +709,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
 
     cout << endl;
     print_bool_vector_no_spaces(vec);
-    print_array_as_consecutive_memory<T>(a,a_size, cout);
+    print_array_as_consecutive_memory<T>(a, a_size, cout);
 
     assert(prev_val == prev_val_arr);
 
@@ -730,7 +730,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
     vector_update_element<size_t>(vec, prev_start, prev_end, new_start, new_end, new_val);
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
 
-    auto res_arr = extract_symbol<T>(a, a_size, new_start, new_end);
+    auto res_arr = read_word<T>(a, a_size, new_start, new_end);
     auto res = read_T_word<unsigned long long>(vec, new_start, new_end);
     assert(res == res_arr);
     if (res != new_val) {
@@ -745,7 +745,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
 
 //    print_bool_vector_no_spaces(vec);
 //    cout << endl;
-    res_arr = extract_symbol<T>(a, a_size, prev_start, prev_end);
+    res_arr = read_word<T>(a, a_size, prev_start, prev_end);
     res = read_T_word<unsigned long long>(vec, prev_start, prev_end);
     assert(res == res_arr);
     if (res != prev_val) {
@@ -777,7 +777,7 @@ auto v_update_by_comparison_rand(size_t reps, size_t a_size) -> bool {
     auto counter = 0;
     for (int i = 0; i < (size - 128); ++i) { vec[i] = (i / 4) % 2; }
     for (int i = 0; i < a_size; ++i) {
-        a[i] = read_T_word<T>(&vec, i * slot_size, (i + 1) *slot_size);
+        a[i] = read_T_word<T>(&vec, i * slot_size, (i + 1) * slot_size);
     }
 
 
@@ -797,6 +797,76 @@ auto v_update_by_comparison_rand(size_t reps, size_t a_size) -> bool {
     cout << "Counter is: " << counter << endl;
     return true;
 }
+
+template<typename T>
+auto v_read_k_words_fixed_length_single(const T *a, size_t a_size, size_t index, size_t element_length, T *res_array,
+                                        size_t k) -> bool {
+    uint32_t slot_size = sizeof(T) * CHAR_BIT;
+
+    T val_array[k];
+    auto bit_start_index = index * element_length;
+    for (int i = 0; i < k; ++i) {
+        val_array[i] = read_word(a, a_size, bit_start_index, bit_start_index + element_length);
+        bit_start_index += element_length;
+    }
+
+    read_k_words_fixed_length_att(a, a_size, index, element_length, res_array, k);
+    for (int i = 0; i < k; ++i) {
+        if (res_array[i] != val_array[i]) {
+            cout << i << endl;
+            print_array_as_consecutive_memory(a, a_size, cout);
+            cout << endl;
+            print_array_as_consecutive_memory(res_array, k, cout);
+            print_array_as_consecutive_memory(val_array, k, cout);
+            cout << endl;
+            print_array_as_integers<T>(a, a_size);
+            cout << endl;
+            print_array_as_integers<T>(res_array, k);
+            print_array_as_integers<T>(val_array, k);
+            return false;
+        }
+    }
+    return true;
+}
+
+template<typename T>
+auto v_read_k_words_fixed_length_rand(size_t reps, size_t element_length) -> bool {
+
+    const auto a_size = 16;
+    const size_t slot_size = sizeof(T) * CHAR_BIT;
+    const size_t element_num = INTEGER_ROUND(a_size * slot_size, element_length);
+
+    T a[a_size];
+    auto counter = 0;
+    for (int i = 0; i < a_size; ++i) {
+        a[i] = random();
+    }
+
+
+    for (int k = 3; k < 10; ++k) {
+        T res_array[k];
+        assert(element_num >= k);
+        for (int i = 0; i < reps; ++i) {
+            auto element_index = random() % (element_num - k);
+/*
+//            auto prev_length = random() % slot_size;
+//            auto new_length = random() % slot_size;
+//            auto prev_end = start + prev_length;
+//            auto new_end = start + new_length;
+//            auto new_val = random() & MASK(new_length);
+*/
+            bool res = v_read_k_words_fixed_length_single<T>(a, a_size, element_index, element_length, res_array, k);
+            if (!res) {
+                cout << "Counter is: " << counter << endl;
+                return (false);
+            }
+            counter++;
+        }
+    }
+    cout << "Counter is: " << counter << endl;
+    return true;
+}
+
 
 template auto validate_find_first_and_second_set_bits_single<uint32_t>(uint32_t *a, size_t a_size) -> bool;
 
@@ -821,6 +891,16 @@ template auto v_update_by_comparison_rand<uint32_t>(size_t reps, size_t a_size) 
 template
 auto v_update_by_comparison_single<uint32_t>(uint32_t *a, size_t a_size, vector<bool> *vec, size_t prev_start,
                                              size_t prev_end, size_t new_start, size_t new_end, size_t new_val) -> bool;
+
+
+template auto
+v_read_k_words_fixed_length_single<uint32_t>(const uint32_t *a, size_t a_size, size_t index, size_t element_length,
+                                             uint32_t *res_array, size_t k) -> bool;
+
+template
+auto v_read_k_words_fixed_length_rand<uint32_t>(size_t reps, size_t element_length) -> bool;
+
+
 
 /*
 

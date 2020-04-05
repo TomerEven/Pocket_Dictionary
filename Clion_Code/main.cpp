@@ -8,6 +8,9 @@
 #include "Tests/validate_bit_op.hpp"
 #include "Tests/validate_counters.hpp"
 #include "POW2C/pow2c_naive_filter.h"
+#include "Hash_Table/cuckoohash_map.hh"
+#include "Hash_Table/hash_table.hpp"
+#include "Tests/validate_hash_table.hpp"
 
 
 //todo: naive pow2c_naive_filter validation. benchmark comparing. profiling.
@@ -17,31 +20,52 @@ using namespace std;
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-/*
-    uint64_t x = 0x5555;
-    uint32_t y = 0x5555;
-//    x <<= 4u;
-    cout << x << endl;
-    cout << select_r(x, 0) << endl;
-    cout << select_r(y, 0) << endl;
-    cout << select_r(x, 1) << endl;
-    cout << select_r(y, 1) << endl;
-    cout << select_r(x, 7) << endl;
-    cout << select_r(y, 7) << endl;
-    cout << select_r(x, 8) << endl;
-    cout << select_r(y, 8) << endl;
-//    cout << select_r(x, 80) << endl;*/
-    /*assert(v_get_symbols_length_difference(1u << 10u));
-    assert(v_vec_and_array_transformation<uint32_t>(1u << 8u, 1u << 8u));
-    assert(v_update_element_with_fixed_size_rand<uint32_t>(1u << 10u, 1u << 5u));*/
-//    assert(v_vector_update_rand(1u<<12u));
-    /*assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
+
+    const size_t max_capacity = 1u << 10u, element_length = 28, bucket_size = 4;
+    size_t reps = 1u << 14u;
+    auto load_factor = .75;
+    double working_LF = .72;
+    double variance = .1;
+
+    /*uint32_t a = 1;
+    hash_table<uint32_t> t(max_capacity, element_length, bucket_size, load_factor);
+    assert(t.find(a) == 0);
+    t.insert(a);
+    assert(t.find(a) == 1);
+    t.remove(a);
+    assert(t.find(a) == 0);*/
+
+//    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 1, load_factor, working_LF, variance);
+//    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 2, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 4, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 8, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 12, load_factor, working_LF, variance);
+//    cout << "\n\n\n" << endl;
+
+//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 4, load_factor);
+//    cout << "1" << endl;
+//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 2, load_factor);
+//    cout << "2" << endl;
+//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 16, load_factor);
+//    cout << "4" << endl;
+//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 8, load_factor);
+//    cout << "5" << endl;
+//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 1, load_factor);
+//    cout << "3" << endl;
+
+    /*assert(v_vector_update_rand(1u<<12u));
+    assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
     for (int i = 0; i < 256; ++i) {
         srand(i);
         assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
-    }*/
-//    assert(v_vector_update_rand(1u<<12u));
-    assert(v_update_element_iter<uint32_t>(1u<<8u, 1u << 5u));
+    }
+    assert(v_vector_update_rand(1u<<12u));
+    assert(v_update_element_iter<uint32_t>(1u<<8u, 1u << 5u));*/
+
 //    assert(v_update_element_rand<uint32_t>(1u << 4u, 1u << 5u));
 
 
@@ -240,4 +264,30 @@ void use_of_validate_PD(size_t reps) {
 
     }
     cout << passed << endl;
+}
+
+
+void using_cuckoo_table() {
+    libcuckoo::cuckoohash_map<int, std::string> Table;
+
+    for (int i = 0; i < 100; i++) {
+        Table.insert(i, "hello");
+    }
+
+    for (int i = 0; i < 101; i++) {
+        std::string out;
+
+        if (Table.find(i, out)) {
+            std::cout << i << "  " << out << std::endl;
+        } else {
+            std::cout << i << "  NOT FOUND" << std::endl;
+        }
+    }
+}
+
+void t_read_k_word_rand() {
+    size_t reps = 128;
+    for (int el_length = 7; el_length < 33; ++el_length) {
+        assert(v_read_k_words_fixed_length_rand<uint32_t>(128, el_length));
+    }
 }

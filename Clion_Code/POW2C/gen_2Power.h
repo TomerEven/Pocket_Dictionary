@@ -36,13 +36,13 @@ public:
 //    ~gen_2Power();
 //    ~pow2c_filter();
 
-    bool lookup(string *s);
+    auto lookup(string *s) -> bool;
 
     void insert(string *s);
 
     void remove(string *s);
 
-    bool lookup(uint32_t s);
+    auto lookup(uint32_t s) -> bool;
 
     void insert(uint32_t s);
 
@@ -90,7 +90,7 @@ public:
         if (DB) assert(*pd_index2 < pd_vec.size());
     }
 
-    bool is_const_size() { return is_const_size_indicator; }
+    auto is_const_size() -> bool { return is_const_size_indicator; }
 };
 
 

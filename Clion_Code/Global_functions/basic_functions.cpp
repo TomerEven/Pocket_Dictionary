@@ -6,7 +6,7 @@
 
 
 template<typename T>
-void print_array_as_integers(T *a, size_t size) {
+void print_array_as_integers(const  T *a, size_t size) {
     cout << "[" << (int) a[0];
     for (size_t i = 1; i < size; ++i) {
         cout << ", " << (int) a[i];
@@ -51,7 +51,7 @@ void print_bool_array(bool *a, size_t a_size) {
 }
 
 template<typename T>
-ostream &print_array_as_consecutive_memory(T *a, size_t size, ostream &os) {
+ostream &print_array_as_consecutive_memory(const T *a, size_t size, ostream &os) {
     for (size_t i = 0; i < size; ++i) {
         os << my_bin(a[i]);
     }
@@ -220,6 +220,7 @@ string my_bin(size_t n, size_t length) {
 }
 
 int compare_vector_and_array(const vector<bool> *v, const uint8_t *a) {
+    assert(false);
     size_t size = min(v->size(), sizeof(a) / sizeof(a[0]));
     size_t step = sizeof(a[0]) * sizeof(char);
     for (size_t i = 0; i < size; i += step) {
@@ -415,8 +416,10 @@ void table_print_columns(size_t var_num, size_t column_num, string *var_names, s
 }
 
 
-template void print_array_as_integers<uint32_t>(uint32_t *a, size_t size);
+template void print_array_as_integers<uint32_t>(const uint32_t *a, size_t size);
+
+template void print_array_as_integers<size_t>(const size_t *a, size_t size);
 
 template string my_bin<uint32_t>(uint32_t n, size_t length);
 
-template ostream &print_array_as_consecutive_memory<uint32_t>(uint32_t *a, size_t size, ostream &os);
+template ostream &print_array_as_consecutive_memory<uint32_t>(const  uint32_t *a, size_t size, ostream &os);

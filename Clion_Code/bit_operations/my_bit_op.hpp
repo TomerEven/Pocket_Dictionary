@@ -79,7 +79,7 @@ void word_k_select(uint32_t word, size_t k, size_t *start, size_t *end);
  * @tparam T
  * @param a
  * @param a_size
- * @return The index of the set bit in a (were a is a vector of bits.)
+ * @return The index of the set bit in "a" (were "a" is a vector of bits.)
  */
 template<typename T>
 auto find_first_set_bit(T *a, size_t a_size) -> size_t;
@@ -117,7 +117,35 @@ auto count_set_bits(uint32_t *a, size_t a_size) -> size_t;
  *
  */
 template<typename T>
-auto extract_symbol(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T;
+auto read_word(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> T;
+
+/**
+ * Assume all elements in "A" have the same length.
+ * @tparam T The array type
+ * @param A The array
+ * @param a_size maximal number of slots in the array (redundant)
+ * @param first_element_index the index (in the abstract array) of the first element we read.
+ * @param element_length every element is encoded in exactly this number of bits.
+ * @param res_array where the elements should be stored
+ * @return
+ */
+template<typename T>
+void read_k_words_fixed_length(const T *A, size_t a_size, size_t first_element_index, size_t element_length,T* res_array);
+
+/**
+ * Assume all elements in "A" have the same length.
+ * @tparam T The array type
+ * @param A The array
+ * @param a_size number of slots in "A".
+ * @param first_element_index the index (in the abstract array) of the first element we read.
+ * @param element_length every element is encoded in exactly this number of bits.
+ * @param res_array where the elements should be stored. its length matches the number of words we will read.
+ * @param k The number of words we will read
+ * @return
+ */
+template<typename T>
+void
+read_k_words_fixed_length_att(const T *A, size_t a_size, size_t first_element_index, size_t element_length, T *res_array, size_t k);
 
 
 /**
