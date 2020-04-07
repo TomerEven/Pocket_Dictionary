@@ -6,7 +6,7 @@
 
 
 template<typename T>
-void print_array_as_integers(const  T *a, size_t size) {
+void print_array_as_integers(const T *a, size_t size) {
     cout << "[" << (int) a[0];
     for (size_t i = 1; i < size; ++i) {
         cout << ", " << (int) a[i];
@@ -415,6 +415,13 @@ void table_print_columns(size_t var_num, size_t column_num, string *var_names, s
 
 }
 
+template<typename T>
+auto my_ceil(T x, T y) -> T {
+    return (x + y - 1) / y;
+}
+
+template
+auto my_ceil<size_t>(size_t x, size_t y) -> size_t;
 
 template void print_array_as_integers<uint32_t>(const uint32_t *a, size_t size);
 
@@ -422,4 +429,4 @@ template void print_array_as_integers<size_t>(const size_t *a, size_t size);
 
 template string my_bin<uint32_t>(uint32_t n, size_t length);
 
-template ostream &print_array_as_consecutive_memory<uint32_t>(const  uint32_t *a, size_t size, ostream &os);
+template ostream &print_array_as_consecutive_memory<uint32_t>(const uint32_t *a, size_t size, ostream &os);

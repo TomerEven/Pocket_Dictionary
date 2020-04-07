@@ -22,7 +22,7 @@ public:
     virtual ~PD();
 //    virtual ~PD();
 
-    bool lookup(size_t quotient, FP_TYPE remainder);
+    auto lookup(size_t quotient, FP_TYPE remainder) -> bool;
 
     void insert(size_t quotient, FP_TYPE remainder);
 
@@ -41,18 +41,18 @@ public:
      * @param remainder
      * @return true if the element was removed, false otherwise.
      */
-    bool conditional_remove(size_t quotient, FP_TYPE remainder);
+    auto conditional_remove(size_t quotient, FP_TYPE remainder) -> bool;
 
     void header_pp();
 
 
     void print();
 
-    bool is_full();
+    auto is_full() -> bool;
 
-    size_t get_capacity() const;
+    auto get_capacity() const -> size_t;
 
-    friend ostream &operator<<(ostream &os, const PD &pd);
+    friend auto operator<<(ostream &os, const PD &pd) -> ostream &;
 
 private:
 

@@ -34,7 +34,7 @@ inline uint32_t my_hash(const char *elementP, uint32_t seed) {
     return a + seed * b;
 }
 
-inline uint32_t my_hash(string *elementP, uint32_t seed) {
+inline uint32_t my_hash(const string *elementP, uint32_t seed) {
 //    assert(false);
     char const *cp = elementP->c_str();
     uint32_t a, b;

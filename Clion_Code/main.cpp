@@ -11,6 +11,7 @@
 #include "Hash_Table/cuckoohash_map.hh"
 #include "Hash_Table/hash_table.hpp"
 #include "Tests/validate_hash_table.hpp"
+#include "Tests/validate_filter.hpp"
 
 
 //todo: naive pow2c_naive_filter validation. benchmark comparing. profiling.
@@ -21,12 +22,16 @@ using namespace std;
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    const size_t max_capacity = 1u << 10u, element_length = 28, bucket_size = 4;
+    const size_t max_capacity = 1u << 14u, element_length = 28, bucket_size = 4;
     size_t reps = 1u << 14u;
     auto load_factor = .75;
     double working_LF = .72;
     double variance = .1;
-
+    for (int i = 0; i < 8; ++i) {
+        srand(i);
+        auto res = v_filter<dict<cg_PD, hash_table<uint32_t> > >(max_capacity, max_capacity<< 2u, 13, .75, .5);
+        assert(res);
+    }
     /*uint32_t a = 1;
     hash_table<uint32_t> t(max_capacity, element_length, bucket_size, load_factor);
     assert(t.find(a) == 0);
@@ -37,13 +42,6 @@ int main() {
 
 //    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 1, load_factor, working_LF, variance);
 //    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 2, load_factor, working_LF, variance);
-    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 4, load_factor, working_LF, variance);
-    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 8, load_factor, working_LF, variance);
-    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 12, load_factor, working_LF, variance);
 //    cout << "\n\n\n" << endl;
 
 //    v_hash_table_rand(1u << 14u, max_capacity, element_length, 4, load_factor);
@@ -290,4 +288,20 @@ void t_read_k_word_rand() {
     for (int el_length = 7; el_length < 33; ++el_length) {
         assert(v_read_k_words_fixed_length_rand<uint32_t>(128, el_length));
     }
+}
+
+void t_HT() {
+    const size_t max_capacity = 1u << 10u, element_length = 28, bucket_size = 4;
+    size_t reps = 1u << 14u;
+    auto load_factor = .75;
+    double working_LF = .72;
+    double variance = .1;
+
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 2, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 4, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 8, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 12, load_factor, working_LF, variance);
 }

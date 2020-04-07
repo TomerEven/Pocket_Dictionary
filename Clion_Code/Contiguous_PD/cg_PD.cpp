@@ -14,7 +14,7 @@ cg_PD::cg_PD(size_t m, size_t f, size_t l) : max_capacity(f), fp_size(l), size(g
 
 }
 
-bool cg_PD::lookup(CG_TYPE q, CG_TYPE r) {
+auto cg_PD::lookup(CG_TYPE q, CG_TYPE r) -> bool {
     size_t start_index = -1, end_index = -1;
     if (not header_lookup(q, &start_index, &end_index))
         return false;
@@ -56,7 +56,7 @@ void cg_PD::remove(CG_TYPE q, CG_TYPE r) {
     body_remove(r, unpacked_start_index, unpacked_end_index);
 }
 
-bool cg_PD::conditional_remove(CG_TYPE q, CG_TYPE r) {
+auto cg_PD::conditional_remove(CG_TYPE q, CG_TYPE r) -> bool {
 //    return naive_conditional_remove(q, r);
     size_t start_index = -1, end_index = -1;
     if (not header_lookup(q, &start_index, &end_index))
@@ -74,7 +74,7 @@ bool cg_PD::conditional_remove(CG_TYPE q, CG_TYPE r) {
     return false;
 }
 
-bool cg_PD::naive_conditional_remove(CG_TYPE q, CG_TYPE r) {
+auto cg_PD::naive_conditional_remove(CG_TYPE q, CG_TYPE r) -> bool {
     bool res = lookup(q, r);
     if (res) { remove(q, r); }
     return res;
@@ -82,7 +82,7 @@ bool cg_PD::naive_conditional_remove(CG_TYPE q, CG_TYPE r) {
 
 
 ////Header functions
-bool cg_PD::header_lookup(CG_TYPE q, size_t *start_index, size_t *end_index) {
+auto cg_PD::header_lookup(CG_TYPE q, size_t *start_index, size_t *end_index) -> bool {
     header_find(q, start_index, end_index);
     if (DB) assert(*start_index <= *end_index);
     return (*start_index != *end_index);
@@ -277,8 +277,8 @@ void cg_PD::header_pull(size_t end_index) {
 }
 
 ////Body functions
-bool cg_PD::body_find(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index, size_t *p_array_index,
-                      size_t *p_bit_index) {
+auto cg_PD::body_find(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index, size_t *p_array_index,
+                      size_t *p_bit_index) -> bool {
     size_t total_bit_counter = (unpacked_start_index * fp_size) + get_header_size_in_bits();
 //    size_t total_bit_counter = abstract_body_start_index * fp_size;
 
@@ -420,7 +420,7 @@ void cg_PD::body_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_
     }
 }
 
-bool cg_PD::body_conditional_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index) {
+auto cg_PD::body_conditional_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index) -> bool {
     size_t temp_index;
     CG_TYPE temp_slot;
     if (deal_with_joined_slot) {
@@ -494,17 +494,17 @@ void cg_PD::body_pull(size_t B_index, size_t bit_index) {
 
 }
 
-size_t cg_PD::get_last_a_index_containing_the_header() {
+auto cg_PD::get_last_a_index_containing_the_header() -> size_t {
     return (max_capacity << 1u) / CG_TYPE_SIZE - int(!deal_with_joined_slot);
 //    return INTEGER_ROUND(temp, CG_TYPE_SIZE);
 }
 
-size_t cg_PD::get_header_bit_index() {
+auto cg_PD::get_header_bit_index() -> size_t {
     auto temp = (max_capacity << 1u);
     return temp % CG_TYPE_SIZE;
 }
 
-size_t cg_PD::get_joined_slot_index() {
+auto cg_PD::get_joined_slot_index() -> size_t {
     return get_last_a_index_containing_the_header();
 }
 
@@ -512,7 +512,7 @@ size_t cg_PD::get_joined_slot_index() {
 //    return max_capacity << 1u;
 //}
 
-size_t get_a_size(size_t m, size_t f, size_t l) {
+auto get_a_size(size_t m, size_t f, size_t l) -> size_t {
     return INTEGER_ROUND(((l + 2) * f), (CG_TYPE_SIZE));
 }
 
@@ -520,23 +520,23 @@ size_t cg_PD::get_number_of_bits_in_a(size_t m, size_t f, size_t l) {
     return (l + 2) * f;
 }
 
-uint32_t *cg_PD::get_a() const {
+auto cg_PD::get_a() const -> uint32_t * {
     return a;
 }
 
-const uint_fast16_t cg_PD::get_fp_size() const {
+auto cg_PD::get_fp_size() const -> const uint_fast16_t {
     return fp_size;
 }
 
-const uint_fast16_t cg_PD::get_max_capacity() const {
+auto cg_PD::get_max_capacity() const -> const uint_fast16_t {
     return max_capacity;
 }
 
-const uint_fast16_t cg_PD::get_size() const {
+auto cg_PD::get_size() const -> const uint_fast16_t {
     return size;
 }
 
-const bool cg_PD::get_deal_with_joined_slot() const {
+auto cg_PD::get_deal_with_joined_slot() const -> const bool {
     return deal_with_joined_slot;
 }
 
@@ -548,12 +548,12 @@ void cg_PD::print_as_consecutive_memory() {
     print_array_as_consecutive_memory<CG_TYPE>(a, size, cout);
 }
 
-ostream &operator<<(ostream &os, const cg_PD &pd) {
+auto operator<<(ostream &os, const cg_PD &pd) -> ostream & {
     print_array_as_consecutive_memory<CG_TYPE>(pd.a, pd.size, cout);
     return os;
 }
 
-size_t cg_PD::get_capacity() {
+auto cg_PD::get_capacity() -> size_t {
 //    size_t total_bits = get_header_size_in_bits();
     size_t last_index = get_last_a_index_containing_the_header();
     size_t bit_index = get_header_bit_index();
@@ -566,6 +566,10 @@ size_t cg_PD::get_capacity() {
         return res + __builtin_popcount(a[last_index]);
     auto temp = a[last_index] & (~MASK(CG_TYPE_SIZE - bit_index));
     return res + __builtin_popcount(temp);
+}
+
+auto cg_PD::is_full() -> bool {
+    return get_capacity() == max_capacity;
 }
 
 

@@ -22,12 +22,20 @@ template<typename T>
 void print_array_as_integers(const T *a, size_t size);
 
 template<typename T>
-ostream &print_array_as_consecutive_memory(const  T *a, size_t size, ostream &os);
+ostream &print_array_as_consecutive_memory(const T *a, size_t size, ostream &os);
 
 template<typename T>
 string my_bin(T n, size_t length = 32);
 
-
+/**
+ * Assuming x + y < max of type "T" (does not deal with overflow.)
+ * @tparam T Integer. (currently size_t)
+ * @param x
+ * @param y
+ * @return ceil(x/y)
+ */
+template<typename T>
+auto my_ceil(T x, T y) -> T;
 
 void print_array(uint8_t *a, size_t a_size);
 
@@ -71,7 +79,7 @@ string my_bin(size_t n, size_t length = 32);
 
 void formatting();
 
-void table_print(size_t var_num, string *var_names, size_t* values);
+void table_print(size_t var_num, string *var_names, size_t *values);
 
 void table_print_columns(size_t var_num, size_t column_num, string *var_names, string *columns, size_t *values);
 

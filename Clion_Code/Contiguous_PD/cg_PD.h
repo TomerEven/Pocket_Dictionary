@@ -13,6 +13,9 @@
 
 #define CG_TYPE uint32_t
 #define CG_TYPE_SIZE (sizeof(CG_TYPE) * (CHAR_BIT))
+#define DEFAULT_PD_CAPACITY (64u)
+#define DEFAULT_QUOTIENT_LENGTH (6u)
+#define DEFAULT_QUOTIENT_RANGE (1u<<DEFAULT_QUOTIENT_LENGTH)
 
 
 class cg_PD {
@@ -24,26 +27,33 @@ public:
     cg_PD(size_t m, size_t f, size_t l);
 
 //    virtual ~cg_PD();
-//    ~cg_PD();
 
-    bool lookup(CG_TYPE q, CG_TYPE r);
+    auto lookup(CG_TYPE q, CG_TYPE r) -> bool;
 
     void insert(CG_TYPE q, CG_TYPE r);
 
     void remove(CG_TYPE q, CG_TYPE r);
 
-    bool conditional_remove(CG_TYPE q, CG_TYPE r);
+    /**
+     * Removes the element only if it is in the PD.
+     * @param quotient
+     * @param remainder
+     * @return true if the element was removed, false otherwise.
+     */
+    auto conditional_remove(CG_TYPE q, CG_TYPE r) -> bool;
 
-    bool naive_conditional_remove(CG_TYPE q, CG_TYPE r);
+    auto naive_conditional_remove(CG_TYPE q, CG_TYPE r) -> bool;
 
-    size_t get_last_a_index_containing_the_header();
+    auto get_last_a_index_containing_the_header() -> size_t;
 
     void print_as_consecutive_memory();
 
-    size_t get_capacity();
+    auto get_capacity() -> size_t;
+
+    auto is_full() -> bool;
 
 private:
-    bool header_lookup(CG_TYPE q, size_t *start_index, size_t *end_index);
+    auto header_lookup(CG_TYPE q, size_t *start_index, size_t *end_index) -> bool;
 
     void header_insert(CG_TYPE q, size_t *start_index, size_t *end_index);
 
@@ -55,18 +65,18 @@ private:
 
     void header_pull(size_t end_index);
 
-    size_t get_number_of_bits_in_a(size_t m, size_t f, size_t l);
+    static auto get_number_of_bits_in_a(size_t m, size_t f, size_t l) -> size_t;
 
-    size_t get_header_bit_index();
+    auto get_header_bit_index() -> size_t;
 
-    inline size_t get_header_size_in_bits() {
+    inline auto get_header_size_in_bits() -> size_t {
         return max_capacity << 1u;
     }
 
-    size_t get_joined_slot_index();
+    auto get_joined_slot_index() -> size_t;
 
-    bool body_find(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index, size_t *p_array_index,
-                   size_t *p_bit_index);
+    auto body_find(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index, size_t *p_array_index,
+                   size_t *p_bit_index) -> bool;
 
     void body_insert(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index);
 
@@ -74,7 +84,7 @@ private:
 
     void body_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index);
 
-    bool body_conditional_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index);
+    auto body_conditional_remove(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_end_index) -> bool;
 
 
     /**
@@ -86,24 +96,24 @@ private:
 
 public:
     /*For testing*/
-    uint32_t *get_a() const;
+    auto get_a() const -> uint32_t *;
 
-    const uint_fast16_t get_fp_size() const;
+    auto get_fp_size() const -> const uint_fast16_t;
 
-    const uint_fast16_t get_max_capacity() const;
+    auto get_max_capacity() const -> const uint_fast16_t;
 
-    const uint_fast16_t get_size() const;
+    auto get_size() const -> const uint_fast16_t;
 
-    const bool get_deal_with_joined_slot() const;
+    auto get_deal_with_joined_slot() const -> const bool;
 
     void print_as_array() const;
 
 
-    friend ostream &operator<<(ostream &os, const cg_PD &pd);
+    friend auto operator<<(ostream &os, const cg_PD &pd) -> ostream &;
 
 };
 
-static size_t get_a_size(size_t m, size_t f, size_t l);
+static auto get_a_size(size_t m, size_t f, size_t l) -> size_t;
 
 
 static inline void body_find_helper(size_t current_b_index, size_t bits_left, size_t *p_B_index, size_t *p_bit_index) {
@@ -111,7 +121,7 @@ static inline void body_find_helper(size_t current_b_index, size_t bits_left, si
     *p_bit_index = BODY_BLOCK_SIZE - bits_left;
 }
 
-static bool should_deal_with_joined_slot(size_t m, size_t f, size_t l) {
+static auto should_deal_with_joined_slot(size_t m, size_t f, size_t l) -> bool {
     return bool((f * 2) % CG_TYPE_SIZE);
 }
 

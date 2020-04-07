@@ -3,8 +3,9 @@
 //
 
 #include "benchmark_tests.h"
+#include "validate_filter.hpp"
 
-vector<uint64_t> random_vector(size_t size) {
+auto random_vector(size_t size) -> vector<uint64_t> {
     random_device rnd_device;
     mt19937_64 mersenne_engine{rnd_device()};
     uniform_int_distribution<u_int64_t> dist{0, ~0ULL};
@@ -15,7 +16,7 @@ vector<uint64_t> random_vector(size_t size) {
     generate(begin(vec), end(vec), gen);
 }
 
-string rand_string(int minLength, int charsNum, int numOfDiffLength) {
+auto rand_string(int minLength, int charsNum, int numOfDiffLength) -> string {
     int len = minLength bitor (rand() % numOfDiffLength);
     assert(4 < len);
     char s[len];
@@ -44,7 +45,7 @@ void vector_lexicographic_init(size_t size, vector<string> *vec, int minLength, 
     for (size_t i = 0; i < size; ++i) vec->push_back(to_string(start_val++));
 }
 
-ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
+auto b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) -> ostream & {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
@@ -84,8 +85,8 @@ ostream &b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t 
 
 }
 
-ostream &
-b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
+auto
+b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) -> ostream & {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
@@ -125,8 +126,8 @@ b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, 
 
 }
 
-ostream &const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                            ostream &os) {
+auto const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                            ostream &os) -> ostream & {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
@@ -215,8 +216,8 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
 */
 
 
-ostream &const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                              ostream &os) {
+auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                              ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     vector<uint32_t> member_vec, nom_vec;
 
@@ -263,9 +264,9 @@ ostream &const_filter_rates32(size_t number_of_pds, float load_factor, size_t f,
 }
 
 
-ostream &
+auto
 cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
-                    ostream &os) {
+                    ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     vector<uint32_t> member_vec, nom_vec;
 
@@ -350,8 +351,8 @@ cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m,
 }
 
 template<class T>
-ostream &template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                        ostream &os) {
+auto template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+                        ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     vector<uint32_t> member_vec, nom_vec;
 
@@ -395,8 +396,8 @@ ostream &template_rates(size_t number_of_pds, float load_factor, size_t f, size_
 }
 
 template<class T>
-ostream &
-filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
+auto
+filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     set<string> member_set, nom_set;
 
@@ -439,9 +440,9 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
     return os;
 }
 
-ostream &
+auto
 filter_rates_simple_pd(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                       ostream &os) {
+                       ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     set<string> member_set, nom_set;
 
@@ -496,10 +497,10 @@ void test_table_header_print() {
 }
 
 /**Old testing function. should make changes for PD*/
-ostream &
+auto
 test_table(size_t n, double eps, size_t lookups_num, double set_ratio, int *counter, ulong member_set_init_time,
            ulong nom_set_init_time, ulong init_time, ulong insertion_time, ulong lookup_time, ulong total_run_time,
-           ostream &os) {
+           ostream &os) -> ostream & {
 
     test_table_header_print();
     cout << setw(WIDTH) << n;
@@ -552,9 +553,9 @@ test_table(size_t n, double eps, size_t lookups_num, double set_ratio, int *coun
 
 
 
-ostream &test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive, double set_ratio, int *counter,
+auto test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive, double set_ratio, int *counter,
                       double member_set_init_time, double nom_set_init_time, double init_time, double insertion_time,
-                      double lookup_time, double total_run_time, ostream &os) {
+                      double lookup_time, double total_run_time, ostream &os) -> ostream & {
 //    counter_printer(os, counter);
     string name = "not adaptive";
     if (is_adaptive)
@@ -578,7 +579,7 @@ ostream &test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive
 
 }
 
-ostream &lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp_size, double load_factor) {
+auto lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp_size, double load_factor) -> ostream & {
     const size_t space = 24;
     cout << "\t";
     cout << setw(space) << left << "True Negative";
@@ -623,7 +624,7 @@ ostream &lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp
 
 }
 
-bool filter_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) {
+auto filter_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) -> bool {
     pow2c_filter d = pow2c_filter(number_of_pds, m, f, l);
     vector<string> member_set, non_member_set, to_be_deleted_set;
     auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
@@ -684,7 +685,7 @@ bool filter_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size
 
 }
 
-bool filter_naive_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) {
+auto filter_naive_r0(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) -> bool {
     pow2c_naive_filter d = pow2c_naive_filter(number_of_pds, m, f, l);
     vector<string> member_set, non_member_set, to_be_deleted_set;
     auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
@@ -745,7 +746,7 @@ bool filter_naive_r0(size_t number_of_pds, float load_factor, size_t m, size_t f
 
 }
 
-bool const_filter_r0(size_t number_of_pds, float load_factor, size_t l) {
+auto const_filter_r0(size_t number_of_pds, float load_factor, size_t l) -> bool {
     size_t f = 32, m = 32;
     const_filter d = const_filter(number_of_pds, m, f, l);
     vector<string> member_set, non_member_set, to_be_deleted_set;
@@ -808,7 +809,7 @@ bool const_filter_r0(size_t number_of_pds, float load_factor, size_t l) {
 }
 
 
-bool filter_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) {
+auto filter_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) -> bool {
     pow2c_filter d = pow2c_filter(number_of_pds, m, f, l);
     set<string> member_set, non_member_set, to_be_deleted_set;
     auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
@@ -863,7 +864,7 @@ bool filter_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size
 }
 
 
-bool filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) {
+auto filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l) -> bool {
     pow2c_naive_filter d = pow2c_naive_filter(number_of_pds, m, f, l);
     set<string> member_set, non_member_set, to_be_deleted_set;
     auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
@@ -914,90 +915,6 @@ bool filter_naive_r1(size_t number_of_pds, float load_factor, size_t m, size_t f
     }
 
     return true;
-}
-
-template<class T>
-bool validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps) {
-    auto d = T(number_of_pds, m, f, l);
-    if (d.is_const_size()) {
-        cout << "here" << endl;
-        f = 32, m = 32, l = 8;
-    }
-    /*
-//    vector<string> member_set, non_member_set, to_be_deleted_set;
-//    vector_lexicographic_init(number_of_elements_in_the_filter / 2, &member_set);
-//    vector_lexicographic_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
-//    vector_lexicographic_init(lookup_reps, &non_member_set);
-*/
-    auto number_of_elements_in_the_filter = floor(load_factor * number_of_pds * f);
-
-    set<string> member_set, lookup_set, to_be_deleted_set;
-    set_init(number_of_elements_in_the_filter / 2, &member_set);
-    set_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
-    set_init(lookup_reps, &lookup_set);
-
-    for (auto iter : member_set) d.insert(&iter);
-    for (auto iter : to_be_deleted_set) d.insert(&iter);
-
-    size_t counter = 0;
-    for (auto iter : member_set) {
-        counter++;
-        if (!d.lookup(&iter)) {
-            cout << "False negative:" << endl;
-            d.lookup(&iter);
-            assert(d.lookup(&iter));
-        }
-    }
-    for (auto iter : to_be_deleted_set) {
-        if (!d.lookup(&iter)) {
-            cout << "False negative:" << endl;
-            d.lookup(&iter);
-            assert(d.lookup(&iter));
-        }
-    }
-
-    size_t fp_counter = 0;
-    for (auto iter : lookup_set) {
-        bool c1, c2;
-        c1 = member_set.find(iter) != member_set.end();
-        c2 = to_be_deleted_set.find(iter) != to_be_deleted_set.end();
-        if (c1 || c2)
-            assert(d.lookup(&iter));
-//            continue;
-        if (d.lookup(&iter)) {
-            fp_counter++;
-//            cout << "False Positive:" << endl;
-        }
-    }
-    printf("False positive ratio is:%f, for l:%zu. expected ratio:%f.\n", fp_counter / (double) (lookup_set.size()), l,
-           pow(.5, l));
-
-    counter = 0;
-    for (auto iter : to_be_deleted_set) {
-        if (!d.lookup(&iter)) {
-            cout << "False negative:" << endl;
-            d.lookup(&iter);
-            assert(d.lookup(&iter));
-        }
-        d.remove(&iter);
-        counter++;
-    };
-
-    counter = 0;
-    for (auto iter : member_set) {
-        bool c = to_be_deleted_set.find(iter) != to_be_deleted_set.end();
-        if (c)
-            continue;
-        counter++;
-        if (!d.lookup(&iter)) {
-            cout << "False negative:" << endl;
-            d.lookup(&iter);
-            assert(d.lookup(&iter));
-        }
-    }
-
-    return true;
-
 }
 
 
@@ -1119,21 +1036,6 @@ void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f
     lookup_result_array_printer(result_array, lookup_reps, l, load_factor / 2);
 }
 
-
-template bool validate_filter<pow2c_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
-                                            size_t lookup_reps);
-
-template bool
-validate_filter<pow2c_naive_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
-                                    size_t lookup_reps);
-
-template bool
-validate_filter<const_filter>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
-                              size_t lookup_reps);
-
-template bool
-validate_filter<gen_2Power<cg_PD>>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
-                                   size_t lookup_reps);
 
 //template bool
 //validate_filter<gen_2Power<PD>>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,

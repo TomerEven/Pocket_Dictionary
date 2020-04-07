@@ -118,9 +118,6 @@ bool filter_naive_r0(size_t number_of_pds, float load_factor, size_t m, size_t f
 bool const_filter_r0(size_t number_of_pds, float load_factor, size_t l);
 
 template<class T>
-bool validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps);
-
-template<class T>
 void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps,
                      ostream &os);
 
