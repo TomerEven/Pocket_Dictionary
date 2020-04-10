@@ -9,7 +9,7 @@ template<typename T>
 bool v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t bit_end_index) {
     auto slot_size = sizeof(a[0]) * CHAR_BIT;
     vector<bool> vec(a_size * slot_size);
-    from_array_to_vector(&vec, a, a_size);
+    from_array_of_words_to_bit_vector(&vec, a, a_size);
     auto v_res = sub_vector_to_word<T>(&vec, bit_start_index, bit_end_index);
     auto c_res = read_word<T>(a, a_size, bit_start_index, bit_end_index);
 

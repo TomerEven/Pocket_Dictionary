@@ -118,7 +118,7 @@ void v_Body::validate_find(size_t abstract_body_start_index, size_t abstract_bod
         cout << "Above line is B as consecutive memory" << endl;
 
         cout << "print vector as words" << endl;
-        print_vector_as_words(&vec);
+        print_bit_vector_as_words(&vec);
         cout << "naive_print B" << endl;
         body.naive_print();
         cout << "print vector by unpacking" << endl;

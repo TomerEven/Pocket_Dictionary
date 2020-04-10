@@ -71,6 +71,13 @@ public:
 
     void insert_by_table_index(T x, T table_index);
 
+    /**
+ *
+ * @param x
+ * @param bucket_index
+ * @param location
+ * table[bucket_index*bucket_size + location] = x;
+ */
     void insert_by_bucket_index_and_location(T x, size_t bucket_index, size_t location);
 
     void insert_by_slot_pointer(T x, T *p_slot);
@@ -96,11 +103,7 @@ public:
      */
     void cuckoo_swap(T *hold, size_t *bucket_index);
 
-
-
-
-    //    void insert_with_pop_attempt(T x, vector<D> *pd_vec);
-
+    //void insert_with_pop_attempt(T x, vector<D> *pd_vec);
 
 
     ////Getters

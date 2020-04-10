@@ -4,6 +4,7 @@
 
 //#include "Naive_Counter_Endec.hpp"
 #include "my_bit_op.hpp"
+#include "bit_word_converter.hpp"
 
 template<typename T>
 auto compute_diff_value_safe(T x, T y) -> int {
@@ -629,39 +630,7 @@ auto vector_last_k_bits_are_zero(vector<bool> *vec, size_t k) -> bool {
 }
 
 
-template<typename T>
-auto read_T_word(const vector<bool> *v, size_t start, size_t end) -> T {
-    assert(start <= end);
-    assert(end <= v->size());
 
-    T res = 0;
-    for (size_t i = start; i < end; ++i) {
-        res <<= 1ul;
-        res |= v->at(i);
-    }
-    return res;
-}
-
-template<typename T>
-auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t bits_lim) -> int {
-    auto slot_size = sizeof(a[0]) * CHAR_BIT;
-    size_t size = min(v->size() / slot_size, a_size);
-    size = min(size, bits_lim / slot_size);
-    size_t step = slot_size;
-    for (size_t i = 0; i < size; ++i) {
-        if (a[i] != read_T_word<T>(v, i * step, (i + 1) * step)) {
-//            print_array_as_consecutive_memory(&a[i],a_size - i);
-
-            cout << "\n\n equality_vec_array error in index: " << i << endl;
-            print_array_as_consecutive_memory(a, a_size);
-            print_bool_vector_no_spaces(v);
-            cout << "\n" << endl;
-
-            return i;
-        }
-    }
-    return -1;
-}
 
 
 template<typename T>
@@ -678,6 +647,9 @@ void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size) {
         }
     }
 }
+
+
+
 
 template<typename T>
 void from_vector_to_array(const vector<bool> *vec, T *a, size_t a_size) {
@@ -714,6 +686,23 @@ void from_vector_to_array(const vector<bool> *vec, T *a, size_t a_size) {
 */
 }
 
+template<typename T>
+void from_vector_to_array_by_bit_limits(const vector<bool> *vec, T *a, size_t abs_bit_start_index,
+                                        size_t abs_bit_end_index) {
+    assert(false);
+
+}
+
+template<typename T>
+void split_bit_vector_to_words_array(const vector<bool> *vec, T *a, size_t a_size, size_t word_size) {
+    assert (a_size == vec->size() / word_size);
+    assert(vec->size() % word_size == 0);
+    assert(sizeof(T) * CHAR_BIT <= word_size);
+    for (int i = 0; i < a_size; ++i) {
+        auto start = i * word_size;
+        a[i] = sub_vector_to_word<T>(start, start + word_size);
+    }
+}
 
 template<typename T>
 auto sub_vector_to_word(const vector<bool> *v, size_t start, size_t end) -> T {
@@ -870,10 +859,7 @@ read_word<uint32_t>(const uint32_t *A, size_t a_size, size_t bit_start_index, si
 
 //template auto read_T_word<uint32_t>(const vector<bool> *v, size_t start, size_t end) -> uint32_t;
 
-template auto read_T_word<unsigned long long>(const vector<bool> *v, size_t start, size_t end) -> unsigned long long;
 
-template auto
-equality_vec_array<uint32_t>(const vector<bool> *v, const uint32_t *a, size_t a_size, size_t bits_lim) -> int;
 
 template
 void vector_update_element_with_fixed_size<uint32_t>(vector<bool> *vec, size_t bit_start_pos, size_t bit_end_pos,
@@ -910,8 +896,12 @@ vector_update_pull<size_t>(vector<bool> *vec, size_t prev_start, size_t prev_end
                            size_t new_val);
 
 template void
-read_k_words_fixed_length_att<uint32_t>(const uint32_t *A, size_t a_size, size_t first_element_index, size_t element_length,
+read_k_words_fixed_length_att<uint32_t>(const uint32_t *A, size_t a_size, size_t first_element_index,
+                                        size_t element_length,
                                         uint32_t *res_array, size_t k);
 
-template void read_k_words_fixed_length_att<size_t>(const size_t *A, size_t a_size, size_t first_element_index, size_t element_length,
-                                                    size_t *res_array, size_t k);
+template void
+read_k_words_fixed_length_att<size_t>(const size_t *A, size_t a_size, size_t first_element_index, size_t element_length,
+                                      size_t *res_array, size_t k);
+
+

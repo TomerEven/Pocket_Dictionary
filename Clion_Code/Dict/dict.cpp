@@ -140,7 +140,7 @@ void dict<D, S>::remove(const string *s) {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    bool BPC = (hash_val == 80735794) or (*s == "]AHWVF]NK[X");
+//    bool BPC = (hash_val == 80735794) or (*s == "]AHWVF]NK[X");
     if (pd_vec[pd_index].conditional_remove(quot, r)) {
         --(pd_capacity_vec[pd_index]);
         return;
@@ -166,24 +166,15 @@ auto dict<D, S>::pop_attempt(string *s) -> S_TYPE * {
 
 template<class D, class S>
 auto dict<D, S>::pop_attempt_with_insertion_by_bucket(S_TYPE hash_val, size_t bucket_index) -> bool {
-    /*//Todo: try to avoid using pointers?.
-//    S_TYPE *pointer = spare->get_bucket_address(bucket_index);
-
-//    S_TYPE * res = nullptr;*/
     for (int i = 0; i < spare->get_bucket_size(); ++i) {
-        /*bool is_empty1 = spare->is_empty_by_slot(*pointer);
-        bool is_empty2 = spare->is_empty_by_bucket_index_and_location(bucket_index, i);
-//        assert(is_empty1 == is_empty2);*/
         if (spare->is_empty_by_bucket_index_and_location(bucket_index, i)) {
             spare->insert_by_bucket_index_and_location(hash_val, bucket_index, i);
-//            spare->insert_by_slot_pointer(hash_val, pointer);
             return true;
         }
         if (single_pop_attempt(spare->get_element_without_counter_by_bucket_index_and_location(bucket_index, i))) {
             spare->insert_by_bucket_index_and_location(hash_val, bucket_index, i);
             return true;
         }
-//        pointer++;
     }
     return false;
 }
@@ -265,3 +256,4 @@ static auto get_spare_max_capacity(size_t dict_max_capacity, double level1_load_
 
 template
 class dict<cg_PD, hash_table<uint32_t>>;
+

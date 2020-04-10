@@ -86,7 +86,7 @@ void v_Header::validate_get_interval(size_t quotient) {
         cout << "header as word is: ";
         header.print_as_word();
         cout << "vector as word is: ";
-        print_vector_as_words(&vec);
+        print_bit_vector_as_words(&vec);
         cout << "const_header is: ";
         const_header.print();
     }
@@ -97,5 +97,5 @@ void v_Header::validate_get_interval(size_t quotient) {
 void v_Header::print() {
     header.print();
     const_header.print();
-    print_vector_as_words(&vec);
+    print_bit_vector_as_words(&vec);
 }

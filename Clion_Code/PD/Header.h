@@ -15,7 +15,7 @@
 #include "../bit_operations/bit_op.h"
 #include "../Global_functions/basic_functions.h"
 #include "../Global_functions/macros.h"
-
+#include "../bit_operations/bit_word_converter.hpp"
 
 class Header {
     size_t capacity;

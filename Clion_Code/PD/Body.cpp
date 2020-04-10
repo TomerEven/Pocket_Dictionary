@@ -379,7 +379,7 @@ void Body::print_consecutive_with_vector() {
 
 void Body::naive_print_with_vector() {
     print_array(B, size);
-    print_vector_as_words(&vec);
+    print_bit_vector_as_words(&vec);
 }
 
 bool Body::compare_remainder_and_vector(size_t bit_start_index, FP_TYPE remainder) {
@@ -427,7 +427,7 @@ void Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_
         cout << "Above line is B as consecutive memory" << endl;
 
         cout << "print vector as words" << endl;
-        print_vector_as_words(&vec);
+        print_bit_vector_as_words(&vec);
         cout << "naive_print B" << endl;
         naive_print();
         cout << "print vector by unpacking" << endl;

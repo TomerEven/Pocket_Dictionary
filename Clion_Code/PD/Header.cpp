@@ -421,7 +421,7 @@ void Header::validate_get_interval(size_t quotient) {
         cout << "header as word is: ";
         this->print_as_word();
         cout << "vector as word is: ";
-        print_vector_as_words(&vec);
+        print_bit_vector_as_words(&vec);
 
     }
     assert(c == va);

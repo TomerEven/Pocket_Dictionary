@@ -6,7 +6,7 @@
 
 #include "validation_tests.h"
 
-bool t1(bool to_print) {
+auto t1(bool to_print) -> bool {
     size_t m = 16, f = 8, l = 5;
     PD d = PD(m, f, l);
     if (to_print) {
@@ -33,7 +33,7 @@ bool t1(bool to_print) {
     return true;
 }
 
-bool t2(bool to_print) {
+auto t2(bool to_print) -> bool {
     size_t m = 16, f = 8, l = 5;
     PD d = PD(m, f, l);
 //    cout << "start print:\n";
@@ -65,7 +65,7 @@ bool t2(bool to_print) {
     return true;
 }
 
-bool t3(bool to_print) {
+auto t3(bool to_print) -> bool {
     size_t m = 16, f = 8, l = 5;
     PD d = PD(m, f, l);
     for (size_t i = 0; i < 8; ++i) {
@@ -114,7 +114,7 @@ bool t3(bool to_print) {
     return true;
 }
 
-bool t4(bool to_print) {
+auto t4(bool to_print) -> bool {
     size_t m = 16, f = 8, l = 5;
     PD d = PD(m, f, l);
     for (size_t i = 8; i > 0; --i) {
@@ -152,7 +152,7 @@ bool t4(bool to_print) {
     return true;
 }
 
-bool t5(size_t m, size_t f, size_t l, bool to_print) {
+auto t5(size_t m, size_t f, size_t l, bool to_print) -> bool {
     assert(f < (1ULL << l));
     PD d = PD(m, f, l);
     for (size_t i = f; i > 0; --i) {
@@ -190,7 +190,7 @@ bool t5(size_t m, size_t f, size_t l, bool to_print) {
     return true;
 }
 
-bool validate_PD_single_run(size_t reps, bool to_print) {
+auto validate_PD_single_run(size_t reps, bool to_print) -> bool {
     srand(clock());
     size_t f = rand() % (256 - 32) + 32;
     size_t m = f + 1 + (rand() % (f - 1));
@@ -210,7 +210,29 @@ bool validate_PD_single_run(size_t reps, bool to_print) {
 }
 
 template<class T>
-bool validate_PD(size_t reps, bool to_seed, bool to_print) {
+auto validate_CPD(size_t reps, bool to_seed, bool to_print) -> bool {
+    if (to_seed)
+        srand(clock());
+    size_t f = (rand() % (512 - 32)) + 32;
+    size_t m = f;
+    size_t l = 3 + (rand() % (31 - 3));
+    size_t counter_size = 3;
+
+    T d = T(m, f, l, counter_size);
+
+
+    auto res = validate_PD_core<T>(reps, &d, m, f, l, to_print, 0);
+    if (to_print) {
+        cout << "m is: " << m << endl;
+        cout << "f is: " << f << endl;
+        cout << "l is: " << l << endl;
+        cout << "counter_size is: " << l << endl;
+    }
+    return res;
+}
+
+template<class T>
+auto validate_PD(size_t reps, bool to_seed, bool to_print) -> bool {
     if (to_seed)
         srand(clock());
     size_t f = (rand() % (512 - 32)) + 32;
@@ -230,7 +252,7 @@ bool validate_PD(size_t reps, bool to_seed, bool to_print) {
 }
 
 template<class T>
-bool validate_PD_higher_load(size_t reps, float load_factor, bool to_seed, bool to_print) {
+auto validate_PD_higher_load(size_t reps, float load_factor, bool to_seed, bool to_print) -> bool {
     if (to_seed)
         srand(clock());
     size_t f = rand() % (512 - 32) + 32;
@@ -254,7 +276,7 @@ bool validate_PD_higher_load(size_t reps, float load_factor, bool to_seed, bool 
 
 
 template<class T>
-bool validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print, float load_factor) {
+auto validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_print, float load_factor) -> bool {
     auto naive_d = naive_PD(m, f, l);
     vector<int> in_q(0), out_q(f), in_r(0), out_r(f);
 
@@ -282,6 +304,7 @@ bool validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_p
     for (size_t i = 0; i < reps; ++i) {
         if (to_print) {
             cout << *d;
+            cout << endl;
             cout << i << "\t";
         }
         if (rand() % 2) {
@@ -338,7 +361,7 @@ bool validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_p
             size_t index = rand() % in_q.size();
             size_t q = in_q[index], r = in_r[index];
             if (to_print) { cout << "del: " << q << ", " << r << endl; }
-
+//            bool BPC = (q == 105) and (i == 6);
             same_res = (d->lookup(q, r) == naive_d.lookup(q, r));
             if (!same_res) {
                 break_point_helper();
@@ -347,11 +370,14 @@ bool validate_PD_core(size_t reps, T *d, size_t m, size_t f, size_t l, bool to_p
                 return false;
             }
 
+
             d->remove(q, r);
             naive_d.remove(q, r);
 
             same_res = (d->lookup(q, r) == naive_d.lookup(q, r));
             if (!same_res) {
+                auto a_res = d->lookup(q, r);
+                bool v_res = naive_d.lookup(q, r);
                 break_point_helper();
                 d->lookup(q, r);
                 cout << "case 4 fail " << i << endl;
@@ -387,7 +413,7 @@ bool does_to_vectors_contain_two_elements_in_specific_index(){
 }
 */
 
-bool r0_core(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print) {
+auto r0_core(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print) -> bool {
     vector<int> in_q(0), out_q(f), in_r(0), out_r(f);
 
     for (size_t i = 0; i < f; ++i) {
@@ -471,7 +497,7 @@ bool r0_core(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print) {
 
 }
 
-bool validate_PD_by_load_factor(size_t reps, float load_factor, size_t m, size_t f, bool to_print) {
+auto validate_PD_by_load_factor(size_t reps, float load_factor, size_t m, size_t f, bool to_print) -> bool {
     srand(clock());
 //    size_t f = rand() % (256 - 32) + 32;
 //    size_t m = f + 1 + (rand() % (f - 1));
@@ -579,7 +605,7 @@ bool validate_PD_by_load_factor(size_t reps, float load_factor, size_t m, size_t
 
 }
 
-bool validate_safe_PD(size_t reps, bool to_print) {
+auto validate_safe_PD(size_t reps, bool to_print) -> bool {
     size_t f = rand() % (256 - 32) + 32;
     size_t m = f + 1 + (rand() % (f - 1));
     size_t l = 11 + (rand() % (31 - 11));
@@ -674,7 +700,7 @@ bool validate_safe_PD(size_t reps, bool to_print) {
 
 }
 
-bool validate_safe_PD_const_case(size_t reps, bool to_print) {
+auto validate_safe_PD_const_case(size_t reps, bool to_print) -> bool {
     size_t f = 32;
     size_t m = 32;
     size_t l = 8;
@@ -768,8 +794,8 @@ bool validate_safe_PD_const_case(size_t reps, bool to_print) {
 
 }
 
-bool r1(size_t reps, bool to_print) {
-    default_random_engine generator; // NOLINT(cert-msc32-c)
+auto r1(size_t reps, bool to_print) -> bool {
+    default_random_engine generator; // NOLINT(cert-msc32-c,cert-msc51-cpp)
     uniform_int_distribution<int> f_dist(32, 256);
     size_t f = f_dist(generator);
     uniform_int_distribution<int> m_dist(f + 1, f << 1ul);
@@ -792,7 +818,7 @@ bool r1(size_t reps, bool to_print) {
 
     for (size_t i = 0; i < reps; ++i) {
         if (rand() % 2) {
-            if (!out_q.size())
+            if (out_q.empty())
                 continue;
 
             size_t index = rand() % out_q.size();
@@ -803,10 +829,10 @@ bool r1(size_t reps, bool to_print) {
 
 
 //    uint m = uniform_int_distribution<int> distribution(32, 256);
-    return 1;
+    return true;
 }
 
-bool validate_const_PD(size_t reps, bool to_print) {
+auto validate_const_PD(size_t reps, bool to_print) -> bool {
     size_t f = 32;
 //    size_t m = f + 1 + (rand() % (f - 1));
     size_t l = 8;
@@ -907,7 +933,7 @@ bool validate_const_PD(size_t reps, bool to_print) {
     return true;
 }
 
-bool naive_pd_r0(size_t reps, bool to_print) {
+auto naive_pd_r0(size_t reps, bool to_print) -> bool {
 
     size_t f = rand() % (256 - 32) + 32;
     size_t m = f + 1 + (rand() % (f - 1));
@@ -1002,7 +1028,7 @@ bool naive_pd_r0(size_t reps, bool to_print) {
 
 }
 
-bool vector_rw_t1() {
+auto vector_rw_t1() -> bool {
     vector<bool> v(32, false);
     size_t fp_size = 11, index = 1;
     for (size_t i = 0; i < 129; ++i) {
@@ -1028,7 +1054,7 @@ bool vector_rw_t1() {
     return true;
 }
 
-bool validate_header_get_interval_function(size_t reps) {
+auto validate_header_get_interval_function(size_t reps) -> bool {
     size_t a_size = 4;
     HEADER_BLOCK_TYPE a[a_size];
     for (size_t j = 0; j < reps; ++j) {
@@ -1043,11 +1069,11 @@ bool validate_header_get_interval_function(size_t reps) {
     return true;
 }
 
-bool validate_get_interval_function_constant(size_t reps) {
+auto validate_get_interval_function_constant(size_t reps) -> bool {
     const size_t a_size = 2;
     HEADER_BLOCK_TYPE a[a_size];
     for (size_t j = 0; j < reps; ++j) {
-        for (size_t i = 0; i < a_size; ++i) {
+        for (size_t i = 0; i < a_size; ++i) { // NOLINT(modernize-loop-convert)
             a[i] = random();
         }
         auto zero_count = array_zero_count(a, a_size);
@@ -1073,7 +1099,7 @@ bool validate_get_interval_function_constant(size_t reps) {
     return true;
 }
 
-bool validate_push_function(size_t reps) {
+auto validate_push_function(size_t reps) -> bool {
     size_t a_size = 2;
     HEADER_BLOCK_TYPE a[a_size];
     D_TYPE w1, w2, val1, val2;
@@ -1102,7 +1128,7 @@ bool validate_push_function(size_t reps) {
     return true;
 }
 
-bool validate_pull_function(size_t reps) {
+auto validate_pull_function(size_t reps) -> bool {
     size_t a_size = 2;
     HEADER_BLOCK_TYPE a[a_size];
     D_TYPE w1, w2, val1, val2;
@@ -1130,7 +1156,7 @@ bool validate_pull_function(size_t reps) {
     return true;
 }
 
-bool validate_rank_function(size_t reps) {
+auto validate_rank_function(size_t reps) -> bool {
     const size_t a_size = 2;
     HEADER_BLOCK_TYPE a[a_size];
 //    D_TYPE w1, w2, val1, val2;
@@ -1157,7 +1183,7 @@ bool validate_rank_function(size_t reps) {
     return true;
 }
 
-bool validate_header_type(size_t reps) {
+auto validate_header_type(size_t reps) -> bool {
     naive_Header naive_header(32, 32, 42);
     auto const_header = const_Header();
 
@@ -1168,7 +1194,7 @@ bool validate_header_type(size_t reps) {
         const_header.insert(j, &s2, &e2);
         uint32_t w_arr[2] = {0, 0};
         const_header.get_w1w2(&w_arr[0], &w_arr[2]);
-        int res = compare_vector_and_array(naive_header.get_vec(), w_arr);
+        int res = compare_vector_and_array(naive_header.get_vec(), w_arr, 2);
         if (res != -1)
             return false;
     }
@@ -1180,24 +1206,21 @@ void break_point_helper() {
     usleep(80000);
 }
 
+template auto validate_PD_higher_load<cg_PD>(size_t reps, float load_factor, bool to_seed, bool to_print) -> bool;
 
-template bool
-validate_PD_higher_load<cg_PD>(size_t reps, float load_factor, bool to_seed, bool to_print);
+template auto validate_PD_higher_load<PD>(size_t reps, float load_factor, bool to_seed, bool to_print) -> bool;
 
-template bool
-validate_PD_higher_load<PD>(size_t reps, float load_factor, bool to_seed, bool to_print);
+template auto validate_CPD<CPD>(size_t reps, bool to_seed, bool to_print) -> bool;
 
-template bool
-validate_PD<cg_PD>(size_t reps, bool to_seed, bool to_print);
+template auto validate_PD<cg_PD>(size_t reps, bool to_seed, bool to_print) -> bool;
 
-template bool
-validate_PD<PD>(size_t reps, bool to_seed, bool to_print);
+template auto validate_PD<PD>(size_t reps, bool to_seed, bool to_print) -> bool;
 
-template bool
-validate_PD_core<cg_PD>(size_t reps, cg_PD *d, size_t m, size_t f, size_t l, bool to_print, float load_factor);
+template auto
+validate_PD_core<cg_PD>(size_t reps, cg_PD *d, size_t m, size_t f, size_t l, bool to_print, float load_factor) -> bool;
 
-template bool
-validate_PD_core<PD>(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print, float load_factor);
+template auto
+validate_PD_core<PD>(size_t reps, PD *d, size_t m, size_t f, size_t l, bool to_print, float load_factor) -> bool;
 //bool interval_t0() {
 //
 //}

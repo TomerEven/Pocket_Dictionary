@@ -130,7 +130,8 @@ auto read_word(const T *A, size_t a_size, size_t bit_start_index, size_t bit_end
  * @return
  */
 template<typename T>
-void read_k_words_fixed_length(const T *A, size_t a_size, size_t first_element_index, size_t element_length,T* res_array);
+void
+read_k_words_fixed_length(const T *A, size_t a_size, size_t first_element_index, size_t element_length, T *res_array);
 
 /**
  * Assume all elements in "A" have the same length.
@@ -145,7 +146,8 @@ void read_k_words_fixed_length(const T *A, size_t a_size, size_t first_element_i
  */
 template<typename T>
 void
-read_k_words_fixed_length_att(const T *A, size_t a_size, size_t first_element_index, size_t element_length, T *res_array, size_t k);
+read_k_words_fixed_length_att(const T *A, size_t a_size, size_t first_element_index, size_t element_length,
+                              T *res_array, size_t k);
 
 
 /**
@@ -222,33 +224,34 @@ auto vector_last_k_bits_are_zero(vector<bool> *vec, size_t k) -> bool;
  * @param end first bit after the word.
  * @return
  * In python syntax: return bin(vec[start:end],2)
- * If type T does not have enough bits to store the word, the function will assert.
+ * If type T does not have enough bits to store the word, the function will assert?.
  */
 template<typename T>
 auto read_T_word(const vector<bool> *v, size_t start, size_t end) -> T;
 
-template<typename T>
-auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t bits_lim) -> int;
+//template<typename T>
+//void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size);
 
-/**
- * * Same as basic_functions::to_vector(...).
- * @tparam T
- * @param vec
- * @param a
- * @param a_size
- */
-template<typename T>
-void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size);
+/*
 
-/**
- * Same as basic_functions::vector_to_word_array(...).
- * @tparam T
- * @param vec
- * @param a
- * @param a_size
- */
 template<typename T>
 void from_vector_to_array(const vector<bool> *vec, T *a, size_t a_size);
+*/
+
+
+/**
+ *
+ * @tparam T
+ * @param vec
+ * @param a
+ * @param a_size
+ * @param word_size
+ * In python syntax, where vec is binary string:
+ *      assert a_size == (vec.size() / word_size)
+ *      \*set in a*\: [int(vec[i:(i+1)*word_size,2) for i in range(a_size)]
+ */
+template<typename T>
+void split_bit_vector_to_words_array(const vector<bool> *vec, T *a, size_t a_size, size_t word_size);
 
 /**
  *

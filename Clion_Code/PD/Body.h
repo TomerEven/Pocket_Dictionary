@@ -18,6 +18,8 @@
 #include <ctgmath>
 #include "../Global_functions/basic_functions.h"
 #include "../Global_functions/macros.h"
+#include "../bit_operations/bit_word_converter.hpp"
+
 
 class Body {
     size_t capacity;

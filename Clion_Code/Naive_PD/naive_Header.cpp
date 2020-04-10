@@ -42,7 +42,7 @@ void naive_Header::insert_att(size_t quotient, size_t *start_index, size_t *end_
     /*  if (vec != temp.vec){
           cout << "Bad insertion" << endl;
           print_vector_as_words(&vec);
-          print_vector_as_words(&temp.vec);
+          print_bit_vector_as_words(&temp.vec);
           print_vector(&vec);
           print_vector(&temp.vec);
 

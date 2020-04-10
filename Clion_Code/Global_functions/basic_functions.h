@@ -18,15 +18,6 @@
 
 using namespace std;
 
-template<typename T>
-void print_array_as_integers(const T *a, size_t size);
-
-template<typename T>
-ostream &print_array_as_consecutive_memory(const T *a, size_t size, ostream &os);
-
-template<typename T>
-string my_bin(T n, size_t length = 32);
-
 /**
  * Assuming x + y < max of type "T" (does not deal with overflow.)
  * @tparam T Integer. (currently size_t)
@@ -53,25 +44,7 @@ void print_vector(vector<int> *v);
 
 void print_vector(vector<bool> *v);
 
-void print_vector_as_words(const vector<bool> *v);
-
-void print_vector_by_unpacking(vector<bool> *v, size_t unpack_size);
-
-void print_bool_vector_no_spaces(const vector<bool> *v);
-
-auto read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size) -> uint32_t;
-
-void write_FP_to_vector_by_index(vector<bool> *v, size_t index, uint32_t remainder, size_t fp_size);
-
-void to_vector(vector<bool> *vec, const uint32_t *a, size_t a_size);
-
 void to_vector(vector<bool> *vec, uint8_t *a, size_t a_size);
-
-void vector_to_word_array(const vector<bool> *v, uint32_t *a, size_t a_size);
-
-int compare_vector_and_array(const vector<bool> *v, const uint8_t *a);
-
-int compare_vector_and_array(const vector<bool> *v, const uint32_t *a);
 
 unsigned int naive_msb32(unsigned int x);
 

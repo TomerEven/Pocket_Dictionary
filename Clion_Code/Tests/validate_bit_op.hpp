@@ -72,4 +72,17 @@ auto v_read_k_words_fixed_length_single(const T *a, size_t a_size, size_t index,
 
 template<typename T>
 auto v_read_k_words_fixed_length_rand(size_t reps, size_t element_length) -> bool;
+
+template<typename T>
+auto v_from_array_to_vector_by_bit_limits_single(const T *a, size_t a_size, size_t abs_bit_start_index,
+                                                 size_t abs_bit_end_index) -> bool;
+//template<typename T>
+//auto v_from_array_to_vector_by_bit_limits_single2(const T *a, size_t a_size, size_t ) -> bool;
+
+
+
+template<typename T>
+auto v_from_array_to_vector_by_bit_limits_rand(size_t reps, size_t a_size, bool to_seed = false) ->bool;
+
+
 #endif //CLION_CODE_VALIDATE_BIT_OP_HPP

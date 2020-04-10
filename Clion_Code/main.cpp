@@ -12,76 +12,203 @@
 #include "Hash_Table/hash_table.hpp"
 #include "Tests/validate_hash_table.hpp"
 #include "Tests/validate_filter.hpp"
+#include "Tests/validate_counter_PD.hpp"
 
 
 //todo: naive pow2c_naive_filter validation. benchmark comparing. profiling.
 #define CUCKOO_R (8)
 using namespace std;
 
+void using_cuckoo_table();
+
+void t_read_k_word_rand();
+
+void t_HT();
+
+void t_cg_PD();
+
+void use_of_validate_PD(size_t reps);
+
+void all();
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-
-    const size_t max_capacity = 1u << 14u, element_length = 28, bucket_size = 4;
-    size_t reps = 1u << 14u;
-    auto load_factor = .75;
-    double working_LF = .72;
-    double variance = .1;
-    for (int i = 0; i < 8; ++i) {
-        srand(i);
-        auto res = v_filter<dict<cg_PD, hash_table<uint32_t> > >(max_capacity, max_capacity<< 2u, 13, .75, .5);
+//    all();
+    size_t reps = 1u<<10u, max_distinct_capacity = 64;
+    size_t remainder_length = 12, counter_size = 3;
+    for (int j = 0; j < 32 - remainder_length; ++j) {
+        auto res = op_sequence_iter(reps, max_distinct_capacity, remainder_length + j, counter_size + j / 4, .25, 1, false);
         assert(res);
+        cout << j << endl;
     }
-    /*uint32_t a = 1;
-    hash_table<uint32_t> t(max_capacity, element_length, bucket_size, load_factor);
-    assert(t.find(a) == 0);
-    t.insert(a);
-    assert(t.find(a) == 1);
-    t.remove(a);
-    assert(t.find(a) == 0);*/
+//    for (int i = 0; i < 64; ++i) {
+//
+//    }
 
-//    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 1, load_factor, working_LF, variance);
-//    cout << "\n\n\n" << endl;
-//    cout << "\n\n\n" << endl;
-
-//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 4, load_factor);
-//    cout << "1" << endl;
-//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 2, load_factor);
-//    cout << "2" << endl;
-//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 16, load_factor);
-//    cout << "4" << endl;
-//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 8, load_factor);
-//    cout << "5" << endl;
-//    v_hash_table_rand(1u << 14u, max_capacity, element_length, 1, load_factor);
-//    cout << "3" << endl;
-
-    /*assert(v_vector_update_rand(1u<<12u));
-    assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
-    for (int i = 0; i < 256; ++i) {
-        srand(i);
-        assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
-    }
-    assert(v_vector_update_rand(1u<<12u));
-    assert(v_update_element_iter<uint32_t>(1u<<8u, 1u << 5u));*/
-
-//    assert(v_update_element_rand<uint32_t>(1u << 4u, 1u << 5u));
-
-
-    /*for (int i = 0; i < (4u); ++i) {
-        srand(clock());
-        assert(v_extract_symbol_rand<uint32_t>(1u<<8u,8));
-    }*/
-/*
-    assert(v_extract_symbol_rand<uint32_t>(1u<<8u,8));
-    assert(validate_find_first_and_second_set_bits_iter<uint32_t >(1u << 10u, 4));
-    assert(validate_find_first_and_second_set_bits_rand<uint32_t >(1u << 10u, 4));
-    assert(validate_find_kth_interval_iter(1u << 8u, 4));
-    assert(validate_find_kth_interval_random(1u << 12u, 8));
-*/
 
     std::cout << "End!" << std::endl;
     return 0;
 }
+
+
+void use_of_validate_PD(size_t reps) {
+    bool passed = true;
+    for (int i = 0; i < 256; ++i) {
+        passed &= validate_PD<cg_PD>(reps, true, false);
+
+    }
+    cout << passed << endl;
+}
+
+void using_cuckoo_table() {
+    libcuckoo::cuckoohash_map<int, std::string> Table;
+
+    for (int i = 0; i < 100; i++) {
+        Table.insert(i, "hello");
+    }
+
+    for (int i = 0; i < 101; i++) {
+        std::string out;
+
+        if (Table.find(i, out)) {
+            std::cout << i << "  " << out << std::endl;
+        } else {
+            std::cout << i << "  NOT FOUND" << std::endl;
+        }
+    }
+}
+
+void t_read_k_word_rand() {
+    size_t reps = 128;
+    for (int el_length = 7; el_length < 33; ++el_length) {
+        assert(v_read_k_words_fixed_length_rand<uint32_t>(128, el_length));
+    }
+}
+
+void t_HT() {
+    const size_t max_capacity = 1u << 10u, element_length = 28, bucket_size = 4;
+    size_t reps = 1u << 14u;
+    auto load_factor = .75;
+    double working_LF = .72;
+    double variance = .1;
+
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 2, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 4, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 8, load_factor, working_LF, variance);
+    cout << "\n\n\n" << endl;
+    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 12, load_factor, working_LF, variance);
+}
+
+void t_cg_PD() {
+    bool res = 0;
+    for (int i = 0; i < 16; ++i) {
+        res = validate_PD<cg_PD>(1u << 10u, true, false);
+        res &= validate_PD_higher_load<cg_PD>(1u << 10u, .8, true, 0);
+        assert (res);
+    }
+}
+
+void t_from_array_to_bit_vector_by_bit_limits() {
+    for (int i = 0; i < 16; ++i) {
+        assert(v_from_array_to_vector_by_bit_limits_rand<uint32_t>(1u << 4u, 16, true));
+        cout << i << endl;
+    }
+}
+
+void t_from_array_to_bit_vector_by_bit_limits();
+
+
+void all() {
+    using_cuckoo_table();
+    cout << "pass" << endl;
+    t_read_k_word_rand();
+    cout << "pass" << endl;
+//    t_HT();
+//    cout << "pass" << endl;
+    t_cg_PD();
+    cout << "pass" << endl;
+    use_of_validate_PD(1u << 6u);
+    cout << "pass" << endl;
+}
+
+
+
+
+/*
+//    bool res = 0;
+//    res = validate_CPD<CPD>(1u << 10u, false, true);
+
+//    for (int i = 0; i < 32; ++i) {
+//        cout << i << endl;
+//        bool res = validate_CPD<CPD>(1u << 10u, true, false);
+//        assert (res);
+//    }
+//    assert(res);
+*/
+/*const size_t max_capacity = 1u << 14u, element_length = 28, bucket_size = 4;
+size_t reps = 1u << 14u;
+auto load_factor = .75;
+double working_LF = .72;
+double variance = .1;
+for (int i = 0; i < 8; ++i) {
+    srand(i);
+    auto res = v_filter<dict<cg_PD, hash_table<uint32_t> > >(max_capacity, max_capacity<< 2u, 13, .75, .5);
+    assert(res);
+}*/
+
+/*uint32_t a = 1;
+hash_table<uint32_t> t(max_capacity, element_length, bucket_size, load_factor);
+assert(t.find(a) == 0);
+t.insert(a);
+assert(t.find(a) == 1);
+t.remove(a);
+assert(t.find(a) == 0);*/
+
+/*
+v_hash_table_rand_gen_load(reps, max_capacity, element_length, 1, load_factor, working_LF, variance);
+cout << "\n\n\n" << endl;
+cout << "\n\n\n" << endl;
+
+v_hash_table_rand(1u << 14u, max_capacity, element_length, 4, load_factor);
+cout << "1" << endl;
+v_hash_table_rand(1u << 14u, max_capacity, element_length, 2, load_factor);
+cout << "2" << endl;
+v_hash_table_rand(1u << 14u, max_capacity, element_length, 16, load_factor);
+cout << "4" << endl;
+v_hash_table_rand(1u << 14u, max_capacity, element_length, 8, load_factor);
+cout << "5" << endl;
+v_hash_table_rand(1u << 14u, max_capacity, element_length, 1, load_factor);
+cout << "3" << endl;
+*/
+
+/*assert(v_vector_update_rand(1u<<12u));
+assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
+for (int i = 0; i < 256; ++i) {
+    srand(i);
+    assert(v_update_by_comparison_rand<uint32_t>(1u<<8u,8u));
+}
+assert(v_vector_update_rand(1u<<12u));
+assert(v_update_element_iter<uint32_t>(1u<<8u, 1u << 5u));*/
+
+/*
+ * assert(v_update_element_rand<uint32_t>(1u << 4u, 1u << 5u));
+ * */
+
+/*for (int i = 0; i < (4u); ++i) {
+    srand(clock());
+    assert(v_extract_symbol_rand<uint32_t>(1u<<8u,8));
+}*/
+/*
+assert(v_extract_symbol_rand<uint32_t>(1u<<8u,8));
+assert(validate_find_first_and_second_set_bits_iter<uint32_t >(1u << 10u, 4));
+assert(validate_find_first_and_second_set_bits_rand<uint32_t >(1u << 10u, 4));
+assert(validate_find_kth_interval_iter(1u << 8u, 4));
+assert(validate_find_kth_interval_random(1u << 12u, 8));
+*/
+
+
 /*
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -254,54 +381,3 @@ int main() {
     }
 */
 
-
-void use_of_validate_PD(size_t reps) {
-    bool passed = true;
-    for (int i = 0; i < 256; ++i) {
-        passed &= validate_PD<cg_PD>(reps, true, false);
-
-    }
-    cout << passed << endl;
-}
-
-
-void using_cuckoo_table() {
-    libcuckoo::cuckoohash_map<int, std::string> Table;
-
-    for (int i = 0; i < 100; i++) {
-        Table.insert(i, "hello");
-    }
-
-    for (int i = 0; i < 101; i++) {
-        std::string out;
-
-        if (Table.find(i, out)) {
-            std::cout << i << "  " << out << std::endl;
-        } else {
-            std::cout << i << "  NOT FOUND" << std::endl;
-        }
-    }
-}
-
-void t_read_k_word_rand() {
-    size_t reps = 128;
-    for (int el_length = 7; el_length < 33; ++el_length) {
-        assert(v_read_k_words_fixed_length_rand<uint32_t>(128, el_length));
-    }
-}
-
-void t_HT() {
-    const size_t max_capacity = 1u << 10u, element_length = 28, bucket_size = 4;
-    size_t reps = 1u << 14u;
-    auto load_factor = .75;
-    double working_LF = .72;
-    double variance = .1;
-
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 2, load_factor, working_LF, variance);
-    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 4, load_factor, working_LF, variance);
-    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 8, load_factor, working_LF, variance);
-    cout << "\n\n\n" << endl;
-    v_hash_table_rand_gen_load(reps, max_capacity, element_length, 12, load_factor, working_LF, variance);
-}

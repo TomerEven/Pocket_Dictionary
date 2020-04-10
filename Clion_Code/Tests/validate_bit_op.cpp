@@ -46,7 +46,7 @@ auto validate_find_kth_interval_random(size_t reps, size_t a_size) -> bool {
 auto validate_find_kth_interval_single(uint32_t *a, size_t a_size, size_t k) -> bool {
     size_t start = -1, end = -1, vec_start = -2, vec_end = -2;
     vector<bool> vec(a_size * sizeof(uint32_t) * CHAR_BIT);
-    from_array_to_vector(&vec, a, a_size);
+    from_array_of_words_to_bit_vector(&vec, a, a_size);
     vector_find_kth_interval_simple(&vec, k, &vec_start, &vec_end);
 
     find_kth_interval_simple(a, a_size, k, &start, &end);
@@ -103,7 +103,7 @@ template<typename T>
 auto validate_find_first_and_second_set_bits_single(T *a, size_t a_size) -> bool {
     size_t start = -1, end = -1, vec_start = -2, vec_end = -2;
     vector<bool> vec(a_size * sizeof(uint32_t) * CHAR_BIT);
-    from_array_to_vector(&vec, a, a_size);
+    from_array_of_words_to_bit_vector(&vec, a, a_size);
     vector_find_kth_interval_simple(&vec, 1, &vec_start, &vec_end);
 
     find_first_and_second_set_bits(a, a_size, &start, &end);
@@ -134,8 +134,8 @@ auto v_vec_and_array_transformation(size_t reps, size_t total_bits) -> bool {
     for (int i = 0; i < reps; ++i) {
         for (int j = 0; j < a_size; ++j) { a[j] = random(); }
 //        print_array_as_integers(a, a_size);
-        from_array_to_vector(&vec, a, a_size);
-        from_vector_to_array(&vec, b, a_size);
+        from_array_of_words_to_bit_vector(&vec, a, a_size);
+        from_array_of_words_to_bit_vector(&vec, b, a_size);
         for (int k = 0; k < a_size; ++k) {
             if (a[k] != b[k]) {
                 cout << "h1:" << endl;
@@ -150,8 +150,8 @@ auto v_vec_and_array_transformation(size_t reps, size_t total_bits) -> bool {
     for (int i = 0; i < reps; ++i) {
         for (int j = 0; j < total_bits; ++j) { vec[j] = (random() % 2); }
 //        print_vector(&vec);
-        from_vector_to_array(&vec, a, a_size);
-        from_array_to_vector(&vec2, a, a_size);
+        from_array_of_words_to_bit_vector(&vec, a, a_size);
+        from_array_of_words_to_bit_vector(&vec2, a, a_size);
         for (int k = 0; k < total_bits; ++k) {
             if (vec[k] != vec2[k]) {
                 cout << "h2:" << i << endl;
@@ -625,7 +625,7 @@ auto v_vector_update_single(vector<bool> *vec, size_t prev_start, size_t prev_en
                             size_t new_val) -> bool {
 
     vector<bool> copy(*vec);
-    unsigned long long prev_val = read_T_word<unsigned long long>(vec, prev_start, prev_end);
+    unsigned long long prev_val = read_T_word_from_vector<unsigned long long>(vec, prev_start, prev_end);
     const size_t n = 6;
     string var_names[n] = {"prev_start", "new_start", "prev_end", "new_end", "prev_val", "new_val"};
     size_t values[n] = {prev_start, new_start, prev_end, new_end, prev_val, new_val};
@@ -638,7 +638,7 @@ auto v_vector_update_single(vector<bool> *vec, size_t prev_start, size_t prev_en
     print_bool_vector_no_spaces(vec);
     vector<bool> updated_copy(*vec);
 
-    auto res = read_T_word<unsigned long long>(vec, new_start, new_end);
+    auto res = read_T_word_from_vector<unsigned long long>(vec, new_start, new_end);
     if (res != new_val) {
         cout << "Part 1 failed." << endl;
         return false;
@@ -648,7 +648,7 @@ auto v_vector_update_single(vector<bool> *vec, size_t prev_start, size_t prev_en
 
     print_bool_vector_no_spaces(vec);
     cout << endl;
-    res = read_T_word<unsigned long long>(vec, prev_start, prev_end);
+    res = read_T_word_from_vector<unsigned long long>(vec, prev_start, prev_end);
     if (res != prev_val) {
         cout << "Part 2 failed." << endl;
         return false;
@@ -658,8 +658,8 @@ auto v_vector_update_single(vector<bool> *vec, size_t prev_start, size_t prev_en
         print_bool_vector_no_spaces(vec);
         print_bool_vector_no_spaces(&copy);
 
-        print_vector_as_words(vec);
-        print_vector_as_words(&copy);
+        print_bit_vector_as_words(vec);
+        print_bit_vector_as_words(&copy);
 
         cout << "Part 3 failed." << endl;
         return false;
@@ -698,7 +698,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
 
     vector<bool> copy(*vec);
-    auto prev_val = read_T_word<T>(vec, prev_start, prev_end);
+    auto prev_val = read_T_word_from_vector<T>(vec, prev_start, prev_end);
     auto prev_val_arr = read_word<T>(a, a_size, prev_start, prev_end);
 
 
@@ -731,7 +731,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
     assert(equality_vec_array<T>(vec, a, a_size, vec->size()) == -1);
 
     auto res_arr = read_word<T>(a, a_size, new_start, new_end);
-    auto res = read_T_word<unsigned long long>(vec, new_start, new_end);
+    auto res = read_T_word_from_vector<unsigned long long>(vec, new_start, new_end);
     assert(res == res_arr);
     if (res != new_val) {
         cout << "Part 1 failed." << endl;
@@ -746,7 +746,7 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
 //    print_bool_vector_no_spaces(vec);
 //    cout << endl;
     res_arr = read_word<T>(a, a_size, prev_start, prev_end);
-    res = read_T_word<unsigned long long>(vec, prev_start, prev_end);
+    res = read_T_word_from_vector<unsigned long long>(vec, prev_start, prev_end);
     assert(res == res_arr);
     if (res != prev_val) {
         cout << "Part 2 failed." << endl;
@@ -757,8 +757,8 @@ auto v_update_by_comparison_single(T *a, size_t a_size, vector<bool> *vec, size_
         print_bool_vector_no_spaces(vec);
         print_bool_vector_no_spaces(&copy);
 
-        print_vector_as_words(vec);
-        print_vector_as_words(&copy);
+        print_bit_vector_as_words(vec);
+        print_bit_vector_as_words(&copy);
 
         cout << "Part 3 failed." << endl;
         return false;
@@ -777,7 +777,7 @@ auto v_update_by_comparison_rand(size_t reps, size_t a_size) -> bool {
     auto counter = 0;
     for (int i = 0; i < (size - 128); ++i) { vec[i] = (i / 4) % 2; }
     for (int i = 0; i < a_size; ++i) {
-        a[i] = read_T_word<T>(&vec, i * slot_size, (i + 1) * slot_size);
+        a[i] = read_T_word_from_vector<T>(&vec, i * slot_size, (i + 1) * slot_size);
     }
 
 
@@ -867,6 +867,79 @@ auto v_read_k_words_fixed_length_rand(size_t reps, size_t element_length) -> boo
     return true;
 }
 
+template<typename T>
+auto v_from_array_to_vector_by_bit_limits_single(const T *a, size_t a_size, size_t abs_bit_start_index,
+                                                 size_t abs_bit_end_index) -> bool {
+    vector<bool> vec_start;
+    vector<bool> vec_mid;
+    vector<bool> vec_end;
+    vector<bool> merged;
+
+    from_array_to_vector_by_bit_limits(&vec_start, a, 0, abs_bit_start_index);
+    assert(vec_start.size() == abs_bit_start_index);
+    from_array_to_vector_by_bit_limits(&vec_mid, a, abs_bit_start_index, abs_bit_end_index);
+    assert(vec_mid.size() == (abs_bit_end_index - abs_bit_start_index));
+    from_array_to_vector_by_bit_limits(&vec_end, a, abs_bit_end_index, a_size * sizeof(T) * CHAR_BIT);
+    assert(vec_end.size() == (a_size * sizeof(T) * CHAR_BIT - abs_bit_end_index));
+
+    /*cout << "\nabs_bit_start_index " << abs_bit_start_index << endl;
+    cout << "abs_bit_end_index " << abs_bit_end_index << endl;
+    cout << "a_size * sizeof(T) * CHAR_BIT " << a_size * sizeof(T) * CHAR_BIT << endl;
+
+    cout << "\nvec_start.size() " << vec_start.size() << endl;
+    cout << "vec_mid.size() " << vec_mid.size() << endl;
+    cout << "vec_end.size() " << vec_end.size() << endl;*/
+
+    auto size_sum = vec_start.size() + vec_mid.size() + vec_end.size();
+    assert (size_sum == a_size * sizeof(T) * CHAR_BIT);
+
+    merged.reserve(vec_start.size() + vec_mid.size() + vec_end.size());
+    merged.insert(merged.end(), vec_start.begin(), vec_start.end());
+    merged.insert(merged.end(), vec_mid.begin(), vec_mid.end());
+    merged.insert(merged.end(), vec_end.begin(), vec_end.end());
+
+    T temp_a[a_size];
+    from_bit_vector_to_array_of_words(&merged, temp_a, a_size);
+
+    for (int i = 0; i < a_size; ++i) {
+        if (a[i] != temp_a[i]) {
+            cout << "first error in " << i << endl;
+            return false;
+        }
+    }
+    return true;
+}
+
+template<typename T>
+auto v_from_array_to_vector_by_bit_limits_rand(size_t reps, size_t a_size, bool to_seed) -> bool {
+    if (to_seed) {
+        srand(clock());
+    }
+    T a[a_size];
+    size_t total_bits = sizeof(T) * CHAR_BIT;
+    size_t counter = 0;
+    for (int j = 0; j < reps; ++j) {
+        for (int i = 0; i < a_size; ++i) { a[i] = random(); }
+        for (int k = 0; k < 64; ++k) {
+            size_t abs_bit_start_index = random() % total_bits;
+            size_t abs_bit_end_index = random() % total_bits;
+            if (abs_bit_start_index > abs_bit_end_index) {
+                auto temp = abs_bit_start_index;
+                abs_bit_start_index = abs_bit_end_index;
+                abs_bit_end_index = temp;
+            }
+            auto res = v_from_array_to_vector_by_bit_limits_single<T>(a, a_size, abs_bit_start_index,
+                                                                      abs_bit_end_index);
+            if (!res) {
+                cout << "counter is " << counter << endl;
+                return false;
+            }
+            counter++;
+        }
+    }
+    return true;
+}
+
 
 template auto validate_find_first_and_second_set_bits_single<uint32_t>(uint32_t *a, size_t a_size) -> bool;
 
@@ -900,7 +973,12 @@ v_read_k_words_fixed_length_single<uint32_t>(const uint32_t *a, size_t a_size, s
 template
 auto v_read_k_words_fixed_length_rand<uint32_t>(size_t reps, size_t element_length) -> bool;
 
+template
+auto v_from_array_to_vector_by_bit_limits_single<uint32_t>(const uint32_t *a, size_t a_size, size_t abs_bit_start_index,
+                                                           size_t abs_bit_end_index) -> bool;
 
+template
+auto v_from_array_to_vector_by_bit_limits_rand<uint32_t>(size_t reps, size_t a_size, bool to_seed) -> bool;
 
 /*
 
