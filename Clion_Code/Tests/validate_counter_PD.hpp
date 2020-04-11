@@ -19,6 +19,26 @@ auto v_CPD(size_t reps, size_t max_capacity, size_t element_length, size_t count
 
 auto op_sequence_iter(size_t reps, size_t max_capacity, size_t element_length, size_t counter_size,
                       double working_load_factor, double variance, bool to_seed = false) -> bool;
+auto
+v_wrapper(size_t max_capacity, size_t element_length, size_t counter_size, double working_load_factor,
+                 bool to_seed = false) -> bool;
+
+
+auto
+v_wrapper_single(size_t max_capacity, size_t element_length, size_t counter_size, double working_load_factor,
+                 bool to_seed = false) -> bool;
+
+auto v_built_validator(CPD_validator *vd, size_t max_capacity, size_t element_length, size_t counter_size,
+                       double working_load_factor, bool to_seed)->bool;
+
+auto v_lookup_all_elements(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool;
+
+auto v_lookup_multi_all_elements(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool;
+
+auto v_dec_multiplicity(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool;
+
+auto v_remove_element(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool;
+
 
 auto v_lookup_helper(CPD_validator *vd, CPD_TYPE q, CPD_TYPE r, bool exp_res) -> bool;
 

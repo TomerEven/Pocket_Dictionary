@@ -34,16 +34,23 @@ void all();
 int main() {
     std::cout << "Hello, World!" << std::endl;
 //    all();
-    size_t reps = 1u<<10u, max_distinct_capacity = 64;
-    size_t remainder_length = 12, counter_size = 3;
-    for (int j = 0; j < 32 - remainder_length; ++j) {
+
+    size_t reps = 1u<<10u, max_distinct_capacity = 256;
+    size_t remainder_length = 13, counter_size = 5;
+    for (int i = 0; i < 10; ++i) {
+        v_wrapper_single(max_distinct_capacity, remainder_length, counter_size, (i+1) * 0.1, false);
+        cout << i << endl;
+    }
+
+
+    /*for (int j = 0; j < 32 - remainder_length; ++j) {
         auto res = op_sequence_iter(reps, max_distinct_capacity, remainder_length + j, counter_size + j / 4, .25, 1, false);
         assert(res);
         cout << j << endl;
-    }
-//    for (int i = 0; i < 64; ++i) {
-//
-//    }
+    }*/
+
+
+
 
 
     std::cout << "End!" << std::endl;

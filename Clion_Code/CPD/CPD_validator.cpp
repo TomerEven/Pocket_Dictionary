@@ -13,18 +13,21 @@ CPD_validator::CPD_validator(size_t max_distinct_capacity, size_t remainder_leng
 
 auto CPD_validator::lookup(CPD_TYPE q, CPD_TYPE r) -> bool {
     assert(r > 0);
+    assert(compare_all());
 
     bool att_res = d.lookup(q, r);
     bool valid_res = v_lookup(q, r);
+    assert(compare_all());
     assert (valid_res == att_res);
     return valid_res;
 }
 
 auto CPD_validator::lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
     assert(r > 0);
-
+    assert(compare_all());
     auto att_res = d.lookup_multi(q, r);
     auto valid_res = v_lookup_multi(q, r);
+    assert(compare_all());
     assert (valid_res == att_res);
     return valid_res;
 }
@@ -53,8 +56,8 @@ auto CPD_validator::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
     assert(compare_all());
     auto att_res = d.conditional_remove(q, r);
     auto valid_res = v_conditional_remove(q, r);
-    assert (valid_res == att_res);
     assert(compare_all());
+    assert (valid_res == att_res);
     return valid_res;
 }
 
@@ -372,6 +375,28 @@ auto CPD_validator::sum_header_values() -> size_t {
     }
     return res;
 }
+
+void CPD_validator::get_elements(vector<vector<q_r>> *el_vec) {
+    el_vec->resize(SL(counter_size) - 1);
+    size_t remainder_counter = 0;
+    for (int i = 0; i < H_vec.size(); ++i) {
+        CPD_TYPE temp_el = B_vec[remainder_counter];
+        auto temp_qr = std::make_tuple(temp_el, i);
+
+        CPD_TYPE temp_counter = C_vec[remainder_counter];
+        assert(temp_counter > 0);
+        vector<q_r> temp_vec = el_vec->at(temp_counter);
+
+        temp_vec.insert(temp_vec.end(),temp_qr);
+    }
+    /*for (int i = 0; i < max_distinct_capacity; ++i) {
+        CPD_TYPE temp_el = B_vec[i];
+        CPD_TYPE temp_counter = B_vec[i];
+        auto temp_vec = el_vec->at(temp_counter);
+        temp_vec.insert(temp_vec.end(), temp_el);
+    }*/
+}
+
 
 //void CPD_validator::prepare_B_vec_for_comparison(vector<CPD_TYPE> *v) {
 //    auto body_unpack_size =

@@ -5,8 +5,12 @@
 #ifndef CLION_CODE_CPD_VALIDATOR_HPP
 #define CLION_CODE_CPD_VALIDATOR_HPP
 
+#include <ostream>
 #include "CPD.hpp"
 
+typedef std::tuple<CPD_TYPE, CPD_TYPE> q_r;
+typedef vector<q_r> v_q_r;
+typedef vector<v_q_r> vv_q_r;
 
 class CPD_validator {
     CPD d;
@@ -45,9 +49,12 @@ public:
 
     auto is_full() -> bool;
 
-    auto get_capacity() ->size_t;
+    auto get_capacity() -> size_t;
 
-    auto sum_header_values() ->size_t;
+    auto sum_header_values() -> size_t;
+
+    void get_elements(vector<vector<q_r>> *el_vec);
+
 private:
     auto v_lookup(CPD_TYPE q, CPD_TYPE r) -> bool;
 

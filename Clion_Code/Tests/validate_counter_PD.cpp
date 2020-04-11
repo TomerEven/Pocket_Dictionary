@@ -193,3 +193,111 @@ auto insert(CPD_validator &vd, CPD_TYPE q, CPD_TYPE r) -> bool {
 auto remove(CPD_validator &vd, CPD_TYPE q, CPD_TYPE r) -> bool {
     return false;
 }
+
+auto v_wrapper(size_t max_capacity, size_t element_length, size_t counter_size, double working_load_factor,
+               bool to_seed) -> bool {
+//    for
+}
+
+auto v_wrapper_single(size_t max_capacity, size_t element_length, size_t counter_size, double working_load_factor,
+                      bool to_seed) -> bool {
+    CPD_validator vd(max_capacity, element_length, counter_size);
+    bool built_res = v_built_validator(&vd, max_capacity, element_length, counter_size, working_load_factor, to_seed);
+    assert(built_res);
+    vector<vector<q_r>> el_vec(SL(counter_size) - 1);
+
+//    cout << "vd.get_capacity() " << vd.get_capacity() << endl;
+    vd.get_elements(&el_vec);
+    v_lookup_all_elements(&vd, &el_vec);
+    v_lookup_multi_all_elements(&vd, &el_vec);
+
+    v_dec_multiplicity(&vd, &el_vec);
+    v_remove_element(&vd, &el_vec);
+//    cout << "vd.get_capacity() " << vd.get_capacity() << endl;
+    el_vec.clear();
+    vd.get_elements(&el_vec);
+    v_lookup_multi_all_elements(&vd, &el_vec);
+//    cout << "vd.get_capacity() " << vd.get_capacity() << endl;
+}
+
+auto v_built_validator(CPD_validator *vd, size_t max_capacity, size_t element_length, size_t counter_size,
+                       double working_load_factor, bool to_seed) -> bool {
+
+    if (to_seed) {
+        srand(clock());
+    }
+
+    CPD_TYPE remainder_mask = MASK(element_length);
+    CPD_TYPE counter_mask = MASK(counter_size);
+    size_t distinct_capacity_counter = 0;
+    while (distinct_capacity_counter < floor(max_capacity * working_load_factor)) {
+//    for (int i = 0; i < max_capacity; ++i) {
+        CPD_TYPE q = random() % max_capacity;
+        CPD_TYPE r = random() & remainder_mask;
+        while (r == 0) {
+            r = random() & remainder_mask;
+        }
+        if (vd->lookup(q, r))
+            continue;
+        CPD_TYPE temp_counter = random() & counter_mask;
+        for (int j = 0; j < temp_counter; ++j) {
+            vd->insert(q, r);
+        }
+        distinct_capacity_counter++;
+    }
+    return true;
+}
+
+auto v_lookup_all_elements(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool {
+    for (int i = 0; i < el_vec->size(); ++i) {
+        auto temp_vec = el_vec->at(i);
+        for (auto tuple: temp_vec) {
+            CPD_TYPE q, r;
+            std::tie(q, r) = tuple;
+            vd->lookup(q, r);
+        }
+    }
+    return true;
+}
+
+auto v_lookup_multi_all_elements(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool {
+    for (int i = 0; i < el_vec->size(); ++i) {
+        auto temp_vec = el_vec->at(i);
+        for (auto tuple: temp_vec) {
+            CPD_TYPE q, r;
+            std::tie(q, r) = tuple;
+            vd->lookup_multi(q, r);
+        }
+    }
+    return true;
+}
+
+auto v_dec_multiplicity(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool {
+    for (int i = 1; i < el_vec->size(); ++i) {
+        auto temp_vec = el_vec->at(i);
+        /*vector<q_r>* temp_vec = &el_vec->at(i);
+        for (int j = 0; j < temp_vec->size(); ++j) {
+            q_r tp = temp_vec->at(j);
+            CPD_TYPE q, r;
+            std::tie(q, r) = tp;
+            vd->remove(q, r);
+        }*/
+        for (auto tuple: temp_vec) {
+            CPD_TYPE q, r;
+            std::tie(q, r) = tuple;
+            vd->remove(q, r);
+        }
+    }
+
+    return true;
+}
+
+auto v_remove_element(CPD_validator *vd, vector<vector<q_r>> *el_vec) -> bool {
+    auto temp_vec = el_vec->at(0);
+    for (auto tuple: temp_vec) {
+        CPD_TYPE q, r;
+        std::tie(q, r) = tuple;
+        vd->remove(q, r);
+    }
+    return true;
+}
