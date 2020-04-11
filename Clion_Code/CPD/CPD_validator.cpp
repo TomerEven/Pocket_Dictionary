@@ -4,15 +4,23 @@
 
 #include "CPD_validator.hpp"
 
-CPD_validator::CPD_validator(size_t max_distinct_capacity, size_t remainder_length, size_t counter_size)
-        : d(42, max_distinct_capacity, remainder_length, counter_size),
+CPD_validator::CPD_validator(size_t quotient_range, size_t max_distinct_capacity, size_t remainder_length,
+                             size_t counter_size)
+        : d(quotient_range, max_distinct_capacity, remainder_length, counter_size),
           max_distinct_capacity(max_distinct_capacity), remainder_length(remainder_length), counter_size(counter_size),
+          quotient_range(quotient_range),
           H_vec(max_distinct_capacity, 0), B_vec(), C_vec() {
 }
 
 
+CPD_validator::CPD_validator(size_t max_distinct_capacity, size_t remainder_length, size_t counter_size)
+        : CPD_validator(42, max_distinct_capacity, remainder_length, counter_size) {
+    cout << "CPD_validator 2nd constructor" << endl;
+}
+
+
 auto CPD_validator::lookup(CPD_TYPE q, CPD_TYPE r) -> bool {
-    assert(r > 0);
+//    assert(r > 0);
     assert(compare_all());
 
     bool att_res = d.lookup(q, r);
@@ -22,8 +30,22 @@ auto CPD_validator::lookup(CPD_TYPE q, CPD_TYPE r) -> bool {
     return valid_res;
 }
 
+auto CPD_validator::v_lookup(CPD_TYPE q, CPD_TYPE r) -> bool {
+    size_t start, end;
+    H_find(q, &start, &end);
+    assert (start <= end);
+    if (start == end)
+        return false;
+
+    size_t r_index = -1;
+    return B_find(r, start, end, &r_index);
+
+    /*size_t A_size, rel_bit_index;
+    return B_find(r, start, end, &A_size, &rel_bit_index, &r_index);*/
+}
+
 auto CPD_validator::lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
-    assert(r > 0);
+//    assert(r > 0);
     assert(compare_all());
     auto att_res = d.lookup_multi(q, r);
     auto valid_res = v_lookup_multi(q, r);
@@ -32,8 +54,25 @@ auto CPD_validator::lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
     return valid_res;
 }
 
+auto CPD_validator::v_lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
+    size_t start, end;
+    H_find(q, &start, &end);
+    assert (start <= end);
+    if (start == end)
+        return 0;
+
+    size_t r_index = -1;
+    if (B_find(r, start, end, &r_index)) {
+        return C_vec[r_index];
+    }
+    return 0;
+
+    /*size_t A_size, rel_bit_index;
+    if (B_find(r, start, end, &A_size, &rel_bit_index, &r_index)) {*/
+}
+
 auto CPD_validator::insert(CPD_TYPE q, CPD_TYPE r) -> counter_status {
-    assert(r > 0);
+//    assert(r > 0);
 
     assert(compare_all());
     auto att_res = d.insert(q, r);
@@ -43,8 +82,100 @@ auto CPD_validator::insert(CPD_TYPE q, CPD_TYPE r) -> counter_status {
     return valid_res;
 }
 
+auto CPD_validator::v_insert(CPD_TYPE q, CPD_TYPE r) -> counter_status {
+    size_t start, end;
+    H_find(q, &start, &end);
+    assert (start <= end);
+
+    /**New element easy case.*/
+    if (start == end) {
+        insert_new_element(q, r);
+        return not_a_member;
+    }
+
+    size_t r_index = -1;
+    /**Only counter update.*/
+    if (B_find(r, start, end, &r_index)) {
+//        print_vector(&C_vec);
+        if (increase_counter(r_index) == inc_overflow) {
+            assert(false);
+        }
+        return OK;
+    }
+    /**new element with existing quotient*/
+    ++(H_vec[q]);
+    B_vec.insert(B_vec.begin() + r_index, r);
+    C_vec.insert(C_vec.begin() + r_index, 1);
+    return not_a_member;
+}
+
+auto CPD_validator::insert_inc_attempt(CPD_TYPE q, CPD_TYPE r) -> counter_status {
+    assert(compare_all());
+    auto att_res = d.insert_inc_attempt(q, r);
+    auto valid_res = v_insert_inc_attempt(q, r);
+    assert(compare_all());
+    assert (valid_res == att_res);
+    return valid_res;
+
+}
+
+auto CPD_validator::v_insert_inc_attempt(uint32_t q, uint32_t r) -> counter_status {
+    size_t start, end;
+    H_find(q, &start, &end);
+    assert (start <= end);
+
+    /**New element easy case.*/
+    if (start == end) {
+        return not_a_member;
+    }
+
+    size_t r_index = -1;
+    /**Only counter update.*/
+    if (B_find(r, start, end, &r_index)) {
+//        print_vector(&C_vec);
+        if (increase_counter(r_index) == inc_overflow) {
+            //todo
+            assert(false);
+        }
+        return OK;
+    }
+    return not_a_member;
+
+}
+
+
+void CPD_validator::insert_new_element(CPD_TYPE q, CPD_TYPE r) {
+    size_t start, end;
+    size_t prev_h_val = H_vec[q];
+    H_find(q, &start, &end);
+    ++(H_vec[q]);
+    size_t new_h_val = H_vec[q];
+    assert(prev_h_val + 1 == new_h_val);
+    assert (start <= end);
+
+    size_t r_index = -1;
+    B_insert_new_element(r, start, end, &r_index);
+
+    C_vec.insert(C_vec.begin() + r_index, 1);
+}
+
+void CPD_validator::insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r, CPD_TYPE counter) {
+    size_t start, end;
+    size_t prev_h_val = H_vec[q];
+    H_find(q, &start, &end);
+    ++(H_vec[q]);
+    size_t new_h_val = H_vec[q];
+    assert(prev_h_val + 1 == new_h_val);
+    assert (start <= end);
+
+    size_t r_index = -1;
+    B_insert_new_element(r, start, end, &r_index);
+
+    C_vec.insert(C_vec.begin() + r_index, counter);
+}
+
 void CPD_validator::remove(CPD_TYPE q, CPD_TYPE r) {
-    assert(r > 0);
+//    assert(r > 0);
 
     assert(compare_all());
     d.remove(q, r);
@@ -52,7 +183,7 @@ void CPD_validator::remove(CPD_TYPE q, CPD_TYPE r) {
     assert(compare_all());
 }
 
-auto CPD_validator::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
+auto CPD_validator::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status {
     assert(compare_all());
     auto att_res = d.conditional_remove(q, r);
     auto valid_res = v_conditional_remove(q, r);
@@ -60,6 +191,39 @@ auto CPD_validator::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
     assert (valid_res == att_res);
     return valid_res;
 }
+
+auto CPD_validator::v_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status {
+    size_t start, end;
+    H_find(q, &start, &end);
+    assert (start <= end);
+    assert(start < end); // removing element not in the header.
+
+    size_t r_index = -1;
+    bool res = B_find(r, start, end, &r_index);
+    assert(res);
+
+    if (get_counter(r_index) > 1) {
+        C_vec[r_index]--;
+        return OK;
+    } else {
+        remove_element_completely(q, r_index);
+        return dec_underflow;
+    }
+
+}
+
+auto CPD_validator::v_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status {
+    if (v_lookup(q, r)) {
+        return v_remove(q, r);
+    }
+    return not_a_member;
+}
+
+void CPD_validator::remove_element_completely(CPD_TYPE q, size_t unpacked_index) {
+    B_vec.erase(B_vec.begin() + unpacked_index);
+    H_vec[q]--;
+}
+
 
 auto CPD_validator::naive_comparison() -> bool {
     return false;
@@ -165,112 +329,6 @@ auto CPD_validator::compare_counters() -> bool {
 
 auto CPD_validator::H_insert(CPD_TYPE q, size_t *start, size_t *end) {
     return nullptr;
-}
-
-auto CPD_validator::v_lookup(CPD_TYPE q, CPD_TYPE r) -> bool {
-    size_t start, end;
-    H_find(q, &start, &end);
-    assert (start <= end);
-    if (start == end)
-        return false;
-
-    size_t r_index = -1;
-    return B_find(r, start, end, &r_index);
-
-    /*size_t A_size, rel_bit_index;
-    return B_find(r, start, end, &A_size, &rel_bit_index, &r_index);*/
-}
-
-auto CPD_validator::v_lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
-    size_t start, end;
-    H_find(q, &start, &end);
-    assert (start <= end);
-    if (start == end)
-        return 0;
-
-    size_t r_index = -1;
-    if (B_find(r, start, end, &r_index)) {
-        return C_vec[r_index];
-    }
-    return 0;
-
-    /*size_t A_size, rel_bit_index;
-    if (B_find(r, start, end, &A_size, &rel_bit_index, &r_index)) {*/
-}
-
-auto CPD_validator::v_insert(CPD_TYPE q, CPD_TYPE r) -> counter_status {
-    size_t start, end;
-    H_find(q, &start, &end);
-    assert (start <= end);
-
-    /**New element easy case.*/
-    if (start == end) {
-        insert_new_element(q, r);
-        return not_a_member;
-    }
-
-    size_t r_index = -1;
-    /**Only counter update.*/
-    if (B_find(r, start, end, &r_index)) {
-//        print_vector(&C_vec);
-        if (increase_counter(r_index) == inc_overflow) {
-            assert(false);
-        }
-        return OK;
-    }
-    /**new element with existing quotient*/
-    ++(H_vec[q]);
-    B_vec.insert(B_vec.begin() + r_index, r);
-    C_vec.insert(C_vec.begin() + r_index, 1);
-    return not_a_member;
-}
-
-void CPD_validator::insert_new_element(CPD_TYPE q, CPD_TYPE r) {
-    size_t start, end;
-    size_t prev_h_val = H_vec[q];
-    H_find(q, &start, &end);
-    ++(H_vec[q]);
-    size_t new_h_val = H_vec[q];
-    assert(prev_h_val + 1 == new_h_val);
-    assert (start <= end);
-
-    size_t r_index = -1;
-    B_insert_new_element(r, start, end, &r_index);
-
-    C_vec.insert(C_vec.begin() + r_index, 1);
-}
-
-void CPD_validator::v_remove(CPD_TYPE q, CPD_TYPE r) {
-    size_t start, end;
-    H_find(q, &start, &end);
-    assert (start <= end);
-    assert(start < end); // removing element not in the header.
-
-    size_t r_index = -1;
-    bool res = B_find(r, start, end, &r_index);
-    assert(res);
-
-    if (get_counter(r_index) > 1) {
-        C_vec[r_index]--;
-        return;
-    } else {
-        remove_element_completely(q, r_index);
-    }
-
-}
-
-
-auto CPD_validator::v_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
-    if (v_lookup(q, r)) {
-        v_remove(q, r);
-        return true;
-    }
-    return false;
-}
-
-void CPD_validator::remove_element_completely(CPD_TYPE q, size_t unpacked_index) {
-    B_vec.erase(B_vec.begin() + unpacked_index);
-    H_vec[q]--;
 }
 
 
@@ -387,7 +445,7 @@ void CPD_validator::get_elements(vector<vector<q_r>> *el_vec) {
         assert(temp_counter > 0);
         vector<q_r> temp_vec = el_vec->at(temp_counter);
 
-        temp_vec.insert(temp_vec.end(),temp_qr);
+        temp_vec.insert(temp_vec.end(), temp_qr);
     }
     /*for (int i = 0; i < max_distinct_capacity; ++i) {
         CPD_TYPE temp_el = B_vec[i];
@@ -396,6 +454,7 @@ void CPD_validator::get_elements(vector<vector<q_r>> *el_vec) {
         temp_vec.insert(temp_vec.end(), temp_el);
     }*/
 }
+
 
 
 //void CPD_validator::prepare_B_vec_for_comparison(vector<CPD_TYPE> *v) {

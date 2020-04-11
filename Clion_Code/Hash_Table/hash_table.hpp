@@ -11,15 +11,10 @@
 #include <ostream>
 #include <cmath>
 #include "../Global_functions/macros.h"
+#include "../Global_functions/cuckoo_and_counting_macros.hpp"
 #include "../Hash/static_hashing.h"
 #include "../bit_operations/my_bit_op.hpp"
-//#include "../Hash/hashutil/hashutil.h"
 
-#define EMPTY (0x80000000)
-#define DELETED (0xc0000000)
-#define MAX_CUCKOO_LOOP (32)
-#define DEFAULT_BUCKET_SIZE (4)
-#define DEFAULT_MAX_LOAD_FACTOR (.5)
 
 //#define FREE_IND (0x80000000)
 //#define IS_FREE(x) ((x & MASK(31u)) == 0)

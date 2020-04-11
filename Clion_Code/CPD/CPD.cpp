@@ -68,11 +68,19 @@ auto CPD::insert(CPD_TYPE q, CPD_TYPE r) -> counter_status {
     size_t start_index, end_index;
     header_find(q, &start_index, &end_index);
 
-    size_t unpacked_start_index = start_index - q;
-    size_t unpacked_end_index = end_index - q;
+    size_t A_index = -1, rel_bit_index = -1;
+    bool in_body = body_find_wrapper(r, start_index - q, end_index - q, &A_index, &rel_bit_index);
 
+    if (!in_body)
+        return insert_new_helper(r, end_index, A_index, rel_bit_index);
+    else
+        return insert_inc_helper(r, end_index, A_index, rel_bit_index);
+
+    /*
     //new element (easy case).
     if (start_index == end_index) {
+//        return insert_new_helper(r, end_index, A_index, rel_bit_index);
+
         header_push_wrapper(end_index);
 
         if (DB) assert((q <= start_index) and (start_index <= end_index));
@@ -102,14 +110,62 @@ auto CPD::insert(CPD_TYPE q, CPD_TYPE r) -> counter_status {
     }
         //Insert new element
     else {
-        header_push_wrapper(end_index);
+        return insert_new_helper(r, end_index, A_index, rel_bit_index);
+        *//**header_push_wrapper(end_index);
         body_push_wrapper(r, A_index, rel_bit_index);
         auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
         counter_push(1, translate_counter_index_to_abs_bit_index(counter_index));
         assert(read_counter(counter_index));
 //        cout << "I4" << endl;
-        return not_a_member;
+        return not_a_member;**//*
+    }*/
+}
+
+auto CPD::insert_inc_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status {
+    auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
+    if (increase_counter(counter_index) == inc_overflow) {
+        insert_overflow_handler(r, end_index, A_index, rel_bit_index);
+        assert(false);
+        return inc_overflow;
     }
+    assert(read_counter(counter_index));
+    return OK;
+}
+
+auto CPD::insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status {
+    header_push_wrapper(end_index);
+    body_push_wrapper(r, A_index, rel_bit_index);
+    auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
+    counter_push(1, translate_counter_index_to_abs_bit_index(counter_index));
+    assert(read_counter(counter_index));
+    return not_a_member;
+}
+
+auto CPD::insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index,
+                            CPD_TYPE counter) -> counter_status {
+    header_push_wrapper(end_index);
+    body_push_wrapper(r, A_index, rel_bit_index);
+    auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
+    counter_push(counter, translate_counter_index_to_abs_bit_index(counter_index));
+    assert(read_counter(counter_index));
+    return not_a_member;
+}
+
+void CPD::insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r, CPD_TYPE counter) {
+    size_t start_index, end_index;
+    header_find(q, &start_index, &end_index);
+
+    size_t A_index = -1, rel_bit_index = -1;
+    bool in_body = body_find_wrapper(r, start_index - q, end_index - q, &A_index, &rel_bit_index);
+    assert(!in_body);
+//    if (!in_body)
+    insert_new_helper(r, end_index, A_index, rel_bit_index, counter);
+}
+
+auto CPD::insert_overflow_handler(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> void {
+    //todo delete the element, and move it to the next memory level.
+    // cout << "I2" << endl;
+    assert (false);
 }
 
 /*
@@ -118,6 +174,19 @@ void CPD::insert_new(CPD_TYPE r, size_t end_index) {
 }
 */
 
+
+auto CPD::insert_inc_attempt(CPD_TYPE q, CPD_TYPE r) -> counter_status {
+    size_t start_index, end_index;
+    header_find(q, &start_index, &end_index);
+
+    size_t A_index = -1, rel_bit_index = -1;
+    bool in_body = body_find_wrapper(r, start_index - q, end_index - q, &A_index, &rel_bit_index);
+
+    if (!in_body)
+        return not_a_member;
+
+    return insert_inc_helper(r, end_index, A_index, rel_bit_index);
+}
 
 
 void CPD::remove_old(CPD_TYPE q, CPD_TYPE r) {
@@ -170,10 +239,10 @@ void CPD::remove(CPD_TYPE q, CPD_TYPE r) {
 
 }
 
-auto CPD::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
+auto CPD::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status {
     size_t start_index = -1, end_index = -1;
     if (not header_lookup(q, &start_index, &end_index))
-        return false;
+        return not_a_member;
 
     size_t A_index = -1, rel_bit_index = -1;
     auto res = body_find_wrapper(r, start_index - q, end_index - q, &A_index, &rel_bit_index);
@@ -183,9 +252,11 @@ auto CPD::conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
             header_pull_wrapper(end_index);
             body_pull_wrapper(A_index, rel_bit_index);
             counter_pull(translate_counter_index_to_abs_bit_index(counter_index));
+            return dec_underflow;
         }
+        return OK;
     }
-    return res;
+    return not_a_member;
 
 
 }
@@ -873,6 +944,10 @@ auto CPD::is_full() -> bool {
     return get_capacity() == max_distinct_capacity;
 }
 
+auto CPD::is_empty() -> bool {
+    return get_capacity() == 0;
+}
+
 auto CPD::translate_to_unpacked_index(size_t A_index, size_t rel_bit_start_index) -> size_t {
     auto res = ((A_index * CPD_TYPE_SIZE) - (get_header_size_in_bits() - rel_bit_start_index)) / fp_size;
 
@@ -957,12 +1032,12 @@ void CPD::write_counter(size_t counter_index, CPD_TYPE value) {
         upper = (value & MASK(bits_left)) << (CPD_TYPE_SIZE - bits_left); // todo Check this.
 //        lower = (a[A_index + 1] << bits_left) >> bits_left; // clear lower's upper-bits. todo try mask instead.
 //        CPD_TYPE lower_att = a[A_index + 1] & MASK(bits_left) ; DOES NOT WORK.
-        lower = a[A_index + 1] & MASK(CPD_TYPE_SIZE - bits_left) ;
+        lower = a[A_index + 1] & MASK(CPD_TYPE_SIZE - bits_left);
 //        assert(lower_att2 == lower);
 //        assert(lower_att == lower);
         a[A_index + 1] = (upper | lower);
-        
-        
+
+
         /*assert(A_index < size);
         auto bits_to_take = counter_size - bits_left_in_slot;
         assert(bits_to_take > 0);
@@ -979,9 +1054,11 @@ void CPD::write_counter(size_t counter_index, CPD_TYPE value) {
     }
 }
 
+/*
 CPD::~CPD() {
     delete[] a;
 }
+*/
 
 void CPD::print_body_as_array() const {
     auto start = get_first_index_containing_the_body();

@@ -5,7 +5,6 @@
 #include "../Contiguous_PD/cg_PD.h"
 #include "../Hash_Table/hash_table.hpp"
 
-#define S_TYPE uint32_t
 
 template<class D, class S>
 class dict {

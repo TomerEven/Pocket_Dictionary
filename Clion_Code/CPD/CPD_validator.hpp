@@ -15,15 +15,13 @@ typedef vector<v_q_r> vv_q_r;
 class CPD_validator {
     CPD d;
     vector<CPD_TYPE> H_vec, B_vec, C_vec;
-    const size_t max_distinct_capacity, remainder_length, counter_size;
+    const size_t max_distinct_capacity, remainder_length, counter_size, quotient_range;
 
 public:
 
+    CPD_validator(size_t quotient_range, size_t max_distinct_capacity, size_t remainder_length, size_t counter_size);
+
     CPD_validator(size_t max_distinct_capacity, size_t remainder_length, size_t counter_size);
-
-    auto get_counter(size_t counter_index) -> CPD_TYPE;
-
-    void set_counter(size_t counter_index, size_t new_val);
 
     auto lookup(CPD_TYPE q, CPD_TYPE r) -> bool;
 
@@ -31,9 +29,11 @@ public:
 
     auto insert(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
+    auto insert_inc_attempt(CPD_TYPE q, CPD_TYPE r) -> counter_status;
+
     void remove(CPD_TYPE q, CPD_TYPE r);
 
-    auto conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool;
+    auto conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
     auto naive_comparison() -> bool;
 
@@ -55,6 +55,12 @@ public:
 
     void get_elements(vector<vector<q_r>> *el_vec);
 
+    auto get_counter(size_t counter_index) -> CPD_TYPE;
+
+    void set_counter(size_t counter_index, size_t new_val);
+
+    void insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r,CPD_TYPE counter);
+
 private:
     auto v_lookup(CPD_TYPE q, CPD_TYPE r) -> bool;
 
@@ -62,9 +68,9 @@ private:
 
     auto v_insert(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
-    void v_remove(CPD_TYPE q, CPD_TYPE r);
+    auto v_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
-    auto v_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool;
+    auto v_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
 
     void H_find(CPD_TYPE q, size_t *start, size_t *end);
@@ -94,6 +100,8 @@ private:
     auto get_CPD_counters_size_in_bits() -> size_t;
 
     void prepare_B_vec_for_comparison(vector<CPD_TYPE> *v);
+
+    counter_status v_insert_inc_attempt(uint32_t q, uint32_t r);
 };
 
 

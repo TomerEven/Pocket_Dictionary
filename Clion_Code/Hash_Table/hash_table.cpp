@@ -379,7 +379,7 @@ void hash_table<T>::insert_without_counter(T x) {
 
 
 template<typename T>
-void hash_table<T>::pop_attempt(T x) {
+void hash_table<T>::pop_attempt(T x){
 
 }
 

@@ -11,18 +11,9 @@
 
 #include <ostream>
 #include "../Global_functions/basic_functions.h"
+#include "../Global_functions/cuckoo_and_counting_macros.hpp"
 #include "../bit_operations/bit_op.h"
 
-#define CPD_TYPE uint32_t
-#define CPD_TYPE_SIZE (sizeof(CPD_TYPE) * (CHAR_BIT))
-#define DEFAULT_PD_CAPACITY (64u)
-#define DEFAULT_QUOTIENT_LENGTH (6u)
-#define DEFAULT_QUOTIENT_RANGE (1u<<DEFAULT_QUOTIENT_LENGTH)
-#define DEFAULT_COUNTER_SIZE (3u)
-
-enum counter_status {
-    inc_overflow, dec_underflow, OK, not_a_member
-};
 
 
 class CPD {
@@ -40,7 +31,7 @@ public:
      */
     CPD(size_t m, size_t f, size_t l, size_t counter_size);
 
-    virtual ~CPD();
+//    virtual ~CPD();
 
     auto lookup(CPD_TYPE q, CPD_TYPE r) -> bool;
 
@@ -66,7 +57,18 @@ public:
      */
     auto insert(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
+    /**
+     * when an element is dropped from a higher level.
+     * @param q
+     * @param r
+     * @param counter
+     * @return
+     */
+    void insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r,CPD_TYPE counter);
+
 //    void insert_new(CPD_TYPE r, size_t end_index);
+
+    auto insert_inc_attempt(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
     void remove(CPD_TYPE q, CPD_TYPE r);
 
@@ -80,11 +82,40 @@ public:
      */
     auto conditional_remove_old(CPD_TYPE q, CPD_TYPE r) -> bool;
 
-    auto conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool;
+    auto conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
     auto get_capacity() -> size_t;
 
+    auto is_full() -> bool;
+
+    auto is_empty() -> bool;
+
+
 private:
+
+    /**
+     * Called when the inserted element is a member of the PD.
+     * @param r
+     * @param end_index
+     * @param A_index
+     * @param rel_bit_index
+     * @return
+     */
+    auto insert_inc_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status;
+
+    /**
+     * Called when the inserted element is \NOT a member of the PD.
+     * @param r
+     * @param end_index
+     * @param A_index
+     * @param rel_bit_index
+     * @return not a member;
+     */
+    auto insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status;
+
+    auto insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index, CPD_TYPE counter) -> counter_status;
+
+    auto insert_overflow_handler(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> void;
 
     auto naive_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool;
 
@@ -97,8 +128,6 @@ private:
     auto get_first_index_containing_the_counters() const -> size_t;
 
     void print_as_consecutive_memory();
-
-    auto is_full() -> bool;
 
     auto read_counter(size_t counter_index) -> CPD_TYPE;
 

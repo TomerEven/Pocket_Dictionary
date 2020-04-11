@@ -91,18 +91,18 @@ validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, siz
     return true;
 
 }
-
-template<class D>
-auto v_filter(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv, double level1_load_factor,
-              double level2_load_factor) -> bool {
-    auto filter = D(filter_max_capacity, error_power_inv, level1_load_factor, level2_load_factor);
-//    cout << "\n\nfilter's info:" << endl;
-//    filter.get_info();
-    cout << "\nexpected #fp is: " << ((double) lookup_reps / (1u << error_power_inv)) << endl;
-    return validate_filter_core(&filter, filter_max_capacity, lookup_reps);
-
-
-}
+//
+//template<class D>
+//auto v_filter(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv, double level1_load_factor,
+//              double level2_load_factor) -> bool {
+//    auto filter = D(filter_max_capacity, error_power_inv, level1_load_factor, level2_load_factor);
+////    cout << "\n\nfilter's info:" << endl;
+////    filter.get_info();
+//    cout << "\nexpected #fp is: " << ((double) lookup_reps / (1u << error_power_inv)) << endl;
+//    return validate_filter_core(&filter, filter_max_capacity, lookup_reps);
+//
+//
+//}
 
 template<class D>
 auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t lookup_reps) -> bool {
@@ -124,7 +124,7 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
         const string val = *it;
         auto temp = &(*it);
         bool before_insertion = filter->lookup(temp);
-        bool BPC = (val == "SRLSTIKAL[^A_");
+//        bool BPC = (val == "SRLSTIKAL[^A_");
         filter->insert(temp);
         if (!filter->lookup(temp)) {
             filter->lookup(temp);
@@ -184,20 +184,25 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
 template<class D>
 auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_reps) -> bool {
     auto number_of_elements_in_the_filter = filter_max_capacity;
-//    D* d = filter;
-//    cout << "\n\nd's info:" << endl;
-//    filter->get_info();
 
     set<string> member_set, lookup_set, to_be_deleted_set;
     set_init(number_of_elements_in_the_filter / 2, &member_set);
     set_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
     set_init(lookup_reps, &lookup_set);
 
-    for (auto iter : member_set) filter->insert(&iter);
-    for (auto iter : to_be_deleted_set) filter->insert(&iter);
 
     size_t counter = 0;
+
     for (auto iter : member_set) {
+        filter->insert(&iter);
+        counter++;
+    }
+    for (auto iter : to_be_deleted_set) filter->insert(&iter);
+
+
+    counter = 0;
+    for (auto iter : member_set) {
+//        assert(filter->lookup(&bad_str));
         counter++;
         if (!filter->lookup(&iter)) {
             cout << "False negative:" << endl;
@@ -277,9 +282,30 @@ template bool
 validate_filter<gen_2Power<cg_PD>>(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l,
                                    size_t lookup_reps);
 
+//
+//template
+//auto v_filter<dict<cg_PD, hash_table<uint32_t>>>(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
+//                                                 double level1_load_factor, double level2_load_factor) -> bool;
+
 
 template
-auto v_filter<dict<cg_PD, hash_table<uint32_t>>>(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
-                                                 double level1_load_factor, double level2_load_factor) -> bool;
+auto validate_filter_core_mid<basic_multi_dict>(basic_multi_dict *filter, size_t filter_max_capacity,
+                                                size_t lookup_reps) -> bool;
 
+template
+auto validate_filter_core<basic_multi_dict>(basic_multi_dict *filter, size_t filter_max_capacity,
+                                            size_t lookup_reps) -> bool;
+
+template
+auto validate_filter_core_mid<safe_multi_dict>(safe_multi_dict *filter, size_t filter_max_capacity,
+                                               size_t lookup_reps) -> bool;
+
+template
+auto validate_filter_core<safe_multi_dict>(safe_multi_dict *filter, size_t filter_max_capacity,
+                                           size_t lookup_reps) -> bool;
+
+//
+//template
+//auto v_filter<multi_dict<CPD, multi_hash_table<uint32_t>>>(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
+//double level1_load_factor, double level2_load_factor) -> bool;
 

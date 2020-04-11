@@ -10,10 +10,10 @@ dict<D, S>::dict(size_t number_of_pd, size_t quotient_range, size_t single_pd_ca
          remainder_length(remainder_length),
          pd_index_length(ceil(log2(number_of_pd))),
          quotient_length(ceil(log2(single_pd_capacity + 1))),
-         sparse_element_length(remainder_length + pd_index_length + quotient_length),
-         sparse_counter_length(sizeof(D_TYPE) * CHAR_BIT - sparse_element_length) {
+         spare_element_length(remainder_length + pd_index_length + quotient_length),
+         sparse_counter_length(sizeof(D_TYPE) * CHAR_BIT - spare_element_length) {
 
-    assert(sparse_element_length <= sizeof(D_TYPE) * CHAR_BIT);
+    assert(spare_element_length <= sizeof(D_TYPE) * CHAR_BIT);
 
     //todo: this constructor is wrong.
     spare = new S(number_of_pd, quotient_range, single_pd_capacity, remainder_length);
@@ -97,7 +97,7 @@ void dict<D, S>::insert(const string *s) {
     if (pd_capacity_vec[pd_index] == single_pd_capacity) {
         assert(pd_vec[pd_index].is_full());
         insert_to_spare_with_pop(hash_val % SL(sparse_element_length));
-//        spare->insert(hash_val % SL(sparse_element_length));
+//        spare->insert(hash_val % SL(spare_element_length));
         return;
     }
     pd_vec[pd_index].insert(quot, r);
@@ -157,7 +157,7 @@ auto dict<D, S>::pop_attempt(string *s) -> S_TYPE * {
 //    uint32_t quot = -1, r = -1;
 //    split(hash_val, &pd_index, &quot, &r);
     S_TYPE b1 = -1, b2 = -1;
-    spare->my_hash(hash_val % SL(sparse_element_length), &b1, &b2);
+    spare->my_hash(hash_val % SL(spare_element_length), &b1, &b2);
     auto res1 = pop_attempt_by_bucket(b1);
     auto res2 = pop_attempt_by_bucket(b2);
     return (res2 != nullptr) ? res2 : res1;
@@ -220,7 +220,7 @@ void dict<D, S>::get_info() {
                        quotient_length, sparse_element_length, sparse_counter_length};
 
     string names[num] = {"number_of_pd", "capacity", "quotient_range", "single_pd_capacity", "remainder_length",
-                         "pd_index_length", "quotient_length", "sparse_element_length", "sparse_counter_length"};
+                         "pd_index_length", "quotient_length", "spare_element_length", "sparse_counter_length"};
     for (int i = 0; i < num; ++i) {
         cout << names[i] << ": " << val[i] << endl;
     }
