@@ -119,6 +119,9 @@ public:
      */
     auto insert(T x) -> counter_status;
 
+    auto insert_inc_att(T x) -> counter_status;
+
+
     /**
      * insert new element, i.e element currently not \in "this".
      * @param y
@@ -229,6 +232,9 @@ public:
         *b1 = (hashint(x)) % number_of_buckets_in_each_table;
         *b2 = (hashint2(x) % number_of_buckets_in_each_table) + number_of_buckets_in_each_table;
     }
+
+    auto get_hash_buckets(T x) -> std::tuple<size_t, size_t>;
+
 
     //Getters
 

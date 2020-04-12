@@ -13,10 +13,7 @@
 #include <climits>
 #include <iomanip>
 #include "../Global_functions/macros.h"
-//#include "../Global_functions/basic_functions.h"
-
-//#include "basic_functions.h"
-using namespace std;
+#include "my_bit_op.hpp"
 
 template<typename T>
 void print_vector(const vector<T> *v);
@@ -88,6 +85,19 @@ void from_val_vector_to_bit_vector_with_given_word_size(const vector<T> *val_vec
 template<typename T>
 void from_val_vector_to_bit_vector_representing_PD_header(const vector<T> *val_vec, vector<bool> *dest);
 
+/**
+ *
+ * @tparam T
+ * @param arr
+ * @param abs_bit_size size of header in bits.
+ * @param max_capacity number of zeros in header
+ * @param dest
+ */
+template<typename T>
+void
+from_val_vector_to_bit_vector_representing_PD_header_inverse(const T *arr, size_t abs_bit_size, size_t max_capacity,
+                                                             vector<T> *dest);
+
 
 auto read_FP_from_vector_by_index(const vector<bool> *v, size_t bit_start_index, size_t fp_size) -> uint32_t;
 
@@ -107,18 +117,30 @@ void
 from_array_to_vector_by_bit_limits(vector<bool> *vec, const T *a, size_t abs_bit_start_index, size_t abs_bit_end_index);
 
 
-template<typename T>
 auto
-from_array_to_vector_by_bit_limits_mid(vector<bool> *vec, const T *a, size_t abs_bit_start_index,
-                                       size_t abs_bit_end_index) -> std::tuple<size_t, size_t>;
+from_array_to_vector_by_bit_limits_mid(size_t abs_bit_start_index, size_t abs_bit_end_index,
+                                       size_t slot_size = 32u) -> std::tuple<size_t, size_t>;
 
 template<typename T>
-auto my_bin(T n, size_t length = 32) -> string;
+auto my_bin(T n, size_t length = 32) -> std::string;
 
 
 void vector_differences_printer(const vector<bool> *valid_vec, const vector<bool> *att_vec);
 
 void vector_differences_printer(const vector<bool> *valid_vec, const vector<bool> *att_vec, size_t word_size);
+
+/////
+
+
+template<typename T>
+void store_header(vector<T> *vec);
+
+template<typename T>
+void store_remainders(vector<T> *vec);
+
+template<typename T>
+void store_counters(vector<T> *vec);
+
 
 //// Don't use:
 auto compare_vector_and_array(const vector<bool> *v, const uint32_t *a) -> int;

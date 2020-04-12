@@ -220,8 +220,9 @@ auto CPD_validator::v_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> counter_stat
 }
 
 void CPD_validator::remove_element_completely(CPD_TYPE q, size_t unpacked_index) {
-    B_vec.erase(B_vec.begin() + unpacked_index);
     H_vec[q]--;
+    B_vec.erase(B_vec.begin() + unpacked_index);
+    C_vec.erase(C_vec.begin() + unpacked_index);
 }
 
 

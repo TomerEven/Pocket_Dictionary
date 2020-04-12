@@ -8,7 +8,7 @@
 #include <vector>
 #include <cstdint>
 #include "../Global_functions/macros.h"
-#include "bit_word_converter.hpp"
+//#include "bit_word_converter.hpp"
 
 using namespace std;
 typedef unsigned int u32;

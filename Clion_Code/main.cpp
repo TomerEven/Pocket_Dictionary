@@ -36,7 +36,7 @@ int main() {
     std::cout << "Hello, World!" << std::endl;
 //    all();
 
-    size_t reps = 1u << 18u, max_distinct_capacity = 1u<<18u;
+    size_t reps = 1u << 16u, max_distinct_capacity = 1u << 16u;
     size_t remainder_length = 13;
     size_t l1_counter_size = 4, l2_counter_size = 8;
     double l1_LF = 0.85, l2_LF = 0.25;
@@ -44,11 +44,34 @@ int main() {
         v_wrapper_single(max_distinct_capacity, remainder_length, counter_size, (i+1) * 0.1, false);
         cout << i << endl;
     }*/
-    auto res = v_counting_filter<basic_multi_dict>(max_distinct_capacity, reps, remainder_length, l1_counter_size, l2_counter_size, l1_LF, l2_LF);
-    assert (res);
-//    res = v_counting_filter<safe_multi_dict>(max_distinct_capacity, reps, remainder_length, l1_counter_size, l2_counter_size, l1_LF, l2_LF);
-//    assert (res);
 
+
+    auto res2 = v_CF_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+                                           l2_counter_size, l1_LF, l2_LF);
+    assert(res2);
+
+    auto s_res2 = v_CF_wrapper<safe_multi_dict64>(max_distinct_capacity >> 6u, reps >> 6u, remainder_length,
+                                                  l1_counter_size,
+                                                  l2_counter_size, l1_LF, l2_LF);
+    assert(s_res2);
+
+    assert(v_CF_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size, l2_counter_size,
+                                      l1_LF, l2_LF, 32u));
+
+//    auto safe_res64 = v_counting_filter<safe_multi_dict64>(max_distinct_capacity >> 6u, reps >> 6u, remainder_length,
+//                                                           l1_counter_size, l2_counter_size, l1_LF, l2_LF);
+//    assert (safe_res64);
+//
+//    auto res64 = v_counting_filter<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+//                                                         l2_counter_size, l1_LF, l2_LF);
+//    assert (res64);
+
+//    safe_multi_dict64
+
+
+//    auto basic_res = v_counting_filter<basic_multi_dict>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+//                                                         l2_counter_size, l1_LF, l2_LF);
+//    assert (basic_res);
     /*for (int j = 0; j < 32 - remainder_length; ++j) {
         auto res = op_sequence_iter(reps, max_distinct_capacity, remainder_length + j, counter_size + j / 4, .25, 1, false);
         assert(res);

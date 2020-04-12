@@ -29,7 +29,13 @@
 #define MS_TYPE uint32_t
 
 enum counter_status {
-    inc_overflow, dec_underflow, OK, not_a_member
+    inc_overflow,
+    dec_underflow,
+    OK,
+    not_a_member,
+    not_a_member_can_be_inserted,
+    not_a_member_can_NOT_be_inserted,
+    succeed
 };
 
 #endif //CLION_CODE_CUCKOO_AND_COUNTING_MACROS_HPP

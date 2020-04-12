@@ -14,7 +14,7 @@
 #include "../CPD/CPD_validator.hpp"
 
 
-template<class D, class S>
+template<class D, class S, typename S_T>
 class multi_dict {
     vector<D> pd_vec;
     vector<uint> pd_capacity_vec;
@@ -27,6 +27,8 @@ class multi_dict {
     const size_t level1_counter_size, level2_counter_size;
 
     const size_t spare_element_length, sparse_counter_length;
+    const string bad_str = "GLXDVIQ\\AIYBN";
+    const string prev_str = "AJFCEPF\\XHQZOD^";
 //    const string bad_str = "@BO@JWLZWGC";
 public:
     multi_dict(size_t max_number_of_elements, size_t error_power_inv, size_t level1_counter_size,
@@ -39,6 +41,7 @@ public:
 
     void insert(const string *s);
 
+
     void remove(const string *s);
 
     void get_info();
@@ -47,23 +50,30 @@ public:
 
     auto sum_pd_capacity() -> size_t;
 
+    auto get_PDs_hash_val(const string *s) -> std::tuple<S_T, S_T, S_T>;
+
+    auto get_spare_hash_val(const string *s) -> std::tuple<std::tuple<size_t, size_t>, std::tuple<S_T, S_T, S_T>>;
+
+    auto do_elements_collide(const string *s1, const string *s2) -> bool;
+
 private:
+    void insert_full_PD_helper(S_T hash_val, size_t pd_index, uint32_t quot, uint32_t r);
 
-    void insert_to_spare(MS_TYPE y);
+    void insert_to_spare(S_T y);
 
-    void insert_to_spare_with_pop(MS_TYPE hash_val);
+    void insert_to_spare_with_pop(S_T hash_val);
 
-    void insert_to_spare_with_known_counter(MS_TYPE hash_val, size_t counter);
+    void insert_to_spare_with_known_counter(S_T hash_val, size_t counter);
 
-    void insert_level1_inv_overflow_handler(MS_TYPE hash_val);
+    void insert_level1_inc_overflow_handler(S_T hash_val);
 
-    auto insert_to_bucket_attempt(MS_TYPE y, size_t bucket_index) -> counter_status;
+    auto insert_to_bucket_attempt(S_T y, size_t bucket_index) -> counter_status;
 
-    auto insert_to_bucket_attempt(MS_TYPE y, size_t bucket_index, bool pop_attempt) -> counter_status;
+    auto insert_to_bucket_attempt(S_T y, size_t bucket_index, bool pop_attempt) -> counter_status;
 
-    auto insert_inc_to_bucket_attempt(MS_TYPE y, size_t bucket_index) -> std::tuple<counter_status, size_t>;
+    auto insert_inc_to_bucket_attempt(S_T y, size_t bucket_index) -> std::tuple<counter_status, size_t>;
 
-    auto pop_attempt(string *s) -> MS_TYPE *;
+    auto pop_attempt(string *s) -> S_T *;
 
     /**
      * Try to drop an element in the bucket to lower level.
@@ -72,22 +82,33 @@ private:
      * @param y element with counter.
      * @return
      */
-    auto pop_attempt_by_bucket(MS_TYPE y, size_t bucket_index) -> size_t;
+    auto pop_attempt_by_bucket(S_T y, size_t bucket_index) -> size_t;
 
-    auto pop_attempt_with_insertion_by_bucket(MS_TYPE hash_val, size_t bucket_index) -> bool;
+    auto pop_attempt_with_insertion_by_bucket(S_T hash_val, size_t bucket_index) -> bool;
 
     /**
      * reads the element if
      * @param element
      * @return
      */
-    auto single_pop_attempt(MS_TYPE element) -> bool;
+    auto single_pop_attempt(S_T element) -> bool;
 
-    auto single_pop_attempt(MS_TYPE temp_el, MS_TYPE counter) -> bool;
+    auto single_pop_attempt(S_T temp_el, S_T counter) -> bool;
 
 
-    inline auto wrap_hash(const string *s) -> MS_TYPE {
+    inline auto wrap_hash(const string *s) -> S_T {
         return my_hash(s, HASH_SEED) & MASK(spare_element_length);
+    }
+
+    auto wrap_hash_split(const string *s) -> std::tuple<S_T, S_T, S_T> {
+        S_T h = my_hash(s, HASH_SEED) & MASK(spare_element_length);
+        S_T r, q, pd_index;
+        r = h & MASK(remainder_length);
+        h >>= remainder_length;
+        q = h % (quotient_range);
+        h >>= quotient_length;
+        pd_index = h % pd_vec.size();
+        return std::make_tuple(pd_index, q, r);
     }
 
     inline void wrap_split(const string *s, size_t *pd_index, D_TYPE *q, D_TYPE *r) {
@@ -107,7 +128,21 @@ private:
 
 static auto get_multi_spare_max_capacity(size_t dict_max_capacity, double level1_load_factor) -> size_t;
 
+template<typename S_T>
+using multi_dict_ST = multi_dict<CPD, multi_hash_table<S_T>, S_T>;
+
+template<typename S_T>
+using multi_dict_validator_ST = multi_dict<CPD_validator, multi_hash_table<S_T>, S_T>;
+
+typedef multi_dict_ST<uint32_t> basic_multi_dict;
+typedef multi_dict_ST<uint64_t> multi_dict64;
+typedef multi_dict_validator_ST<uint32_t> safe_multi_dict;
+typedef multi_dict_validator_ST<uint64_t> safe_multi_dict64;
+
+/*
 typedef multi_dict<CPD, multi_hash_table<uint32_t>> basic_multi_dict;
 typedef multi_dict<CPD_validator, multi_hash_table<uint32_t>> safe_multi_dict;
+typedef multi_dict<CPD_validator, multi_hash_table<size_t>> multi_dict64;
+*/
 
 #endif //CLION_CODE_MULTI_DICT_HPP

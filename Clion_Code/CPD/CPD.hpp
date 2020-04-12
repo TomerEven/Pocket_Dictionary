@@ -13,7 +13,7 @@
 #include "../Global_functions/basic_functions.h"
 #include "../Global_functions/cuckoo_and_counting_macros.hpp"
 #include "../bit_operations/bit_op.h"
-
+#include "../bit_operations/bit_word_converter.hpp"
 
 
 class CPD {
@@ -64,7 +64,7 @@ public:
      * @param counter
      * @return
      */
-    void insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r,CPD_TYPE counter);
+    void insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r, CPD_TYPE counter);
 
 //    void insert_new(CPD_TYPE r, size_t end_index);
 
@@ -91,6 +91,9 @@ public:
     auto is_empty() -> bool;
 
 
+    auto has_unique_remainders() -> bool;
+
+
 private:
 
     /**
@@ -113,7 +116,8 @@ private:
      */
     auto insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status;
 
-    auto insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index, CPD_TYPE counter) -> counter_status;
+    auto insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index,
+                           CPD_TYPE counter) -> counter_status;
 
     auto insert_overflow_handler(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> void;
 

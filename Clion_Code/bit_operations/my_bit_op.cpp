@@ -4,7 +4,6 @@
 
 //#include "Naive_Counter_Endec.hpp"
 #include "my_bit_op.hpp"
-#include "bit_word_converter.hpp"
 
 template<typename T>
 auto compute_diff_value_safe(T x, T y) -> int {
@@ -91,7 +90,7 @@ void find_kth_interval_simple(T *a, size_t a_size, size_t k, size_t *start, size
             return;
         }
         if (temp_counter > k) {
-            uint shift = select_r(a[i], k) - 32 + 1;
+            uint shift = select_r(a[i], k) - slot_size + 1;
             *end = (i * slot_size) + shift + __builtin_clz(a[i] << (shift));
             *start = (i * slot_size) + shift;
             if (DB) cout << "h5" << endl;
@@ -123,6 +122,48 @@ void find_kth_interval_simple(T *a, size_t a_size, size_t k, size_t *start, size
     assert(false);
 }
 
+template<typename T>
+auto find_kth_interval_simple(T *a, size_t a_size, size_t k) -> std::tuple<size_t, size_t> {
+    if (k == 0) {
+        return std::make_tuple(0, find_first_set_bit(a, a_size));
+    }
+    auto slot_size = sizeof(a[0]) * CHAR_BIT;
+    for (int i = 0; i < a_size; ++i) {
+        if (k == 1) {
+            return find_first_and_second_set_bits(&a[i], a_size - i);
+            /**start += (i) * slot_size;
+            *end += (i) * slot_size;
+            cout << "h2" << endl;
+            return;*/
+        }
+
+        auto temp_counter = __builtin_popcount(a[i]);
+        if (temp_counter == k) {
+            size_t start, end;
+
+            start = ((i + 1) * slot_size) - __builtin_ctz(a[i]);
+            end = find_first_set_bit(&a[i + 1], a_size - (i + 1)) + slot_size * (i + 1);
+            return std::make_tuple(start, end);
+
+            /*cout << "h3" << endl;
+            return;*/
+        }
+        if (temp_counter > k) {
+            size_t start, end;
+
+            uint shift = select_r(a[i], k) - slot_size + 1;
+
+            end = (i * slot_size) + shift + __builtin_clz(a[i] << (shift));
+            start = (i * slot_size) + shift;
+            return std::make_tuple(start, end);
+            /*if (DB) cout << "h5" << endl;
+            return;*/
+        }
+        k -= temp_counter;
+    }
+    assert(false);
+}
+
 void word_k_select(uint32_t word, size_t k, size_t *start, size_t *end) {
 
 }
@@ -137,7 +178,7 @@ auto find_first_set_bit(T *a, size_t a_size) -> size_t {
 }
 
 template<typename T>
-void find_first_and_second_set_bits(T *a, size_t a_size, size_t *first, size_t *second) {
+void find_first_and_second_set_bits(const T *a, size_t a_size, size_t *first, size_t *second) {
     auto slot_size = sizeof(a[0]) * CHAR_BIT;
     uint i = 0;
     while (a[i] == 0) i++;
@@ -154,6 +195,34 @@ void find_first_and_second_set_bits(T *a, size_t a_size, size_t *first, size_t *
     while (a[++i] == 0);
     bit = __builtin_clz(a[i]);
     *second = i * slot_size + bit;
+//    if (DB) cout << "h2" << endl;
+}
+
+template<typename T>
+auto find_first_and_second_set_bits(const T *a, size_t a_size) -> std::tuple<size_t, size_t> {
+    auto slot_size = sizeof(a[0]) * CHAR_BIT;
+    uint i = 0;
+    while (a[i] == 0) i++;
+    auto bit = __builtin_clz(a[i]);
+    T slot = a[i] << (bit + 1);
+    if (slot) {
+        auto length = __builtin_clz(slot);
+        return std::make_tuple(i * slot_size + bit + 1, i * slot_size + bit + 1 + length);
+        /*
+//        *first = i * slot_size + bit + 1;
+//        *second = i * slot_size + bit + 1 + length;
+//
+//        if (DB) cout << "h1" << endl;
+        return;
+*/
+    }
+    size_t first = i * slot_size + bit + 1;
+    size_t second;
+//    *first = i * slot_size + bit + 1;
+    while (a[++i] == 0);
+    bit = __builtin_clz(a[i]);
+    second = i * slot_size + bit;
+    return std::make_tuple(first, second);
 //    if (DB) cout << "h2" << endl;
 }
 
@@ -630,9 +699,6 @@ auto vector_last_k_bits_are_zero(vector<bool> *vec, size_t k) -> bool {
 }
 
 
-
-
-
 template<typename T>
 void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size) {
     size_t slot_size = (sizeof(a[0]) * CHAR_BIT);
@@ -647,8 +713,6 @@ void from_array_to_vector(vector<bool> *vec, const T *a, size_t a_size) {
         }
     }
 }
-
-
 
 
 template<typename T>

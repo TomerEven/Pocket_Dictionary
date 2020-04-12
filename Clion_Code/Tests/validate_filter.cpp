@@ -182,6 +182,42 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
 }
 
 template<class D>
+auto v_TP_lookups(D *filter, set<string> *el_set) -> bool {
+    size_t counter = 0;
+    for (const string &el: *el_set) {
+        if (!filter->lookup(&el)) {
+            cout << "lookup failed." << endl;
+            cout << "counter: " << counter << endl;
+            cout << "element: " << el << endl;
+            filter->lookup(&el);
+            return false;
+        }
+        counter++;
+    }
+    return true;
+
+}
+
+template<class D>
+auto v_FP_counter(D *filter, set<string> *lookup_set, vector<set<string> *> *member_vec) -> size_t {
+    size_t fp_counter = 0;
+    for (auto iter : *lookup_set) {
+        if (filter->lookup(&iter)) {
+            bool iter_is_fp = true;
+            for (auto temp_set : *member_vec) {
+                if (temp_set->find(iter) != temp_set->end()) {
+                    iter_is_fp = false;
+                    break;
+                }
+            }
+            if (iter_is_fp)
+                fp_counter++;
+        }
+    }
+    return fp_counter;
+}
+
+template<class D>
 auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_reps) -> bool {
     auto number_of_elements_in_the_filter = filter_max_capacity;
 
@@ -193,6 +229,7 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
 
     size_t counter = 0;
 
+    /**Insertion*/
     for (auto iter : member_set) {
         filter->insert(&iter);
         counter++;
@@ -200,6 +237,7 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
     for (auto iter : to_be_deleted_set) filter->insert(&iter);
 
 
+    /**Lookup*/
     counter = 0;
     for (auto iter : member_set) {
 //        assert(filter->lookup(&bad_str));
@@ -218,6 +256,7 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
         }
     }
 
+    /**Count False positive*/
     size_t fp_counter = 0;
     for (auto iter : lookup_set) {
         bool c1, c2;
@@ -233,13 +272,36 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
 //            cout << "False Positive:" << endl;
         }
     }
-
     cout << "\nnumber of false-positive is: " << fp_counter << endl;
-//    printf("False positive ratio is:%f, for l:%zu. expected ratio:%f.\n", fp_counter / (double) (lookup_set.size()), l,
+
+    //    printf("False positive ratio is:%f, for l:%zu. expected ratio:%f.\n", fp_counter / (double) (lookup_set.size()), l,
 //           pow(.5, l));
 
+/*//    string bad_str = "GLXDVIQ\\AIYBN";
+//    string prev_str = "AJFCEPF\\XHQZOD^";
+//    cout << "filter->lookup_multi(&bad_str) " << filter->lookup_multi(&bad_str) << endl;
+//    cout << "filter->lookup_multi(&prev_str) " << filter->lookup_multi(&prev_str) << endl;
+//    cout << endl;*/
     counter = 0;
+//    size_t bad_iter = 30315;
+    string bad_el = "Z]\\P]SZF";
+    assert(filter->lookup(&bad_el));
+
+    /**Deletions*/
     for (auto iter : to_be_deleted_set) {
+        /*
+    //        bool BPC = (counter == 5431);
+    //        if ((counter < bad_iter) and (!filter->lookup(&bad_str))) {
+    ////            cout << "counter is " << counter << endl;
+    //
+    //        }
+
+    //        if (iter == bad_str) {
+    //            cout << "removing bad_str. counter is " << counter << endl;
+    //            cout << "filter->lookup_multi(&bad_str) " << filter->lookup_multi(&bad_str) << endl;
+    //            cout << endl;
+    //        }
+    */
         if (!filter->lookup(&iter)) {
             cout << "False negative:" << endl;
             filter->lookup(&iter);
@@ -247,9 +309,12 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
         }
         filter->remove(&iter);
         counter++;
+        assert(filter->lookup(&bad_el));
+
     };
 
     counter = 0;
+    assert(filter->lookup(&bad_el));
     for (auto iter : member_set) {
         bool c = to_be_deleted_set.find(iter) != to_be_deleted_set.end();
         if (c)
@@ -303,6 +368,41 @@ auto validate_filter_core_mid<safe_multi_dict>(safe_multi_dict *filter, size_t f
 template
 auto validate_filter_core<safe_multi_dict>(safe_multi_dict *filter, size_t filter_max_capacity,
                                            size_t lookup_reps) -> bool;
+
+
+template
+auto validate_filter_core_mid<multi_dict64>(multi_dict64 *filter, size_t filter_max_capacity,
+                                            size_t lookup_reps) -> bool;
+
+template
+auto validate_filter_core<multi_dict64>(multi_dict64 *filter, size_t filter_max_capacity,
+                                        size_t lookup_reps) -> bool;
+
+template
+auto validate_filter_core<safe_multi_dict64>(safe_multi_dict64 *filter, size_t filter_max_capacity,
+                                             size_t lookup_reps) -> bool;
+
+
+template
+auto validate_filter_core_mid<safe_multi_dict64>(safe_multi_dict64 *filter, size_t filter_max_capacity,
+                                                 size_t lookup_reps) -> bool;
+
+
+template auto v_TP_lookups<multi_dict64>(multi_dict64 *filter, set<string> *el_set) -> bool;
+
+template auto v_TP_lookups<safe_multi_dict64>(safe_multi_dict64 *filter, set<string> *el_set) -> bool;
+
+
+template auto
+v_FP_counter<multi_dict64>(multi_dict64 *filter, set<string> *lookup_set, vector<set<string> *> *member_vec) -> size_t;
+
+
+template auto
+v_FP_counter<safe_multi_dict64>(safe_multi_dict64 *filter, set<string> *lookup_set,
+                                vector<set<string> *> *member_vec) -> size_t;
+
+
+
 
 //
 //template

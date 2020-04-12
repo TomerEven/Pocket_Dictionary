@@ -6,6 +6,7 @@
 #define CLION_CODE_VALIDATE_BIT_OP_HPP
 
 #include "../bit_operations/my_bit_op.hpp"
+#include "../bit_operations/bit_word_converter.hpp"
 #include "../Global_functions/basic_functions.h"
 
 auto validate_find_kth_interval_iter(size_t reps, size_t a_size) -> bool;
@@ -76,6 +77,8 @@ auto v_read_k_words_fixed_length_rand(size_t reps, size_t element_length) -> boo
 template<typename T>
 auto v_from_array_to_vector_by_bit_limits_single(const T *a, size_t a_size, size_t abs_bit_start_index,
                                                  size_t abs_bit_end_index) -> bool;
+
+//auto v_from_val_vector_to_bit_vector_representing_PD_header_inverse
 //template<typename T>
 //auto v_from_array_to_vector_by_bit_limits_single2(const T *a, size_t a_size, size_t ) -> bool;
 

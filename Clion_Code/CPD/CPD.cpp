@@ -48,6 +48,8 @@ auto CPD::lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
         return 0;
 
     auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
+    auto res = read_counter(counter_index);
+    assert(res <= MASK(counter_size));
     return read_counter(counter_index);
 }
 
@@ -152,6 +154,7 @@ auto CPD::insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t
 }
 
 void CPD::insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r, CPD_TYPE counter) {
+    assert(counter <= MASK(counter_size));
     size_t start_index, end_index;
     header_find(q, &start_index, &end_index);
 
@@ -1098,4 +1101,8 @@ auto operator<<(ostream &os, const CPD &cpd) -> ostream & {
        << cpd.body_and_counters_has_joined_slot;
        return os;
        */
+}
+
+auto CPD::has_unique_remainders() -> bool {
+    return false;
 }

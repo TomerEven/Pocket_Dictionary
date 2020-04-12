@@ -69,14 +69,19 @@ auto multi_hash_table<T>::find_multiplicities(const T x) -> uint32_t {
 
 template<typename T>
 auto multi_hash_table<T>::insert(const T x) -> counter_status {
-    auto index = find_element_table_index(x);
-    if (index != table_size) {
-        return increase_counter(index);
-    }
+    insert_inc_att(x);
     insert_new(add_counter_to_new_element(x));
     return OK;
 }
 
+template<typename T>
+auto multi_hash_table<T>::insert_inc_att(T x) -> counter_status {
+    auto index = find_element_table_index(x);
+    if (index != table_size)
+        return increase_counter(index);
+
+    return not_a_member;
+}
 
 template<typename T>
 void multi_hash_table<T>::insert_new(const T y) {
@@ -178,7 +183,7 @@ auto multi_hash_table<T>::remove(const T x) -> counter_status {
     my_hash(x, &b1, &b2);
 
     auto res = remove_helper(x, b1);
-    if (res == -1)
+    if (res == not_a_member)
         return remove_helper(x, b2);
 
     return res;
@@ -247,6 +252,8 @@ multi_hash_table<T>::get_element_with_counter_by_bucket_index_and_location(size_
 template<typename T>
 auto multi_hash_table<T>::get_counter_by_table_index(size_t table_index) -> size_t {
     assert(is_occupied(table_index));
+    auto res = table[table_index] >> element_size;
+    assert (res <= MASK(counter_size));
     return table[table_index] >> element_size;
 }
 
@@ -362,8 +369,9 @@ auto multi_hash_table<T>::increase_counter(size_t table_index) -> counter_status
         // Different solution: Ignoring this insertion.
         return inc_overflow;
     }
-
-    table[table_index] = ((++counter) << element_size) | (table_index & MASK(element_size));
+    auto prev_val = table[table_index];
+    auto new_val = ((counter + 1) << element_size) | (table_index & MASK(element_size));
+    table[table_index] = ((counter + 1) << element_size) | (table_index & MASK(element_size));
     assert(is_occupied(table_index));
     return OK;
 }
@@ -456,6 +464,18 @@ void multi_hash_table<T>::set_element(T x, size_t counter, size_t table_index) {
     table[table_index] = y;
 }
 
+template<typename T>
+auto multi_hash_table<T>::get_hash_buckets(T x) -> std::tuple<size_t, size_t> {
+    x &= MASK(element_size);
+    size_t number_of_buckets_in_each_table = (table_size / bucket_size) / 2;
+    size_t b1 = (hashint(x)) % number_of_buckets_in_each_table;
+    size_t b2 = (hashint2(x) % number_of_buckets_in_each_table) + number_of_buckets_in_each_table;
+    return std::make_tuple(b1, b2);
+}
+
 
 template
 class multi_hash_table<uint32_t>;
+
+template
+class multi_hash_table<size_t>;

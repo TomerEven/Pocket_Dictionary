@@ -51,7 +51,7 @@ void from_array_of_words_to_bit_vector(vector<bool> *vec, const T *a, size_t a_s
 
 template<typename T>
 void from_bit_vector_to_array_of_words(const vector<bool> *v, T *a, size_t a_size) {
-    size_t slot_size = sizeof(T) * CHAR_BIT;;
+    size_t slot_size = sizeof(T) * CHAR_BIT;
     size_t expected_size = INTEGER_ROUND(v->size(), slot_size);
     assert(a_size == expected_size);
 
@@ -150,6 +150,54 @@ from_val_vector_to_bit_vector_representing_PD_header(const vector<T> *val_vec, v
     */
 }
 
+template<typename T>
+void
+from_val_vector_to_bit_vector_representing_PD_header_inverse(const T *arr, size_t abs_bit_size, size_t max_capacity,
+                                                             vector<T> *dest) {
+
+    if (!dest->empty()) {
+        cout << "dest is not empty" << endl;
+    }
+//    auto slot_size = sizeof(T) * CHAR_BIT;
+    if (abs_bit_size != (max_capacity << 1u)) {
+        cout << "abs_bit_size != (max_capacity << 1u): values are " << abs_bit_size << ", " << (max_capacity << 1u)
+             << endl;
+        assert(false);
+    }
+    vector<bool> temp_vec;
+    from_array_to_vector_by_bit_limits(&temp_vec, arr, 0, abs_bit_size);
+
+    size_t temp_vec_index = 0;
+    while (temp_vec_index < temp_vec.size()) {
+        if (temp_vec[temp_vec_index]) {
+            size_t counter = 1;
+            while (temp_vec[temp_vec_index + counter]) {
+                counter++;
+            }
+            dest->insert(dest->end(), counter);
+            temp_vec_index += counter;
+        } else {
+            ++temp_vec_index;
+        }
+    }
+
+    if (dest->size() != max_capacity){
+        cout << "dest->size()=" << dest->size() << endl;
+        cout << "max_capacity=" << max_capacity << endl;
+    }
+    /*
+    //    size_t a_size = INTEGER_ROUND(abs_bit_size, slot_size);
+    size_t last_on_bit = 0;
+    for (int k = 0; k < max_capacity; ++k) {
+        auto tp = find_kth_interval_simple(arr, a_size, k);
+        auto ones_count = std::get<1>(tp) - std::get<0>(tp);
+        dest->insert(dest->end(), ones_count);
+        if (k + 1 == max_capacity)
+            last_on_bit == std::get<1>(tp) - 1;
+    }
+    //todo validate every bit after that is zero.*/
+
+}
 
 template<typename T>
 auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t bits_lim) -> int {
@@ -251,8 +299,8 @@ void from_array_to_vector_by_bit_limits(vector<bool> *vec, const T *a, size_t ab
     }
 */
     size_t mid_start_index, length;
-    std::tie(mid_start_index, length) = from_array_to_vector_by_bit_limits_mid(vec, a, abs_bit_start_index,
-                                                                               abs_bit_end_index);
+    std::tie(mid_start_index, length) = from_array_to_vector_by_bit_limits_mid(abs_bit_start_index,
+                                                                               abs_bit_end_index, sizeof(T) * CHAR_BIT);
     from_array_of_words_to_bit_vector(vec, &(a[mid_start_index]), length);
 
     if (abs_bit_start_index % slot_size != 0) {
@@ -283,10 +331,8 @@ void from_array_to_vector_by_bit_limits(vector<bool> *vec, const T *a, size_t ab
 }
 
 
-template<typename T>
-auto from_array_to_vector_by_bit_limits_mid(vector<bool> *vec, const T *a, size_t abs_bit_start_index,
-                                            size_t abs_bit_end_index) -> std::tuple<size_t, size_t> {
-    size_t slot_size = sizeof(T) * CHAR_BIT;
+auto from_array_to_vector_by_bit_limits_mid(size_t abs_bit_start_index, size_t abs_bit_end_index,
+                                            size_t slot_size) -> std::tuple<size_t, size_t> {
 
     if (abs_bit_start_index % slot_size) {
         abs_bit_start_index = abs_bit_start_index - (abs_bit_start_index % slot_size) + slot_size;
@@ -444,6 +490,24 @@ void write_FP_to_vector_by_index(vector<bool> *v, size_t index, uint32_t remaind
     }
 }
 
+template<typename T>
+void store_header(vector<T> *vec) {
+
+}
+
+template<typename T>
+void store_remainders(vector<T> *vec) {
+
+}
+
+template<typename T>
+void store_counters(vector<T> *vec) {
+
+}
+
+/***********************************************************************************************************************
+Templates
+***********************************************************************************************************************/
 
 template string my_bin<uint32_t>(uint32_t n, size_t length);
 

@@ -10,6 +10,7 @@
 #include <ostream>
 #include "../Global_functions/basic_functions.h"
 #include "../bit_operations/bit_op.h"
+#include "../bit_operations/bit_word_converter.hpp"
 
 #define CG_TYPE uint32_t
 #define CG_TYPE_SIZE (sizeof(CG_TYPE) * (CHAR_BIT))

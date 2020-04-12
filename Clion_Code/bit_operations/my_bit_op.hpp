@@ -14,9 +14,7 @@
 #include "../Global_functions/macros.h"
 #include "bit_op.h"
 #include "../Global_functions/basic_functions.h"
-#include "../bit_operations/bit_op.h"
-#include "../bit_operations/my_bit_op.hpp"
-//#include "Naive_Counter_Endec.hpp"
+//#include "bit_word_converter.hpp"
 
 
 using namespace std;
@@ -65,6 +63,9 @@ auto get_x_bit_length(const T x) -> size_t;
 template<typename T>
 void find_kth_interval_simple(T *a, size_t a_size, size_t k, size_t *start, size_t *end);
 
+template<typename T>
+auto find_kth_interval_simple(T *a, size_t a_size, size_t k) -> std::tuple<size_t, size_t>;
+
 /**
  * Preforms SELECT, under the assumption "word" contains MORE than k set bits.
  * @param word
@@ -93,7 +94,10 @@ auto find_first_set_bit(T *a, size_t a_size) -> size_t;
  * @param second
  */
 template<typename T>
-void find_first_and_second_set_bits(T *a, size_t a_size, size_t *first, size_t *second);
+void find_first_and_second_set_bits(const T *a, size_t a_size, size_t *first, size_t *second);
+
+template<typename T>
+auto find_first_and_second_set_bits(const T *a, size_t a_size) -> std::tuple<size_t, size_t>;
 
 
 /**
