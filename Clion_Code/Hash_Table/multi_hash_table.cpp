@@ -118,7 +118,8 @@ void multi_hash_table<T>::insert_new(const T y) {
 template<typename T>
 void multi_hash_table<T>::insert_after_lower_memory_hierarchy_counter_overflow_with_counter(T y) {
     T x = y & MASK(element_size);
-    assert(!find(x));
+    if (MHT_DB_MODE1)
+        assert(!find(x));
     insert_new(y);
 }
 
@@ -132,7 +133,8 @@ void multi_hash_table<T>::insert_after_lower_memory_hierarchy_counter_overflow_w
 
 template<typename T>
 auto multi_hash_table<T>::insert_new_element_if_bucket_not_full(const T x, size_t bucket_index) -> bool {
-    assert((x & MASK(element_size)) == x);
+    if (MHT_DB_MODE1)
+        assert((x & MASK(element_size)) == x);
     auto table_index = bucket_index * bucket_size;
     for (int i = 0; i < bucket_size; ++i) {
         if (is_empty_by_index(table_index + i)) {
@@ -174,7 +176,8 @@ void multi_hash_table<T>::insert_new_element_with_counter_by_index(T y, size_t t
 
 template<typename T>
 auto multi_hash_table<T>::remove(const T x) -> counter_status {
-    assert(find(x));
+    if (MHT_DB_MODE2)
+        assert(find(x));
     if (distinct_capacity == 0) {
         cout << "Trying to delete from empty hash table" << endl;
 //        assert(false);
@@ -222,7 +225,8 @@ void multi_hash_table<T>::cuckoo_swap(T *hold, size_t *bucket_index) {
     uint32_t temp_b1 = -1, temp_b2 = -1;
     my_hash((*hold) & MASK(element_size), &temp_b1, &temp_b2);
 
-    assert(temp_b2 != temp_b1);
+    if (MHT_DB_MODE2)
+        assert(temp_b2 != temp_b1);
 
     if (temp_b1 == *bucket_index)
         *bucket_index = temp_b2;
@@ -251,9 +255,11 @@ multi_hash_table<T>::get_element_with_counter_by_bucket_index_and_location(size_
 
 template<typename T>
 auto multi_hash_table<T>::get_counter_by_table_index(size_t table_index) -> size_t {
-    assert(is_occupied(table_index));
+    if (MHT_DB_MODE1)
+        assert(is_occupied(table_index));
     auto res = table[table_index] >> element_size;
-    assert (res <= MASK(counter_size));
+    if (MHT_DB_MODE1)
+        assert (res <= MASK(counter_size));
     return table[table_index] >> element_size;
 }
 
@@ -281,12 +287,13 @@ auto multi_hash_table<T>::if_equal_return_multiplicity_by_table_index(T without_
 
 template<typename T>
 auto multi_hash_table<T>::is_occupied(size_t table_index) -> bool {
-    T slot = table[table_index];
-    T element = slot & MASK(element_size);
-    T counter = slot >> element_size;
-    if (!counter)
-        assert(!element);
-
+    if (MHT_DB_MODE2) {
+        T slot = table[table_index];
+        T element = slot & MASK(element_size);
+        T counter = slot >> element_size;
+        if (!counter)
+            assert(!element);
+    }
     return ((table[table_index] >> element_size) != 0);
 }
 
@@ -372,7 +379,8 @@ auto multi_hash_table<T>::increase_counter(size_t table_index) -> counter_status
     auto prev_val = table[table_index];
     auto new_val = ((counter + 1) << element_size) | (table_index & MASK(element_size));
     table[table_index] = ((counter + 1) << element_size) | (table_index & MASK(element_size));
-    assert(is_occupied(table_index));
+    if (MHT_DB_MODE1)
+        assert(is_occupied(table_index));
     return OK;
 }
 
@@ -380,8 +388,6 @@ template<typename T>
 auto multi_hash_table<T>::decrease_counter(size_t table_index) -> counter_status {
     T counter = table[table_index] >> element_size;
     if (counter == 1) {
-
-//        assert(false);
         //todo: Maybe the element needs to drop one level, and therefore should not be deleted.
         table[table_index] = 0;
         --distinct_capacity;
@@ -389,7 +395,8 @@ auto multi_hash_table<T>::decrease_counter(size_t table_index) -> counter_status
     }
 
     table[table_index] = ((--counter) << element_size) | (table_index & MASK(element_size));
-    assert(is_occupied(table_index));
+    if (MHT_DB_MODE1)
+        assert(is_occupied(table_index));
     return OK;
 
 }
@@ -398,24 +405,29 @@ template<typename T>
 void multi_hash_table<T>::store_new_element(const T x, size_t table_index) {
     distinct_capacity++;
     table[table_index] = x | SL(element_size);
-    assert(is_occupied(table_index));
+    if (MHT_DB_MODE1)
+        assert(is_occupied(table_index));
 
 
 }
 
 template<typename T>
 auto multi_hash_table<T>::add_counter_to_new_element(T x) -> T {
-    assert((x & MASK(element_size)) == x);
-    assert(SL(element_size) > x);
+    if (MHT_DB_MODE1) {
+        assert((x & MASK(element_size)) == x);
+        assert(SL(element_size) > x);
+    }
     return x | SL(element_size);
 }
 
 template<typename T>
 auto multi_hash_table<T>::add_counter_to_element(T x, T counter) -> T {
-    assert((x & MASK(element_size)) == x);
-    unsigned long long temp = x | (counter << element_size);
-    unsigned long long slot_size = sizeof(T) * CHAR_BIT;
-    assert (temp <= MASK(slot_size));
+    if (MHT_DB_MODE2) {
+        assert((x & MASK(element_size)) == x);
+        unsigned long long temp = x | (counter << element_size);
+        unsigned long long slot_size = sizeof(T) * CHAR_BIT;
+        assert (temp <= MASK(slot_size));
+    }
     return x | (counter << element_size);
 }
 
@@ -437,7 +449,6 @@ multi_hash_table<T>::~multi_hash_table() {
 
 template<typename T>
 auto multi_hash_table<T>::get_element(size_t table_index) -> T {
-//    assert(is_occupied(table_index));
     return table[table_index];
 }
 
@@ -447,14 +458,16 @@ auto multi_hash_table<T>::get_split_element(size_t table_index) -> tuple<T, T> {
     T mask = MASK(element_size);
     T val = element & mask;
     T counter = (element & ~mask) >> element_size;
-    assert(counter > 0);
+    if (MHT_DB_MODE1)
+        assert(counter > 0);
     return tuple<T, T>(val, counter);
 }
 
 template<typename T>
 void multi_hash_table<T>::set_element(T x, size_t table_index) {
     table[table_index] = x;
-    assert(is_occupied(table_index));
+    if (MHT_DB_MODE2)
+        assert(is_occupied(table_index));
 
 }
 

@@ -14,6 +14,12 @@
 #include "../CPD/CPD_validator.hpp"
 
 
+/**Higher is less critical or not efficient*/
+#define MD_DB_MODE0 (false)
+#define MD_DB_MODE1 (true & MHT_DB_MODE0)
+#define MD_DB_MODE2 (true & MHT_DB_MODE1)
+
+
 template<class D, class S, typename S_T>
 class multi_dict {
     vector<D> pd_vec;

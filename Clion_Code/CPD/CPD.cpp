@@ -23,13 +23,10 @@ auto CPD::lookup(CPD_TYPE q, CPD_TYPE r) -> bool {
     if (not header_lookup(q, &start_index, &end_index))
         return false;
 
-    if (DB) assert(q <= start_index <= end_index);
-
-    size_t unpacked_start_index = start_index - q;
-    size_t unpacked_end_index = end_index - q;
+    if (CPD_DB_MODE0) assert(q <= start_index <= end_index);
 
     size_t p_array_index = -1, p_bit_index = -1;
-    return body_find_wrapper(r, unpacked_start_index, unpacked_end_index, &p_array_index, &p_bit_index);
+    return body_find_wrapper(r, start_index - q, end_index - q, &p_array_index, &p_bit_index);
 
 }
 
@@ -38,18 +35,17 @@ auto CPD::lookup_multi(CPD_TYPE q, CPD_TYPE r) -> size_t {
     if (not header_lookup(q, &start_index, &end_index))
         return 0;
 
-    if (DB) assert(q <= start_index <= end_index);
-
-    size_t unpacked_start_index = start_index - q;
-    size_t unpacked_end_index = end_index - q;
+    if (CPD_DB_MODE0) assert(q <= start_index <= end_index);
 
     size_t A_index = -1, rel_bit_index = -1;
-    if (!body_find_wrapper(r, unpacked_start_index, unpacked_end_index, &A_index, &rel_bit_index))
+    if (!body_find_wrapper(r, start_index - q, end_index - q, &A_index, &rel_bit_index))
         return 0;
 
     auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
-    auto res = read_counter(counter_index);
-    assert(res <= MASK(counter_size));
+    if (CPD_DB_MODE1) {
+        auto res = read_counter(counter_index);
+        assert(res <= MASK(counter_size));
+    }
     return read_counter(counter_index);
 }
 
@@ -130,7 +126,7 @@ auto CPD::insert_inc_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t
         assert(false);
         return inc_overflow;
     }
-    assert(read_counter(counter_index));
+    assert(!CPD_DB_MODE1 or read_counter(counter_index));
     return OK;
 }
 
@@ -139,7 +135,7 @@ auto CPD::insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t
     body_push_wrapper(r, A_index, rel_bit_index);
     auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
     counter_push(1, translate_counter_index_to_abs_bit_index(counter_index));
-    assert(read_counter(counter_index));
+    assert(!CPD_DB_MODE1 or read_counter(counter_index));
     return not_a_member;
 }
 
@@ -149,18 +145,18 @@ auto CPD::insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t
     body_push_wrapper(r, A_index, rel_bit_index);
     auto counter_index = translate_to_unpacked_index(A_index, rel_bit_index);
     counter_push(counter, translate_counter_index_to_abs_bit_index(counter_index));
-    assert(read_counter(counter_index));
+    assert(!CPD_DB_MODE1 or read_counter(counter_index));
     return not_a_member;
 }
 
 void CPD::insert_new_element_with_counter(CPD_TYPE q, CPD_TYPE r, CPD_TYPE counter) {
-    assert(counter <= MASK(counter_size));
+    assert(!CPD_DB_MODE1 or (counter <= MASK(counter_size)));
     size_t start_index, end_index;
     header_find(q, &start_index, &end_index);
 
     size_t A_index = -1, rel_bit_index = -1;
     bool in_body = body_find_wrapper(r, start_index - q, end_index - q, &A_index, &rel_bit_index);
-    assert(!in_body);
+    assert(!CPD_DB_MODE1 or !in_body);
 //    if (!in_body)
     insert_new_helper(r, end_index, A_index, rel_bit_index, counter);
 }
@@ -196,18 +192,17 @@ void CPD::remove_old(CPD_TYPE q, CPD_TYPE r) {
     size_t start_index = -1, end_index = -1;
     header_remove(q, &start_index, &end_index);
 
-    if (DB) assert(q <= start_index <= end_index);
+    if (CPD_DB_MODE0) assert(q <= start_index <= end_index);
 
-    size_t unpacked_start_index = start_index - q;
-    size_t unpacked_end_index = end_index - q;
-
-    body_remove(r, unpacked_start_index, unpacked_end_index);
+    body_remove(r, start_index - q, end_index - q);
 }
 
 void CPD::remove(CPD_TYPE q, CPD_TYPE r) {
     size_t start_index = -1, end_index = -1;
     header_find(q, &start_index, &end_index);
+
     assert(start_index < end_index);
+
     size_t unpacked_start_index = start_index - q;
     size_t unpacked_end_index = end_index - q;
 
@@ -270,12 +265,12 @@ auto CPD::conditional_remove_old(CPD_TYPE q, CPD_TYPE r) -> bool {
     if (not header_lookup(q, &start_index, &end_index))
         return false;
 
-    assert(q <= start_index);
-    assert(start_index <= end_index);
+    if (CPD_DB_MODE1) {
+        assert(q <= start_index);
+        assert(start_index <= end_index);
+    }
 
-    size_t unpacked_start_index = start_index - q;
-    size_t unpacked_end_index = end_index - q;
-    if (body_conditional_remove(r, unpacked_start_index, unpacked_end_index)) {
+    if (body_conditional_remove(r, start_index - q, end_index - q)) {
         header_pull(end_index);
         return true;
     }
@@ -292,7 +287,7 @@ auto CPD::naive_conditional_remove(CPD_TYPE q, CPD_TYPE r) -> bool {
 ////Header functions
 auto CPD::header_lookup(CPD_TYPE q, size_t *start_index, size_t *end_index) -> bool {
     header_find(q, start_index, end_index);
-    if (DB) assert(*start_index <= *end_index);
+    if (CPD_DB_MODE0) assert(*start_index <= *end_index);
     return (*start_index != *end_index);
 }
 
@@ -438,7 +433,7 @@ auto CPD::body_find_wrapper(CPD_TYPE r, size_t unpacked_start_index, size_t unpa
     auto res = body_find(r, unpacked_start_index, unpacked_end_index, p_array_index, p_bit_index);
     if (res) {
         auto counter_index = translate_to_unpacked_index(*p_array_index, *p_bit_index);
-        assert(read_counter(counter_index));
+        assert(!CPD_DB_MODE1 or read_counter(counter_index));
     }
     return res;
 }
@@ -485,11 +480,11 @@ auto CPD::body_find(CPD_TYPE r, size_t unpacked_start_index, size_t unpacked_end
         } else {
             size_t number_of_bits_to_read_from_next_slot = fp_size - bits_left_to_read_inside_slot;
             ulong upper_shift = fp_size - bits_left_to_read_inside_slot;
-            if (DB) assert(upper_shift >= 0 and upper_shift < CPD_TYPE_SIZE);
+            if (CPD_DB_MODE0) assert(upper_shift >= 0 and upper_shift < CPD_TYPE_SIZE);
             ulong upper = (current_cell & MASK(bits_left_to_read_inside_slot)) << (upper_shift);
-            if (DB) assert(get_last_a_index_containing_the_body() >= B_index + 1);
+            if (CPD_DB_MODE0) assert(get_last_a_index_containing_the_body() >= B_index + 1);
             ulong lower_shift = CPD_TYPE_SIZE - number_of_bits_to_read_from_next_slot;
-            if (DB) assert(0 <= lower_shift and lower_shift < CPD_TYPE_SIZE);
+            if (CPD_DB_MODE0) assert(0 <= lower_shift and lower_shift < CPD_TYPE_SIZE);
             ulong lower = (a[B_index + 1] >> lower_shift) & MASK(number_of_bits_to_read_from_next_slot);
             CPD_TYPE current_remainder = upper | lower;
             if (r <= current_remainder) {
@@ -544,7 +539,7 @@ void CPD::body_push(CPD_TYPE r, size_t A_index, size_t rel_bit_index) {
         CPD_TYPE mid = r << (left_bit_index - fp_size);
         CPD_TYPE lower = (a[A_index] >> fp_size) & (MASK(left_bit_index - fp_size));
         a[A_index] = (upper | lower | mid);
-        if (DB) assert(left_bit_index - fp_size >= 0);
+        if (CPD_DB_MODE0) assert(left_bit_index - fp_size >= 0);
     } else { // Prevents negative shifting.
         size_t shift = left_bit_index;
         ulong mask = MASK(left_bit_index);
@@ -552,7 +547,7 @@ void CPD::body_push(CPD_TYPE r, size_t A_index, size_t rel_bit_index) {
         CPD_TYPE lower = r >> (fp_size - left_bit_index);
         a[A_index] = (upper | lower);
 
-        if (DB) assert(fp_size - shift > 0);
+        if (CPD_DB_MODE0) assert(fp_size - shift > 0);
 
         //same amount that r was shifted right by. (fp_size - shift)
         size_t bits_left = fp_size - shift; // bits_left =  fp_size + bit_index - CPD_TYPE_SIZE
@@ -697,11 +692,11 @@ void CPD::body_pull(size_t B_index, size_t bit_index) {
     if (B_index == body_last_index) {
         assert(bit_index + fp_size <= CPD_TYPE_SIZE);
 
-        if (DB) assert(left_fp_start_index >= 0);
+        if (CPD_DB_MODE0) assert(left_fp_start_index >= 0);
         ulong mask = MASK(left_fp_start_index);
         ulong upper = a[B_index] & (~mask);
         CPD_TYPE mid = (a[B_index] & MASK(left_fp_start_index - fp_size)) << fp_size;
-        if (DB) assert(left_fp_start_index >= fp_size);
+        if (CPD_DB_MODE0) assert(left_fp_start_index >= fp_size);
         a[B_index] = (upper | mid);
         return;
     }
@@ -714,8 +709,8 @@ void CPD::body_pull(size_t B_index, size_t bit_index) {
         CPD_TYPE lower = (a[B_index + 1]) >> (CPD_TYPE_SIZE - fp_size);
         a[B_index] = (upper | lower | mid);
 
-        if (DB) assert(shift >= fp_size);
-        if (DB) assert(CPD_TYPE_SIZE - fp_size >= 0);
+        if (CPD_DB_MODE0) assert(shift >= fp_size);
+        if (CPD_DB_MODE0) assert(CPD_TYPE_SIZE - fp_size >= 0);
 
         for (size_t i = B_index + 1; i < body_last_index; ++i) {
             a[i] = (a[i] << fp_size) | (a[i + 1] >> (CPD_TYPE_SIZE - fp_size));
@@ -736,8 +731,8 @@ void CPD::body_pull(size_t B_index, size_t bit_index) {
         }
         a[body_last_index] <<= fp_size;
 
-        if (DB) assert(0 <= shift and shift < fp_size);
-        if (DB) assert(0 <= lower_shift and lower_shift < CPD_TYPE_SIZE);
+        if (CPD_DB_MODE0) assert(0 <= shift and shift < fp_size);
+        if (CPD_DB_MODE0) assert(0 <= lower_shift and lower_shift < CPD_TYPE_SIZE);
     }
 
 }
@@ -756,7 +751,7 @@ void CPD::counter_push(CPD_TYPE val, size_t bit_count_from_start) {
         CPD_TYPE mid = val << (left_bit_index - counter_size);
         CPD_TYPE lower = (a[A_index] >> counter_size) & (MASK(left_bit_index - counter_size));
         a[A_index] = (upper | lower | mid);
-        if (DB) assert(left_bit_index - counter_size >= 0);
+        if (CPD_DB_MODE0) assert(left_bit_index - counter_size >= 0);
     } else { // Prevents negative shifting.
         size_t shift = left_bit_index;
         ulong mask = MASK(left_bit_index);
@@ -764,7 +759,7 @@ void CPD::counter_push(CPD_TYPE val, size_t bit_count_from_start) {
         CPD_TYPE lower = val >> (counter_size - left_bit_index);
         a[A_index] = (upper | lower);
 
-        if (DB) assert(counter_size - shift > 0);
+        if (CPD_DB_MODE0) assert(counter_size - shift > 0);
 
         //same amount that val was shifted right by. (fp_size - shift)
         size_t bits_left = counter_size - shift; // bits_left =  fp_size + bit_index - CPD_TYPE_SIZE
@@ -789,11 +784,11 @@ void CPD::counter_pull(size_t bit_count_from_start) {
     if (A_index == size - 1) {
         assert(bit_index + counter_size <= CPD_TYPE_SIZE);
 
-        if (DB) assert(left_fp_start_index >= 0);
+        if (CPD_DB_MODE0) assert(left_fp_start_index >= 0);
         ulong mask = MASK(left_fp_start_index);
         ulong upper = a[A_index] & (~mask);
         CPD_TYPE mid = (a[A_index] & MASK(left_fp_start_index - counter_size)) << counter_size;
-        if (DB) assert(left_fp_start_index >= counter_size);
+        if (CPD_DB_MODE0) assert(left_fp_start_index >= counter_size);
         a[A_index] = (upper | mid);
         return;
     }
@@ -802,14 +797,14 @@ void CPD::counter_pull(size_t bit_count_from_start) {
         ulong shift = left_fp_start_index;
         ulong mask = MASK(left_fp_start_index);
         ulong upper = a[A_index] & (~mask);
-        CPD_TYPE pre_mid = a[A_index] & MASK(left_fp_start_index - counter_size);
-        CPD_TYPE mid_val = pre_mid << counter_size;
+//        CPD_TYPE pre_mid = a[A_index] & MASK(left_fp_start_index - counter_size);
+//        CPD_TYPE mid_val = pre_mid << counter_size;
         CPD_TYPE mid = (a[A_index] & MASK(left_fp_start_index - counter_size)) << counter_size;
         CPD_TYPE lower = (a[A_index + 1]) >> (CPD_TYPE_SIZE - counter_size);
         a[A_index] = (upper | lower | mid);
 
-        if (DB) assert(shift >= counter_size);
-        if (DB) assert(CPD_TYPE_SIZE - counter_size >= 0);
+        if (CPD_DB_MODE0) assert(shift >= counter_size);
+        if (CPD_DB_MODE0) assert(CPD_TYPE_SIZE - counter_size >= 0);
 
         for (size_t i = A_index + 1; i < size - 1; ++i) {
             a[i] = (a[i] << counter_size) | (a[i + 1] >> (CPD_TYPE_SIZE - counter_size));
@@ -830,8 +825,8 @@ void CPD::counter_pull(size_t bit_count_from_start) {
         }
         a[size - 1] <<= counter_size;
 
-        if (DB) assert(0 <= shift and shift < counter_size);
-        if (DB) assert(0 <= lower_shift and lower_shift < CPD_TYPE_SIZE);
+        if (CPD_DB_MODE0) assert(0 <= shift and shift < counter_size);
+        if (CPD_DB_MODE0) assert(0 <= lower_shift and lower_shift < CPD_TYPE_SIZE);
     }
 
 }
@@ -952,6 +947,9 @@ auto CPD::is_empty() -> bool {
 }
 
 auto CPD::translate_to_unpacked_index(size_t A_index, size_t rel_bit_start_index) -> size_t {
+    if (!CPD_DB_MODE1)
+        return ((A_index * CPD_TYPE_SIZE) - (get_header_size_in_bits() - rel_bit_start_index)) / fp_size;
+
     auto res = ((A_index * CPD_TYPE_SIZE) - (get_header_size_in_bits() - rel_bit_start_index)) / fp_size;
 
     auto header_size = get_header_size_in_bits();
@@ -969,7 +967,8 @@ auto CPD::translate_counter_index_to_abs_bit_index(size_t counter_index) -> size
 auto CPD::increase_counter(size_t counter_index) -> counter_status {
     //todo not naive implementation.
     auto temp = read_counter(counter_index);
-    assert(temp > 0);
+    if(!CPD_DB_MODE1)
+        assert(temp > 0);
     if (temp == MASK(counter_size)) {
         return inc_overflow;
     }
@@ -979,7 +978,8 @@ auto CPD::increase_counter(size_t counter_index) -> counter_status {
 
 auto CPD::decrease_counter(size_t counter_index) -> counter_status {
     auto temp = read_counter(counter_index);
-    assert(temp > 0);
+    if(!CPD_DB_MODE1)
+        assert(temp > 0);
     if (temp == 1) {
         return dec_underflow;
     }
@@ -998,7 +998,8 @@ auto CPD::read_counter(size_t counter_index) -> CPD_TYPE {
     } else if (bits_left_in_slot == counter_size) {
         return a[A_index] & MASK(counter_size);
     } else {
-        assert(A_index < size);
+        if(!CPD_DB_MODE1)
+            assert(A_index < size);
         auto bits_to_take = counter_size - bits_left_in_slot;
         auto upper = (a[A_index] & MASK(bits_left_in_slot)) << bits_to_take;
         auto lower = a[A_index + 1] >> (CPD_TYPE_SIZE - bits_to_take);
@@ -1028,7 +1029,7 @@ void CPD::write_counter(size_t counter_index, CPD_TYPE value) {
         CPD_TYPE lower = value >> (counter_size - bits_left_in_slot);
         a[A_index] = (upper | lower);
 
-        if (DB) assert(counter_size - shift > 0);
+        if (CPD_DB_MODE0) assert(counter_size - shift > 0);
 
         //same amount that r was shifted right by. (fp_size - shift)
         size_t bits_left = counter_size - shift; // bits_left =  fp_size + bit_index - CPD_TYPE_SIZE

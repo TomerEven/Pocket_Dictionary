@@ -36,6 +36,13 @@ gen_2Power<D>::gen_2Power(size_t size, size_t interval_length, size_t single_pd_
 
 }
 
+//template<class D>
+//gen_2Power<D>::gen_2Power(size_t max_number_of_elements, size_t error_power_inv, size_t level1_counter_size,
+//                          size_t level2_counter_size, double level1_load_factor, double level2_load_factor) {
+//
+//
+//}
+
 
 template<class D>
 bool gen_2Power<D>::lookup(string *s) {

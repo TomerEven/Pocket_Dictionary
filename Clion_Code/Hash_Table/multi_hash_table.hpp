@@ -33,6 +33,11 @@
 #include "../bit_operations/my_bit_op.hpp"
 
 
+/**Higher is less critical or not efficient*/
+#define MHT_DB_MODE0 (false)
+#define MHT_DB_MODE1 (true & MHT_DB_MODE0)
+#define MHT_DB_MODE2 (true & MHT_DB_MODE1)
+
 /*
 #ifndef ENUM_COUNTER_STATUS
 #define ENUM_COUNTER_STATUS

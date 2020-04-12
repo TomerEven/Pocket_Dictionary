@@ -969,3 +969,5 @@ read_k_words_fixed_length_att<size_t>(const size_t *A, size_t a_size, size_t fir
                                       size_t *res_array, size_t k);
 
 
+template
+auto find_first_and_second_set_bits<uint32_t>(const uint32_t *a, size_t a_size) -> std::tuple<size_t, size_t>;

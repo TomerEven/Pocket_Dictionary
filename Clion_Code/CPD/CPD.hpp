@@ -15,6 +15,11 @@
 #include "../bit_operations/bit_op.h"
 #include "../bit_operations/bit_word_converter.hpp"
 
+#define CPD_DB_MODE0 (false)
+#define CPD_V_MODE (true)
+#define CPD_DB_MODE1 (true)
+
+#define CPD_DB_MODE2 (CPD_DB_MODE0 || DB)
 
 class CPD {
     CPD_TYPE *a;

@@ -3,7 +3,6 @@
 //
 
 #include "benchmark_tests.h"
-#include "validate_filter.hpp"
 
 auto random_vector(size_t size) -> vector<uint64_t> {
     random_device rnd_device;
@@ -45,7 +44,8 @@ void vector_lexicographic_init(size_t size, vector<string> *vec, int minLength, 
     for (size_t i = 0; i < size; ++i) vec->push_back(to_string(start_val++));
 }
 
-auto b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) -> ostream & {
+auto b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+        ostream &os) -> ostream & {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
@@ -86,7 +86,8 @@ auto b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, s
 }
 
 auto
-b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) -> ostream & {
+b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+         ostream &os) -> ostream & {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
@@ -127,7 +128,7 @@ b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, 
 }
 
 auto const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                            ostream &os) -> ostream & {
+                        ostream &os) -> ostream & {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
 
@@ -217,7 +218,7 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
 
 
 auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                              ostream &os) -> ostream & {
+                          ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     vector<uint32_t> member_vec, nom_vec;
 
@@ -352,7 +353,7 @@ cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m,
 
 template<class T>
 auto template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
-                        ostream &os) -> ostream & {
+                    ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     vector<uint32_t> member_vec, nom_vec;
 
@@ -397,7 +398,8 @@ auto template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m,
 
 template<class T>
 auto
-filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) -> ostream & {
+filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
+             ostream &os) -> ostream & {
     auto start_run_time = chrono::high_resolution_clock::now();
     set<string> member_set, nom_set;
 
@@ -452,7 +454,6 @@ filter_rates_simple_pd(size_t number_of_pds, float load_factor, size_t f, size_t
     auto t1 = chrono::high_resolution_clock::now();
     auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
 //    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
-
     t0 = chrono::high_resolution_clock::now();
     auto a = pow2c_filter(number_of_pds, m, f, l);
     t1 = chrono::high_resolution_clock::now();
@@ -510,8 +511,6 @@ test_table(size_t n, double eps, size_t lookups_num, double set_ratio, int *coun
     if (set_ratio < 1)
         cout << "\t\t" << "set_ratio is less than 1: " << set_ratio << endl;
     return os;
-}
-
 /*void b1(size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os) {
     clock_t startRunTime = clock();
     set<string> member_set, nom_set;
@@ -550,12 +549,25 @@ test_table(size_t n, double eps, size_t lookups_num, double set_ratio, int *coun
 
 
 }*/
+}
 
+auto test_table(size_t n, size_t lookups_num, double set_ratio, ulong insertion_time, ulong lookup_time,
+                ulong total_run_time, ostream &os) -> ostream & {
+
+    test_table_header_print();
+    cout << setw(WIDTH) << n;
+    cout << setw(WIDTH) << n / (insertion_time / 1e6);
+    cout << setw(WIDTH) << lookups_num / (lookup_time / 1e6);
+    cout << setw(WIDTH) << (total_run_time / 1e6) << endl;
+    if (set_ratio < 1)
+        cout << "\t\t" << "set_ratio is less than 1: " << set_ratio << endl;
+    return os;
+}
 
 
 auto test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive, double set_ratio, int *counter,
-                      double member_set_init_time, double nom_set_init_time, double init_time, double insertion_time,
-                      double lookup_time, double total_run_time, ostream &os) -> ostream & {
+                  double member_set_init_time, double nom_set_init_time, double init_time, double insertion_time,
+                  double lookup_time, double total_run_time, ostream &os) -> ostream & {
 //    counter_printer(os, counter);
     string name = "not adaptive";
     if (is_adaptive)
@@ -1035,6 +1047,51 @@ void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f
 
     lookup_result_array_printer(result_array, lookup_reps, l, load_factor / 2);
 }
+/*
+//
+//template<class D>
+//auto filter_rates_core(D *filter, size_t max_capacity, size_t lookup_reps, ostream &os) -> ostream & {
+//    auto start_run_time = chrono::high_resolution_clock::now();
+//    set<string> member_set, nom_set;
+//
+//    auto t0 = chrono::high_resolution_clock::now();
+//    size_t n = max_capacity;
+//    set_init(n, &member_set);
+//    auto t1 = chrono::high_resolution_clock::now();
+//    auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+////    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+//
+//    t0 = chrono::high_resolution_clock::now();
+//    t1 = chrono::high_resolution_clock::now();
+//    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//
+//    t0 = chrono::high_resolution_clock::now();
+//    for (auto iter : member_set) filter->insert(&iter);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
+//
+//    t0 = chrono::high_resolution_clock::now();
+//    set_init(lookup_reps, &nom_set);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto nom_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//    double set_ratio = nom_set.size() / (double) lookup_reps;
+//
+//    // [TN, FP, TP]
+//    int counter[3] = {0, 0, 0};
+////    for (auto iter : nom_set) ++counter[w.lookup_verifier(&iter, call_adapt)];
+//    t0 = chrono::high_resolution_clock::now();
+//    for (auto iter : nom_set) filter->lookup(&iter);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
+//    auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
+//
+//    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
+//               init_time, insertion_time, lookup_time, total_run_time, os);
+//
+////    os << a;
+//    return os;
+//}
+*/
 
 
 //template bool
@@ -1067,3 +1124,9 @@ filter_rates<gen_2Power<cg_PD>>(size_t number_of_pds, float load_factor, size_t 
 template ostream &
 filter_rates<gen_2Power<PD>>(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
                              ostream &os);
+/*
+
+template
+auto filter_rates_core<multi_dict64>(multi_dict64 *filter, size_t max_capacity, size_t lookup_reps,
+                                     ostream &os) -> ostream &;
+*/

@@ -5,8 +5,8 @@
 #include "multi_dict.hpp"
 
 template<class D, class S, typename S_T>
-multi_dict<D, S,S_T>::multi_dict(size_t max_number_of_elements, size_t error_power_inv, size_t level1_counter_size,
-                             size_t level2_counter_size, double level1_load_factor, double level2_load_factor):
+multi_dict<D, S, S_T>::multi_dict(size_t max_number_of_elements, size_t error_power_inv, size_t level1_counter_size,
+                                  size_t level2_counter_size, double level1_load_factor, double level2_load_factor):
         capacity(0),
         single_pd_capacity(DEFAULT_PD_CAPACITY),
         number_of_pd(my_ceil(max_number_of_elements, (size_t) DEFAULT_PD_CAPACITY)),
@@ -37,7 +37,7 @@ multi_dict<D, S,S_T>::multi_dict(size_t max_number_of_elements, size_t error_pow
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::lookup(const string *s) -> bool {
+auto multi_dict<D, S, S_T>::lookup(const string *s) -> bool {
     auto hash_val = wrap_hash(s);
 
     size_t pd_index = -1;
@@ -49,7 +49,7 @@ auto multi_dict<D, S,S_T>::lookup(const string *s) -> bool {
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::lookup_multi(const string *s) -> size_t {
+auto multi_dict<D, S, S_T>::lookup_multi(const string *s) -> size_t {
     S_T hash_val = wrap_hash(s);
 
     size_t pd_index = -1;
@@ -57,17 +57,20 @@ auto multi_dict<D, S,S_T>::lookup_multi(const string *s) -> size_t {
     split(hash_val, &pd_index, &quot, &r);
     auto res = pd_vec[pd_index].lookup_multi(quot, r);
     if (res) {
-        assert(res <=MASK(level1_counter_size));
+        if (MD_DB_MODE1)
+            assert(res <= MASK(level1_counter_size));
         return res;
     }
 
-    auto spare_res = spare->find_multiplicities(hash_val & MASK(spare_element_length));
-    assert(spare_res <=MASK(level2_counter_size));
+    if (MD_DB_MODE1) {
+        auto spare_res = spare->find_multiplicities(hash_val & MASK(spare_element_length));
+        assert(spare_res <= MASK(level2_counter_size));
+    }
     return spare->find_multiplicities(hash_val & MASK(spare_element_length));
 }
 
 template<class D, class S, typename S_T>
-void multi_dict<D, S,S_T>::insert(const string *s) {
+void multi_dict<D, S, S_T>::insert(const string *s) {
     //todo I think I need to enforce stronger policy when inserting, to make sure an element is not in more than one level at once.
     auto hash_val = wrap_hash(s);
 
@@ -101,7 +104,8 @@ void multi_dict<D, S,S_T>::insert(const string *s) {
 
     counter_status op_res = pd_vec[pd_index].insert_inc_attempt(quot, r);
     if (op_res == OK) {
-        assert(!spare->find(hash_val));
+        if (MD_DB_MODE2)
+            assert(!spare->find(hash_val));
         return;
     }
 
@@ -115,7 +119,8 @@ void multi_dict<D, S,S_T>::insert(const string *s) {
         auto spare_op_res = spare->insert_inc_att(hash_val);
         if (spare_op_res == OK)
             return;
-        assert(!spare->find(hash_val));
+        if (MD_DB_MODE1)
+            assert(!spare->find(hash_val));
         pd_vec[pd_index].insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         return;
@@ -135,8 +140,9 @@ void multi_dict<D, S,S_T>::insert(const string *s) {
 }
 
 template<class D, class S, typename S_T>
-void multi_dict<D, S,S_T>::insert_full_PD_helper(S_T hash_val, size_t pd_index, uint32_t quot, uint32_t r) {
-    assert(pd_vec[pd_index].is_full());
+void multi_dict<D, S, S_T>::insert_full_PD_helper(S_T hash_val, size_t pd_index, uint32_t quot, uint32_t r) {
+    if (MD_DB_MODE2)
+        assert(pd_vec[pd_index].is_full());
     counter_status op_res = pd_vec[pd_index].insert_inc_attempt(quot, r);
     //"quot, r" is a member, and the incremental succeed.
     if (op_res == OK)
@@ -156,7 +162,7 @@ void multi_dict<D, S,S_T>::insert_full_PD_helper(S_T hash_val, size_t pd_index, 
 }
 
 template<class D, class S, typename S_T>
-void multi_dict<D, S,S_T>::insert_to_spare(S_T y) {
+void multi_dict<D, S, S_T>::insert_to_spare(S_T y) {
 //    assert(!spare->find(y & MASK(spare_element_length)));
     uint32_t b1 = -1, b2 = -1;
     spare->my_hash(y, &b1, &b2);
@@ -164,10 +170,10 @@ void multi_dict<D, S,S_T>::insert_to_spare(S_T y) {
     auto att_res = insert_to_bucket_attempt(y, b2);
     if (att_res == OK)
         return;
+    if (MD_DB_MODE1)
+        assert(att_res != inc_overflow);
 
-    assert(att_res != inc_overflow);
-
-    cout << "Cuckoo hashing start " << sum_pd_capacity() << endl;
+//    cout << "Cuckoo hashing start " << sum_pd_capacity() << endl;
     S_T hold = y;
     size_t bucket = b1;
     for (size_t i = 0; i < MAX_CUCKOO_LOOP_MULT; ++i) {
@@ -177,17 +183,11 @@ void multi_dict<D, S,S_T>::insert_to_spare(S_T y) {
             spare->update_cuckoo_insert_counter(i);
             return;
         }
-        assert(temp_att_res != inc_overflow);
-        assert(spare->is_bucket_full_by_index(bucket));
+        if (MD_DB_MODE1) {
+            assert(temp_att_res != inc_overflow);
+            assert(spare->is_bucket_full_by_index(bucket));
+        }
         //todo bucket_pop_attempt here.
-        spare->cuckoo_swap(&hold, &bucket);
-    }
-    assert(false);
-    /**SHOULD NOT REACH HERE*/
-    hold = y;
-    bucket = b1;
-    for (size_t i = 0; i < MAX_CUCKOO_LOOP_MULT; ++i) {
-        cout << "bucket " << bucket;
         spare->cuckoo_swap(&hold, &bucket);
     }
     assert(false);
@@ -196,7 +196,7 @@ void multi_dict<D, S,S_T>::insert_to_spare(S_T y) {
 
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index) -> counter_status {
+auto multi_dict<D, S, S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index) -> counter_status {
     auto tp = insert_inc_to_bucket_attempt(y, bucket_index);
     auto op_res = std::get<0>(tp);
     auto empty_bucket_location_nom = std::get<1>(tp);
@@ -227,7 +227,7 @@ auto multi_dict<D, S,S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index) 
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index, bool pop_attempt) -> counter_status {
+auto multi_dict<D, S, S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index, bool pop_attempt) -> counter_status {
     auto tp = insert_inc_to_bucket_attempt(y, bucket_index);
     auto op_res = std::get<0>(tp);
     auto empty_bucket_location_nom = std::get<1>(tp);
@@ -251,8 +251,8 @@ auto multi_dict<D, S,S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index, 
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::insert_inc_to_bucket_attempt(S_T y,
-                                                    size_t bucket_index) -> std::tuple<counter_status, size_t> {
+auto multi_dict<D, S, S_T>::insert_inc_to_bucket_attempt(S_T y,
+                                                         size_t bucket_index) -> std::tuple<counter_status, size_t> {
     bool look_for_empty_location = true;
     size_t empty_location = spare->get_bucket_size();
     auto table_index = spare->get_bucket_size() * bucket_index;
@@ -316,7 +316,7 @@ void multi_dict<D, S,S_T>::insert_to_spare_with_pop(S_T hash_val) {
 
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::pop_attempt_with_insertion_by_bucket(S_T hash_val, size_t bucket_index) -> bool {
+auto multi_dict<D, S, S_T>::pop_attempt_with_insertion_by_bucket(S_T hash_val, size_t bucket_index) -> bool {
     //todo continue from here.
     for (int i = 0; i < spare->get_bucket_size(); ++i) {
         if (spare->is_empty_by_bucket_index_and_location(bucket_index, i)) {
@@ -333,7 +333,7 @@ auto multi_dict<D, S,S_T>::pop_attempt_with_insertion_by_bucket(S_T hash_val, si
 }
 
 template<class D, class S, typename S_T>
-void multi_dict<D, S,S_T>::insert_level1_inc_overflow_handler(S_T hash_val) {
+void multi_dict<D, S, S_T>::insert_level1_inc_overflow_handler(S_T hash_val) {
     assert(false);
 
     auto temp = spare->add_counter_to_element(hash_val % SL(spare_element_length), SL(level1_counter_size));
@@ -341,7 +341,7 @@ void multi_dict<D, S,S_T>::insert_level1_inc_overflow_handler(S_T hash_val) {
 }
 
 template<class D, class S, typename S_T>
-void multi_dict<D, S,S_T>::remove(const string *s) {
+void multi_dict<D, S, S_T>::remove(const string *s) {
     auto hash_val = wrap_hash(s);
 
     size_t pd_index = -1;
@@ -355,14 +355,15 @@ void multi_dict<D, S,S_T>::remove(const string *s) {
     }
     if (op_res == not_a_member) {
         auto spare_op_res = spare->remove(hash_val);
-        assert((spare_op_res == OK) or (spare_op_res == dec_underflow));
+        if (MD_DB_MODE0)
+            assert((spare_op_res == OK) or (spare_op_res == dec_underflow));
     }
 
 
 }
 
 template<class D, class S, typename S_T>
-void multi_dict<D, S,S_T>::get_info() {
+void multi_dict<D, S, S_T>::get_info() {
 
     const size_t var_num = 12;
     string names[var_num] = {"capacity", "number_of_pd", "remainder_length", "quotient_range", "single_pd_capacity",
@@ -384,10 +385,14 @@ void multi_dict<D, S,S_T>::get_info() {
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::sum_pd_capacity() -> size_t {
+auto multi_dict<D, S, S_T>::sum_pd_capacity() -> size_t {
+    if (!MD_DB_MODE0)
+        cout << "should not call this function" << endl;
+
     size_t res = 0;
     for (int i = 0; i < pd_capacity_vec.size(); ++i) {
-        assert(pd_vec[i].get_capacity() == pd_capacity_vec[i]);
+        if (MD_DB_MODE2)
+            assert(pd_vec[i].get_capacity() == pd_capacity_vec[i]);
         res += pd_capacity_vec[i];
     }
     return res;
@@ -405,7 +410,7 @@ auto multi_dict<D, S, S_T>::get_spare_hash_val(
     S_T hash_val = wrap_hash(s);
     auto t1 = spare->get_hash_buckets(hash_val);
     auto t2 = wrap_hash_split(s);
-    return std::make_tuple(t1,t2);
+    return std::make_tuple(t1, t2);
 
 }
 
@@ -416,12 +421,12 @@ multi_dict<D, S, S_T>::do_elements_collide(const string *s1, const string *s2) -
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::pop_attempt(string *s) -> S_T * {
+auto multi_dict<D, S, S_T>::pop_attempt(string *s) -> S_T * {
     return nullptr;
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::pop_attempt_by_bucket(S_T y, size_t bucket_index) -> size_t {
+auto multi_dict<D, S, S_T>::pop_attempt_by_bucket(S_T y, size_t bucket_index) -> size_t {
     size_t table_index = bucket_index * spare->get_bucket_size();
     for (int i = 0; i < spare->get_bucket_size(); ++i) {
         S_T temp_el, temp_counter;
@@ -437,40 +442,45 @@ auto multi_dict<D, S,S_T>::pop_attempt_by_bucket(S_T y, size_t bucket_index) -> 
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::single_pop_attempt(S_T element) -> bool {
+auto multi_dict<D, S, S_T>::single_pop_attempt(S_T element) -> bool {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(element, &pd_index, &quot, &r);
     if (pd_capacity_vec[pd_index] != single_pd_capacity) {
-        assert(!pd_vec[pd_index].is_full());
+        if (MD_DB_MODE1)
+            assert(!pd_vec[pd_index].is_full());
 
         pd_vec[pd_index].insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         spare->decrease_capacity();
         return true;
     }
-    assert(pd_vec[pd_index].is_full());
+    if (MD_DB_MODE1)
+        assert(pd_vec[pd_index].is_full());
     return false;
     return false;
 }
 
 template<class D, class S, typename S_T>
-auto multi_dict<D, S,S_T>::single_pop_attempt(S_T temp_el, S_T counter) -> bool {
+auto multi_dict<D, S, S_T>::single_pop_attempt(S_T temp_el, S_T counter) -> bool {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(temp_el, &pd_index, &quot, &r);
-    cout << "(pd_index, quot, r) (" << pd_index << ", " << quot << ", " << r << ")";
+//    cout << "(pd_index, quot, r) (" << pd_index << ", " << quot << ", " << r << ")";
     if (pd_capacity_vec[pd_index] != single_pd_capacity) {
-        assert(!pd_vec[pd_index].is_full());
+        if (MD_DB_MODE1)
+            assert(!pd_vec[pd_index].is_full());
 
-        assert(counter <= MASK(level1_counter_size));
+        if (MD_DB_MODE2)
+            assert(counter <= MASK(level1_counter_size));
         pd_vec[pd_index].insert_new_element_with_counter(quot, r, counter);
         ++(pd_capacity_vec[pd_index]);
         spare->decrease_capacity();
         return true;
     }
-    cout << " was full" << endl;
-    assert(pd_vec[pd_index].is_full());
+//    cout << " was full" << endl;
+    if (MD_DB_MODE1)
+        assert(pd_vec[pd_index].is_full());
     return false;
 }
 

@@ -54,7 +54,7 @@ void formatting();
 
 void table_print(size_t var_num, string *var_names, size_t *values);
 
-void table_print_columns(size_t var_num, size_t column_num, string *var_names, string *columns, size_t *values);
+
 
 string to_sci(double x, int add_to_counter = 0, size_t precision = 3);
 

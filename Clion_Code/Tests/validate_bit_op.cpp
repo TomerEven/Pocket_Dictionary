@@ -106,7 +106,8 @@ auto validate_find_first_and_second_set_bits_single(T *a, size_t a_size) -> bool
     from_array_of_words_to_bit_vector(&vec, a, a_size);
     vector_find_kth_interval_simple(&vec, 1, &vec_start, &vec_end);
 
-    find_first_and_second_set_bits(a, a_size, &start, &end);
+    tie(start, end) = find_first_and_second_set_bits<T>(a, a_size);
+//    find_first_and_second_set_bits(a, a_size, &start, &end);
 
     bool cond1 = (start == vec_start);
     bool cond2 = (end == vec_end);

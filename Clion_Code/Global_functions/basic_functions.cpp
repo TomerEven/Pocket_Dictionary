@@ -220,57 +220,7 @@ void table_print(size_t var_num, string *var_names, size_t *values) {
 
 }
 
-void table_print_columns(size_t var_num, size_t column_num, string *var_names, string *columns, size_t *values) {
-    /*const auto var_num = 9;
-        string var_names[var_num] = {"start", "start_array_index", "start_bit_pos",
-                                     "end", "end_array_index", "end_bit_pos",
-                                     "new_end", "new_end_array_index", "new_end_bit_pos"};
-        size_t values[var_num] = {start, start / slot_size, start % slot_size,
-                                  end, end / slot_size, end % slot_size,
-                                  new_end, new_end / slot_size, new_end % slot_size};
 
-        size_t max_length = 0;
-        for (auto & var_name : var_names) {
-            max_length = max(var_name.length(), max_length);
-        }*/
-    size_t max_length = 0;
-    for (int i = 0; i < var_num; ++i) {
-        max_length = max(var_names[i].length(), max_length);
-    }
-    for (int k = 0; k < column_num; ++k) {
-        max_length = max(columns[k].length(), max_length);
-    }
-
-    // values for controlling format
-    const int name_width = int(max_length);
-    const int int_width = 7;
-    const int dbl_width = 12;
-    const int num_flds = 7;
-    const std::string sep = " |";
-    const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() *
-                                                                             num_flds; // NOLINT(bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions)
-    const std::string line = sep + std::string(total_width - 1, '-') + '|';
-    std::cout << line << '\n' << sep << left;
-    cout << std::setw(name_width) << "var_name" << sep;
-    for (int j = 0; j < column_num; ++j) {
-        cout << std::setw(name_width) << columns[j] << sep;
-    }
-    cout << '\n' << line << '\n';
-
-    assert(var_num % column_num == 0);
-    for (int i = 0; i < var_num; ++i) {
-        std::cout << sep << std::setw(name_width) << var_names[i];
-
-        for (int j = 0; j < column_num; ++j) {
-            auto index = i * column_num + j;
-            std::cout << sep << std::setw(name_width) << values[index];
-        }
-        std::cout << '\n';
-
-    }
-    std::cout << line << endl;
-
-}
 
 template<typename T>
 auto my_ceil(T x, T y) -> T {

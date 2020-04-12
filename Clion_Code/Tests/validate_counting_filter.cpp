@@ -53,11 +53,10 @@ auto v_counting_filter(size_t filter_max_capacity, size_t lookup_reps, size_t er
 
 template<class D>
 auto v_filter_no_deletions(D *filter, size_t filter_max_capacity, size_t lookup_reps, size_t part) -> bool {
-    auto number_of_elements_in_the_filter = filter_max_capacity;
 
     set<string> member_set, lookup_set, to_be_deleted_set;
-    set_init(number_of_elements_in_the_filter / 2, &member_set);
-    set_init(number_of_elements_in_the_filter / 2, &to_be_deleted_set);
+    set_init(filter_max_capacity / 2, &member_set);
+    set_init(filter_max_capacity / 2, &to_be_deleted_set);
     set_init(lookup_reps, &lookup_set);
 
 

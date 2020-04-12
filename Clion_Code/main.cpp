@@ -14,6 +14,7 @@
 #include "Tests/validate_filter.hpp"
 #include "Tests/validate_counter_PD.hpp"
 #include "Tests/validate_counting_filter.hpp"
+#include "Tests/benchmark_counting_filter.hpp"
 
 
 //todo: naive pow2c_naive_filter validation. benchmark comparing. profiling.
@@ -32,31 +33,25 @@ void use_of_validate_PD(size_t reps);
 
 void all();
 
+void test_multi_dict();
+
 int main() {
     std::cout << "Hello, World!" << std::endl;
 //    all();
 
-    size_t reps = 1u << 16u, max_distinct_capacity = 1u << 16u;
+//    test_multi_dict();
+    size_t reps = 1u << 21u, max_distinct_capacity = 1u << 18u;
     size_t remainder_length = 13;
-    size_t l1_counter_size = 4, l2_counter_size = 8;
-    double l1_LF = 0.85, l2_LF = 0.25;
+    size_t l1_counter_size = 3, l2_counter_size = 7;
+    double l1_LF = 0.95, l2_LF = 0.65;
+    CF_rates_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+                                   l2_counter_size, l1_LF, l2_LF, cout);
     /*for (int i = 0; i < 10; ++i) {
         v_wrapper_single(max_distinct_capacity, remainder_length, counter_size, (i+1) * 0.1, false);
         cout << i << endl;
     }*/
 
-
-    auto res2 = v_CF_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
-                                           l2_counter_size, l1_LF, l2_LF);
-    assert(res2);
-
-    auto s_res2 = v_CF_wrapper<safe_multi_dict64>(max_distinct_capacity >> 6u, reps >> 6u, remainder_length,
-                                                  l1_counter_size,
-                                                  l2_counter_size, l1_LF, l2_LF);
-    assert(s_res2);
-
-    assert(v_CF_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size, l2_counter_size,
-                                      l1_LF, l2_LF, 32u));
+//    filter_rates_core
 
 //    auto safe_res64 = v_counting_filter<safe_multi_dict64>(max_distinct_capacity >> 6u, reps >> 6u, remainder_length,
 //                                                           l1_counter_size, l2_counter_size, l1_LF, l2_LF);
@@ -170,6 +165,25 @@ void all() {
 }
 
 
+void test_multi_dict() {
+    size_t reps = 1u << 16u, max_distinct_capacity = 1u << 16u;
+    size_t remainder_length = 13;
+    size_t l1_counter_size = 4, l2_counter_size = 8;
+    double l1_LF = 0.85, l2_LF = 0.25;
+
+    auto res2 = v_CF_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+                                           l2_counter_size, l1_LF, l2_LF);
+    assert(res2);
+
+    auto s_res2 = v_CF_wrapper<safe_multi_dict64>(max_distinct_capacity >> 6u, reps >> 6u, remainder_length,
+                                                  l1_counter_size,
+                                                  l2_counter_size, l1_LF, l2_LF);
+    assert(s_res2);
+
+    assert(v_CF_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size, l2_counter_size,
+                                      l1_LF, l2_LF, 32u));
+
+}
 
 
 /*

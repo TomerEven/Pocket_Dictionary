@@ -23,6 +23,7 @@
 #include "../POW2C/const_filter.h"
 #include "validation_tests.h"
 #include "/usr/local/include/cuckoofilter/cuckoofilter.h"
+#include "validate_filter.hpp"
 
 
 #define MIN_ELEMENT_LENGTH 8
@@ -73,7 +74,8 @@ cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m,
                     ostream &os);
 
 template<class T>
-ostream &filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os);
+ostream &
+filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps, ostream &os);
 
 ostream &
 filter_rates_simple_pd(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
@@ -95,6 +97,9 @@ test_table(size_t n, double eps, size_t lookups_num, double set_ratio, int *coun
            ulong nom_set_init_time, ulong init_time, ulong insertion_time, ulong lookup_time, ulong total_run_time,
            ostream &os);
 
+auto test_table(size_t n, size_t lookups_num, double set_ratio, ulong insertion_time, ulong lookup_time,
+                ulong total_run_time, ostream &os) -> ostream &;
+
 
 ostream &
 test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive, double set_ratio, int *counter,
@@ -103,8 +108,7 @@ test_printer(size_t n, double eps, size_t lookups_num, bool is_adaptive, double 
              double total_run_time, ostream &os);
 
 
-ostream & lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp_size, double load_factor);
-
+ostream &lookup_result_array_printer(int *counter, size_t lookup_reps, size_t fp_size, double load_factor);
 
 
 bool filter_r1(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l);
@@ -120,6 +124,9 @@ bool const_filter_r0(size_t number_of_pds, float load_factor, size_t l);
 template<class T>
 void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps,
                      ostream &os);
+
+//template<class T>
+//void filter_rates_core(D *filter, size_t max_capacity, size_t lookup_reps, ostream &os) -> ostream &;
 
 
 #endif //CLION_CODE_BENCHMARK_TESTS_H
