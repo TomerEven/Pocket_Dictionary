@@ -1,0 +1,3 @@
+/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/Filter_PD.dir
