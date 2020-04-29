@@ -28,7 +28,7 @@ namespace PD_Hash {
 
         explicit Hash(size_t size);
 
-//    Hash(size_t size, size_t maxRemainderLength);
+//    hash_util(size_t size, size_t maxRemainderLength);
 
 
 //    uint32_t hash(uint32_t x) const;

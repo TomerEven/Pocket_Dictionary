@@ -6,8 +6,8 @@
 #define CLION_CODE_CONST_FILTER_H
 
 #include "../../PD/Constant_size_PD/const_PD.h"
-#include "../../Hash/Hash.h"
-#include "../../Hash/Permutation.h"
+#include "../../hash_util/Hash.h"
+#include "../../hash_util/Permutation.h"
 
 using namespace PD_Hash;
 

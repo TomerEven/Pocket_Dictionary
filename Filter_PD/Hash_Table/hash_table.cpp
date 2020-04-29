@@ -8,9 +8,11 @@ hash_table<T>::hash_table(size_t max_capacity, size_t element_length, size_t buc
          table_size(std::ceil(((double) max_capacity) / max_load_factor)),
          seed1(42), seed2(43), max_cuckoo_insert(0), cuckoo_insert_counter(0), max_capacity_reached(0) {
     table = new T[table_size];
+    // The msb is indicator to whether the cell is free or not. (0 might be valid fingerprint)
+    assert(element_length < sizeof(T) * CHAR_BIT);
     cout << "table_size is: " << table_size << endl;
     for (int i = 0; i < table_size; ++i) {
-        table[i] = 0;
+        table[i] = EMPTY;
     }
 }
 
@@ -42,7 +44,8 @@ hash_table<T>::~hash_table() {
 
 template<typename T>
 auto hash_table<T>::find(const T x) -> bool {
-    assert((x & MASK(element_length)) == x);
+    if (HT_DB_MODE1)
+        assert((x & MASK(element_length)) == x);
 
     uint32_t b1 = -1, b2 = -1;
     my_hash(x, &b1, &b2);
@@ -52,13 +55,26 @@ auto hash_table<T>::find(const T x) -> bool {
 }
 
 template<typename T>
+auto hash_table<T>::find_helper(const T x, size_t bucket_index) -> bool {
+    auto table_index = bucket_index * bucket_size;
+    for (int i = 0; i < bucket_size; ++i) {
+        if (is_equal(table[table_index + i], x))
+            return true;
+    }
+    return false;
+}
+
+template<typename T>
 void hash_table<T>::insert(const T x) {
-    assert((x & MASK(element_length)) == x);
+    if (HT_DB_MODE1)
+        assert((x & MASK(element_length)) == x);
 //    assert(!find(x));
 
-    if (capacity >= max_capacity) {
-        cout << "Trying to insert into fully loaded hash table" << endl;
-        assert(false);
+    if (HT_DB_MODE0) {
+        if (capacity >= max_capacity) {
+            cout << "Trying to insert into fully loaded hash table" << endl;
+            assert(false);
+        }
     }
     capacity++;
     /* http://www.cs.toronto.edu/~noahfleming/CuckooHashing.pdf (Algorithm 2)*/
@@ -88,7 +104,8 @@ void hash_table<T>::insert(const T x) {
         uint32_t temp_b1 = -1, temp_b2 = -1;
         my_hash(hold, &temp_b1, &temp_b2);
 
-        assert(temp_b2 != temp_b1);
+        if (HT_DB_MODE1)
+            assert(temp_b2 != temp_b1);
 
         if (temp_b1 == bucket_index)
             bucket_index = temp_b2;
@@ -98,6 +115,7 @@ void hash_table<T>::insert(const T x) {
             assert(false);
         }
     }
+
     assert(false);
 }
 
@@ -118,7 +136,8 @@ auto hash_table<T>::insert_single_cuckoo(T *hold, size_t *bucket_index, size_t c
     uint32_t temp_b1 = -1, temp_b2 = -1;
     my_hash(*hold, &temp_b1, &temp_b2);
 
-    assert(temp_b2 != temp_b1);
+    if (HT_DB_MODE1)
+        assert(temp_b2 != temp_b1);
 
     if (temp_b1 == *bucket_index)
         *bucket_index = temp_b2;
@@ -141,7 +160,8 @@ void hash_table<T>::cuckoo_swap(T *hold, size_t *bucket_index) {
     uint32_t temp_b1 = -1, temp_b2 = -1;
     my_hash(*hold, &temp_b1, &temp_b2);
 
-    assert(temp_b2 != temp_b1);
+    if (HT_DB_MODE1)
+        assert(temp_b2 != temp_b1);
 
     if (temp_b1 == *bucket_index)
         *bucket_index = temp_b2;
@@ -182,53 +202,26 @@ auto hash_table<T>::get_max_load_factor() const -> const double {
     return max_load_factor;
 }
 
+
 template<typename T>
 void hash_table<T>::remove(const T x) {
-//    assert(find(x));
-    if (capacity == 0) {
-        cout << "Trying to delete from empty hash table" << endl;
+//    if (HT_DB_MODE2)
+//        assert(find(x));
+    if (HT_DB_MODE0) {
+        if (capacity == 0) {
+            cout << "Trying to delete from empty hash table" << endl;
 //        assert(false);
+        }
     }
+
     uint32_t b1 = -1, b2 = -1;
     my_hash(x, &b1, &b2);
 
-    if (remove_helper(x, b1)) {
-//        assert(!find(x));
-        capacity--;
+    // remove_helper will return "true" if x in the hash_table.
+    if (remove_helper(x, b1))
         return;
-    }
-//    assert(remove_helper(x, b2));
-//    assert(!find(x));
+    remove_helper(x, b2);
 
-    capacity--;
-
-}
-
-
-template<typename T>
-auto hash_table<T>::find_helper(const T x, size_t bucket_index) -> bool {
-    auto table_index = bucket_index * bucket_size;
-    for (int i = 0; i < bucket_size; ++i) {
-        if (is_equal(table[table_index + i], x))
-            return true;
-    }
-    return false;
-}
-
-template<typename T>
-auto hash_table<T>::insert_if_bucket_not_full(T x, size_t bucket_index) -> bool {
-    assert((x & MASK(element_length)) == x);
-    auto table_index = bucket_index * bucket_size;
-    for (int i = 0; i < bucket_size; ++i) {
-        if (is_empty_by_index(table_index + i)) {
-            auto prev_val = table[table_index + i];
-            table[table_index + i] = x;
-            capacity++;
-            return true;
-        }
-        /*Add pop attempt*/
-    }
-    return false;
 }
 
 template<typename T>
@@ -236,16 +229,31 @@ auto hash_table<T>::remove_helper(const T x, size_t bucket_index) -> bool {
     auto table_index = bucket_index * bucket_size;
     for (int i = 0; i < bucket_size; ++i) {
         if (is_equal(table[table_index + i], x)) {
-            auto prev_val = table[table_index + i];
-            table[table_index + i] = 0;
-//            if (find(x)) {
+            table[table_index + i] = EMPTY;
+//            auto prev_val = table[table_index + i];
+            /*//            if (find(x)) {
 //                auto res = find_table_location(x);
 //                find(x);
 //                assert(false);
-//            }
+//            }*/
             capacity--;
             return true;
         }
+    }
+    return false;
+}
+
+template<typename T>
+auto hash_table<T>::insert_if_bucket_not_full(T x, size_t bucket_index) -> bool {
+    if (HT_DB_MODE1)
+        assert((x & MASK(element_length)) == x);
+    auto table_index = bucket_index * bucket_size;
+    for (int i = 0; i < bucket_size; ++i) {
+        if (is_empty_by_index(table_index + i)) {
+            insert_by_table_index(x, table_index + i);
+            return true;
+        }
+        /*Add pop attempt*/
     }
     return false;
 }
@@ -294,7 +302,7 @@ auto hash_table<T>::is_equal(T with_counter, T without_counter) -> bool {
 
 template<typename T>
 auto hash_table<T>::is_empty_by_index(size_t table_index) -> bool {
-    return (table[table_index] == 0);
+    return (table[table_index] == EMPTY);
 }
 
 template<typename T>
@@ -306,12 +314,12 @@ auto hash_table<T>::is_empty_by_bucket_index_and_location(size_t bucket_index, s
 
 template<typename T>
 auto hash_table<T>::is_empty_by_slot(T slot) -> bool {
-    return (slot == 0);
+    return (slot == EMPTY);
 }
 
 template<typename T>
 auto hash_table<T>::is_deleted(size_t table_index) -> bool {
-    return table[table_index] == 0;
+    return table[table_index] == EMPTY;
 }
 
 template<typename T>
@@ -342,7 +350,8 @@ auto hash_table<T>::move_el_from_bucket_to_other(size_t bucket_index) -> T * {
         my_hash(x, &b1, &b2);
 
         size_t other_bucket = (b1 == bucket_index) ? b1 : b2;
-        assert((b1 == bucket_index) or (b2 == bucket_index));
+        if (HT_DB_MODE1)
+            assert((b1 == bucket_index) or (b2 == bucket_index));
         if (insert_if_bucket_not_full(x, other_bucket)) {
             return &(table[table_index + i]);
         }
@@ -368,24 +377,29 @@ auto hash_table<T>::insert_helper(const T x, size_t bucket_index) {
 
 template<typename T>
 void hash_table<T>::full_buckets_handler(T x, size_t b1, size_t b2) {
+    assert(false);
+
 //    T *possible_free_slot = move_el_from_bucket_to_other(b1);
 
 }
 
 template<typename T>
 void hash_table<T>::insert_without_counter(T x) {
+    assert(false);
     insert(x | SL(element_length));
 }
 
 
 template<typename T>
 void hash_table<T>::pop_attempt(T x) {
+    assert(false);
 
 }
 
 
 template<typename T>
 auto hash_table<T>::is_state_valid() -> bool {
+    assert(false);
     return false;
 }
 
@@ -437,23 +451,21 @@ void hash_table<T>::insert_by_slot_pointer(T x, T *p_slot) {
 }
 
 template<typename T>
-auto hash_table<T>::get_element_without_counter_by_index(size_t table_index) -> T {
-    return table[table_index] % SL(element_length);
+auto hash_table<T>::get_element_by_index(size_t table_index) -> T {
+    return table[table_index];
 }
 
 template<typename T>
-auto hash_table<T>::get_element_without_counter_by_bucket_index_and_location(size_t bucket_index,
-                                                                             size_t location) -> T {
-    return get_element_without_counter_by_index(bucket_index * bucket_size + location);
+auto hash_table<T>::get_element_by_bucket_index_and_location(size_t bucket_index,
+                                                             size_t location) -> T {
+    return get_element_by_index(bucket_index * bucket_size + location);
 }
 
-template<typename T>
-auto hash_table<T>::get_element_without_counter(T element) -> T {
-    return element % SL(element_length);
-}
 
 template<typename T>
 auto hash_table<T>::get_element_with_counter(size_t table_index) -> T {
+    assert(false);
+
 //    return nullptr;
 }
 

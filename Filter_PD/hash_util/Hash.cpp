@@ -10,9 +10,9 @@ namespace PD_Hash {
 
 
     Hash::Hash(size_t size) : size(size), multiConst(rangedUniformDistribution(1, 1000)) {};
-//Hash::Hash(size_t size) : size(size), multiConst(331) {};
+//hash_util::hash_util(size_t size) : size(size), multiConst(331) {};
 
-/*uint32_t Hash::hash(uint32_t x) const {
+/*uint32_t hash_util::hash(uint32_t x) const {
     return 0;
     uint32_t a, b;
     MurmurHash3_x86_32(&x, (int) (strlen(elementP)), DEFAULT_SEED, &a);
@@ -48,7 +48,7 @@ namespace PD_Hash {
         return a[0] + multiConst * a[1];
     }
 
-/*uint32_t Hash::hash32(uint32_t el) {
+/*uint32_t hash_util::hash32(uint32_t el) {
     uint32_t a = 0, b = 0;
     MurmurHash3_x86_32(&el, (int) (64), DEFAULT_SEED, &a);
     MurmurHash3_x86_32(&el, (int) (64), SECOND_SEED, &b);
@@ -108,7 +108,7 @@ namespace PD_Hash {
 
 }
 /*
-Hash::Hash(size_t size, size_t maxRemainderLength)  : size(size){
+hash_util::hash_util(size_t size, size_t maxRemainderLength)  : size(size){
     multiConst.resize(maxRemainderLength + 1);
     for (int i = 0; i < maxRemainderLength; ++i) {
         multiConst[i] = rangedUniformDistribution(1, 1000);
@@ -117,7 +117,7 @@ Hash::Hash(size_t size, size_t maxRemainderLength)  : size(size){
 
 /*
 
-size_t Hash::calc(string *elementP, HASH_BLOCK_TYPE *dataArr, size_t length) const {
+size_t hash_util::calc(string *elementP, HASH_BLOCK_TYPE *dataArr, size_t length) const {
     assert(length < multiConst.size());
     char const *cp = elementP->c_str();
     uint32_t a, b;
@@ -131,7 +131,7 @@ size_t Hash::calc(string *elementP, HASH_BLOCK_TYPE *dataArr, size_t length) con
     return (a % size + this->multiConst[0] * (b % this->size)) % this->size;
 }
 
-size_t Hash::calc(string *elementP, uint16_t *dataArr, size_t length) const {
+size_t hash_util::calc(string *elementP, uint16_t *dataArr, size_t length) const {
     assert(length < multiConst.size());
     char const *cp = elementP->c_str();
     uint32_t a, b;
@@ -145,7 +145,7 @@ size_t Hash::calc(string *elementP, uint16_t *dataArr, size_t length) const {
     return (a % size + this->multiConst[0] * (b % this->size)) % this->size;
 }
 
-size_t Hash::lengthHash(string *elementP, uint32_t *dataArr, size_t arraySize) const {
+size_t hash_util::lengthHash(string *elementP, uint32_t *dataArr, size_t arraySize) const {
     assert(arraySize < multiConst.size());
     char const *cp = elementP->c_str();
     uint32_t a, b;

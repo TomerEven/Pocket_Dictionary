@@ -42,13 +42,16 @@ void example_of_CF_rates_wrapper();
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    size_t reps = 1u << 21u, max_distinct_capacity = 1u << 18u;
-    size_t remainder_length = 13;
+    size_t reps = 1u << 15u, max_distinct_capacity = 1u << 14u;
+    size_t remainder_length = 7;
     size_t l1_counter_size = 3, l2_counter_size = 7;
     double l1_LF = 0.95, l2_LF = 0.65;
-    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
-                             l2_counter_size, l1_LF, l2_LF, cout);
+    w_validate_filter<dict32>(max_distinct_capacity, reps, remainder_length, l1_LF, l2_LF);
+//
+//    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+//                             l2_counter_size, l1_LF, l2_LF, cout);
 
+/*
     cout << string(32, '*') << endl;
     cout << string(32, '*') << endl;
     example_of_CF_rates_wrapper();
@@ -59,6 +62,7 @@ int main() {
     cout << string(32, '*') << endl;
     cout << string(32, '*') << endl;
     example_of_CF_rates_wrapper();
+*/
 
     /* size_t pd_num = 1ul << 14ul, fp_size = 13, m = 32, pd_capacity = 32, lookup_reps = 1ULL << 21ul;
     auto load_factor = 0.88;
@@ -67,8 +71,9 @@ int main() {
 
     cout << string(32, '*') << endl;
     */
+    /*
     example_of_CF_rates_wrapper();
-
+*/
     std::cout << "End!" << std::endl;
     return 0;
 }
@@ -79,6 +84,8 @@ void example_of_CF_rates_wrapper() {
     size_t remainder_length = 13;
     size_t l1_counter_size = 3, l2_counter_size = 7;
     double l1_LF = 0.95, l2_LF = 0.65;
+
+
     CF_rates_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
                                    l2_counter_size, l1_LF, l2_LF, cout);
 }

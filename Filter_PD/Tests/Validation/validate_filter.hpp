@@ -16,6 +16,11 @@
 
 
 template<class D>
+auto
+w_validate_filter(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv, double level1_load_factor,
+                  double level2_load_factor) -> bool;
+
+template<class D>
 auto v_filter(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv, double level1_load_factor,
               double level2_load_factor) -> bool;
 
@@ -27,6 +32,9 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
 
 template<class D>
 auto v_TP_lookups(D *filter, set<string> *el_set) -> bool;
+
+template<class D>
+auto v_insertion_plus_imm_lookups(D *filter, set<string> *el_set) -> bool;
 
 template<class D>
 auto v_FP_counter(D *filter, set<string> *lookup_set, vector<set<string> *> *member_vec) -> size_t;

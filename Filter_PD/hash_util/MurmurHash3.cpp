@@ -63,7 +63,7 @@ FORCE_INLINE uint64_t getblock64 ( const uint64_t * p, int i )
 }
 
 //-----------------------------------------------------------------------------
-// Finalization mix - force all bits of A Hash block to avalanche
+// Finalization mix - force all bits of A hash_util block to avalanche
 
 FORCE_INLINE uint32_t fmix32 ( uint32_t h )
 {

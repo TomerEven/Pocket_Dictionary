@@ -4,6 +4,16 @@
 
 #include "validate_filter.hpp"
 
+template<class D>
+auto w_validate_filter(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
+                       double level1_load_factor, double level2_load_factor) -> bool {
+    auto filter = D(filter_max_capacity, error_power_inv, level1_load_factor, level2_load_factor);
+    cout << "\nexpected #fp is: " << ((double) lookup_reps / (1u << error_power_inv)) << endl;
+    return validate_filter_core(&filter, filter_max_capacity, lookup_reps);
+
+}
+
+
 template<class T>
 auto
 validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, size_t l, size_t lookup_reps) -> bool {
@@ -104,6 +114,8 @@ validate_filter(size_t number_of_pds, float load_factor, size_t m, size_t f, siz
 //
 //}
 
+
+
 template<class D>
 auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t lookup_reps) -> bool {
     auto number_of_elements_in_the_filter = filter_max_capacity;
@@ -119,6 +131,8 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
     auto it = member_set.begin();
     auto it_backup = member_set.begin();
 
+//    assert(v_insertion_plus_imm_lookups(filter, &member_set));
+//    assert(v_insertion_plus_imm_lookups(filter, &to_be_deleted_set));
     size_t counter = 0;
     for (; it != member_set.end(); ++it) {
         const string val = *it;
@@ -132,14 +146,14 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
         }
         counter++;
     }
-    /*for (auto iter : member_set) {
-    filter->insert(&iter);
-    if (!filter->lookup(&iter)) {
-        filter->lookup(&iter);
-        assert(false);
+    for (auto iter : member_set) {
+        filter->insert(&iter);
+        if (!filter->lookup(&iter)) {
+            filter->lookup(&iter);
+            assert(false);
+        }
+        counter++;
     }
-    counter++;
-}*/
 
     for (auto iter : to_be_deleted_set)filter->insert(&iter);
 
@@ -181,6 +195,7 @@ auto validate_filter_core_mid(D *filter, size_t filter_max_capacity, size_t look
 
 }
 
+
 template<class D>
 auto v_TP_lookups(D *filter, set<string> *el_set) -> bool {
     size_t counter = 0;
@@ -196,6 +211,26 @@ auto v_TP_lookups(D *filter, set<string> *el_set) -> bool {
     }
     return true;
 
+}
+
+template<class D>
+auto v_insertion_plus_imm_lookups(D *filter, set<string> *el_set) -> bool {
+    size_t counter = 0;
+    for (const string &el: *el_set) {
+        bool already_in_filter = filter->lookup(&el);
+        filter->insert(&el);
+        if (!filter->lookup(&el)) {
+            cout << "lookup failed." << endl;
+            cout << "counter: " << counter << endl;
+            cout << "element: " << el << endl;
+
+            filter->insert(&el);
+            filter->lookup(&el);
+            return false;
+        }
+        counter++;
+    }
+    return true;
 }
 
 template<class D>
@@ -230,11 +265,14 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
     size_t counter = 0;
 
     /**Insertion*/
-    for (auto iter : member_set) {
-        filter->insert(&iter);
-        counter++;
-    }
-    for (auto iter : to_be_deleted_set) filter->insert(&iter);
+    assert(v_insertion_plus_imm_lookups(filter, &member_set));
+    assert(v_insertion_plus_imm_lookups(filter, &to_be_deleted_set));
+
+//    for (auto iter : member_set) {
+//        filter->insert(&iter);
+//        counter++;
+//    }
+//    for (auto iter : to_be_deleted_set) filter->insert(&iter);
 
 
     /**Lookup*/
@@ -248,12 +286,15 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
             assert(filter->lookup(&iter));
         }
     }
+    counter = 0;
     for (auto iter : to_be_deleted_set) {
         if (!filter->lookup(&iter)) {
             cout << "False negative:" << endl;
+            cout << iter << endl;
             filter->lookup(&iter);
             assert(filter->lookup(&iter));
         }
+        counter++;
     }
 
     /**Count False positive*/
@@ -284,8 +325,8 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
 //    cout << endl;*/
     counter = 0;
 //    size_t bad_iter = 30315;
-    string bad_el = "Z]\\P]SZF";
-    assert(filter->lookup(&bad_el));
+//    string bad_el = "Z]\\P]SZF";
+//    assert(filter->lookup(&bad_el));
 
     /**Deletions*/
     for (auto iter : to_be_deleted_set) {
@@ -309,12 +350,12 @@ auto validate_filter_core(D *filter, size_t filter_max_capacity, size_t lookup_r
         }
         filter->remove(&iter);
         counter++;
-        assert(filter->lookup(&bad_el));
+//        assert(filter->lookup(&bad_el));
 
     };
 
     counter = 0;
-    assert(filter->lookup(&bad_el));
+//    assert(filter->lookup(&bad_el));
     for (auto iter : member_set) {
         bool c = to_be_deleted_set.find(iter) != to_be_deleted_set.end();
         if (c)
@@ -406,6 +447,19 @@ template auto v_FP_counter<safe_multi_dict64>(safe_multi_dict64 *filter, set<str
 template auto
 v_FP_counter<dict32>(dict32 *filter, set<string> *lookup_set, vector<set<string> *> *member_vec) -> size_t;
 
+
+template auto w_validate_filter<dict32>(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
+                                        double level1_load_factor, double level2_load_factor) -> bool;
+
+//template auto v_insertion_plus_imm_lookups<multi_dict64>(multi_dict64 *filter, set<string> *el_set) -> bool;
+//
+//template auto v_insertion_plus_imm_lookups<safe_multi_dict64>(safe_multi_dict64 *filter, set<string> *el_set) -> bool;
+//
+//template auto v_insertion_plus_imm_lookups<dict32>(dict32 *filter, set<string> *el_set) -> bool;
+
+//template auto w_validate_filter<multi_dict64>(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
+//                                              double level1_load_factor,
+//                                              double level2_load_factor) -> bool;
 
 
 

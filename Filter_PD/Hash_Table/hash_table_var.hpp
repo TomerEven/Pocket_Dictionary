@@ -13,7 +13,7 @@
 #include <ostream>
 #include <cmath>
 #include "../Global_functions/macros.h"
-#include "../Hash/static_hashing.h"
+#include "../hash_util/static_hashing.h"
 #include "../bit_operations/my_bit_op.hpp"
 
 template<typename T>

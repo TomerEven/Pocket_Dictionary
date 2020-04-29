@@ -14,25 +14,32 @@ namespace name_compare {
 
 
         // values for controlling format
-        const int name_width = int(max_length);
+        const uint32_t name_width = int(max_length);
         const int int_width = 7;
         const int dbl_width = 12;
         const int num_flds = 7;
         const std::string sep = " |";
-        const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() *
-                                                                                 num_flds; // NOLINT(bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions)
+        const uint32_t total_width = name_width * 2u + int_width * 2u + dbl_width * 3u + sep.size() * num_flds;
         const std::string line = sep + std::string(total_width - 1, '-') + '|';
         std::cout << line << '\n' << sep << left;
 
+        const std::string spacing = std::string(name_width, ' ');
+//        std::string header =
+//                line + '\n' + sep + spacing + "var " + sep + spacing + "value";
+
         const size_t column_num = 4;
         string columns[column_num] = {"var_name", "ratio", "actual value", "divider"};
-        /*cout << std::setw(name_width) << "var_name" << sep;
-        cout << std::setw(name_width) << "ratio " << sep;
-        cout << std::setw(name_width) << "actual value" << sep;
-        cout << std::setw(name_width) << "divider" << sep;*/
-        for (const auto &column : columns) {
-            cout << std::setw(name_width) << column << sep;
+        size_t counter = 0;
+        while (counter < column_num - 1) {
+            cout << std::setw(name_width) << columns[counter++] << sep;
         }
+        cout << std::setw(name_width) << columns[counter] << std::string(4, ' ') << sep;
+        /*cout << std::setw(name_width) << "ratio " << sep;
+        cout << std::setw(name_width) << "actual value" << sep;
+        cout << std::setw(name_width) << "divider" << sep;
+//        for (const auto &column : columns) {
+//            cout << std::setw(name_width) << column << sep;
+//        }*/
         cout << '\n' << line << '\n';
 
 //    assert(var_num % column_num == 0);
@@ -42,7 +49,9 @@ namespace name_compare {
             std::cout << sep << std::setw(name_width) << rate;
             std::cout << sep << std::setw(name_width) << divisors[i];
             std::cout << sep << std::setw(name_width) << values[i];
-            std::cout << std::setw(name_width) << sep << '\n';
+            auto temp_length = total_width - name_width * column_num;
+            assert (temp_length > 0);
+            std::cout << std::string(4, ' ') << sep << '\n';
         }
         std::cout << line << endl;
 
@@ -79,14 +88,26 @@ namespace name_compare {
         const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() *
                                                                                  num_flds; // NOLINT(bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions)
         const std::string line = sep + std::string(total_width - 1, '-') + '|';
-        std::cout << line << '\n' << sep << std::setw(name_width) << left << "var " << sep << std::setw(name_width)
-                  << "value"
-                  << sep << '\n' << line << '\n';
+        const std::string spacing = std::string(name_width, ' ');
+        std::string header =
+                line + '\n' + sep + spacing + "var " + sep + spacing + "value";
+        size_t spaces_to_add = total_width - header.size();
+        header += std::string(spaces_to_add, ' ') + sep + '\n' + line + '\n';
+
+        std::cout << header;
+//        std::cout << line << '\n' << sep << std::setw(name_width) << left << "var " << sep << std::setw(name_width)
+//                  << "value"
+//                  << sep << '\n' << line << '\n';
 
         for (int i = 0; i < var_num; ++i) {
-            std::cout << sep << std::setw(name_width) << names[i] << sep << std::setw(name_width) << values[i]
-                      << sep
-                      << '\n';
+            std::string temp_line = sep + spacing + names[i] + sep + spacing + to_string(values[i]);
+            size_t temp_spaces_to_add = total_width - temp_line.size();
+            temp_line += std::string(temp_spaces_to_add, ' ') + sep + '\n';
+            std::cout << temp_line;
+
+//            std::cout << sep << std::setw(name_width) << names[i] << sep << std::setw(name_width) << values[i]
+//                      << sep
+//                      << '\n';
         }
         std::cout << line << endl;
 

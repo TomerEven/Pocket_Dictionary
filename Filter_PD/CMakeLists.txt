@@ -2,18 +2,18 @@ cmake_minimum_required(VERSION 3.15)
 project(Filter_PD)
 
 set(CMAKE_CXX_STANDARD 14)
-SET(CMAKE_CXX_FLAGS "-O3")
-SET(CMAKE_C_FLAGS "-O3")
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
+#SET(CMAKE_CXX_FLAGS "-O3")
+#SET(CMAKE_C_FLAGS "-O3")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 #add_subdirectory(./libcuckoo)
 #SET(CMAKE_CXX_FLAGS -pthread)
 
 add_executable(Filter_PD
         Global_functions/basic_functions.cpp Global_functions/basic_functions.h
 
-        Hash/Hash.h Hash/Hash.cpp
-        Hash/MurmurHash3.h Hash/MurmurHash3.cpp
+        hash_util/Hash.h hash_util/Hash.cpp
+        hash_util/MurmurHash3.h hash_util/MurmurHash3.cpp
 
         PD/Non_Contiguous_PD/Header.cpp PD/Non_Contiguous_PD/Header.h
         PD/Non_Contiguous_PD/Body.cpp PD/Non_Contiguous_PD/Body.h
@@ -49,9 +49,9 @@ add_executable(Filter_PD
 
         PD/Contiguous_PD/cg_PD.cpp PD/Contiguous_PD/cg_PD.h
         PD/Naive_PD/cg_naive_PD.cpp PD/Naive_PD/cg_naive_PD.h
-        Hash/static_hashing.h
-        #        Hash/hashutil_backup/lookup3.h
-        Hash/Permutation.cpp Hash/Permutation.h
+        hash_util/static_hashing.h
+        #        hash_util/hashutil_backup/lookup3.h
+        hash_util/Permutation.cpp hash_util/Permutation.h
 
         Hash_Table/multi_hash_table.hpp
         Hash_Table/hash_table_var.cpp Hash_Table/hash_table_var.hpp

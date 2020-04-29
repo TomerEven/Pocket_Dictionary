@@ -7,12 +7,13 @@
 template<class D, class S, typename S_T>
 multi_dict<D, S, S_T>::multi_dict(size_t max_number_of_elements, size_t error_power_inv, size_t level1_counter_size,
                                   size_t level2_counter_size, double level1_load_factor, double level2_load_factor):
-        capacity(0),
+        capacity(0), distinct_capacity(0), pd_max_overflow_counter(0),
         single_pd_capacity(DEFAULT_CPD_CAPACITY),
-        number_of_pd(my_ceil(max_number_of_elements, (size_t) DEFAULT_CPD_CAPACITY)),
+        number_of_pd(get_number_of_PDs(max_number_of_elements, level1_load_factor)),
         quotient_range(DEFAULT_CPD_QUOTIENT_RANGE),
         remainder_length(error_power_inv),
-        pd_index_length(ceil(log2(my_ceil(max_number_of_elements, (size_t) DEFAULT_CPD_CAPACITY)))),
+//        pd_index_length(ceil(log2(my_ceil(max_number_of_elements, (size_t) DEFAULT_CPD_CAPACITY)))),
+        pd_index_length(ceil(log2(number_of_pd))),
         quotient_length(DEFAULT_CPD_QUOTIENT_LENGTH),
         level1_counter_size(level1_counter_size),
         level2_counter_size(level2_counter_size),
@@ -25,12 +26,15 @@ multi_dict<D, S, S_T>::multi_dict(size_t max_number_of_elements, size_t error_po
     size_t spare_max_capacity = get_multi_spare_max_capacity(max_number_of_elements, level1_load_factor);
     spare = new S(spare_max_capacity, remainder_length + pd_index_length + quotient_length, level2_counter_size,
                   level2_load_factor);
-//    spare2 = new multi_hash_table<uint32_t>(spare_max_capacity, remainder_length + pd_index_length + quotient_length, level2_counter_size,
-//                   level2_load_factor);
+//    spare = new multi_hash_table<uint64_t>(spare_max_capacity, remainder_length + pd_index_length + quotient_length,
+//                                           level2_counter_size,
+//                                           level2_load_factor);
+
     pd_capacity_vec.resize(number_of_pd);
 
     for (size_t i = 0; i < number_of_pd; ++i) {
         pd_vec.emplace_back(D(quotient_range, single_pd_capacity, remainder_length, level1_counter_size));
+//        pd_vec.emplace_back(CPD(quotient_range, single_pd_capacity, remainder_length, level1_counter_size));
     }
 //    get_info();
 }
@@ -110,7 +114,6 @@ auto multi_dict<D, S, S_T>::lookup_multi_int(const P x) -> size_t {
 
 template<class D, class S, typename S_T>
 void multi_dict<D, S, S_T>::insert(const string *s) {
-    //todo I think I need to enforce stronger policy when inserting, to make sure an element is not in more than one level at once.
 //    auto hash_val = wrap_hash(s);
     return insert_helper(wrap_hash(s));
 /*
@@ -195,7 +198,7 @@ void multi_dict<D, S, S_T>::insert_helper(S_T hash_val) {
         auto spare_op_res = spare->insert_inc_att(hash_val);
         if (spare_op_res == OK)
             return;
-        if (MD_DB_MODE1)
+        if (MD_DB_MODE2)
             assert(!spare->find(hash_val));
         pd_vec[pd_index].insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
@@ -299,7 +302,7 @@ auto multi_dict<D, S, S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index)
             spare->insert_by_bucket_index_and_location(y, bucket_index, i);
             return true;
         }
-        if (single_pop_attempt(spare->get_element_without_counter_by_bucket_index_and_location(bucket_index, i))) {
+        if (single_pop_attempt(spare->get_element_by_bucket_index_and_location(bucket_index, i))) {
             spare->insert_by_bucket_index_and_location(y, bucket_index, i);
             return true;
         }
@@ -415,15 +418,13 @@ auto multi_dict<D, S, S_T>::pop_attempt_with_insertion_by_bucket(S_T hash_val, s
 
 template<class D, class S, typename S_T>
 void multi_dict<D, S, S_T>::insert_level1_inc_overflow_handler(S_T hash_val) {
-    assert(false);
-
     auto temp = spare->add_counter_to_element(hash_val & MASK(spare_element_length), SL(level1_counter_size));
     spare->insert_after_lower_memory_hierarchy_counter_overflow_with_counter(temp);
 }
 
 template<class D, class S, typename S_T>
 void multi_dict<D, S, S_T>::remove(const string *s) {
-    return insert_helper(wrap_hash(s));
+    return remove_helper(wrap_hash(s));
 
 //    auto hash_val = wrap_hash(s);
 
@@ -457,7 +458,7 @@ void multi_dict<D, S, S_T>::remove_helper(S_T hash_val) {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-//    bool BPC = (hash_val == 80735794) or (*s == "]AHWVF]NK[X");
+
     auto op_res = pd_vec[pd_index].conditional_remove(quot, r);
     if (op_res == dec_underflow) {
         --(pd_capacity_vec[pd_index]);
@@ -602,6 +603,12 @@ static auto get_multi_spare_max_capacity(size_t dict_max_capacity, double level1
     auto res = my_ceil(dict_max_capacity, log2_size * log2_size) << 6u;
     return res;
 //    return my_ceil(dict_max_capacity, log2_size * log2_size * log2_size);
+}
+
+static auto get_number_of_PDs(size_t dict_max_capacity, double l1_load_factor) -> size_t {
+    double divisor = DEFAULT_CPD_CAPACITY * l1_load_factor;
+    double res = dict_max_capacity / divisor;
+    return (size_t) ceil(res);
 }
 
 
