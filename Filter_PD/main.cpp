@@ -42,7 +42,6 @@ enum dict_types {
     basic, counting//, cuckoo_dict
 };
 
-<<<<<<< HEAD
 
 int main(int argc, char **argv) {
 
