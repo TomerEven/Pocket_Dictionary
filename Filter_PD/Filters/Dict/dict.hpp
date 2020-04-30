@@ -5,6 +5,10 @@
 #include "../../PD/Contiguous_PD/cg_PD.h"
 #include "../../Hash_Table/hash_table.hpp"
 
+#define DICT_DB_MODE0 (true)
+#define DICT_DB_MODE1 (true & DICT_DB_MODE0)
+#define DICT_DB_MODE2 (true & DICT_DB_MODE1)
+
 
 template<class D, class S>
 class dict {

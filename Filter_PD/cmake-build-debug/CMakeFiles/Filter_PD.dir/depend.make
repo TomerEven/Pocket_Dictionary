@@ -40,13 +40,13 @@ CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Filters/Dict/dict.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../PD/Contiguous_PD/cg_PD.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../CPD/CPD.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../CPD/CPD_validator.hpp
@@ -55,34 +55,30 @@ CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Filters/Dict/multi_di
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../PD/Contiguous_PD/cg_PD.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Filters/POW2C/const_filter.cpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Filters/POW2C/const_filter.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Hash/Permutation.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../PD/Constant_size_PD/const_Body.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../PD/Constant_size_PD/const_Header.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../PD/Constant_size_PD/const_PD.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../bit_operations/bit_op.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../hash_util/Permutation.h
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Filters/POW2C/gen_2Power.cpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Filters/POW2C/gen_2Power.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../PD/Contiguous_PD/cg_PD.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../PD/Naive_PD/naive_Body.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../PD/Naive_PD/naive_Header.h
@@ -93,29 +89,30 @@ CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../PD/Non_Contiguous_PD
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Filters/POW2C/pow2c_filter.cpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Filters/POW2C/pow2c_filter.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../PD/Non_Contiguous_PD/Body.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../PD/Non_Contiguous_PD/Header.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../PD/Non_Contiguous_PD/PD.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Filters/POW2C/pow2c_naive_filter.cpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Filters/POW2C/pow2c_naive_filter.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Hash/Permutation.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../PD/Naive_PD/naive_Body.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../PD/Naive_PD/naive_Header.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../PD/Naive_PD/naive_PD.h
@@ -123,51 +120,41 @@ CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../PD/Non_Conti
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../hash_util/Permutation.h
 
 CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o: ../Global_functions/basic_functions.cpp
 CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o: ../Global_functions/basic_functions.h
 
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: ../Global_functions/basic_functions.h
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: ../Hash/Hash.cpp
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: ../Hash/MurmurHash3.h
-
-CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o: ../Hash/MurmurHash3.cpp
-CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o: ../Hash/MurmurHash3.h
-
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o: ../Hash/Permutation.cpp
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o: ../Hash/Permutation.h
-
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Hash_Table/hash_table.cpp
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Hash_Table/hash_table_var.cpp
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Hash_Table/hash_table_var.hpp
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Hash_Table/multi_hash_table.cpp
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o: ../Global_functions/macros.h
@@ -311,10 +298,6 @@ CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../PD/Constant_size_PD/const_Body.h
@@ -339,6 +322,10 @@ CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../hash_util/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: /usr/local/include/cuckoofilter/bitsutil.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: /usr/local/include/cuckoofilter/cuckoofilter.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: /usr/local/include/cuckoofilter/debug.h
@@ -359,10 +346,6 @@ CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Filters/PO
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../PD/Constant_size_PD/const_Body.h
@@ -385,6 +368,10 @@ CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Tests/Vali
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../hash_util/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: /usr/local/include/cuckoofilter/bitsutil.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: /usr/local/include/cuckoofilter/cuckoofilter.h
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: /usr/local/include/cuckoofilter/debug.h
@@ -442,10 +429,6 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Fil
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../PD/Constant_size_PD/const_Body.h
@@ -469,6 +452,10 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Tes
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../hash_util/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: /usr/local/include/cuckoofilter/bitsutil.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: /usr/local/include/cuckoofilter/cuckoofilter.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: /usr/local/include/cuckoofilter/debug.h
@@ -489,10 +476,6 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Filters/POW2
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../PD/Constant_size_PD/const_Body.h
@@ -515,6 +498,10 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Tests/Valida
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../hash_util/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: /usr/local/include/cuckoofilter/bitsutil.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: /usr/local/include/cuckoofilter/cuckoofilter.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: /usr/local/include/cuckoofilter/debug.h
@@ -527,13 +514,13 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: /usr/local/incl
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Tests/Validation/validate_hash_table.cpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Tests/Validation/validate_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../hash_util/static_hashing.h
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../CPD/CPD.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../CPD/CPD_validator.hpp
@@ -546,10 +533,6 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Filters/POW
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../PD/Constant_size_PD/const_Body.h
@@ -572,6 +555,10 @@ CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Tests/Valid
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../hash_util/static_hashing.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: /usr/local/include/cuckoofilter/bitsutil.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: /usr/local/include/cuckoofilter/cuckoofilter.h
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: /usr/local/include/cuckoofilter/debug.h
@@ -598,6 +585,19 @@ CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o: ../bit_operations/bit_o
 CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o: ../bit_operations/my_bit_op.cpp
 CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o: ../bit_operations/my_bit_op.hpp
 
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: ../Global_functions/basic_functions.h
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: ../Global_functions/macros.h
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: ../hash_util/Hash.cpp
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: ../hash_util/MurmurHash3.h
+
+CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o: ../hash_util/MurmurHash3.cpp
+CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o: ../hash_util/MurmurHash3.h
+
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o: ../Global_functions/macros.h
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o: ../hash_util/Permutation.cpp
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o: ../hash_util/Permutation.h
+
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../CPD/CPD.hpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../CPD/CPD_validator.hpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../CPD/Counters_Array.hpp
@@ -611,10 +611,6 @@ CMakeFiles/Filter_PD.dir/main.cpp.o: ../Filters/POW2C/pow2c_naive_filter.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../Global_functions/basic_functions.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../Global_functions/cuckoo_and_counting_macros.hpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../Global_functions/macros.h
-CMakeFiles/Filter_PD.dir/main.cpp.o: ../Hash/Hash.h
-CMakeFiles/Filter_PD.dir/main.cpp.o: ../Hash/MurmurHash3.h
-CMakeFiles/Filter_PD.dir/main.cpp.o: ../Hash/Permutation.h
-CMakeFiles/Filter_PD.dir/main.cpp.o: ../Hash/static_hashing.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../Hash_Table/hash_table.hpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../Hash_Table/multi_hash_table.hpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../PD/Constant_size_PD/const_Body.h
@@ -643,6 +639,10 @@ CMakeFiles/Filter_PD.dir/main.cpp.o: ../Tests/Validation/validation_tests.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../bit_operations/bit_op.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../bit_operations/bit_word_converter.hpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../bit_operations/my_bit_op.hpp
+CMakeFiles/Filter_PD.dir/main.cpp.o: ../hash_util/Hash.h
+CMakeFiles/Filter_PD.dir/main.cpp.o: ../hash_util/MurmurHash3.h
+CMakeFiles/Filter_PD.dir/main.cpp.o: ../hash_util/Permutation.h
+CMakeFiles/Filter_PD.dir/main.cpp.o: ../hash_util/static_hashing.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Filter_PD.dir/main.cpp.o: /usr/local/include/cuckoofilter/bitsutil.h
 CMakeFiles/Filter_PD.dir/main.cpp.o: /usr/local/include/cuckoofilter/cuckoofilter.h

@@ -16,7 +16,6 @@ dict<D, S>::dict(size_t max_number_of_elements, size_t error_power_inv, double l
 
     assert(sparse_element_length <= sizeof(D_TYPE) * CHAR_BIT);
 
-//    todo: this constructor is wrong?.
 
     size_t spare_max_capacity = get_spare_max_capacity(max_number_of_elements, level1_load_factor);
     spare = new S(spare_max_capacity, sparse_element_length, level2_load_factor);
@@ -76,7 +75,7 @@ bool dict<D, S>::lookup_helper(uint32_t hash_val) {
     split(hash_val, &pd_index, &quot, &r);
     if (pd_vec[pd_index].lookup(quot, r)) return true;
 
-    return spare->find(hash_val % SL(sparse_element_length));
+    return spare->find(hash_val & MASK(sparse_element_length));
 }
 
 template<class D, class S>
@@ -225,9 +224,12 @@ void dict<D, S>::insert_to_spare_with_pop(S_TYPE hash_val) {
             spare->update_cuckoo_insert_counter(i);
             return;
         }
-        assert(spare->is_bucket_full_by_index(bucket));
+        if (DICT_DB_MODE1)
+            assert(spare->is_bucket_full_by_index(bucket));
         spare->cuckoo_swap(&hold, &bucket);
     }
+    cout << spare->get_capacity() / ((double) spare->get_max_capacity()) << endl;
+    assert(false);
 }
 
 template<class D, class S>
@@ -255,6 +257,8 @@ void dict<D, S>::remove_int(P x) {
 
 template<class D, class S>
 void dict<D, S>::remove_helper(uint32_t hash_val) {
+    if (DICT_DB_MODE2)
+        assert (lookup_helper(hash_val));
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
@@ -288,7 +292,8 @@ auto dict<D, S>::pop_attempt_with_insertion_by_bucket(S_TYPE hash_val, size_t bu
             spare->insert_by_bucket_index_and_location(hash_val, bucket_index, i);
             return true;
         }
-        if (single_pop_attempt(spare->get_element_without_counter_by_bucket_index_and_location(bucket_index, i))) {
+        auto temp_el = spare->get_element_by_bucket_index_and_location(bucket_index, i);
+        if (single_pop_attempt(temp_el)) {
             spare->insert_by_bucket_index_and_location(hash_val, bucket_index, i);
             return true;
         }
@@ -302,7 +307,7 @@ auto dict<D, S>::pop_attempt_by_bucket(size_t bucket_index) -> S_TYPE * {
     auto pointer = spare->get_bucket_address(bucket_index);
     S_TYPE *res = nullptr;
     for (int i = 0; i < spare->get_bucket_size(); ++i) {
-        if (single_pop_attempt(spare->get_element_without_counter_by_index(*pointer))) {
+        if (single_pop_attempt(spare->get_element_by_index(*pointer))) {
             *pointer = DELETED;
             res = pointer;
             assert(*res == *pointer);
@@ -323,9 +328,11 @@ auto dict<D, S>::single_pop_attempt(uint32_t element) -> bool {
         pd_vec[pd_index].insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         spare->decrease_capacity();
+        cout << "element with hash_val: (" << element << ") was pop." << endl;
         return true;
     }
-    assert(pd_vec[pd_index].is_full());
+    if (DICT_DB_MODE1)
+        assert(pd_vec[pd_index].is_full());
     return false;
 }
 
@@ -365,7 +372,7 @@ auto get_max_elements_in_level2(size_t number_of_pd, size_t single_pd_capacity, 
 static auto get_spare_max_capacity(size_t dict_max_capacity, double level1_load_factor) -> size_t {
     size_t log2_size = ceil(log2(dict_max_capacity));
 //    auto res = my_ceil(dict_max_capacity, log2_size * log2_size * log2_size);
-    auto res = my_ceil(dict_max_capacity, log2_size * log2_size);
+    auto res = my_ceil(dict_max_capacity, log2_size * log2_size) << 6u;
     return res;
 //    return my_ceil(dict_max_capacity, log2_size * log2_size * log2_size);
 }

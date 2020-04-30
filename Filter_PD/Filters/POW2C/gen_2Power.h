@@ -9,9 +9,9 @@
 #include "../../PD/Naive_PD/naive_PD.h"
 #include "../../PD/Naive_PD/naive_PD.h"
 #include "../../PD/Contiguous_PD/cg_PD.h"
-#include "../../Hash/Hash.h"
-#include "../../Hash/Permutation.h"
-#include "../../Hash/static_hashing.h"
+#include "../../hash_util/Hash.h"
+#include "../../hash_util/Permutation.h"
+#include "../../hash_util/static_hashing.h"
 
 #define GEN_TO_PRINT (0)
 
@@ -25,7 +25,7 @@ class gen_2Power {
     const bool is_const_size_indicator;
 //    const uint32_t xor_array[2];
 //    const uint32_t rotate_array[2];
-//    Hash h;
+//    hash_util h;
 //    Permutation perm;
 public:
 //    gen_2Power(size_t size, size_t interval_length, size_t single_pd_capacity, size_t fp_size);
@@ -60,7 +60,7 @@ public:
     inline void wrap_split(uint32_t s, size_t *pd_index1, size_t *pd_index2, D_TYPE *q1, D_TYPE *q2, D_TYPE *r1,
                            D_TYPE *r2) {
         auto h = my_hash(s, HASH_SEED);
-        if (GEN_TO_PRINT) printf("Hash res is %u\n", h);
+        if (GEN_TO_PRINT) printf("hash_util res is %u\n", h);
         split(h, pd_index1, pd_index2, q1, q2, r1, r2);
     }
 

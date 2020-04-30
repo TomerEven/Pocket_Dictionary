@@ -27,9 +27,9 @@ class multi_dict {
 //    vector<CPD> pd_vec;
     vector<uint> pd_capacity_vec;
     S *spare;
-//    multi_hash_table<S_T> *spare;
+//    multi_hash_table<uint64_t> *spare;
 
-    size_t capacity;
+    size_t capacity, distinct_capacity, pd_max_overflow_counter;
     const size_t number_of_pd, remainder_length, quotient_range, single_pd_capacity;
     const size_t quotient_length, pd_index_length;
     const size_t level1_counter_size, level2_counter_size;
@@ -173,6 +173,8 @@ private:
 };
 
 static auto get_multi_spare_max_capacity(size_t dict_max_capacity, double level1_load_factor) -> size_t;
+
+static auto get_number_of_PDs(size_t dict_max_capacity, double l1_load_factor) -> size_t;
 
 template<typename S_T>
 using multi_dict_ST = multi_dict<CPD, multi_hash_table<S_T>, S_T>;

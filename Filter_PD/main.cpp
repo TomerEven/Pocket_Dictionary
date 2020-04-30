@@ -39,38 +39,80 @@ void test_multi_dict();
 
 void example_of_CF_rates_wrapper();
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+enum dict_types {
+    basic, counting//, cuckoo_dict
+};
 
-    size_t reps = 1u << 21u, max_distinct_capacity = 1u << 18u;
-    size_t remainder_length = 13;
-    size_t l1_counter_size = 3, l2_counter_size = 7;
-    double l1_LF = 0.95, l2_LF = 0.65;
-    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
-                             l2_counter_size, l1_LF, l2_LF, cout);
 
-    cout << string(32, '*') << endl;
-    cout << string(32, '*') << endl;
-    example_of_CF_rates_wrapper();
-    cout << string(32, '*') << endl;
-    cout << string(32, '*') << endl;
-    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
-                             l2_counter_size, l1_LF, l2_LF, cout);
-    cout << string(32, '*') << endl;
-    cout << string(32, '*') << endl;
-    example_of_CF_rates_wrapper();
+int main(int argc, char **argv) {
+    dict_types temp_type;
+    size_t max_distinct_capacity;
+    size_t error_prob_exponent;
+    size_t number_of_lookups_to_preform;
+    size_t level1_counter_size;
+    size_t level2_counter_size;
+    double level_1_load_factor;
+    double level_2_load_factor;
 
-    /* size_t pd_num = 1ul << 14ul, fp_size = 13, m = 32, pd_capacity = 32, lookup_reps = 1ULL << 21ul;
-    auto load_factor = 0.88;
-    stringstream s;
-    cuckoo_filter_rates(pd_num, load_factor, pd_capacity, m, fp_size, 1ULL << 12ul, s);
+    char *end;
+    if (argc == 2){
+        temp_type = (dict_types) std::strtol(argv[1], &end, 10);
+        max_distinct_capacity = 1u<< 15u;
+        error_prob_exponent = 6;
+        number_of_lookups_to_preform = 1u<<18u;
+        level1_counter_size = 3;
+        level2_counter_size = 7;
+        level_1_load_factor = .95;
+        level_2_load_factor = .5;
+    }
+    else if (argc == 5) {
 
-    cout << string(32, '*') << endl;
-    */
-    example_of_CF_rates_wrapper();
+        temp_type = (dict_types) std::strtol(argv[1], &end, 10);
+        max_distinct_capacity = std::strtol(argv[2], &end, 10);
+        error_prob_exponent = std::strtol(argv[3], &end, 10);
+        number_of_lookups_to_preform = std::strtol(argv[4], &end, 10);
 
-    std::cout << "End!" << std::endl;
-    return 0;
+        level1_counter_size = 3, level2_counter_size = 7;
+        level_1_load_factor = 0.95, level_2_load_factor = 0.5;
+    }
+    else if (argc == 9) {
+        temp_type = (dict_types) std::strtol(argv[1], &end, 10);
+        max_distinct_capacity = std::strtol(argv[2], &end, 10);
+        error_prob_exponent = std::strtol(argv[3], &end, 10);
+        number_of_lookups_to_preform = std::strtol(argv[4], &end, 10);
+
+        level1_counter_size = std::strtol(argv[5], &end, 10);
+        level2_counter_size = std::strtol(argv[6], &end, 10);
+        level_1_load_factor = std::strtod(argv[7], &end);
+        level_2_load_factor = std::strtod(argv[8], &end);
+
+    }
+    else{
+        std::cout << "Wrong number of arguments." << std::endl;
+        return 1;
+    }
+
+    switch (temp_type) {
+        case basic:
+            CF_rates_wrapper<dict32>(max_distinct_capacity, number_of_lookups_to_preform, error_prob_exponent,
+                                     level1_counter_size,
+                                     level2_counter_size, level_1_load_factor, level_2_load_factor, cout);
+            return 0;
+        case counting:
+            CF_rates_wrapper<multi_dict64>(max_distinct_capacity, number_of_lookups_to_preform, error_prob_exponent,
+                                           level1_counter_size,
+                                           level2_counter_size, level_1_load_factor, level_2_load_factor, cout);
+            return 0;
+            /*case cuckoo_dict:
+                CF_rates_wrapper<cuckoofilter::>(max_distinct_capacity, number_of_lookups_to_preform, error_prob_exponent, level1_counter_size,
+                                               level2_counter_size, level_1_load_factor, level_2_load_factor, cout);
+                return 0*/
+        default:
+            std::cout << "Unknown type" << std::endl;
+            return 1;
+    }
+
+
 }
 
 
@@ -79,6 +121,8 @@ void example_of_CF_rates_wrapper() {
     size_t remainder_length = 13;
     size_t l1_counter_size = 3, l2_counter_size = 7;
     double l1_LF = 0.95, l2_LF = 0.65;
+
+
     CF_rates_wrapper<multi_dict64>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
                                    l2_counter_size, l1_LF, l2_LF, cout);
 }
@@ -432,3 +476,43 @@ int main() {
     }
 */
 
+
+
+
+//    std::cout << "Hello, World!" << std::endl;
+
+/*
+size_t reps = 1u << 15u, max_distinct_capacity = 1u << 14u;
+size_t remainder_length = 7;
+size_t l1_counter_size = 3, l2_counter_size = 7;
+double l1_LF = 0.95, l2_LF = 0.65;
+w_validate_filter<dict32>(max_distinct_capacity, reps, remainder_length, l1_LF, l2_LF);
+*/
+//
+//    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+//                             l2_counter_size, l1_LF, l2_LF, cout);
+
+/*
+    cout << string(32, '*') << endl;
+    cout << string(32, '*') << endl;
+    example_of_CF_rates_wrapper();
+    cout << string(32, '*') << endl;
+    cout << string(32, '*') << endl;
+    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+                             l2_counter_size, l1_LF, l2_LF, cout);
+    cout << string(32, '*') << endl;
+    cout << string(32, '*') << endl;
+    example_of_CF_rates_wrapper();
+*/
+
+/* size_t pd_num = 1ul << 14ul, fp_size = 13, m = 32, pd_capacity = 32, lookup_reps = 1ULL << 21ul;
+auto load_factor = 0.88;
+stringstream s;
+cuckoo_filter_rates(pd_num, load_factor, pd_capacity, m, fp_size, 1ULL << 12ul, s);
+
+cout << string(32, '*') << endl;
+*/
+/*
+example_of_CF_rates_wrapper();
+*/
+//    std::cout << "End!" << std::endl;

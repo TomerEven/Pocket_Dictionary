@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/111/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/112/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/111/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/112/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD
+CMAKE_SOURCE_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug
+CMAKE_BINARY_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Filter_PD.dir/depend.make
@@ -59,620 +59,620 @@ include CMakeFiles/Filter_PD.dir/flags.make
 
 CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o: ../Global_functions/basic_functions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Global_functions/basic_functions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Global_functions/basic_functions.cpp
 
 CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Global_functions/basic_functions.cpp > CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Global_functions/basic_functions.cpp > CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.i
 
 CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Global_functions/basic_functions.cpp -o CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Global_functions/basic_functions.cpp -o CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.s
 
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o: ../Hash/Hash.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/Hash.cpp
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o: ../hash_util/Hash.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/Hash.cpp
 
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/Hash.cpp > CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.i
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/Hash.cpp > CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.i
 
-CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/Hash.cpp -o CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.s
+CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/Hash.cpp -o CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.s
 
-CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
-CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o: ../Hash/MurmurHash3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/MurmurHash3.cpp
+CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
+CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o: ../hash_util/MurmurHash3.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/MurmurHash3.cpp
 
-CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/MurmurHash3.cpp > CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.i
+CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/MurmurHash3.cpp > CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.i
 
-CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/MurmurHash3.cpp -o CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.s
+CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/MurmurHash3.cpp -o CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o: ../PD/Non_Contiguous_PD/Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Header.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Header.cpp > CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Header.cpp > CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o: ../PD/Non_Contiguous_PD/Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Body.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Body.cpp > CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Body.cpp > CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o: ../PD/Non_Contiguous_PD/PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/PD.cpp > CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/PD.cpp > CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Non_Contiguous_PD/PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.o: ../PD/Safe_PD/v_Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Header.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Header.cpp > CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Header.cpp > CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Header.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.o: ../PD/Safe_PD/v_Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Body.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Body.cpp > CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Body.cpp > CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/v_Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/v_Body.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.o: ../PD/Safe_PD/safe_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/safe_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/safe_PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/safe_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/safe_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Safe_PD/safe_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Safe_PD/safe_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Safe_PD/safe_PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.o: ../PD/Naive_PD/naive_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.o: ../PD/Naive_PD/naive_Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Header.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Header.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Header.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Header.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.o: ../PD/Naive_PD/naive_Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Body.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Body.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Body.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/naive_Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/naive_Body.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.o: ../PD/Constant_size_PD/const_Header.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Header.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Header.cpp > CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Header.cpp > CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Header.cpp -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Header.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o: ../PD/Constant_size_PD/const_Body.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Body.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Body.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Body.cpp > CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Body.cpp > CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_Body.cpp -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_Body.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.o: ../PD/Constant_size_PD/const_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Constant_size_PD/const_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Constant_size_PD/const_PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.o: ../PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/constant_contiguous_PD/cc_PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.o: ../CPD/Naive_Counter_Endec.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/Naive_Counter_Endec.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/Naive_Counter_Endec.cpp
 
 CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/Naive_Counter_Endec.cpp > CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/Naive_Counter_Endec.cpp > CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.i
 
 CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/Naive_Counter_Endec.cpp -o CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/Naive_Counter_Endec.cpp -o CMakeFiles/Filter_PD.dir/CPD/Naive_Counter_Endec.cpp.s
 
 CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.o: ../CPD/CPD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/CPD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/CPD.cpp
 
 CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/CPD.cpp > CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/CPD.cpp > CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.i
 
 CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/CPD.cpp -o CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/CPD.cpp -o CMakeFiles/Filter_PD.dir/CPD/CPD.cpp.s
 
 CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.o: ../CPD/Counters_Array.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/Counters_Array.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/Counters_Array.cpp
 
 CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/Counters_Array.cpp > CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/Counters_Array.cpp > CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.i
 
 CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/Counters_Array.cpp -o CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/Counters_Array.cpp -o CMakeFiles/Filter_PD.dir/CPD/Counters_Array.cpp.s
 
 CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.o: ../CPD/CPD_validator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/CPD_validator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/CPD_validator.cpp
 
 CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/CPD_validator.cpp > CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/CPD_validator.cpp > CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.i
 
 CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/CPD/CPD_validator.cpp -o CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/CPD/CPD_validator.cpp -o CMakeFiles/Filter_PD.dir/CPD/CPD_validator.cpp.s
 
 CMakeFiles/Filter_PD.dir/main.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Filter_PD.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/main.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Filter_PD.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/main.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/main.cpp
 
 CMakeFiles/Filter_PD.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/main.cpp > CMakeFiles/Filter_PD.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/main.cpp > CMakeFiles/Filter_PD.dir/main.cpp.i
 
 CMakeFiles/Filter_PD.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/main.cpp -o CMakeFiles/Filter_PD.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/main.cpp -o CMakeFiles/Filter_PD.dir/main.cpp.s
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o: ../Filters/POW2C/const_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/const_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/const_filter.cpp
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/const_filter.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/const_filter.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.i
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/const_filter.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/const_filter.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/const_filter.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o: ../Tests/Validation/validate_counting_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counting_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counting_filter.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counting_filter.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counting_filter.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counting_filter.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counting_filter.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counting_filter.cpp.s
 
 CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.o: ../bit_operations/bit_word_converter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/bit_word_converter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/bit_word_converter.cpp
 
 CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/bit_word_converter.cpp > CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/bit_word_converter.cpp > CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.i
 
 CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/bit_word_converter.cpp -o CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/bit_word_converter.cpp -o CMakeFiles/Filter_PD.dir/bit_operations/bit_word_converter.cpp.s
 
 CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o: ../bit_operations/bit_op.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/bit_op.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/bit_op.cpp
 
 CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/bit_op.cpp > CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/bit_op.cpp > CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.i
 
 CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/bit_op.cpp -o CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/bit_op.cpp -o CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.s
 
 CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o: ../bit_operations/my_bit_op.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/my_bit_op.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/my_bit_op.cpp
 
 CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/my_bit_op.cpp > CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/my_bit_op.cpp > CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.i
 
 CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/bit_operations/my_bit_op.cpp -o CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/bit_operations/my_bit_op.cpp -o CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o: ../PD/Contiguous_PD/cg_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/cg_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/cg_PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/cg_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/cg_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/cg_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Contiguous_PD/cg_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o: ../PD/Naive_PD/cg_naive_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/cg_naive_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/cg_naive_PD.cpp
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/cg_naive_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/cg_naive_PD.cpp > CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/PD/Naive_PD/cg_naive_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/PD/Naive_PD/cg_naive_PD.cpp -o CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.s
 
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o: ../Hash/Permutation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/Permutation.cpp
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o: ../hash_util/Permutation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/Permutation.cpp
 
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/Permutation.cpp > CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.i
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/Permutation.cpp > CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.i
 
-CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash/Permutation.cpp -o CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.s
+CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/hash_util/Permutation.cpp -o CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.s
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o: ../Hash_Table/hash_table_var.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/hash_table_var.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/hash_table_var.cpp
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/hash_table_var.cpp > CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/hash_table_var.cpp > CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.i
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/hash_table_var.cpp -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/hash_table_var.cpp -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.s
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o: ../Hash_Table/hash_table.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/hash_table.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/hash_table.cpp
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/hash_table.cpp > CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/hash_table.cpp > CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.i
 
 CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/hash_table.cpp -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/hash_table.cpp -o CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.s
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o: ../Filters/POW2C/gen_2Power.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/gen_2Power.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/gen_2Power.cpp
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/gen_2Power.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/gen_2Power.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.i
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/gen_2Power.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/gen_2Power.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.s
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o: ../Filters/POW2C/pow2c_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_filter.cpp
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_filter.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_filter.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.i
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_filter.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_filter.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_filter.cpp.s
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o: ../Filters/POW2C/pow2c_naive_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_naive_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_naive_filter.cpp
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_naive_filter.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_naive_filter.cpp > CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.i
 
 CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_naive_filter.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/POW2C/pow2c_naive_filter.cpp -o CMakeFiles/Filter_PD.dir/Filters/POW2C/pow2c_naive_filter.cpp.s
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o: ../Filters/Dict/dict.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/Dict/dict.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/Dict/dict.cpp
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/Dict/dict.cpp > CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/Dict/dict.cpp > CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.i
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/Dict/dict.cpp -o CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/Dict/dict.cpp -o CMakeFiles/Filter_PD.dir/Filters/Dict/dict.cpp.s
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o: ../Filters/Dict/multi_dict.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/Dict/multi_dict.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/Dict/multi_dict.cpp
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/Dict/multi_dict.cpp > CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/Dict/multi_dict.cpp > CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.i
 
 CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Filters/Dict/multi_dict.cpp -o CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Filters/Dict/multi_dict.cpp -o CMakeFiles/Filter_PD.dir/Filters/Dict/multi_dict.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.o: ../Tests/Validation/validate_bit_op.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_bit_op.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_bit_op.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_bit_op.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_bit_op.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_bit_op.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_bit_op.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_bit_op.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.o: ../Tests/Validation/validate_counters.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counters.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counters.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counters.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counters.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counters.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counters.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counters.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o: ../Tests/Validation/validate_hash_table.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_hash_table.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_hash_table.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_hash_table.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_hash_table.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_hash_table.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_hash_table.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_hash_table.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o: ../Tests/Validation/validate_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_filter.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_filter.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_filter.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_filter.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_filter.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_filter.cpp.s
 
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o: ../Hash_Table/multi_hash_table.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/multi_hash_table.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/multi_hash_table.cpp
 
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/multi_hash_table.cpp > CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/multi_hash_table.cpp > CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.i
 
 CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Hash_Table/multi_hash_table.cpp -o CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Hash_Table/multi_hash_table.cpp -o CMakeFiles/Filter_PD.dir/Hash_Table/multi_hash_table.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.o: ../Tests/Validation/validate_counter_PD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counter_PD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counter_PD.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counter_PD.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counter_PD.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counter_PD.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validate_counter_PD.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validate_counter_PD.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o: ../Tests/Validation/validation_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validation_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validation_tests.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validation_tests.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validation_tests.cpp > CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Validation/validation_tests.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Validation/validation_tests.cpp -o CMakeFiles/Filter_PD.dir/Tests/Validation/validation_tests.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.o: ../Tests/Benchmarking/old_benchmark_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/old_benchmark_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/old_benchmark_tests.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/old_benchmark_tests.cpp > CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/old_benchmark_tests.cpp > CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/old_benchmark_tests.cpp -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/old_benchmark_tests.cpp -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/old_benchmark_tests.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o: ../Tests/Benchmarking/benchmark_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_tests.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_tests.cpp > CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_tests.cpp > CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_tests.cpp -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_tests.cpp -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_tests.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o: ../Tests/Benchmarking/benchmark_counting_filter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_counting_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_counting_filter.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_counting_filter.cpp > CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_counting_filter.cpp > CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_counting_filter.cpp -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Benchmarking/benchmark_counting_filter.cpp -o CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter.cpp.s
 
 CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o: CMakeFiles/Filter_PD.dir/flags.make
 CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o: ../Tests/Test_output_formatting/test_printer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Test_output_formatting/test_printer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o -c /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Test_output_formatting/test_printer.cpp
 
 CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Test_output_formatting/test_printer.cpp > CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Test_output_formatting/test_printer.cpp > CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.i
 
 CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/Tests/Test_output_formatting/test_printer.cpp -o CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/Tests/Test_output_formatting/test_printer.cpp -o CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.s
 
 # Object files for target Filter_PD
 Filter_PD_OBJECTS = \
 "CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o" \
-"CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o" \
-"CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o" \
+"CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o" \
+"CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o" \
 "CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o" \
 "CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o" \
 "CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o" \
@@ -698,7 +698,7 @@ Filter_PD_OBJECTS = \
 "CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o" \
 "CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o" \
 "CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o" \
-"CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o" \
+"CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o" \
 "CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o" \
 "CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o" \
 "CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o" \
@@ -722,8 +722,8 @@ Filter_PD_OBJECTS = \
 Filter_PD_EXTERNAL_OBJECTS =
 
 Filter_PD: CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.o
-Filter_PD: CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o
-Filter_PD: CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o
+Filter_PD: CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o
+Filter_PD: CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Header.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/Body.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/PD/Non_Contiguous_PD/PD.cpp.o
@@ -749,7 +749,7 @@ Filter_PD: CMakeFiles/Filter_PD.dir/bit_operations/bit_op.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/PD/Contiguous_PD/cg_PD.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/PD/Naive_PD/cg_naive_PD.cpp.o
-Filter_PD: CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o
+Filter_PD: CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/Hash_Table/hash_table_var.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/Hash_Table/hash_table.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/Filters/POW2C/gen_2Power.cpp.o
@@ -770,7 +770,7 @@ Filter_PD: CMakeFiles/Filter_PD.dir/Tests/Benchmarking/benchmark_counting_filter
 Filter_PD: CMakeFiles/Filter_PD.dir/Tests/Test_output_formatting/test_printer.cpp.o
 Filter_PD: CMakeFiles/Filter_PD.dir/build.make
 Filter_PD: CMakeFiles/Filter_PD.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Linking CXX executable Filter_PD"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Linking CXX executable Filter_PD"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Filter_PD.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -783,6 +783,6 @@ CMakeFiles/Filter_PD.dir/clean:
 .PHONY : CMakeFiles/Filter_PD.dir/clean
 
 CMakeFiles/Filter_PD.dir/depend:
-	cd /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/Filter_PD.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/Filter_PD.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Filter_PD.dir/depend
 

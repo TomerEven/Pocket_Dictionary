@@ -368,6 +368,11 @@ auto multi_hash_table<T>::get_table_size() -> size_t {
 }
 
 template<typename T>
+auto multi_hash_table<T>::get_max_capacity_reached() -> size_t {
+    return max_capacity_reached;
+}
+
+template<typename T>
 void multi_hash_table<T>::increase_capacity() {
     ++distinct_capacity;
 }

@@ -22,7 +22,7 @@
 #define INTEGER_ROUND(a, b) (((a)/(b)) + ((a)%(b) != 0))
 #define MB_BIT(n) (1ULL << (MB - (n)))
 
-////Hash macros
+////hash_util macros
 #define DEFAULT_SEED 2
 #define SECOND_SEED 42
 #define HASH_BLOCK_TYPE uint32_t

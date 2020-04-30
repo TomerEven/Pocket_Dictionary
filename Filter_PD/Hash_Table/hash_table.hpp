@@ -12,32 +12,37 @@
 #include <cmath>
 #include "../Global_functions/macros.h"
 #include "../Global_functions/cuckoo_and_counting_macros.hpp"
-#include "../Hash/static_hashing.h"
+#include "../hash_util/static_hashing.h"
 #include "../bit_operations/my_bit_op.hpp"
 
 
 //#define FREE_IND (0x80000000)
 //#define IS_FREE(x) ((x & MASK(31u)) == 0)
 
+#define HT_DB_MODE0 (true)
+#define HT_DB_MODE1 (HT_DB_MODE0 & true)
+#define HT_DB_MODE2 (HT_DB_MODE1 & true)
+
+
 template<typename T>
 class hash_table {
     T *table;
-    const size_t table_size{}, max_capacity{}, element_length{}, bucket_size{};
-    size_t capacity{};
-    const double max_load_factor{};
-    const uint32_t seed1{}, seed2{};
+    const size_t table_size, max_capacity, element_length, bucket_size;
+    size_t capacity;
+    const double max_load_factor;
+    const uint32_t seed1, seed2;
 
     ////validation parameters.
 
     /** "max_cuckoo_insert" is used to store the maximal length of a cuckoo chain occurred during an insertion.*/
-    size_t max_cuckoo_insert{};
+    size_t max_cuckoo_insert;
     /** "cuckoo_insert_counter" is used to measure the total length of cuckoo chain occurred during all insertion.
      * The measure over single insertion "I_1", equal to the length of the cuckoo chain this insertion caused,
      * multiplied by the size of a bucket.
      */
-    size_t cuckoo_insert_counter{};
+    size_t cuckoo_insert_counter;
 
-    size_t max_capacity_reached{};
+    size_t max_capacity_reached;
 
 
 public:
@@ -143,11 +148,11 @@ public:
      * @param table_index the index of table, in which the element is stored.
      * @return the element without the counter.
      */
-    auto get_element_without_counter_by_index(size_t table_index) -> T;
+    auto get_element_by_index(size_t table_index) -> T;
 
-    auto get_element_without_counter_by_bucket_index_and_location(size_t bucket_index, size_t location) -> T;
+    auto get_element_by_bucket_index_and_location(size_t bucket_index, size_t location) -> T;
 
-    auto get_element_without_counter(T element) -> T;
+    auto get_element(T element) -> T;
 
     /**
      * currently define for clarity.

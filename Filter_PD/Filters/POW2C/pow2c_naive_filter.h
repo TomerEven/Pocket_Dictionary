@@ -6,8 +6,8 @@
 #define CLION_CODE_POW2C_NAIVE_FILTER_H
 
 #include "../../PD/Naive_PD/naive_PD.h"
-#include "../../Hash/Hash.h"
-#include "../../Hash/Permutation.h"
+#include "../../hash_util/Hash.h"
+#include "../../hash_util/Permutation.h"
 //#include "pow2c_filter.h"
 
 using namespace PD_Hash;

@@ -29,7 +29,7 @@
 #include <cmath>
 #include "../Global_functions/macros.h"
 #include "../Global_functions/cuckoo_and_counting_macros.hpp"
-#include "../Hash/static_hashing.h"
+#include "../hash_util/static_hashing.h"
 #include "../bit_operations/my_bit_op.hpp"
 
 
@@ -256,6 +256,8 @@ public:
     auto get_bucket_size() -> size_t;
 
     auto get_table_size() -> size_t;
+
+    auto get_max_capacity_reached() -> size_t;
     ////Setters
 
     void increase_capacity();

@@ -1,4 +1,4 @@
-# Install script for directory: /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD
+# Install script for directory: /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

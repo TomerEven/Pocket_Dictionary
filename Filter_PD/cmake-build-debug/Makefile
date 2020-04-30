@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/111/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/112/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/111/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/112/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD
+CMAKE_SOURCE_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug
+CMAKE_BINARY_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Po
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/111/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/112/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/111/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/112/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Git_dir/Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tomer/Desktop/Fourth_Year/Second_Semester/NewProject/Pocket_Dictionary/Offline_Pocket_Dictionary/Filter_PD/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -419,87 +419,6 @@ Global_functions/basic_functions.s: Global_functions/basic_functions.cpp.s
 Global_functions/basic_functions.cpp.s:
 	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Global_functions/basic_functions.cpp.s
 .PHONY : Global_functions/basic_functions.cpp.s
-
-Hash/Hash.o: Hash/Hash.cpp.o
-
-.PHONY : Hash/Hash.o
-
-# target to build an object file
-Hash/Hash.cpp.o:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.o
-.PHONY : Hash/Hash.cpp.o
-
-Hash/Hash.i: Hash/Hash.cpp.i
-
-.PHONY : Hash/Hash.i
-
-# target to preprocess a source file
-Hash/Hash.cpp.i:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.i
-.PHONY : Hash/Hash.cpp.i
-
-Hash/Hash.s: Hash/Hash.cpp.s
-
-.PHONY : Hash/Hash.s
-
-# target to generate assembly for a file
-Hash/Hash.cpp.s:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/Hash.cpp.s
-.PHONY : Hash/Hash.cpp.s
-
-Hash/MurmurHash3.o: Hash/MurmurHash3.cpp.o
-
-.PHONY : Hash/MurmurHash3.o
-
-# target to build an object file
-Hash/MurmurHash3.cpp.o:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.o
-.PHONY : Hash/MurmurHash3.cpp.o
-
-Hash/MurmurHash3.i: Hash/MurmurHash3.cpp.i
-
-.PHONY : Hash/MurmurHash3.i
-
-# target to preprocess a source file
-Hash/MurmurHash3.cpp.i:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.i
-.PHONY : Hash/MurmurHash3.cpp.i
-
-Hash/MurmurHash3.s: Hash/MurmurHash3.cpp.s
-
-.PHONY : Hash/MurmurHash3.s
-
-# target to generate assembly for a file
-Hash/MurmurHash3.cpp.s:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/MurmurHash3.cpp.s
-.PHONY : Hash/MurmurHash3.cpp.s
-
-Hash/Permutation.o: Hash/Permutation.cpp.o
-
-.PHONY : Hash/Permutation.o
-
-# target to build an object file
-Hash/Permutation.cpp.o:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.o
-.PHONY : Hash/Permutation.cpp.o
-
-Hash/Permutation.i: Hash/Permutation.cpp.i
-
-.PHONY : Hash/Permutation.i
-
-# target to preprocess a source file
-Hash/Permutation.cpp.i:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.i
-.PHONY : Hash/Permutation.cpp.i
-
-Hash/Permutation.s: Hash/Permutation.cpp.s
-
-.PHONY : Hash/Permutation.s
-
-# target to generate assembly for a file
-Hash/Permutation.cpp.s:
-	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/Hash/Permutation.cpp.s
-.PHONY : Hash/Permutation.cpp.s
 
 Hash_Table/hash_table.o: Hash_Table/hash_table.cpp.o
 
@@ -1365,6 +1284,87 @@ bit_operations/my_bit_op.cpp.s:
 	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/bit_operations/my_bit_op.cpp.s
 .PHONY : bit_operations/my_bit_op.cpp.s
 
+hash_util/Hash.o: hash_util/Hash.cpp.o
+
+.PHONY : hash_util/Hash.o
+
+# target to build an object file
+hash_util/Hash.cpp.o:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.o
+.PHONY : hash_util/Hash.cpp.o
+
+hash_util/Hash.i: hash_util/Hash.cpp.i
+
+.PHONY : hash_util/Hash.i
+
+# target to preprocess a source file
+hash_util/Hash.cpp.i:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.i
+.PHONY : hash_util/Hash.cpp.i
+
+hash_util/Hash.s: hash_util/Hash.cpp.s
+
+.PHONY : hash_util/Hash.s
+
+# target to generate assembly for a file
+hash_util/Hash.cpp.s:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/Hash.cpp.s
+.PHONY : hash_util/Hash.cpp.s
+
+hash_util/MurmurHash3.o: hash_util/MurmurHash3.cpp.o
+
+.PHONY : hash_util/MurmurHash3.o
+
+# target to build an object file
+hash_util/MurmurHash3.cpp.o:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.o
+.PHONY : hash_util/MurmurHash3.cpp.o
+
+hash_util/MurmurHash3.i: hash_util/MurmurHash3.cpp.i
+
+.PHONY : hash_util/MurmurHash3.i
+
+# target to preprocess a source file
+hash_util/MurmurHash3.cpp.i:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.i
+.PHONY : hash_util/MurmurHash3.cpp.i
+
+hash_util/MurmurHash3.s: hash_util/MurmurHash3.cpp.s
+
+.PHONY : hash_util/MurmurHash3.s
+
+# target to generate assembly for a file
+hash_util/MurmurHash3.cpp.s:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/MurmurHash3.cpp.s
+.PHONY : hash_util/MurmurHash3.cpp.s
+
+hash_util/Permutation.o: hash_util/Permutation.cpp.o
+
+.PHONY : hash_util/Permutation.o
+
+# target to build an object file
+hash_util/Permutation.cpp.o:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.o
+.PHONY : hash_util/Permutation.cpp.o
+
+hash_util/Permutation.i: hash_util/Permutation.cpp.i
+
+.PHONY : hash_util/Permutation.i
+
+# target to preprocess a source file
+hash_util/Permutation.cpp.i:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.i
+.PHONY : hash_util/Permutation.cpp.i
+
+hash_util/Permutation.s: hash_util/Permutation.cpp.s
+
+.PHONY : hash_util/Permutation.s
+
+# target to generate assembly for a file
+hash_util/Permutation.cpp.s:
+	$(MAKE) -f CMakeFiles/Filter_PD.dir/build.make CMakeFiles/Filter_PD.dir/hash_util/Permutation.cpp.s
+.PHONY : hash_util/Permutation.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -1434,15 +1434,6 @@ help:
 	@echo "... Global_functions/basic_functions.o"
 	@echo "... Global_functions/basic_functions.i"
 	@echo "... Global_functions/basic_functions.s"
-	@echo "... Hash/Hash.o"
-	@echo "... Hash/Hash.i"
-	@echo "... Hash/Hash.s"
-	@echo "... Hash/MurmurHash3.o"
-	@echo "... Hash/MurmurHash3.i"
-	@echo "... Hash/MurmurHash3.s"
-	@echo "... Hash/Permutation.o"
-	@echo "... Hash/Permutation.i"
-	@echo "... Hash/Permutation.s"
 	@echo "... Hash_Table/hash_table.o"
 	@echo "... Hash_Table/hash_table.i"
 	@echo "... Hash_Table/hash_table.s"
@@ -1539,6 +1530,15 @@ help:
 	@echo "... bit_operations/my_bit_op.o"
 	@echo "... bit_operations/my_bit_op.i"
 	@echo "... bit_operations/my_bit_op.s"
+	@echo "... hash_util/Hash.o"
+	@echo "... hash_util/Hash.i"
+	@echo "... hash_util/Hash.s"
+	@echo "... hash_util/MurmurHash3.o"
+	@echo "... hash_util/MurmurHash3.i"
+	@echo "... hash_util/MurmurHash3.s"
+	@echo "... hash_util/Permutation.o"
+	@echo "... hash_util/Permutation.i"
+	@echo "... hash_util/Permutation.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

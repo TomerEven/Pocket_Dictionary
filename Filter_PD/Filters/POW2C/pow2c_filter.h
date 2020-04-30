@@ -6,9 +6,9 @@
 #define CLION_CODE_POW2C_FILTER_H
 
 #include "../../PD/Non_Contiguous_PD/PD.h"
-#include "../../Hash/Hash.h"
-#include "../../Hash/Permutation.h"
-#include "../../Hash/static_hashing.h"
+#include "../../hash_util/Hash.h"
+#include "../../hash_util/Permutation.h"
+#include "../../hash_util/static_hashing.h"
 
 using namespace PD_Hash;
 
