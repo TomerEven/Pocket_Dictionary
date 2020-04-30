@@ -9,6 +9,7 @@ My previous Bloom filter and Quotient filter are also included in the comparison
 git clone git@github.com:TomerEven/Pocket_Dictionary.git
 cd Filter_PD
 mkdir build_dir
+cd build_dir
 cmake ..
 make
 ```
