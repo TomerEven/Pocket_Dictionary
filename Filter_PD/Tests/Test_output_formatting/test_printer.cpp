@@ -7,8 +7,6 @@ namespace name_compare {
 
     void print_name(std::string filter_name) {
         std::string line = " |" + std::string(default_line_width - 1, '-') + '|';
-//        size_t name_w/i = default_line_width - filter_name.size();
-//        assert(space_count > 0);
         std::cout << line << "\n |" << std::left << std::setw(default_line_width - 1) << filter_name << "|\n" << line
                   << std::endl;
     }
@@ -53,7 +51,7 @@ namespace name_compare {
 //    assert(var_num % column_num == 0);
         for (int i = 0; i < var_num; ++i) {
             std::cout << sep << std::setw(name_width) << var_names[i];
-            double rate = divisors[i] / (values[i] / 1e6);
+            double rate = divisors[i] / (values[i] / 1e9);
             std::cout << sep << std::setw(name_width) << rate;
             std::cout << sep << std::setw(name_width) << divisors[i];
             std::cout << sep << std::setw(name_width) << values[i];

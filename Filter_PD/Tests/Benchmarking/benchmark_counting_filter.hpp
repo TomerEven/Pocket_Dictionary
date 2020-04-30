@@ -9,10 +9,15 @@
 #include "../Test_output_formatting/test_printer.hpp"
 #include <tr1/type_traits> // C++03, use std::tr1
 
+#define CUCKOO_R (8)
+
+
+typedef cuckoofilter::CuckooFilter<uint32_t, CUCKOO_R> basic_cf;
 
 enum multiset_types {
     std_multiset
 };
+
 
 //template<class D, typename T>
 //auto time_lookups(D* filter, set<T> * element_set) ->chrono::nanoseconds;

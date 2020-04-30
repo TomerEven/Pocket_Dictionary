@@ -20,7 +20,6 @@
 
 
 //todo: naive pow2c_naive_filter validation. benchmark comparing. profiling.
-#define CUCKOO_R (8)
 using namespace std;
 
 void using_cuckoo_table();
@@ -46,7 +45,7 @@ enum dict_types {
 
 int main(int argc, char **argv) {
 
-    example_of_CF_rates_wrapper();
+//    example_of_CF_rates_wrapper();
 
     dict_types temp_type;
     size_t max_distinct_capacity;
@@ -117,7 +116,7 @@ int main(int argc, char **argv) {
 
 
 void example_of_CF_rates_wrapper() {
-    ulong shift = 12u;
+    ulong shift = 16u;
     size_t reps = 1u << (shift + 3u), max_distinct_capacity = 1u << shift;
     size_t remainder_length = 13;
     size_t l1_counter_size = 3, l2_counter_size = 7;

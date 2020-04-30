@@ -20,7 +20,6 @@ auto CF_rates_wrapper(size_t filter_max_capacity, size_t lookup_reps, size_t err
 
     auto t1 = chrono::high_resolution_clock::now();
     auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
-//    cout << "\nexpected #fp is: " << ((double) lookup_reps / (1u << error_power_inv)) << endl;
 
     name_compare::print_name(filter.get_name());
     CF_rates_core(&filter, filter_max_capacity, lookup_reps, init_time, error_power_inv, os);
@@ -38,10 +37,28 @@ CF_rates_wrapper<dict32>(size_t filter_max_capacity, size_t lookup_reps, size_t 
     auto filter = dict32(filter_max_capacity, error_power_inv, level1_load_factor, level2_load_factor);
     auto t1 = chrono::high_resolution_clock::now();
     auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
-//    cout << "\nexpected #fp is: " << ((double) lookup_reps / (1u << error_power_inv)) << endl;
 
     name_compare::print_name(std::string("dict32"));
     CF_rates_core(&filter, filter_max_capacity, lookup_reps, init_time, error_power_inv, os);
+    return os;
+}
+
+template<>
+auto
+CF_rates_wrapper<basic_cf>(size_t filter_max_capacity, size_t lookup_reps, size_t error_power_inv,
+                           size_t l1_counter_size,
+                           size_t l2_counter_size, double level1_load_factor, double level2_load_factor,
+                           ostream &os) -> ostream & {
+
+    auto start_run_time = chrono::high_resolution_clock::now();
+    auto t0 = chrono::high_resolution_clock::now();
+    auto filter = basic_cf(filter_max_capacity);
+    auto t1 = chrono::high_resolution_clock::now();
+    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
+
+    name_compare::print_name(std::string("Cuckoo filter"));
+    //Todo: Cuckoo filter only work with integers.
+//    Cuckoo_rates_core<basic_cf>(&filter, filter_max_capacity, lookup_reps, init_time, error_power_inv, os);
     return os;
 }
 
@@ -90,8 +107,7 @@ CF_rates_core(D *filter, size_t filter_max_capacity, size_t lookup_reps, ulong i
         cout << "set_ratio=" << set_ratio << endl;
     }
 
-    size_t exp_FP_count = ceil(((double) lookup_reps / (1u << error_power_inv)));
-    name_compare::table_print_false_positive_rates(exp_FP_count, FP_count_higher_load, FP_count_mid_load);
+
 //    cout << "FP_count_higher_load=" << FP_count_higher_load << endl;
 //    cout << "FP_count_mid_load=" << FP_count_mid_load << endl;
 
@@ -107,6 +123,9 @@ CF_rates_core(D *filter, size_t filter_max_capacity, size_t lookup_reps, ulong i
                                 to_be_deleted_set.size(), 1};
     name_compare::table_print_rates(var_num, names, values, divisors);
     */
+
+    size_t exp_FP_count = ceil(((double) lookup_reps / (1u << error_power_inv)));
+    name_compare::table_print_false_positive_rates(exp_FP_count, FP_count_higher_load, FP_count_mid_load);
 
     const size_t var_num = 6;
     string names[var_num] = {"init_time", "insertion_time", "insertion_time_higher_load",
@@ -163,20 +182,18 @@ auto Cuckoo_rates_core(CuckooFilter<ItemType, bits_per_item> *filter, size_t fil
     if (set_ratio < 1) {
         cout << "set_ratio=" << set_ratio << endl;
     }
-    cout << "FP_count_higher_load=" << FP_count_higher_load << endl;
-    cout << "FP_count_mid_load=" << FP_count_mid_load << endl;
+    size_t exp_FP_count = ceil(((double) lookup_reps / (1u << bits_per_item)));
+    name_compare::table_print_false_positive_rates(exp_FP_count, FP_count_higher_load, FP_count_mid_load);
 
-
-    const size_t var_num = 7;
-    string names[var_num] = {"init_time", "member_set_init_time", "insertion_time", "insertion_time_higher_load",
+    const size_t var_num = 6;
+    string names[var_num] = {"init_time", "insertion_time", "insertion_time_higher_load",
                              "lookup_time", "removal_time", "total_time"};
-    size_t values[var_num] = {init_time, member_set_init_time, insertion_time, insertion_time_higher_load, lookup_time,
+    size_t values[var_num] = {init_time, insertion_time, insertion_time_higher_load, lookup_time,
                               removal_time, total_time};
 
-    size_t divisors[var_num] = {1, member_set.size(), member_set.size(), to_be_deleted_set.size(), lookup_set.size(),
+    size_t divisors[var_num] = {1, member_set.size(), to_be_deleted_set.size(), lookup_set.size(),
                                 to_be_deleted_set.size(), 1};
     name_compare::table_print_rates(var_num, names, values, divisors);
-
     return os;
 }
 
@@ -206,8 +223,6 @@ auto time_deletions(D *filter, set<string> *element_set) -> ulong {
     return chrono::duration_cast<ns>(t1 - t0).count();
 
 }
-
-
 
 
 template<class D, typename T>
