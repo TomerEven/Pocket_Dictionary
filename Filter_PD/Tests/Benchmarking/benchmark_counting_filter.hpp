@@ -24,7 +24,8 @@ auto CF_rates_wrapper(size_t filter_max_capacity, size_t lookup_reps, size_t err
 
 template<class D>
 auto
-CF_rates_core(D *filter, size_t filter_max_capacity, size_t lookup_reps, ulong init_time, ostream &os) -> ostream &;
+CF_rates_core(D *filter, size_t filter_max_capacity, size_t lookup_reps, ulong init_time, size_t error_power_inv,
+              ostream &os) -> ostream &;
 
 
 template<typename ItemType, size_t bits_per_item>

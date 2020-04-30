@@ -5,6 +5,14 @@
 
 namespace name_compare {
 
+    void print_name(std::string filter_name) {
+        std::string line = " |" + std::string(default_line_width - 1, '-') + '|';
+//        size_t name_w/i = default_line_width - filter_name.size();
+//        assert(space_count > 0);
+        std::cout << line << "\n |" << std::left << std::setw(default_line_width - 1) << filter_name << "|\n" << line
+                  << std::endl;
+    }
+
     void table_print_rates(size_t var_num, string *var_names, size_t *values, size_t *divisors) {
         size_t max_length = 0;
         for (int i = 0; i < var_num; ++i) {
@@ -80,36 +88,44 @@ namespace name_compare {
         }
 
         // values for controlling format
-        const int name_width = int(max_length);
+        const int name_width = (default_line_width - var_num) / var_num;
         const int int_width = 7;
         const int dbl_width = 12;
         const int num_flds = 7;
         const std::string sep = " |";
-        const int total_width = name_width * 2 + int_width * 2 + dbl_width * 3 + sep.size() *
-                                                                                 num_flds; // NOLINT(bugprone-narrowing-conversions,cppcoreguidelines-narrowing-conversions)
+        const int total_width = default_line_width;
         const std::string line = sep + std::string(total_width - 1, '-') + '|';
-        const std::string spacing = std::string(name_width, ' ');
-        std::string header =
-                line + '\n' + sep + spacing + "var " + sep + spacing + "value";
-        size_t spaces_to_add = total_width - header.size();
-        header += std::string(spaces_to_add, ' ') + sep + '\n' + line + '\n';
+        std::cout << line << '\n' << sep << left;
+        size_t counter = 0;
+        while (counter < var_num - 1) {
+            cout << std::setw(name_width) << names[counter++] << sep;
+        }
+        cout << std::setw(name_width - 1) << names[counter] << sep;
+        cout << '\n' << line << '\n' + sep;
 
-        std::cout << header;
-//        std::cout << line << '\n' << sep << std::setw(name_width) << left << "var " << sep << std::setw(name_width)
-//                  << "value"
-//                  << sep << '\n' << line << '\n';
 
-        for (int i = 0; i < var_num; ++i) {
-            std::string temp_line = sep + spacing + names[i] + sep + spacing + to_string(values[i]);
-            size_t temp_spaces_to_add = total_width - temp_line.size();
-            temp_line += std::string(temp_spaces_to_add, ' ') + sep + '\n';
-            std::cout << temp_line;
+        counter = 0;
+        while (counter < var_num - 1) {
+            cout << std::setw(name_width) << values[counter++] << sep;
+        }
+        cout << std::setw(name_width - 1) << values[counter] << sep;
+        cout << '\n' << line << '\n';
+
+/*
+
+//
+//        for (int i = 0; i < var_num; ++i) {
+//            std::string temp_line = sep + spacing + names[i] + sep + spacing + to_string(values[i]);
+//            size_t temp_spaces_to_add = total_width - temp_line.size();
+//            temp_line += std::string(temp_spaces_to_add, ' ') + sep + '\n';
+//            std::cout << temp_line;
 
 //            std::cout << sep << std::setw(name_width) << names[i] << sep << std::setw(name_width) << values[i]
 //                      << sep
 //                      << '\n';
-        }
-        std::cout << line << endl;
+//        }
+//        std::cout << line << endl;
+*/
 
 
     }

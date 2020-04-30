@@ -16,7 +16,6 @@ dict<D, S>::dict(size_t max_number_of_elements, size_t error_power_inv, double l
 
     assert(sparse_element_length <= sizeof(D_TYPE) * CHAR_BIT);
 
-//    todo: this constructor is wrong?.
 
     size_t spare_max_capacity = get_spare_max_capacity(max_number_of_elements, level1_load_factor);
     spare = new S(spare_max_capacity, sparse_element_length, level2_load_factor);

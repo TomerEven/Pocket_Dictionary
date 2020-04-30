@@ -8,6 +8,9 @@
 #include "../../Global_functions/basic_functions.h"
 
 namespace name_compare {
+    static const size_t default_line_width = 116;
+
+    void print_name(std::string filter_name);
 
     void table_print_rates(size_t var_num, string *var_names, size_t *values, size_t *divisors);
 
