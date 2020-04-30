@@ -611,6 +611,11 @@ static auto get_number_of_PDs(size_t dict_max_capacity, double l1_load_factor) -
     return (size_t) ceil(res);
 }
 
+template<class D, class S, typename S_T>
+auto multi_dict<D, S, S_T>::get_name() -> std::string {
+    return std::__cxx11::string("multi_dict");
+}
+
 
 
 //

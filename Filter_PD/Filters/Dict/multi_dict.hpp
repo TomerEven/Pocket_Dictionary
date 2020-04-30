@@ -75,6 +75,7 @@ public:
 
     auto do_elements_collide(const string *s1, const string *s2) -> bool;
 
+    auto get_name() -> std::string;
 private:
 
     auto lookup_helper(S_T hash_val) -> bool;
