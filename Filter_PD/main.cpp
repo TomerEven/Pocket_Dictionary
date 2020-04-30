@@ -67,6 +67,7 @@ int main(int argc, char **argv) {
     }
     else if (argc == 5) {
 
+<<<<<<< HEAD
         temp_type = (dict_types) std::strtol(argv[1], &end, 10);
         max_distinct_capacity = std::strtol(argv[2], &end, 10);
         error_prob_exponent = std::strtol(argv[3], &end, 10);
@@ -80,6 +81,29 @@ int main(int argc, char **argv) {
         max_distinct_capacity = std::strtol(argv[2], &end, 10);
         error_prob_exponent = std::strtol(argv[3], &end, 10);
         number_of_lookups_to_preform = std::strtol(argv[4], &end, 10);
+=======
+    size_t reps = 1u << 15u, max_distinct_capacity = 1u << 14u;
+    size_t remainder_length = 7;
+    size_t l1_counter_size = 3, l2_counter_size = 7;
+    double l1_LF = 0.95, l2_LF = 0.65;
+    w_validate_filter<dict32>(max_distinct_capacity, reps, remainder_length, l1_LF, l2_LF);
+//
+//    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+//                             l2_counter_size, l1_LF, l2_LF, cout);
+
+/*
+    cout << string(32, '*') << endl;
+    cout << string(32, '*') << endl;
+    example_of_CF_rates_wrapper();
+    cout << string(32, '*') << endl;
+    cout << string(32, '*') << endl;
+    CF_rates_wrapper<dict32>(max_distinct_capacity, reps, remainder_length, l1_counter_size,
+                             l2_counter_size, l1_LF, l2_LF, cout);
+    cout << string(32, '*') << endl;
+    cout << string(32, '*') << endl;
+    example_of_CF_rates_wrapper();
+*/
+>>>>>>> e5c734f69eba05b7cd251d64e97af8b0cfa34134
 
         level1_counter_size = std::strtol(argv[5], &end, 10);
         level2_counter_size = std::strtol(argv[6], &end, 10);
@@ -112,7 +136,17 @@ int main(int argc, char **argv) {
             return 1;
     }
 
+<<<<<<< HEAD
 
+=======
+    cout << string(32, '*') << endl;
+    */
+    /*
+    example_of_CF_rates_wrapper();
+*/
+    std::cout << "End!" << std::endl;
+    return 0;
+>>>>>>> e5c734f69eba05b7cd251d64e97af8b0cfa34134
 }
 
 

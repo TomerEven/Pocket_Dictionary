@@ -10,7 +10,11 @@ hash_table<T>::hash_table(size_t max_capacity, size_t element_length, size_t buc
     table = new T[table_size];
     // The msb is indicator to whether the cell is free or not. (0 might be valid fingerprint)
     assert(element_length < sizeof(T) * CHAR_BIT);
+<<<<<<< HEAD
 //    cout << "table_size is: " << table_size << endl;
+=======
+    cout << "table_size is: " << table_size << endl;
+>>>>>>> e5c734f69eba05b7cd251d64e97af8b0cfa34134
     for (int i = 0; i < table_size; ++i) {
         table[i] = EMPTY;
     }
