@@ -45,76 +45,6 @@ enum dict_types {
 
 int main(int argc, char **argv) {
 
-//    example_of_CF_rates_wrapper();
-
-    dict_types temp_type;
-    size_t max_distinct_capacity;
-    size_t error_prob_exponent;
-    size_t number_of_lookups_to_preform;
-    size_t level1_counter_size;
-    size_t level2_counter_size;
-    double level_1_load_factor;
-    double level_2_load_factor;
-
-    char *end;
-    if (argc == 2) {
-        temp_type = (dict_types) std::strtol(argv[1], &end, 10);
-        max_distinct_capacity = 1u << 15u;
-        error_prob_exponent = 6;
-        number_of_lookups_to_preform = 1u << 18u;
-        level1_counter_size = 3;
-        level2_counter_size = 7;
-        level_1_load_factor = .95;
-        level_2_load_factor = .5;
-    } else if (argc == 5) {
-
-        temp_type = (dict_types) std::strtol(argv[1], &end, 10);
-        max_distinct_capacity = std::strtol(argv[2], &end, 10);
-        error_prob_exponent = std::strtol(argv[3], &end, 10);
-        number_of_lookups_to_preform = std::strtol(argv[4], &end, 10);
-
-        level1_counter_size = 3, level2_counter_size = 7;
-        level_1_load_factor = 0.95, level_2_load_factor = 0.5;
-    } else if (argc == 9) {
-        temp_type = (dict_types) std::strtol(argv[1], &end, 10);
-        max_distinct_capacity = std::strtol(argv[2], &end, 10);
-        error_prob_exponent = std::strtol(argv[3], &end, 10);
-        number_of_lookups_to_preform = std::strtol(argv[4], &end, 10);
-
-        level1_counter_size = std::strtol(argv[5], &end, 10);
-        level2_counter_size = std::strtol(argv[6], &end, 10);
-        level_1_load_factor = std::strtod(argv[7], &end);
-        level_2_load_factor = std::strtod(argv[8], &end);
-
-    } else {
-        std::cout << "Wrong number of arguments." << std::endl;
-        return 1;
-    }
-
-    switch (temp_type) {
-        case basic:
-            CF_rates_wrapper<dict32>(max_distinct_capacity, number_of_lookups_to_preform, error_prob_exponent,
-                                     level1_counter_size,
-                                     level2_counter_size, level_1_load_factor, level_2_load_factor, cout);
-            return 0;
-        case counting:
-            CF_rates_wrapper<multi_dict64>(max_distinct_capacity, number_of_lookups_to_preform, error_prob_exponent,
-                                           level1_counter_size,
-                                           level2_counter_size, level_1_load_factor, level_2_load_factor, cout);
-            return 0;
-            /*case cuckoo_dict:
-                CF_rates_wrapper<cuckoofilter::>(max_distinct_capacity, number_of_lookups_to_preform, error_prob_exponent, level1_counter_size,
-                                               level2_counter_size, level_1_load_factor, level_2_load_factor, cout);
-                return 0*/
-        default:
-            std::cout << "Unknown type" << std::endl;
-            return 1;
-    }
-
-=======
-
-int main(int argc, char **argv) {
-
     example_of_CF_rates_wrapper();
 
     dict_types temp_type;
@@ -181,17 +111,12 @@ int main(int argc, char **argv) {
             return 1;
     }
 
->>>>>>> 24fe58bed803bee636acdd25b655e05f85eb57d6
 
 }
 
 
 void example_of_CF_rates_wrapper() {
-<<<<<<< HEAD
     ulong shift = 16u;
-=======
-    ulong shift = 12u;
->>>>>>> 24fe58bed803bee636acdd25b655e05f85eb57d6
     size_t reps = 1u << (shift + 3u), max_distinct_capacity = 1u << shift;
     size_t remainder_length = 13;
     size_t l1_counter_size = 3, l2_counter_size = 7;

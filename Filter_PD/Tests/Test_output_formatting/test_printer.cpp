@@ -7,11 +7,8 @@ namespace name_compare {
 
     void print_name(std::string filter_name) {
         std::string line = " |" + std::string(default_line_width - 1, '-') + '|';
-<<<<<<< HEAD
-=======
 //        size_t name_w/i = default_line_width - filter_name.size();
 //        assert(space_count > 0);
->>>>>>> 24fe58bed803bee636acdd25b655e05f85eb57d6
         std::cout << line << "\n |" << std::left << std::setw(default_line_width - 1) << filter_name << "|\n" << line
                   << std::endl;
     }
