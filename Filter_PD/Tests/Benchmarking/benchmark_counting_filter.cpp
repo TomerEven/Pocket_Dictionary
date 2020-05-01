@@ -39,7 +39,7 @@ CF_rates_wrapper<dict32>(size_t filter_max_capacity, size_t lookup_reps, size_t 
     auto t1 = chrono::high_resolution_clock::now();
     auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
 
-    name_compare::print_name(std::string("dict32"));
+    name_compare::print_name(std::string("dict"));
     CF_rates_core(&filter, filter_max_capacity, lookup_reps, init_time, error_power_inv, os);
     return os;
 }

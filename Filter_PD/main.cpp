@@ -39,13 +39,13 @@ void test_multi_dict();
 void example_of_CF_rates_wrapper();
 
 enum dict_types {
-    basic, counting//, cuckoo_dict
+    basic = 0, counting = 1//, cuckoo_dict
 };
 
 
 int main(int argc, char **argv) {
 
-    example_of_CF_rates_wrapper();
+//    example_of_CF_rates_wrapper();
 
     dict_types temp_type;
     size_t max_distinct_capacity;
