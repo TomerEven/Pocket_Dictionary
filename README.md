@@ -7,7 +7,7 @@ My previous Bloom filter and Quotient filter are also included in the comparison
 ## How to install and compile
 ```bash
 git clone git@github.com:TomerEven/Pocket_Dictionary.git
-cd Filter_PD
+cd Pocket_Dictionary/Filter_PD
 mkdir build_dir
 cd build_dir
 cmake ..
