@@ -265,91 +265,91 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 }
 
 
-auto
-cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
-                    ostream &os) -> ostream & {
-    auto start_run_time = chrono::high_resolution_clock::now();
-    vector<uint32_t> member_vec, nom_vec;
-
-    auto t0 = chrono::high_resolution_clock::now();
-    size_t n = ceil((double) f * number_of_pds * load_factor);
-    vec_init(n, &member_vec);
-    auto t1 = chrono::high_resolution_clock::now();
-    auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//auto
+//cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
+//                    ostream &os) -> ostream & {
+//    auto start_run_time = chrono::high_resolution_clock::now();
+//    vector<uint32_t> member_vec, nom_vec;
+//
+//    auto t0 = chrono::high_resolution_clock::now();
+//    size_t n = ceil((double) f * number_of_pds * load_factor);
+//    vec_init(n, &member_vec);
+//    auto t1 = chrono::high_resolution_clock::now();
+//    auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+////    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+//
+//    t0 = chrono::high_resolution_clock::now();
+//    CuckooFilter<uint32_t, 7> a(n);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//
+//    t0 = chrono::high_resolution_clock::now();
+//    for (auto iter : member_vec) a.Add(iter);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
+//
+//    t0 = chrono::high_resolution_clock::now();
+//    vec_init(lookup_reps, &nom_vec);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto nom_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//    double set_ratio = nom_vec.size() / (double) lookup_reps;
+//
+//    // [TN, FP, TP]
+//    int counter[3] = {0, 0, 0};
+////    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
+//    t0 = chrono::high_resolution_clock::now();
+//    for (auto iter : nom_vec) a.Contain(iter);
+//    t1 = chrono::high_resolution_clock::now();
+//    auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
+//    auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
+////    chrono::microseconds
+//    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
+//               init_time, insertion_time, lookup_time, total_run_time, os);
+//
+////    os << a;
+//    return os;
+//    /*clock_t startRunTime = clock();
+//    vector<uint32_t> member_vec, nom_vec;
+//
+//    clock_t t0 = clock();
+//
+//    size_t total_elements_inserted = ceil((double) f * number_of_pds * load_factor);
+//    vec_init(total_elements_inserted, &member_vec);
 //    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
-
-    t0 = chrono::high_resolution_clock::now();
-    CuckooFilter<uint32_t, 7> a(n);
-    t1 = chrono::high_resolution_clock::now();
-    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
-
-    t0 = chrono::high_resolution_clock::now();
-    for (auto iter : member_vec) a.Add(iter);
-    t1 = chrono::high_resolution_clock::now();
-    auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
-
-    t0 = chrono::high_resolution_clock::now();
-    vec_init(lookup_reps, &nom_vec);
-    t1 = chrono::high_resolution_clock::now();
-    auto nom_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
-    double set_ratio = nom_vec.size() / (double) lookup_reps;
-
-    // [TN, FP, TP]
-    int counter[3] = {0, 0, 0};
-//    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
-    t0 = chrono::high_resolution_clock::now();
-    for (auto iter : nom_vec) a.Contain(iter);
-    t1 = chrono::high_resolution_clock::now();
-    auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
-    auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
-//    chrono::microseconds
-    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
-               init_time, insertion_time, lookup_time, total_run_time, os);
-
-//    os << a;
-    return os;
-    /*clock_t startRunTime = clock();
-    vector<uint32_t> member_vec, nom_vec;
-
-    clock_t t0 = clock();
-
-    size_t total_elements_inserted = ceil((double) f * number_of_pds * load_factor);
-    vec_init(total_elements_inserted, &member_vec);
-    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
-
-    t0 = clock();
-//    const size_t bits_per_element = l;
-    CuckooFilter<uint32_t, 7> a(total_elements_inserted);
-//    a(number_of_pds, m, f, l);
-    double init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
-
-    t0 = clock();
-    for (auto iter: member_vec) a.Add(iter);
-    double insertion_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
-
-    t0 = clock();
-    vec_init(lookup_reps, &nom_vec);
-    double nom_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
-    double set_ratio = nom_vec.size() / (double) lookup_reps;
-
-    // [TN, FP, TP]
-    int counter[3] = {0, 0, 0};
-    t0 = clock();
-//    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
-    for (auto iter : nom_vec) a.Contain(iter);
-
-    double lookup_time = (double) (clock() - t0) / (CLOCKS_PER_SEC);
-    double total_run_time = (double) (clock() - startRunTime) / (CLOCKS_PER_SEC);
-
-
-    test_printer(total_elements_inserted, 0, lookup_reps, false, set_ratio, counter, member_set_init_time,
-                 nom_set_init_time,
-                 init_time, insertion_time, lookup_time, total_run_time, os);
-
-//    os << a;
-    return os;
-*/
-}
+//
+//    t0 = clock();
+////    const size_t bits_per_element = l;
+//    CuckooFilter<uint32_t, 7> a(total_elements_inserted);
+////    a(number_of_pds, m, f, l);
+//    double init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+//
+//    t0 = clock();
+//    for (auto iter: member_vec) a.Add(iter);
+//    double insertion_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+//
+//    t0 = clock();
+//    vec_init(lookup_reps, &nom_vec);
+//    double nom_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
+//    double set_ratio = nom_vec.size() / (double) lookup_reps;
+//
+//    // [TN, FP, TP]
+//    int counter[3] = {0, 0, 0};
+//    t0 = clock();
+////    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
+//    for (auto iter : nom_vec) a.Contain(iter);
+//
+//    double lookup_time = (double) (clock() - t0) / (CLOCKS_PER_SEC);
+//    double total_run_time = (double) (clock() - startRunTime) / (CLOCKS_PER_SEC);
+//
+//
+//    test_printer(total_elements_inserted, 0, lookup_reps, false, set_ratio, counter, member_set_init_time,
+//                 nom_set_init_time,
+//                 init_time, insertion_time, lookup_time, total_run_time, os);
+//
+////    os << a;
+//    return os;
+//*/
+//}
 
 template<class T>
 auto template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,

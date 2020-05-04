@@ -141,63 +141,63 @@ CF_rates_core(D *filter, size_t filter_max_capacity, size_t lookup_reps, ulong i
     return os;
 }
 
-
-template<typename ItemType, size_t bits_per_item>
-auto Cuckoo_rates_core(CuckooFilter<ItemType, bits_per_item> *filter, size_t filter_max_capacity, size_t lookup_reps,
-                       ulong init_time, ostream &os) -> ostream & {
-    auto start_run_time = chrono::high_resolution_clock::now();
-
-
-    /**Sets initializing*/
-    set<string> member_set, lookup_set, to_be_deleted_set;
-    /**Member set init*/
-    auto t0 = chrono::high_resolution_clock::now();
-    set_init(filter_max_capacity / 2, &member_set);
-    auto t1 = chrono::high_resolution_clock::now();
-    ulong member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
-
-    set_init(filter_max_capacity / 2, &to_be_deleted_set);
-
-    set_init(lookup_reps, &lookup_set);
-    double set_ratio = lookup_set.size() / (double) lookup_reps;
-
-    auto insertion_time = time_insertions(filter, &member_set);
-    auto insertion_time_higher_load = time_insertions(filter, &to_be_deleted_set);
-    auto lookup_time = time_lookups(filter, &member_set);
-
-    vector<set<string> *> member_sets_vector;
-    member_sets_vector.insert(member_sets_vector.end(), &member_set);
-    member_sets_vector.insert(member_sets_vector.end(), &to_be_deleted_set);
-    auto FP_count_higher_load = v_FP_counter(filter, &lookup_set, &member_sets_vector);
-
-    auto removal_time = time_deletions(filter, &to_be_deleted_set);
-    member_sets_vector.erase(member_sets_vector.begin() + 1);
-    auto FP_count_mid_load = v_FP_counter(filter, &lookup_set, &member_sets_vector);
-
-    auto end_time = chrono::high_resolution_clock::now();
-    ulong total_time = chrono::duration_cast<ns>(end_time - start_run_time).count();
-    total_time += init_time;
-//    vector<ulong> times(init_time, member_set_init_time, insertion_time, insertion_time_higher_load, lookup_time,
-//                        removal_time, total_time);
-
-
-    if (set_ratio < 1) {
-        cout << "set_ratio=" << set_ratio << endl;
-    }
-    size_t exp_FP_count = ceil(((double) lookup_reps / (1u << bits_per_item)));
-    name_compare::table_print_false_positive_rates(exp_FP_count, FP_count_higher_load, FP_count_mid_load);
-
-    const size_t var_num = 6;
-    string names[var_num] = {"init_time", "insertion_time", "insertion_time_higher_load",
-                             "lookup_time", "removal_time", "total_time"};
-    size_t values[var_num] = {init_time, insertion_time, insertion_time_higher_load, lookup_time,
-                              removal_time, total_time};
-
-    size_t divisors[var_num] = {1, member_set.size(), to_be_deleted_set.size(), lookup_set.size(),
-                                to_be_deleted_set.size(), 1};
-    name_compare::table_print_rates(var_num, names, values, divisors);
-    return os;
-}
+//
+//template<typename ItemType, size_t bits_per_item>
+//auto Cuckoo_rates_core(CuckooFilter<ItemType, bits_per_item> *filter, size_t filter_max_capacity, size_t lookup_reps,
+//                       ulong init_time, ostream &os) -> ostream & {
+//    auto start_run_time = chrono::high_resolution_clock::now();
+//
+//
+//    /**Sets initializing*/
+//    set<string> member_set, lookup_set, to_be_deleted_set;
+//    /**Member set init*/
+//    auto t0 = chrono::high_resolution_clock::now();
+//    set_init(filter_max_capacity / 2, &member_set);
+//    auto t1 = chrono::high_resolution_clock::now();
+//    ulong member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
+//
+//    set_init(filter_max_capacity / 2, &to_be_deleted_set);
+//
+//    set_init(lookup_reps, &lookup_set);
+//    double set_ratio = lookup_set.size() / (double) lookup_reps;
+//
+//    auto insertion_time = time_insertions(filter, &member_set);
+//    auto insertion_time_higher_load = time_insertions(filter, &to_be_deleted_set);
+//    auto lookup_time = time_lookups(filter, &member_set);
+//
+//    vector<set<string> *> member_sets_vector;
+//    member_sets_vector.insert(member_sets_vector.end(), &member_set);
+//    member_sets_vector.insert(member_sets_vector.end(), &to_be_deleted_set);
+//    auto FP_count_higher_load = v_FP_counter(filter, &lookup_set, &member_sets_vector);
+//
+//    auto removal_time = time_deletions(filter, &to_be_deleted_set);
+//    member_sets_vector.erase(member_sets_vector.begin() + 1);
+//    auto FP_count_mid_load = v_FP_counter(filter, &lookup_set, &member_sets_vector);
+//
+//    auto end_time = chrono::high_resolution_clock::now();
+//    ulong total_time = chrono::duration_cast<ns>(end_time - start_run_time).count();
+//    total_time += init_time;
+////    vector<ulong> times(init_time, member_set_init_time, insertion_time, insertion_time_higher_load, lookup_time,
+////                        removal_time, total_time);
+//
+//
+//    if (set_ratio < 1) {
+//        cout << "set_ratio=" << set_ratio << endl;
+//    }
+//    size_t exp_FP_count = ceil(((double) lookup_reps / (1u << bits_per_item)));
+//    name_compare::table_print_false_positive_rates(exp_FP_count, FP_count_higher_load, FP_count_mid_load);
+//
+//    const size_t var_num = 6;
+//    string names[var_num] = {"init_time", "insertion_time", "insertion_time_higher_load",
+//                             "lookup_time", "removal_time", "total_time"};
+//    size_t values[var_num] = {init_time, insertion_time, insertion_time_higher_load, lookup_time,
+//                              removal_time, total_time};
+//
+//    size_t divisors[var_num] = {1, member_set.size(), to_be_deleted_set.size(), lookup_set.size(),
+//                                to_be_deleted_set.size(), 1};
+//    name_compare::table_print_rates(var_num, names, values, divisors);
+//    return os;
+//}
 
 template<class D>
 auto time_lookups(D *filter, set<string> *element_set) -> ulong {

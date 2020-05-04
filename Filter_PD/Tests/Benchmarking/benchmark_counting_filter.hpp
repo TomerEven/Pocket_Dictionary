@@ -9,10 +9,10 @@
 #include "../Test_output_formatting/test_printer.hpp"
 #include <tr1/type_traits> // C++03, use std::tr1
 
-#define CUCKOO_R (8)
+//#define CUCKOO_R (8)
 
 
-typedef cuckoofilter::CuckooFilter<uint32_t, CUCKOO_R> basic_cf;
+//typedef cuckoofilter::CuckooFilter<uint32_t, CUCKOO_R> basic_cf;
 
 enum multiset_types {
     std_multiset
@@ -33,10 +33,10 @@ CF_rates_core(D *filter, size_t filter_max_capacity, size_t lookup_reps, ulong i
               ostream &os) -> ostream &;
 
 
-template<typename ItemType, size_t bits_per_item>
-auto
-Cuckoo_rates_core(CuckooFilter<ItemType, bits_per_item> *filter, size_t filter_max_capacity, size_t lookup_reps,
-                  ulong init_time, ostream &os) -> ostream &;
+//template<typename ItemType, size_t bits_per_item>
+//auto
+//Cuckoo_rates_core(CuckooFilter<ItemType, bits_per_item> *filter, size_t filter_max_capacity, size_t lookup_reps,
+//                  ulong init_time, ostream &os) -> ostream &;
 
 
 template<class D>

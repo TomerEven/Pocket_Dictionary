@@ -45,7 +45,7 @@ enum dict_types {
 
 int main(int argc, char **argv) {
 
-//    example_of_CF_rates_wrapper();
+    example_of_CF_rates_wrapper();
 
     dict_types temp_type;
     size_t max_distinct_capacity;
@@ -59,12 +59,12 @@ int main(int argc, char **argv) {
     char *end;
     if (argc == 2) {
         temp_type = (dict_types) std::strtol(argv[1], &end, 10);
-        max_distinct_capacity = 1u << 15u;
-        error_prob_exponent = 6;
-        number_of_lookups_to_preform = 1u << 18u;
-        level1_counter_size = 3;
+        max_distinct_capacity = 1u << 18u;
+        error_prob_exponent = 4;
+        number_of_lookups_to_preform = 1u << 21u;
+        level1_counter_size = 4;
         level2_counter_size = 7;
-        level_1_load_factor = .95;
+        level_1_load_factor = .99;
         level_2_load_factor = .5;
     } else if (argc == 5) {
 

@@ -74,7 +74,6 @@ add_executable(Filter_PD
         Tests/Validation/validate_filter.hpp
         Tests/Validation/validate_counting_filter.hpp
 
-        Tests/Benchmarking/old_benchmark_tests.cpp Tests/Benchmarking/old_benchmark_tests.h
         Tests/Benchmarking/benchmark_tests.cpp Tests/Benchmarking/benchmark_tests.h
         Tests/Benchmarking/benchmark_counting_filter.cpp Tests/Benchmarking/benchmark_counting_filter.hpp
         Tests/Test_output_formatting/test_printer.cpp Tests/Test_output_formatting/test_printer.hpp

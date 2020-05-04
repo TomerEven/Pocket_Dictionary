@@ -20,7 +20,6 @@
 #include "../../Filters/POW2C/pow2c_naive_filter.h"
 #include "../../Filters/POW2C/const_filter.h"
 #include "../Validation/validation_tests.h"
-#include "/usr/local/include/cuckoofilter/cuckoofilter.h"
 #include "../Validation/validate_filter.hpp"
 
 
@@ -30,7 +29,6 @@
 #define WIDTH 24
 #define QR_TUPLE tuple<uint32_t ,uint32_t>
 
-using cuckoofilter::CuckooFilter;
 
 typedef chrono::microseconds ms;
 typedef chrono::nanoseconds ns;
