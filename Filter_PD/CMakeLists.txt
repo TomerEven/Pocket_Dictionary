@@ -6,8 +6,6 @@ SET(CMAKE_CXX_FLAGS "-O3")
 SET(CMAKE_C_FLAGS "-O3")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
-#add_subdirectory(./libcuckoo)
-#SET(CMAKE_CXX_FLAGS -pthread)
 
 add_executable(Filter_PD
         Global_functions/basic_functions.cpp Global_functions/basic_functions.h
@@ -81,4 +79,3 @@ add_executable(Filter_PD
         )
 
 
-#target_link_libraries(Filter_PD cuckoofilter)

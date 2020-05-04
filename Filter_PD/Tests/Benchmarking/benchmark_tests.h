@@ -65,9 +65,9 @@ ostream &
 const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, size_t lookup_reps,
                      ostream &os);
 
-ostream &
-cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
-                    ostream &os);
+//ostream &
+//cuckoo_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, const size_t l, size_t lookup_reps,
+//                    ostream &os);
 
 template<class T>
 ostream &
