@@ -33,7 +33,9 @@ multi_dict<D, S, S_T>::multi_dict(size_t max_number_of_elements, size_t error_po
     pd_capacity_vec.resize(number_of_pd);
 
     for (size_t i = 0; i < number_of_pd; ++i) {
-        pd_vec.emplace_back(D(quotient_range, single_pd_capacity, remainder_length, level1_counter_size));
+        D *temp = new D(quotient_range, single_pd_capacity, remainder_length, level1_counter_size);
+        pd_vec.push_back(temp);
+//        pd_vec.emplace_back(D(quotient_range, single_pd_capacity, remainder_length, level1_counter_size));
 //        pd_vec.emplace_back(CPD(quotient_range, single_pd_capacity, remainder_length, level1_counter_size));
     }
 //    get_info();
@@ -50,7 +52,7 @@ auto multi_dict<D, S, S_T>::lookup_helper(S_T hash_val) -> bool {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    if (pd_vec[pd_index].lookup(quot, r)) return true;
+    if (pd_vec[pd_index]->lookup(quot, r)) return true;
 
     return spare->find(hash_val & MASK(spare_element_length));
 }
@@ -70,7 +72,7 @@ auto multi_dict<D, S, S_T>::lookup_multi(const string *s) -> size_t {
     /*size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    auto res = pd_vec[pd_index].lookup_multi(quot, r);
+    auto res = pd_vec[pd_index]->lookup_multi(quot, r);
     if (res) {
         if (MD_DB_MODE1)
             assert(res <= MASK(level1_counter_size));
@@ -90,7 +92,7 @@ auto multi_dict<D, S, S_T>::lookup_multi_helper(S_T hash_val) -> size_t {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    auto res = pd_vec[pd_index].lookup_multi(quot, r);
+    auto res = pd_vec[pd_index]->lookup_multi(quot, r);
     if (res) {
         if (MD_DB_MODE1)
             assert(res <= MASK(level1_counter_size));
@@ -126,7 +128,7 @@ void multi_dict<D, S, S_T>::insert(const string *s) {
         return;
     }
 
-    counter_status op_res = pd_vec[pd_index].insert_inc_attempt(quot, r);
+    counter_status op_res = pd_vec[pd_index]->insert_inc_attempt(quot, r);
     if (op_res == OK) {
         if (MD_DB_MODE2)
             assert(!spare->find(hash_val));
@@ -145,13 +147,13 @@ void multi_dict<D, S, S_T>::insert(const string *s) {
             return;
         if (MD_DB_MODE1)
             assert(!spare->find(hash_val));
-        pd_vec[pd_index].insert(quot, r);
+        pd_vec[pd_index]->insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         return;
     }
     assert(false);
     *//*assert(!spare->find(hash_val));
-    counter_status op_res = pd_vec[pd_index].insert(quot, r);
+    counter_status op_res = pd_vec[pd_index]->insert(quot, r);
     if (op_res == OK)
         return;
     if (op_res == inc_overflow) {
@@ -181,7 +183,7 @@ void multi_dict<D, S, S_T>::insert_helper(S_T hash_val) {
         return;
     }
 
-    counter_status op_res = pd_vec[pd_index].insert_inc_attempt(quot, r);
+    counter_status op_res = pd_vec[pd_index]->insert_inc_attempt(quot, r);
     if (op_res == OK) {
         if (MD_DB_MODE2)
             assert(!spare->find(hash_val));
@@ -200,13 +202,13 @@ void multi_dict<D, S, S_T>::insert_helper(S_T hash_val) {
             return;
         if (MD_DB_MODE2)
             assert(!spare->find(hash_val));
-        pd_vec[pd_index].insert(quot, r);
+        pd_vec[pd_index]->insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         return;
     }
     assert(false);
     /*assert(!spare->find(hash_val));
-    counter_status op_res = pd_vec[pd_index].insert(quot, r);
+    counter_status op_res = pd_vec[pd_index]->insert(quot, r);
     if (op_res == OK)
         return;
     if (op_res == inc_overflow) {
@@ -221,9 +223,9 @@ void multi_dict<D, S, S_T>::insert_helper(S_T hash_val) {
 template<class D, class S, typename S_T>
 void multi_dict<D, S, S_T>::insert_full_PD_helper(S_T hash_val, size_t pd_index, uint32_t quot, uint32_t r) {
     if (MD_DB_MODE2)
-        assert(pd_vec[pd_index].is_full());
+        assert(pd_vec[pd_index]->is_full());
 
-    counter_status op_res = pd_vec[pd_index].insert_inc_attempt(quot, r);
+    counter_status op_res = pd_vec[pd_index]->insert_inc_attempt(quot, r);
 
     //"quot, r" is a member, and the incremental succeed.
     if (op_res == OK)
@@ -432,7 +434,7 @@ void multi_dict<D, S, S_T>::remove(const string *s) {
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
 //    bool BPC = (hash_val == 80735794) or (*s == "]AHWVF]NK[X");
-    auto op_res = pd_vec[pd_index].conditional_remove(quot, r);
+    auto op_res = pd_vec[pd_index]->conditional_remove(quot, r);
     if (op_res == dec_underflow) {
         --(pd_capacity_vec[pd_index]);
         return;
@@ -459,7 +461,7 @@ void multi_dict<D, S, S_T>::remove_helper(S_T hash_val) {
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
 
-    auto op_res = pd_vec[pd_index].conditional_remove(quot, r);
+    auto op_res = pd_vec[pd_index]->conditional_remove(quot, r);
     if (op_res == dec_underflow) {
         --(pd_capacity_vec[pd_index]);
         return;
@@ -503,7 +505,7 @@ auto multi_dict<D, S, S_T>::sum_pd_capacity() -> size_t {
     size_t res = 0;
     for (int i = 0; i < pd_capacity_vec.size(); ++i) {
         if (MD_DB_MODE2)
-            assert(pd_vec[i].get_capacity() == pd_capacity_vec[i]);
+            assert(pd_vec[i]->get_capacity() == pd_capacity_vec[i]);
         res += pd_capacity_vec[i];
     }
     return res;
@@ -561,15 +563,15 @@ auto multi_dict<D, S, S_T>::single_pop_attempt(S_T element) -> bool {
     split(element, &pd_index, &quot, &r);
     if (pd_capacity_vec[pd_index] != single_pd_capacity) {
         if (MD_DB_MODE1)
-            assert(!pd_vec[pd_index].is_full());
+            assert(!pd_vec[pd_index]->is_full());
 
-        pd_vec[pd_index].insert(quot, r);
+        pd_vec[pd_index]->insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         spare->decrease_capacity();
         return true;
     }
     if (MD_DB_MODE1)
-        assert(pd_vec[pd_index].is_full());
+        assert(pd_vec[pd_index]->is_full());
     return false;
 }
 
@@ -581,18 +583,18 @@ auto multi_dict<D, S, S_T>::single_pop_attempt(S_T temp_el, S_T counter) -> bool
 //    cout << "(pd_index, quot, r) (" << pd_index << ", " << quot << ", " << r << ")";
     if (pd_capacity_vec[pd_index] != single_pd_capacity) {
         if (MD_DB_MODE1)
-            assert(!pd_vec[pd_index].is_full());
+            assert(!pd_vec[pd_index]->is_full());
 
         if (MD_DB_MODE2)
             assert(counter <= MASK(level1_counter_size));
-        pd_vec[pd_index].insert_new_element_with_counter(quot, r, counter);
+        pd_vec[pd_index]->insert_new_element_with_counter(quot, r, counter);
         ++(pd_capacity_vec[pd_index]);
         spare->decrease_capacity();
         return true;
     }
 //    cout << " was full" << endl;
     if (MD_DB_MODE1)
-        assert(pd_vec[pd_index].is_full());
+        assert(pd_vec[pd_index]->is_full());
     return false;
 }
 
@@ -614,6 +616,16 @@ static auto get_number_of_PDs(size_t dict_max_capacity, double l1_load_factor) -
 template<class D, class S, typename S_T>
 auto multi_dict<D, S, S_T>::get_name() -> std::string {
     return std::__cxx11::string("multi_dict");
+}
+
+template<class D, class S, typename S_T>
+multi_dict<D, S, S_T>::~multi_dict() {
+    for (int i = 0; i < pd_vec.size(); ++i) {
+        delete pd_vec[i];
+    }
+    pd_vec.clear();
+    delete spare;
+
 }
 
 

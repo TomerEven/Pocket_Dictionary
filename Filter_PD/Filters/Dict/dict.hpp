@@ -12,7 +12,7 @@
 
 template<class D, class S>
 class dict {
-    vector<D> pd_vec;
+    vector<D *> pd_vec;
     vector<uint> pd_capacity_vec;
     S *spare;
 
@@ -31,7 +31,7 @@ public:
 
 //    dict(size_t filter_max_capacity, size_t error_power_inv, double level1_load_factor, double level2_load_factor);
 
-//    virtual ~dict();
+    virtual ~dict();
 
     auto lookup(const string *s) -> bool;
 

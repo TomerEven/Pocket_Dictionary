@@ -1063,12 +1063,6 @@ void CPD::write_counter(size_t counter_index, CPD_TYPE value) {
     }
 }
 
-/*
-CPD::~CPD() {
-    delete[] a;
-}
-*/
-
 void CPD::print_body_as_array() const {
     auto start = get_first_index_containing_the_body();
     auto end = get_last_a_index_containing_the_body();
@@ -1111,4 +1105,9 @@ auto operator<<(ostream &os, const CPD &cpd) -> ostream & {
 
 auto CPD::has_unique_remainders() -> bool {
     return false;
+}
+
+
+CPD::~CPD() {
+    delete[] a;
 }

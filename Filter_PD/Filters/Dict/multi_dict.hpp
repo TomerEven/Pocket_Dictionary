@@ -23,7 +23,7 @@
 
 template<class D, class S, typename S_T>
 class multi_dict {
-    vector<D> pd_vec;
+    vector<D *> pd_vec;
 //    vector<CPD> pd_vec;
     vector<uint> pd_capacity_vec;
     S *spare;
@@ -42,6 +42,8 @@ public:
     multi_dict(size_t max_number_of_elements, size_t error_power_inv, size_t level1_counter_size,
                size_t level2_counter_size, double level1_load_factor, double level2_load_factor);
 
+
+    virtual ~multi_dict();
 
     auto lookup(const string *s) -> bool;
 

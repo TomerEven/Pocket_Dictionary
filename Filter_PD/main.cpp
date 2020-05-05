@@ -59,9 +59,10 @@ int main(int argc, char **argv) {
     char *end;
     if (argc == 2) {
         temp_type = (dict_types) std::strtol(argv[1], &end, 10);
-        max_distinct_capacity = 1u << 18u;
+        ulong shift = 12;
+        max_distinct_capacity = 1u << shift;
         error_prob_exponent = 4;
-        number_of_lookups_to_preform = 1u << 21u;
+        number_of_lookups_to_preform = 1u << shift;
         level1_counter_size = 4;
         level2_counter_size = 7;
         level_1_load_factor = .99;
@@ -116,9 +117,9 @@ int main(int argc, char **argv) {
 
 
 void example_of_CF_rates_wrapper() {
-    ulong shift = 16u;
+    ulong shift = 15u;
     size_t reps = 1u << (shift + 3u), max_distinct_capacity = 1u << shift;
-    size_t remainder_length = 13;
+    size_t remainder_length = 4;
     size_t l1_counter_size = 3, l2_counter_size = 7;
     double l1_LF = 0.95, l2_LF = 0.65;
 

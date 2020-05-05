@@ -36,7 +36,7 @@ public:
      */
     CPD(size_t m, size_t f, size_t l, size_t counter_size);
 
-//    virtual ~CPD();
+    virtual ~CPD();
 
     auto lookup(CPD_TYPE q, CPD_TYPE r) -> bool;
 

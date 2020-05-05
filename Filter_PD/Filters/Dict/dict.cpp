@@ -23,7 +23,8 @@ dict<D, S>::dict(size_t max_number_of_elements, size_t error_power_inv, double l
     pd_capacity_vec.resize(number_of_pd);
 
     for (size_t i = 0; i < number_of_pd; ++i) {
-        pd_vec.emplace_back(D(quotient_range, single_pd_capacity, remainder_length));
+        D *temp = new D(quotient_range, single_pd_capacity, remainder_length);
+        pd_vec.push_back(temp);
     }
 //    get_info();
 }
@@ -57,7 +58,7 @@ auto dict<D, S>::lookup(const string *s) -> bool {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    if (pd_vec[pd_index].lookup(quot, r)) return true;
+    if (pd_vec[pd_index]->lookup(quot, r)) return true;
 
     return spare->find(hash_val % SL(sparse_element_length));*/
 }
@@ -73,7 +74,7 @@ bool dict<D, S>::lookup_helper(uint32_t hash_val) {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    if (pd_vec[pd_index].lookup(quot, r)) return true;
+    if (pd_vec[pd_index]->lookup(quot, r)) return true;
 
     return spare->find(hash_val & MASK(sparse_element_length));
 }
@@ -92,7 +93,7 @@ void dict<D, S>::insert(const string *s) {
         insert_to_spare_with_pop(hash_val & MASK(sparse_element_length));
         return;
     }
-    pd_vec[pd_index].insert(quot, r);
+    pd_vec[pd_index]->insert(quot, r);
     ++(pd_capacity_vec[pd_index]);
 */
 
@@ -115,7 +116,7 @@ void dict<D, S>::insert_helper(uint32_t hash_val) {
         insert_to_spare_with_pop(hash_val & MASK(sparse_element_length));
         return;
     }
-    pd_vec[pd_index].insert(quot, r);
+    pd_vec[pd_index]->insert(quot, r);
     ++(pd_capacity_vec[pd_index]);
 
 }
@@ -241,7 +242,7 @@ void dict<D, S>::remove(const string *s) {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    if (pd_vec[pd_index].conditional_remove(quot, r)) {
+    if (pd_vec[pd_index]->conditional_remove(quot, r)) {
         --(pd_capacity_vec[pd_index]);
         return;
     }
@@ -262,7 +263,7 @@ void dict<D, S>::remove_helper(uint32_t hash_val) {
     size_t pd_index = -1;
     uint32_t quot = -1, r = -1;
     split(hash_val, &pd_index, &quot, &r);
-    if (pd_vec[pd_index].conditional_remove(quot, r)) {
+    if (pd_vec[pd_index]->conditional_remove(quot, r)) {
         --(pd_capacity_vec[pd_index]);
         return;
     }
@@ -323,16 +324,16 @@ auto dict<D, S>::single_pop_attempt(uint32_t element) -> bool {
     uint32_t quot = -1, r = -1;
     split(element, &pd_index, &quot, &r);
     if (pd_capacity_vec[pd_index] != single_pd_capacity) {
-        assert(!pd_vec[pd_index].is_full());
+        assert(!pd_vec[pd_index]->is_full());
 
-        pd_vec[pd_index].insert(quot, r);
+        pd_vec[pd_index]->insert(quot, r);
         ++(pd_capacity_vec[pd_index]);
         spare->decrease_capacity();
         cout << "element with hash_val: (" << element << ") was pop." << endl;
         return true;
     }
     if (DICT_DB_MODE1)
-        assert(pd_vec[pd_index].is_full());
+        assert(pd_vec[pd_index]->is_full());
     return false;
 }
 
@@ -351,10 +352,6 @@ void dict<D, S>::get_info() {
 }
 
 
-//template<class D, class S>
-//dict<D, S>::~dict() {
-//
-//}
 
 
 
@@ -387,3 +384,14 @@ template void dict32::remove_int<uint32_t>(uint32_t x);
 template void dict32::insert_int<uint32_t>(uint32_t x);
 
 template auto dict32::lookup_int<uint32_t>(uint32_t x) -> bool;
+
+
+template<class D, class S>
+dict<D, S>::~dict() {
+    for (int i = 0; i < pd_vec.size(); ++i) {
+        delete pd_vec[i];
+    }
+    pd_vec.clear();
+
+    delete spare;
+}

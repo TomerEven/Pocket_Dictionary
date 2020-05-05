@@ -573,4 +573,6 @@ auto cg_PD::is_full() -> bool {
 }
 
 
-//cg_PD::~cg_PD() { delete[] a; }
+cg_PD::~cg_PD() {
+    delete[] a;
+}

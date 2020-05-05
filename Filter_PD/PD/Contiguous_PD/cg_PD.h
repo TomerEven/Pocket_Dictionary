@@ -27,7 +27,7 @@ class cg_PD {
 public:
     cg_PD(size_t m, size_t f, size_t l);
 
-//    virtual ~cg_PD();
+    virtual ~cg_PD();
 
     auto lookup(CG_TYPE q, CG_TYPE r) -> bool;
 
