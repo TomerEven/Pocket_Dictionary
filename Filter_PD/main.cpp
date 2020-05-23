@@ -45,7 +45,7 @@ enum dict_types {
 
 int main(int argc, char **argv) {
 
-    example_of_CF_rates_wrapper();
+//    example_of_CF_rates_wrapper();
 
     dict_types temp_type;
     size_t max_distinct_capacity;
