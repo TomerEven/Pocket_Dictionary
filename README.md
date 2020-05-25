@@ -37,7 +37,8 @@ In `build_dir` directory
 - `first level load factor`: In average, how loaded should each PD be. 
 - `second level load factor`: Sets the hash table size.
 
-
+# Minimal_Branch
+Removing files not in use. An attempt to make the code structure simpler for importing purposes.
 
 
 
