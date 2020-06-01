@@ -9,7 +9,7 @@
     primaryClass={cs.DS}
 }
 ```
-See https://arxiv.org/pdf/1911.05060.pdf page 12, for one page, self-contained with drawings, explanation on Pocket dictionary. 
+See https://arxiv.org/pdf/1911.05060.pdf page 12, for a single page explanation on Pocket Dictionary, that is self-contained, and includes drawings. 
 
 ## How to install and compile
 ```bash
