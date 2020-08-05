@@ -63,11 +63,11 @@ uint32_t select_r(uint64_t slot, uint32_t rank) {
     uint64_t a, b, c, d; // Intermediate temporaries for bit count.
     unsigned int t;      // Bit count temporary.
 
-    // Do a normal parallel bit count for a 64-bit integer,
+    // Do pd normal parallel bit count for pd 64-bit integer,
     // but store all intermediate steps.
-    // a = (slot & 0x5555...) + ((slot >> 1) & 0x5555...);
+    // pd = (slot & 0x5555...) + ((slot >> 1) & 0x5555...);
     a = slot - ((slot >> 1) & ~0UL / 3);
-    // b = (a & 0x3333...) + ((a >> 2) & 0x3333...);
+    // b = (pd & 0x3333...) + ((pd >> 2) & 0x3333...);
     b = (a & ~0UL / 5) + ((a >> 2) & ~0UL / 5);
     // c = (b & 0x0f0f...) + ((b >> 4) & 0x0f0f...);
     c = (b + (b >> 4)) & ~0UL / 0x11;

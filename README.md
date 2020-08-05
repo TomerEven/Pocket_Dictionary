@@ -9,7 +9,7 @@
     primaryClass={cs.DS}
 }
 ```
-See https://arxiv.org/pdf/1911.05060.pdf page 12, for a single page explanation on Pocket Dictionary, that is self-contained, and includes drawings. 
+See https://arxiv.org/pdf/1911.05060.pdf page 12, for pd single page explanation on Pocket Dictionary, that is self-contained, and includes drawings. 
 
 ## How to install and compile
 ```bash
@@ -36,8 +36,8 @@ In `build_dir` directory
 ./Filter_PD <type> <max number of elements> <error probability exponent> <number of lookup to preform> <first level counter size> <second level counter size> <first level load factor> <second level load factor> 
 ```
 - `type`: 0 or 1.<br> 
-*0* is for a filter based on Pocket Dictionary.<br>
-*1* is for a filter based on counting PD (CPD) 
+*0* is for pd filter based on Pocket Dictionary.<br>
+*1* is for pd filter based on counting PD (CPD) 
 
 - `max number of elements`: The max number of distinct elements the filter is supposed to contain in any time. This effects the space usage.
 

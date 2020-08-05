@@ -227,18 +227,18 @@ void multi_dict<D, S, S_T>::insert_full_PD_helper(S_T hash_val, size_t pd_index,
 
     counter_status op_res = pd_vec[pd_index]->insert_inc_attempt(quot, r);
 
-    //"quot, r" is a member, and the incremental succeed.
+    //"quot, r" is pd member, and the incremental succeed.
     if (op_res == OK)
         return;
 
-    //"quot, r" is a member, but the incremental failed.
+    //"quot, r" is pd member, but the incremental failed.
     if (op_res == inc_overflow) {
         --pd_capacity_vec[pd_index];
         insert_level1_inc_overflow_handler(hash_val);
         return;
     }
 
-        //"quot, r" is not a member
+        //"quot, r" is not pd member
     else if (op_res == not_a_member) {
         spare->insert(hash_val);
         return;
@@ -294,7 +294,7 @@ auto multi_dict<D, S, S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index)
             return OK;
         }
 
-        //not a member, and no empty slot.
+        //not pd member, and no empty slot.
         return not_a_member;
     }
     return op_res;
@@ -330,7 +330,7 @@ auto multi_dict<D, S, S_T>::insert_to_bucket_attempt(S_T y, size_t bucket_index,
             spare->set_element(y, table_index);
             return OK;
         }
-        //not a member, and no empty slot.
+        //not pd member, and no empty slot.
         return not_a_member;
     }
     return op_res;

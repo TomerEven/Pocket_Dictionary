@@ -84,7 +84,7 @@ auto validate_find_first_and_second_set_bits_rand(size_t reps, size_t a_size) ->
     uint32_t a[a_size];
     for (size_t j = 0; j < reps; ++j) {
         for (size_t i = 0; i < a_size; ++i) { a[i] = random(); }
-//        auto set_bit_count = count_set_bits(a, a_size);
+//        auto set_bit_count = count_set_bits(pd, a_size);
 //        uint32_t q = random() % set_bit_count;
 //        cout << j << ":\t";
         if (!validate_find_first_and_second_set_bits_single(a, a_size)) {
@@ -107,7 +107,7 @@ auto validate_find_first_and_second_set_bits_single(T *a, size_t a_size) -> bool
     vector_find_kth_interval_simple(&vec, 1, &vec_start, &vec_end);
 
     tie(start, end) = find_first_and_second_set_bits<T>(a, a_size);
-//    find_first_and_second_set_bits(a, a_size, &start, &end);
+//    find_first_and_second_set_bits(pd, a_size, &start, &end);
 
     bool cond1 = (start == vec_start);
     bool cond2 = (end == vec_end);
@@ -134,7 +134,7 @@ auto v_vec_and_array_transformation(size_t reps, size_t total_bits) -> bool {
 
     for (int i = 0; i < reps; ++i) {
         for (int j = 0; j < a_size; ++j) { a[j] = random(); }
-//        print_array_as_integers(a, a_size);
+//        print_array_as_integers(pd, a_size);
         from_array_of_words_to_bit_vector(&vec, a, a_size);
         from_array_of_words_to_bit_vector(&vec, b, a_size);
         for (int k = 0; k < a_size; ++k) {
@@ -166,7 +166,7 @@ auto v_vec_and_array_transformation(size_t reps, size_t total_bits) -> bool {
 
 /*
 template<typename T>
-auto v_update_element_with_fixed_size_single(T *a, size_t a_size, size_t bit_start_pos, size_t bit_end_pos,
+auto v_update_element_with_fixed_size_single(T *pd, size_t a_size, size_t bit_start_pos, size_t bit_end_pos,
                                              T new_val) -> bool {
     return 0;
 }*/
@@ -187,14 +187,14 @@ auto v_update_element_with_fixed_size_rand(size_t reps, const size_t sub_reps) -
             T new_val = random() & MASK(length);
 
             ////Testing updating and extracting are invertible. (extract first)
-//            for (int m = 0; m < sub_reps; ++m) {assert(a[m] == changed_array[m]);}
+//            for (int m = 0; m < sub_reps; ++m) {assert(pd[m] == changed_array[m]);}
             auto prev_val = read_word<T>(a, sub_reps, start, end);
             update_element_with_fixed_size<T>(changed_array, start, end, prev_val, sub_reps);
-//            for (int m = 0; m < sub_reps; ++m) {assert(a[m] == changed_array[m]);}
+//            for (int m = 0; m < sub_reps; ++m) {assert(pd[m] == changed_array[m]);}
             assert(read_word<T>(changed_array, sub_reps, start, end) == prev_val);
-//            for (int m = 0; m < sub_reps; ++m) {assert(a[m] == changed_array[m]);}
+//            for (int m = 0; m < sub_reps; ++m) {assert(pd[m] == changed_array[m]);}
 
-            /*cout << "prev slot is: " << a[start / slot_size] << endl;
+            /*cout << "prev slot is: " << pd[start / slot_size] << endl;
             cout << "prev val is: " << prev_val << endl;
             */
 
@@ -213,9 +213,9 @@ auto v_update_element_with_fixed_size_rand(size_t reps, const size_t sub_reps) -
                 cout << "end is: " << start << "\t end index is :" << end / slot_size << "\t end_bit_pos is :"
                      << end % slot_size << endl;
 
-                cout << "a[i] is: " << a[start / slot_size] << endl;
+                cout << "pd[i] is: " << a[start / slot_size] << endl;
                 if ((start / slot_size) < (end / slot_size))
-                    cout << "a[i + 1] is: " << a[end / slot_size] << endl;
+                    cout << "pd[i + 1] is: " << a[end / slot_size] << endl;
 
                 cout << "prev_val is:" << prev_val << endl;
                 cout << "new_val is:" << new_val << endl;
@@ -230,7 +230,7 @@ auto v_update_element_with_fixed_size_rand(size_t reps, const size_t sub_reps) -
             for (int k = 0; k < sub_reps; ++k) {
                 if (a[k] != unchanged_array[k]) {
                     print_array_as_integers<T>(a, sub_reps);
-//                    print_array_as_integers<T>(a, sub_reps);
+//                    print_array_as_integers<T>(pd, sub_reps);
                     print_array_as_integers<T>(unchanged_array, sub_reps);
 
                     cout << "Failed.\n" << endl;
@@ -240,30 +240,30 @@ auto v_update_element_with_fixed_size_rand(size_t reps, const size_t sub_reps) -
                     cout << "end is: " << start << "\t end index is :" << end / slot_size << "\t end_bit_pos is :"
                          << end % slot_size << endl;
 
-                    cout << "a[i] is: " << a[start / slot_size] << endl;
+                    cout << "pd[i] is: " << a[start / slot_size] << endl;
                     if ((start / slot_size) < (end / slot_size))
-                        cout << "a[i + 1] is: " << a[end / slot_size] << endl;
+                        cout << "pd[i + 1] is: " << a[end / slot_size] << endl;
 
                     cout << "prev_val is:" << prev_val << endl;
                     cout << "new_val is:" << new_val << endl;
 
 
                     cout << "First different index : " << k << endl;
-                    cout << "a[k]: " << a[k] << endl;
+                    cout << "pd[k]: " << a[k] << endl;
                     cout << "changed_array[k]: " << changed_array[k] << endl;
                     cout << "unchanged_array[k]: " << unchanged_array[k] << endl;
 
                     if (k + 1 < sub_reps) {
-                        cout << "a[k + 1]: " << a[k + 1] << endl;
+                        cout << "pd[k + 1]: " << a[k + 1] << endl;
                         cout << "changed_array[k + 1]: " << changed_array[k + 1] << endl;
                         cout << "unchanged_array[k + 1]: " << unchanged_array[k + 1] << endl;
                     }
                     return false;
                     /*for (int l = k; l < sub_reps; ++l) {
-                        if (a[l] == changed_array[l])
+                        if (pd[l] == changed_array[l])
                             break;
-                        cout << "a[k]: " << a[k] << endl
-                        cout << "a[k]: " << a[k] << endl
+                        cout << "pd[k]: " << pd[k] << endl
+                        cout << "pd[k]: " << pd[k] << endl
                     }*/
 
                 }
@@ -300,10 +300,10 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
     auto res = read_word<T>(a, a_size, new_start, new_end);
 
     if (new_val != res) {
-        /*//    auto res2 = extract_symbol<T>(a, a_size, start, new_end + 1);
-        //    auto r3 = extract_symbol<T>(a, a_size, start, new_end + 2);
-        //    auto r4 = read_word<T>(a, a_size, start, new_end + 3);
-        //    auto r5 = read_word<T>(a, a_size, start + 1, new_end + 3);
+        /*//    auto res2 = extract_symbol<T>(pd, a_size, start, new_end + 1);
+        //    auto r3 = extract_symbol<T>(pd, a_size, start, new_end + 2);
+        //    auto r4 = read_word<T>(pd, a_size, start, new_end + 3);
+        //    auto r5 = read_word<T>(pd, a_size, start + 1, new_end + 3);
 */
         string line = string(32, '-') + "Failed 1" + string(32, '-');
         cout << line << endl;
@@ -311,7 +311,7 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
         string var_names[var_num] = {"start", "start_array_index", "start_bit_pos",
                                      "end", "end_array_index", "end_bit_pos",
                                      "new_end", "new_end_array_index", "new_end_bit_pos",
-                                     "prev_val", "new_val", "res", "a[0]", "changed_array[0]", "unchanged_array[0]"};
+                                     "prev_val", "new_val", "res", "pd[0]", "changed_array[0]", "unchanged_array[0]"};
         //, "res2", "r3", "r4", "r5"};
 
         size_t values[var_num] = {start, start / slot_size, start % slot_size,
@@ -329,9 +329,9 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
         cout << "new_end is: " << new_end << "\t end index is :" << new_end / slot_size
              << "\t new_end_bit_pos is :" << new_end % slot_size << endl;
 
-        cout << "a[i] is: " << a[start / slot_size] << endl;
+        cout << "pd[i] is: " << pd[start / slot_size] << endl;
         if ((start / slot_size) < (end / slot_size))
-            cout << "a[i + 1] is: " << a[end / slot_size] << endl;
+            cout << "pd[i + 1] is: " << pd[end / slot_size] << endl;
 */
         /*
 //        cout << "prev_val is:" << prev_val << endl;
@@ -343,12 +343,12 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
         return false;
     }
 
-    /*for (int j = 0; j < a_size; ++j) { assert(a[j] == changed_array[j]); }*/
+    /*for (int j = 0; j < a_size; ++j) { assert(pd[j] == changed_array[j]); }*/
 
     update_element<T>(a, new_start, new_end, start, end, prev_val, a_size);
     /*auto temp_cond = false;
     for (int j = 0; j < a_size; ++j) {
-        if (a[j] != changed_array[j]) {
+        if (pd[j] != changed_array[j]) {
             temp_cond = true;
             break;
         }
@@ -363,7 +363,7 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
             string var_names[var_num] = {"start", "start_array_index", "start_bit_pos",
                                          "end", "end_array_index", "end_bit_pos",
                                          "new_end", "new_end_array_index", "new_end_bit_pos",
-                                         "prev_val", "new_val", "res", "k", "a[k]", "changed_array[k]",
+                                         "prev_val", "new_val", "res", "k", "pd[k]", "changed_array[k]",
                                          "unchanged_array[k]"};
             //, "res2", "r3", "r4", "r5"};
 
@@ -409,21 +409,21 @@ auto v_update_element_single(T *a, size_t a_size, size_t start, size_t end, size
                  << "\t new_end_bit_pos is :" << new_end % slot_size << endl;
 
 
-            cout << "a[i] is: " << a[start / slot_size] << endl;
+            cout << "pd[i] is: " << a[start / slot_size] << endl;
             if ((start / slot_size) < (end / slot_size))
-                cout << "a[i + 1] is: " << a[end / slot_size] << endl;
+                cout << "pd[i + 1] is: " << a[end / slot_size] << endl;
 
             cout << "prev_val is:" << prev_val << endl;
             cout << "new_val is:" << new_val << endl;
 
 
             cout << "First different index : " << k << endl;
-            cout << "a[k]: " << a[k] << endl;
+            cout << "pd[k]: " << a[k] << endl;
             cout << "changed_array[k]: " << changed_array[k] << endl;
             cout << "unchanged_array[k]: " << unchanged_array[k] << endl;
 
             if (k + 1 < a_size) {
-                cout << "a[k + 1]: " << a[k + 1] << endl;
+                cout << "pd[k + 1]: " << a[k + 1] << endl;
                 cout << "changed_array[k + 1]: " << changed_array[k + 1] << endl;
                 cout << "unchanged_array[k + 1]: " << unchanged_array[k + 1] << endl;
             }
@@ -466,11 +466,11 @@ auto v_update_element_iter(size_t reps, size_t sub_reps) -> bool {
             for (size_t length = 1; length <= (slot_size - new_val_length); ++length) {
                 size_t end = start + length;
                 for (int l = 0; l < 8; ++l) {
-                    bool cond = v_update_element_single<T>(a, sub_reps, start, end, new_val);
+                    bool cond = v_update_element_single<T>(pd, sub_reps, start, end, new_val);
                     if (!cond) {
                         cout << "failed" << endl;
                         cout << i << ", " << start << ", " << end << ", " << l << ", " << new_val << endl;
-                        v_update_element_single<T>(a, sub_reps, start, end, new_val);
+                        v_update_element_single<T>(pd, sub_reps, start, end, new_val);
                         return false;
                     }
                     new_val <<= 1u;
@@ -483,7 +483,7 @@ auto v_update_element_iter(size_t reps, size_t sub_reps) -> bool {
             for (size_t new_val = 1; new_val < (SL(new_val_bit_length)); ++new_val) {
                 new_val <<= shift;
 
-                if (!v_update_element_single<T>(&a, sub_reps, start, end, new_val)))
+                if (!v_update_element_single<T>(&pd, sub_reps, start, end, new_val)))
             }
         }
     }*/
@@ -527,10 +527,10 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
     return true;
 /*
 
-            auto prev_val = read_word<T>(a, sub_reps, start, prev_end);
-            update_element_att<T>(a, start, prev_end, start, new_end, new_val, sub_reps);
+            auto prev_val = read_word<T>(pd, sub_reps, start, prev_end);
+            update_element_att<T>(pd, start, prev_end, start, new_end, new_val, sub_reps);
             update_element<T>(changed_array, start, prev_end, start, new_end, new_val, sub_reps);
-            auto res = read_word<T>(a, sub_reps, start, new_end);
+            auto res = read_word<T>(pd, sub_reps, start, new_end);
 */
 
 /*
@@ -547,9 +547,9 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
                 cout << "new_end is: " << new_end << "\t end index is :" << new_end / slot_size
                      << "\t new_end_bit_pos is :" << new_end % slot_size << endl;
 
-                cout << "a[i] is: " << a[start / slot_size] << endl;
+                cout << "pd[i] is: " << pd[start / slot_size] << endl;
                 if ((start / slot_size) < (end / slot_size))
-                    cout << "a[i + 1] is: " << a[end / slot_size] << endl;
+                    cout << "pd[i + 1] is: " << pd[end / slot_size] << endl;
 
                 cout << "prev_val is:" << prev_val << endl;
                 cout << "new_val is:" << new_val << endl;
@@ -561,20 +561,20 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
                 return false;
             }
 
-            update_element<T>(a, start, new_end, start, prev_end, prev_val, sub_reps);
+            update_element<T>(pd, start, new_end, start, prev_end, prev_val, sub_reps);
 //            bool unchanged = true;
             for (int k = 0; k < sub_reps; ++k) {
-                if (a[k] != unchanged_array[k]) {
+                if (pd[k] != unchanged_array[k]) {
                     */
-/*cout << a[k] << endl;
+/*cout << pd[k] << endl;
                     cout << bit_length_difference << endl;
                     cout << unchanged_array[k] << endl;
 
-                    if (a[k] - 13 == unchanged_array[k]) {
+                    if (pd[k] - 13 == unchanged_array[k]) {
                         cout << "\n\n\n\n\n\n!!!!!!!!!!!!!!!!!!!!! 13 BREAK !!!!!!!!!!!!!!!!!!!!!\n\n\n\n\n\n" << endl;
                         break;
                     }
-                    print_array_as_integers<T>(a, sub_reps);
+                    print_array_as_integers<T>(pd, sub_reps);
                     print_array_as_integers<T>(changed_array, sub_reps);
                     print_array_as_integers<T>(unchanged_array, sub_reps);
 
@@ -587,21 +587,21 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
                          << "\t new_end_bit_pos is :" << new_end % slot_size << endl;
 
 
-                    cout << "a[i] is: " << a[start / slot_size] << endl;
+                    cout << "pd[i] is: " << pd[start / slot_size] << endl;
                     if ((start / slot_size) < (end / slot_size))
-                        cout << "a[i + 1] is: " << a[end / slot_size] << endl;
+                        cout << "pd[i + 1] is: " << pd[end / slot_size] << endl;
 
                     cout << "prev_val is:" << prev_val << endl;
                     cout << "new_val is:" << new_val << endl;
 
 
                     cout << "First different index : " << k << endl;
-                    cout << "a[k]: " << a[k] << endl;
+                    cout << "pd[k]: " << pd[k] << endl;
                     cout << "changed_array[k]: " << changed_array[k] << endl;
                     cout << "unchanged_array[k]: " << unchanged_array[k] << endl;
 
                     if (k + 1 < sub_reps) {
-                        cout << "a[k + 1]: " << a[k + 1] << endl;
+                        cout << "pd[k + 1]: " << pd[k + 1] << endl;
                         cout << "changed_array[k + 1]: " << changed_array[k + 1] << endl;
                         cout << "unchanged_array[k + 1]: " << unchanged_array[k + 1] << endl;
                     }*//*
@@ -609,10 +609,10 @@ auto v_update_element_rand(size_t reps, const size_t sub_reps) -> bool {
                     return false;
                     */
 /*for (int l = k; l < a_size; ++l) {
-                        if (a[l] == changed_array[l])
+                        if (pd[l] == changed_array[l])
                             break;
-                        cout << "a[k]: " << a[k] << endl
-                        cout << "a[k]: " << a[k] << endl
+                        cout << "pd[k]: " << pd[k] << endl
+                        cout << "pd[k]: " << pd[k] << endl
                     }*//*
 
 

@@ -84,8 +84,8 @@ void to_vector(vector<bool> *vec, const uint8_t *a, size_t a_size) {
 
 string my_bin(size_t n, size_t length) {
     string s;
-    ulong b = 1ull << (ulong) (32 - 1);
-    for (int i = 0; i < 32; ++i) {
+    ulong b = 1ull << (ulong) (length - 1);
+    for (int i = 0; i < length; ++i) {
         if (b & n)
             s.append("1");
         else

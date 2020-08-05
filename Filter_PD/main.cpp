@@ -44,7 +44,20 @@ enum dict_types {
 
 
 int main(int argc, char **argv) {
+    using T = cc_pd<>;
 
+    auto d = T(1, 2, 3);
+    std::cout << d << std::endl;
+    uint64_t q = 1;
+    PSE_CHAR rem = 0x55;
+    d.insert(q, rem);
+    std::cout << d << std::endl;
+    bool i1 = d.lookup(q, rem);
+    assert(i1);
+    return 0;
+    auto res = namePD::validate_PD<T>(1 << 10, false, true);
+    assert(res);
+    return 0;
 //    example_of_CF_rates_wrapper();
 
     dict_types temp_type;
@@ -254,13 +267,13 @@ for (int i = 0; i < 8; ++i) {
     assert(res);
 }*/
 
-/*uint32_t a = 1;
+/*uint32_t pd = 1;
 hash_table<uint32_t> t(max_capacity, element_length, bucket_size, load_factor);
-assert(t.find(a) == 0);
-t.insert(a);
-assert(t.find(a) == 1);
-t.remove(a);
-assert(t.find(a) == 0);*/
+assert(t.find(pd) == 0);
+t.insert(pd);
+assert(t.find(pd) == 1);
+t.remove(pd);
+assert(t.find(pd) == 0);*/
 
 /*
 v_hash_table_rand_gen_load(reps, max_capacity, element_length, 1, load_factor, working_LF, variance);

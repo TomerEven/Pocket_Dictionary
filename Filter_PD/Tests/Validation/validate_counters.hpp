@@ -20,7 +20,7 @@
  *
  *                      (1) points to 1.
  *                      (2) bit_start_index <= bit_end_index
- *                      (3) a[bit_start_index:bit_end_index) contains no 1's.
+ *                      (3) pd[bit_start_index:bit_end_index) contains no 1's.
  */
 template<typename T>
 auto v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t bit_end_index) -> bool;

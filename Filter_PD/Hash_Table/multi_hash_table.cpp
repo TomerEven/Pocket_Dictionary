@@ -388,10 +388,10 @@ auto multi_hash_table<T>::increase_counter(size_t table_index) -> counter_status
     if (counter == MASK(counter_size)) {
         assert(false);
         //todo: what happens when an element multiplicity is too big for the hash_table?
-        // Adding it as a new element can cause:
+        // Adding it as pd new element can cause:
         // 1) Cuckoo chain problems.
         // 2) Under-estimate on multiplicity (or possibly longer lookup - by at most factor 2.)
-        // 3) a merge operator should be defined. (also reduce the counter of the smaller element).
+        // 3) pd merge operator should be defined. (also reduce the counter of the smaller element).
         // Different solution: Ignoring this insertion.
         return inc_overflow;
     }

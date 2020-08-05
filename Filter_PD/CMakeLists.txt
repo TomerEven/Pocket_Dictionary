@@ -2,8 +2,13 @@ cmake_minimum_required(VERSION 3.10)
 project(Filter_PD)
 
 set(CMAKE_CXX_STANDARD 14)
-SET(CMAKE_CXX_FLAGS "-O3 -fno-strict-aliasing")
-SET(CMAKE_C_FLAGS "-O3 -fno-strict-aliasing")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx512bw")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx512f")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -faligned-new")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -mbmi -mbmi2")
+SET(CMAKE_C_FLAGS "-fno-strict-aliasing")
+#SET(CMAKE_C_FLAGS "-O3")
+
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
@@ -76,4 +81,6 @@ add_executable(Filter_PD
         Tests/Benchmarking/benchmark_counting_filter.cpp Tests/Benchmarking/benchmark_counting_filter.hpp
         Tests/Test_output_formatting/test_printer.cpp Tests/Test_output_formatting/test_printer.hpp
 
-        )
+        PD/Safe_PD/cc_pd.hpp
+#        PD/Safe_PD/junk.hpp
+        PD/Safe_PD/cc_pd.cpp)

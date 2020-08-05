@@ -103,7 +103,7 @@ private:
 public:
     /**Function used for printing*/
     /**
-     * Store each remainder in different slot inside the array a;
+     * Store each remainder in different slot inside the array pd;
      * @param a = uint32_t[max_capacity].
      */
     void store_consecutive_remainders(uint32_t *a);

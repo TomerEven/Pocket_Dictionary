@@ -47,10 +47,10 @@ inline uint32_t my_hash(const string *elementP, uint32_t seed) {
 
 template<typename T, typename S>
 inline void hash2_choice(S x, T *index1, T *index2) {
-//    uint32_t a = 0, b = 0;
+//    uint32_t pd = 0, b = 0;
     MurmurHash3_x86_32(&x, (int) (64), SEED_1, index1);
     MurmurHash3_x86_32(&x, (int) (64), SEED_2, index2);
-//    return a + seed * b;
+//    return pd + seed * b;
 }
 
 

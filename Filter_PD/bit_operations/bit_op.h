@@ -52,11 +52,11 @@ uint32_t select_r(uint64_t slot, uint32_t rank);
 /*
 uint32_t select_rank_th_bit(uint64_t slot, uint32_t rank) {
     unsigned int s;      // Output: Resulting position of bit with the desired rank.[1-64]
-    uint64_t a, b, c, d; // Intermediate temporaries for bit count.
+    uint64_t pd, b, c, d; // Intermediate temporaries for bit count.
     unsigned int t;      // Bit count temporary.
 
-    a = slot - ((slot >> 1) & ~0UL / 3);
-    b = (a & ~0UL / 5) + ((a >> 2) & ~0UL / 5);
+    pd = slot - ((slot >> 1) & ~0UL / 3);
+    b = (pd & ~0UL / 5) + ((pd >> 2) & ~0UL / 5);
     c = (b + (b >> 4)) & ~0UL / 0x11;
     d = (c + (c >> 8)) & ~0UL / 0x101;
     t = (d >> 32) + (d >> 48);
@@ -73,7 +73,7 @@ uint32_t select_rank_th_bit(uint64_t slot, uint32_t rank) {
 
 
 /**
- *The following finds the the rank of a bit, meaning it returns the sum of bits that are set to 1 from the
+ *The following finds the the rank of pd bit, meaning it returns the sum of bits that are set to 1 from the
  * most-signficant bit downto the bit at the given position.
  * @param slot Compute the rank (bits set) in slot from the MSB to bit_lim.
  * @param bit_lim Bit position to count bits upto.

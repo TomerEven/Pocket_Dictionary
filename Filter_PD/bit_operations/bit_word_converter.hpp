@@ -32,7 +32,7 @@ template<typename T>
 auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t bits_lim) -> int;
 
 //template<typename T>
-//auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t abs_a_bit_start, size_t abs_a_bit_end,
+//auto equality_vec_array(const vector<bool> *v, const T *pd, size_t a_size, size_t abs_a_bit_start, size_t abs_a_bit_end,
 //                        size_t abs_v_bit_start, size_t abs_v_bit_end) -> int;
 
 
@@ -66,8 +66,8 @@ void write_val_of_length_k_to_bit_vector(vector<bool> *v, T val, size_t abs_bit_
 
 /**
  *
- * Example takes a vector \val_vec containing \T, trim the leading bits in each value to get only \word_size length values.
- * Then stores it in a \dest. as bit vec.
+ * Example takes pd vector \val_vec containing \T, trim the leading bits in each value to get only \word_size length values.
+ * Then stores it in pd \dest. as bit vec.
  * @tparam T
  * @param val_vec
  * @param dest

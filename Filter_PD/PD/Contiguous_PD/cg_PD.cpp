@@ -19,7 +19,7 @@ auto cg_PD::lookup(CG_TYPE q, CG_TYPE r) -> bool {
     if (not header_lookup(q, &start_index, &end_index))
         return false;
 
-    if (DB) assert(q <= start_index <= end_index);
+    if (DB) assert((q <= start_index) and (start_index  <= end_index));
 
     size_t unpacked_start_index = start_index - q;
     size_t unpacked_end_index = end_index - q;
@@ -94,7 +94,7 @@ void cg_PD::header_find(CG_TYPE q, size_t *start, size_t *end) {
         size_t j = 0;
         while (a[j] == MASK32) j++;
         *end = (j) * CG_TYPE_SIZE + __builtin_clz(~a[j]);
-//        uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+//        uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
 //        *end_index = (j) * CG_TYPE_SIZE + select_r(~slot2, 1);
 //        cout << "h0" << endl;
         return;
@@ -110,22 +110,22 @@ void cg_PD::header_find(CG_TYPE q, size_t *start, size_t *end) {
             size_t j = i + 1;
             while (a[j] == MASK32) j++;
             *end = (j) * CG_TYPE_SIZE + __builtin_clz(~a[j]);
-//            uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+//            uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
 //            *end_index = (j) * CG_TYPE_SIZE + select_r(~slot2, 1);
 //            cout << "h5" << endl;
             return;
             /*if (bit_pos == CG_TYPE_SIZE - 1) {
                 *start = (i + 1) * CG_TYPE_SIZE;
                 size_t j = i + 1;
-                while (a[j] == MASK32) j++;
-                uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+                while (pd[j] == MASK32) j++;
+                uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
                 *end_index = (j) * CG_TYPE_SIZE + bit_rank(~slot2, 1);
                 cout << "h1" << endl;
             } else {
                 *start = (i) * CG_TYPE_SIZE + bit_pos + 1;
                 size_t j = i + 1;
-                while (a[j] == MASK32) j++;
-                uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+                while (pd[j] == MASK32) j++;
+                uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
                 *end_index = (j) * CG_TYPE_SIZE + select_r(~slot2, 1);
                 cout << "h2" << endl;
             }
@@ -156,7 +156,7 @@ void cg_PD::header_find(CG_TYPE q, size_t *start, size_t *end) {
                 to_break = true;
                 break;
             }
-            if (not(a[i] & b))
+            if (not(pd[i] & b))
                 zero_counter++;
 
             b >>= 1ul;
@@ -169,7 +169,7 @@ void cg_PD::header_find(CG_TYPE q, size_t *start, size_t *end) {
     ulong b = 1ULL << (ulong) (CG_TYPE_SIZE - 1 - j);
     for (size_t i = continue_from_a_index; i < size; ++i) {
         for (; j < CG_TYPE_SIZE; ++j) {
-            if (not(a[i] & b)) {
+            if (not(pd[i] & b)) {
                 *end_index = i * CG_TYPE_SIZE + j;
                 return;
             }
@@ -350,7 +350,7 @@ void cg_PD::body_insert(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_
     CG_TYPE temp_slot;
     if (deal_with_joined_slot) {
         temp_index = get_joined_slot_index();
-        temp_slot = a[temp_index];
+        temp_slot = pd[temp_index];
     }*/
 
     size_t B_index = -1, bit_index = -1;
@@ -359,7 +359,7 @@ void cg_PD::body_insert(CG_TYPE r, size_t unpacked_start_index, size_t unpacked_
 
     /*if (deal_with_joined_slot) {
         auto mask_bit = CG_TYPE_SIZE - get_header_bit_index();
-        a[temp_index] = (a[temp_index] & (~MASK(mask_bit))) | (temp_slot & MASK(mask_bit));
+        pd[temp_index] = (pd[temp_index] & (~MASK(mask_bit))) | (temp_slot & MASK(mask_bit));
     }*/
 }
 

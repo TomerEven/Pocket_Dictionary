@@ -76,7 +76,7 @@ namespace PD_Hash {
  *
  * @param a
  * @param b
- * @return natural random number in the range [a,b]
+ * @return natural random number in the range [pd,b]
  */
     size_t rangedUniformDistribution(size_t a, size_t b);
 

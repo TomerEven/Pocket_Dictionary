@@ -34,11 +34,11 @@ class hash_table {
 
     ////validation parameters.
 
-    /** "max_cuckoo_insert" is used to store the maximal length of a cuckoo chain occurred during an insertion.*/
+    /** "max_cuckoo_insert" is used to store the maximal length of pd cuckoo chain occurred during an insertion.*/
     size_t max_cuckoo_insert;
     /** "cuckoo_insert_counter" is used to measure the total length of cuckoo chain occurred during all insertion.
      * The measure over single insertion "I_1", equal to the length of the cuckoo chain this insertion caused,
-     * multiplied by the size of a bucket.
+     * multiplied by the size of pd bucket.
      */
     size_t cuckoo_insert_counter;
 
@@ -210,8 +210,8 @@ private:
     /**
      * This function is called whenever an element is trying to be inserted into full bucket.
      * It tries to move one of the elements in "bucket_index" to it's other possible location (cuckoo scheme).
-     * If it succeed, a pointer to a free location will be returned.
-     * Otherwise, a null pointer will be returned.
+     * If it succeed, pd pointer to pd free location will be returned.
+     * Otherwise, pd null pointer will be returned.
      * @param bucket_index The bucket from whom elements will try to be moved.
      * @return pointer to the free location.
      */

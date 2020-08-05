@@ -145,7 +145,7 @@ static size_t count_perm_vec_fixed_point() {
     size_t counter = 0;
     for (size_t i = 0; i < perm_vec.size(); ++i) {
         if (perm_vec[i] == i) {
-//            cout << i << " is a fixed point." << endl;
+//            cout << i << " is pd fixed point." << endl;
             counter++;
         };
     }

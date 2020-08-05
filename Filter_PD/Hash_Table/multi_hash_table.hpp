@@ -59,12 +59,12 @@ class multi_hash_table {
 
     ////validation parameters.
     /**
-     * "max_cuckoo_insert" is used to store the maximal length of a cuckoo chain occurred during an insertion.
+     * "max_cuckoo_insert" is used to store the maximal length of pd cuckoo chain occurred during an insertion.
      */
     size_t max_cuckoo_insert;
     /** "cuckoo_insert_counter" is used to measure the total length of cuckoo chain occurred during all insertion.
      * The measure over single insertion "I_1", equal to the length of the cuckoo chain this insertion caused,
-     * multiplied by the size of a bucket.
+     * multiplied by the size of pd bucket.
      */
     size_t cuckoo_insert_counter;
 
@@ -112,7 +112,7 @@ public:
     /**
      *
      * @param x
-     * @return zero if x is not a member.
+     * @return zero if x is not pd member.
      */
     auto find_multiplicities(T x) -> uint32_t;
 
@@ -133,7 +133,7 @@ public:
     void insert_new(T y);
 
     /**
-     * this should function should be used, when an insertion from a lower level caused overflow (counter should be inc by 1 ?).
+     * this should function should be used, when an insertion from pd lower level caused overflow (counter should be inc by 1 ?).
      * Therefore
      * 1) the element inserted is not in the table.
      * 2) to pop?

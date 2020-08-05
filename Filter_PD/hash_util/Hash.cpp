@@ -14,10 +14,10 @@ namespace PD_Hash {
 
 /*uint32_t hash_util::hash(uint32_t x) const {
     return 0;
-    uint32_t a, b;
-    MurmurHash3_x86_32(&x, (int) (strlen(elementP)), DEFAULT_SEED, &a);
+    uint32_t pd, b;
+    MurmurHash3_x86_32(&x, (int) (strlen(elementP)), DEFAULT_SEED, &pd);
     MurmurHash3_x86_32(&x, (int) (strlen(elementP)), SECOND_SEED, &b);
-    return uint32_t(a + multiConst * b);
+    return uint32_t(pd + multiConst * b);
 }*/
 
 
@@ -27,32 +27,32 @@ namespace PD_Hash {
         MurmurHash3_x86_32(elementP, (int) (strlen(elementP)), DEFAULT_SEED, &a);
         MurmurHash3_x86_32(elementP, (int) (strlen(elementP)), SECOND_SEED, &b);
         return uint32_t(a + multiConst * b);
-//    return uint32_t(a + multiConst * b) % this->size;
+//    return uint32_t(pd + multiConst * b) % this->size;
 /*
 //    size_t mod = size;
-//    uint64_t ans0 = a % mod;
-//    uint64_t ans1 = a % this->size;
+//    uint64_t ans0 = pd % mod;
+//    uint64_t ans1 = pd % this->size;
 //    auto ans2 = multiConst * (b % this->size);
 
-//    uint32_t temp = (a % size + this->multiConst * (b % this->size)) % this->size;
-//    return uint32_t((a % size + this->multiConst * (b % this->size)) % this->size);
+//    uint32_t temp = (pd % size + this->multiConst * (b % this->size)) % this->size;
+//    return uint32_t((pd % size + this->multiConst * (b % this->size)) % this->size);
 */
     }
 
     uint64_t Hash::hash64(uint64_t el) {
-//    uint64_t a = 0, b = 0;
+//    uint64_t pd = 0, b = 0;
 //    uint64_t d[2];
         uint64_t a[2];
         MurmurHash3_x86_128(&el, (int) (128), DEFAULT_SEED, a);
-//    MurmurHash3_x86_128(&el, (int) (128), SECOND_SEED, &a[2]);
+//    MurmurHash3_x86_128(&el, (int) (128), SECOND_SEED, &pd[2]);
         return a[0] + multiConst * a[1];
     }
 
 /*uint32_t hash_util::hash32(uint32_t el) {
-    uint32_t a = 0, b = 0;
-    MurmurHash3_x86_32(&el, (int) (64), DEFAULT_SEED, &a);
+    uint32_t pd = 0, b = 0;
+    MurmurHash3_x86_32(&el, (int) (64), DEFAULT_SEED, &pd);
     MurmurHash3_x86_32(&el, (int) (64), SECOND_SEED, &b);
-    return a + multiConst * b;
+    return pd + multiConst * b;
 }*/
 
 
@@ -120,42 +120,42 @@ hash_util::hash_util(size_t size, size_t maxRemainderLength)  : size(size){
 size_t hash_util::calc(string *elementP, HASH_BLOCK_TYPE *dataArr, size_t length) const {
     assert(length < multiConst.size());
     char const *cp = elementP->c_str();
-    uint32_t a, b;
+    uint32_t pd, b;
     for (int i = 0; i < length; ++i) {
-        MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &a);
+        MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &pd);
         MurmurHash3_x86_32(cp, (int) (strlen(cp)), SECOND_SEED, &b);
-        dataArr[i] = (a % size + this->multiConst[(i+1)] * (b % this->size)) % this->size;
+        dataArr[i] = (pd % size + this->multiConst[(i+1)] * (b % this->size)) % this->size;
     }
-    MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &a);
+    MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &pd);
     MurmurHash3_x86_32(cp, (int) (strlen(cp)), SECOND_SEED, &b);
-    return (a % size + this->multiConst[0] * (b % this->size)) % this->size;
+    return (pd % size + this->multiConst[0] * (b % this->size)) % this->size;
 }
 
 size_t hash_util::calc(string *elementP, uint16_t *dataArr, size_t length) const {
     assert(length < multiConst.size());
     char const *cp = elementP->c_str();
-    uint32_t a, b;
+    uint32_t pd, b;
     for (int i = 0; i < length; ++i) {
-        MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &a);
+        MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &pd);
         MurmurHash3_x86_32(cp, (int) (strlen(cp)), SECOND_SEED, &b);
-        dataArr[i] = (a % size + this->multiConst[(i+1)] * (b % this->size)) % this->size;
+        dataArr[i] = (pd % size + this->multiConst[(i+1)] * (b % this->size)) % this->size;
     }
-    MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &a);
+    MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &pd);
     MurmurHash3_x86_32(cp, (int) (strlen(cp)), SECOND_SEED, &b);
-    return (a % size + this->multiConst[0] * (b % this->size)) % this->size;
+    return (pd % size + this->multiConst[0] * (b % this->size)) % this->size;
 }
 
 size_t hash_util::lengthHash(string *elementP, uint32_t *dataArr, size_t arraySize) const {
     assert(arraySize < multiConst.size());
     char const *cp = elementP->c_str();
-    uint32_t a, b;
+    uint32_t pd, b;
     for (int i = 0; i < arraySize; ++i) {
-        MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &a);
+        MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &pd);
         MurmurHash3_x86_32(cp, (int) (strlen(cp)), SECOND_SEED, &b);
-        dataArr[i] = uint32_t(a % size + this->multiConst[(i+1)] * (b % size));
+        dataArr[i] = uint32_t(pd % size + this->multiConst[(i+1)] * (b % size));
     }
-    MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &a);
+    MurmurHash3_x86_32(cp, (int) (strlen(cp)), DEFAULT_SEED, &pd);
     MurmurHash3_x86_32(cp, (int) (strlen(cp)), SECOND_SEED, &b);
-    return (a % size + this->multiConst[0] * (b % this->size)) % this->size;
+    return (pd % size + this->multiConst[0] * (b % this->size)) % this->size;
 }
 */

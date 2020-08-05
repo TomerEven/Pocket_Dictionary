@@ -171,7 +171,7 @@ auto dict<D, S>::insert_to_bucket_attempt(S_TYPE y, size_t bucket_index) -> bool
 //            spare->set_element(y, table_index);
 //            return OK;
 //        }
-//        //not a member, and no empty slot.
+//        //not pd member, and no empty slot.
 //        return not_a_member;
 //    }
 //    return op_res;

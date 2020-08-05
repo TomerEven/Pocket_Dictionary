@@ -612,7 +612,7 @@ void CPD::body_pull_wrapper(size_t A_index, size_t rel_bit_index) {
     CPD_TYPE last_slot;
     /*if (header_and_body_has_joined_slot) {
         body_first_A_index = get_last_a_index_containing_the_header();
-        first_slot = a[body_first_A_index];
+        first_slot = pd[body_first_A_index];
     }*/
     if (body_and_counters_has_joined_slot) {
         body_last_A_index = get_last_a_index_containing_the_body();
@@ -624,10 +624,10 @@ void CPD::body_pull_wrapper(size_t A_index, size_t rel_bit_index) {
     /*if (header_and_body_has_joined_slot) {
         auto mask_bit = CPD_TYPE_SIZE - get_header_rel_bit_index_in_last_header_slot();
         auto mask = MASK(mask_bit);
-//        auto old_val = a[body_first_A_index];
-//        auto new_val = (a[body_first_A_index] & (~mask)) | (first_slot & (mask));
+//        auto old_val = pd[body_first_A_index];
+//        auto new_val = (pd[body_first_A_index] & (~mask)) | (first_slot & (mask));
 //        assert(old_val == new_val);
-        a[body_first_A_index] = (a[body_first_A_index] & (~mask)) | (first_slot & (mask));
+        pd[body_first_A_index] = (pd[body_first_A_index] & (~mask)) | (first_slot & (mask));
     }*/
     if (body_and_counters_has_joined_slot) {
         auto mask_bit = CPD_TYPE_SIZE - get_body_rel_bit_index_in_last_body_slot();
@@ -645,22 +645,22 @@ void CPD::body_remove_helper(size_t A_index, size_t rel_bit_index) {
     CPD_TYPE last_slot;
     if (header_and_body_has_joined_slot) {
         body_first_A_index = get_header_and_body_joined_slot_index();
-        first_slot = a[body_first_A_index];
+        first_slot = pd[body_first_A_index];
     }
     if (body_and_counters_has_joined_slot) {
         body_last_A_index = get_body_and_counters_joined_slot_index();
-        last_slot = a[body_last_A_index];
+        last_slot = pd[body_last_A_index];
     }
 
     body_pull(A_index, rel_bit_index);
 
     if (header_and_body_has_joined_slot) {
         auto mask_bit = CPD_TYPE_SIZE - get_header_rel_bit_index_in_last_header_slot();
-        a[body_first_A_index] = (a[body_first_A_index] & (MASK(mask_bit))) | (first_slot & (~MASK(mask_bit)));
+        pd[body_first_A_index] = (pd[body_first_A_index] & (MASK(mask_bit))) | (first_slot & (~MASK(mask_bit)));
     }
     if (body_and_counters_has_joined_slot) {
         auto mask_bit = CPD_TYPE_SIZE - get_body_rel_bit_index_in_last_body_slot();
-        a[body_last_A_index] = (a[body_last_A_index] & (MASK(mask_bit))) | (last_slot & (~MASK(mask_bit)));
+        pd[body_last_A_index] = (pd[body_last_A_index] & (MASK(mask_bit))) | (last_slot & (~MASK(mask_bit)));
     }
 }
 */
@@ -782,7 +782,7 @@ void CPD::counter_pull(size_t bit_count_from_start) {
     size_t A_index = bit_count_from_start / CPD_TYPE_SIZE;
     size_t bit_index = bit_count_from_start % CPD_TYPE_SIZE;
     size_t left_fp_start_index = CPD_TYPE_SIZE - bit_index;
-//    cout << "counter_pull:: a[A_index]: " << a[A_index] << endl;
+//    cout << "counter_pull:: pd[A_index]: " << pd[A_index] << endl;
 
     if (A_index == size - 1) {
         assert(bit_index + counter_size <= CPD_TYPE_SIZE);
@@ -800,7 +800,7 @@ void CPD::counter_pull(size_t bit_count_from_start) {
         ulong shift = left_fp_start_index;
         ulong mask = MASK(left_fp_start_index);
         ulong upper = a[A_index] & (~mask);
-//        CPD_TYPE pre_mid = a[A_index] & MASK(left_fp_start_index - counter_size);
+//        CPD_TYPE pre_mid = pd[A_index] & MASK(left_fp_start_index - counter_size);
 //        CPD_TYPE mid_val = pre_mid << counter_size;
         CPD_TYPE mid = (a[A_index] & MASK(left_fp_start_index - counter_size)) << counter_size;
         CPD_TYPE lower = (a[A_index + 1]) >> (CPD_TYPE_SIZE - counter_size);
@@ -924,7 +924,7 @@ void CPD::print_as_consecutive_memory() {
 }
 
 //auto operator<<(ostream &os, const CPD &pd) -> ostream & {
-//    print_array_as_consecutive_memory<CPD_TYPE>(pd.a, pd.size, cout);
+//    print_array_as_consecutive_memory<CPD_TYPE>(pd.pd, pd.size, cout);
 //    return os;
 //}
 
@@ -1039,8 +1039,8 @@ void CPD::write_counter(size_t counter_index, CPD_TYPE value) {
         //same amount that r was shifted right by. (fp_size - shift)
         size_t bits_left = counter_size - shift; // bits_left =  fp_size + bit_index - CPD_TYPE_SIZE
         upper = (value & MASK(bits_left)) << (CPD_TYPE_SIZE - bits_left); // todo Check this.
-//        lower = (a[A_index + 1] << bits_left) >> bits_left; // clear lower's upper-bits. todo try mask instead.
-//        CPD_TYPE lower_att = a[A_index + 1] & MASK(bits_left) ; DOES NOT WORK.
+//        lower = (pd[A_index + 1] << bits_left) >> bits_left; // clear lower's upper-bits. todo try mask instead.
+//        CPD_TYPE lower_att = pd[A_index + 1] & MASK(bits_left) ; DOES NOT WORK.
         lower = a[A_index + 1] & MASK(CPD_TYPE_SIZE - bits_left);
 //        assert(lower_att2 == lower);
 //        assert(lower_att == lower);
@@ -1051,14 +1051,14 @@ void CPD::write_counter(size_t counter_index, CPD_TYPE value) {
         auto bits_to_take = counter_size - bits_left_in_slot;
         assert(bits_to_take > 0);
         CPD_TYPE mask = MASK(bits_left_in_slot);
-        a[A_index] = (a[A_index] & ~mask) | ((value >> bits_to_take)  & mask);
+        pd[A_index] = (pd[A_index] & ~mask) | ((value >> bits_to_take)  & mask);
         auto shift = CPD_TYPE_SIZE - bits_to_take;
         mask = MASK(shift);
-        auto prev_val = a[A_index + 1];
+        auto prev_val = pd[A_index + 1];
         auto upper = value << shift;
-        auto lower = a[A_index + 1] & mask;
+        auto lower = pd[A_index + 1] & mask;
         auto after_val = lower | upper;
-        a[A_index + 1] = (a[A_index + 1] & mask) | (value << shift);
+        pd[A_index + 1] = (pd[A_index + 1] & mask) | (value << shift);
         assert((value << shift) < MASK32);*/
     }
 }
@@ -1095,7 +1095,7 @@ auto operator<<(ostream &os, const CPD &cpd) -> ostream & {
     cpd.print_body_as_consecutive_memory();
     return os;
 /*
-    os << "a: " << cpd.a << " fp_size: " << cpd.fp_size << " max_distinct_capacity: " << cpd.max_distinct_capacity
+    os << "pd: " << cpd.pd << " fp_size: " << cpd.fp_size << " max_distinct_capacity: " << cpd.max_distinct_capacity
        << " size: " << cpd.size << " counter_size: " << cpd.counter_size << " header_and_body_has_joined_slot: "
        << cpd.header_and_body_has_joined_slot << " body_and_counters_has_joined_slot: "
        << cpd.body_and_counters_has_joined_slot;

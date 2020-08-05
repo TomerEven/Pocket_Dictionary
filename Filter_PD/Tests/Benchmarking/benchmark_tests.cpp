@@ -80,7 +80,7 @@ auto b0(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, s
     test_printer(n, 0, lookup_reps, false, set_ratio, counter, member_set_init_time, nom_set_init_time,
                  init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 
 }
@@ -122,7 +122,7 @@ b0_naive(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t l, 
     test_printer(n, 0, lookup_reps, false, set_ratio, counter, member_set_init_time, nom_set_init_time,
                  init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 
 }
@@ -163,7 +163,7 @@ auto const_filter_rates(size_t number_of_pds, float load_factor, size_t f, size_
     test_printer(n, 0, lookup_reps, false, set_ratio, counter, member_set_init_time, nom_set_init_time,
                  init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 }
 
@@ -181,12 +181,12 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
     auto member_set_init_time = chrono::duration_cast<ns>(t1 - t0).count();
 
     t0 = chrono::high_resolution_clock::now();
-    pow2c_filter a(number_of_pds, m, f, l);
+    pow2c_filter pd(number_of_pds, m, f, l);
     t1 = chrono::high_resolution_clock::now();
     auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
 
     t0 = chrono::high_resolution_clock::now();
-    for (auto iter : member_vec) a.insert(iter);
+    for (auto iter : member_vec) pd.insert(iter);
     t1 = chrono::high_resolution_clock::now();
     auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
 
@@ -200,18 +200,18 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
     int counter[3] = {0, 0, 0};
 //    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
     t0 = chrono::high_resolution_clock::now();
-    for (auto iter : nom_vec) a.lookup(iter);
+    for (auto iter : nom_vec) pd.lookup(iter);
     t1 = chrono::high_resolution_clock::now();
     auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
     auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
 
 //    chrono::microseconds
-//    a.print_stats();
+//    pd.print_stats();
 
     test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
                init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 }
 */
@@ -255,12 +255,12 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
     auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
 
 //    chrono::microseconds
-//    a.print_stats();
+//    pd.print_stats();
 
     test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
                init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 }
 
@@ -279,12 +279,12 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 ////    double member_set_init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
 //
 //    t0 = chrono::high_resolution_clock::now();
-//    CuckooFilter<uint32_t, 7> a(n);
+//    CuckooFilter<uint32_t, 7> pd(n);
 //    t1 = chrono::high_resolution_clock::now();
 //    auto init_time = chrono::duration_cast<ns>(t1 - t0).count();
 //
 //    t0 = chrono::high_resolution_clock::now();
-//    for (auto iter : member_vec) a.Add(iter);
+//    for (auto iter : member_vec) pd.Add(iter);
 //    t1 = chrono::high_resolution_clock::now();
 //    auto insertion_time = chrono::duration_cast<ns>(t1 - t0).count();
 //
@@ -298,7 +298,7 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 //    int counter[3] = {0, 0, 0};
 ////    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
 //    t0 = chrono::high_resolution_clock::now();
-//    for (auto iter : nom_vec) a.Contain(iter);
+//    for (auto iter : nom_vec) pd.Contain(iter);
 //    t1 = chrono::high_resolution_clock::now();
 //    auto lookup_time = chrono::duration_cast<ns>(t1 - t0).count();
 //    auto total_run_time = chrono::duration_cast<ns>(t1 - start_run_time).count();
@@ -306,7 +306,7 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 //    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
 //               init_time, insertion_time, lookup_time, total_run_time, os);
 //
-////    os << a;
+////    os << pd;
 //    return os;
 //    /*clock_t startRunTime = clock();
 //    vector<uint32_t> member_vec, nom_vec;
@@ -319,12 +319,12 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 //
 //    t0 = clock();
 ////    const size_t bits_per_element = l;
-//    CuckooFilter<uint32_t, 7> a(total_elements_inserted);
-////    a(number_of_pds, m, f, l);
+//    CuckooFilter<uint32_t, 7> pd(total_elements_inserted);
+////    pd(number_of_pds, m, f, l);
 //    double init_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
 //
 //    t0 = clock();
-//    for (auto iter: member_vec) a.Add(iter);
+//    for (auto iter: member_vec) pd.Add(iter);
 //    double insertion_time = (double) (clock() - t0) / CLOCKS_PER_SEC;
 //
 //    t0 = clock();
@@ -336,7 +336,7 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 //    int counter[3] = {0, 0, 0};
 //    t0 = clock();
 ////    for (auto iter : nom_vec) ++counter[w.lookup_verifier(&iter, call_adapt)];
-//    for (auto iter : nom_vec) a.Contain(iter);
+//    for (auto iter : nom_vec) pd.Contain(iter);
 //
 //    double lookup_time = (double) (clock() - t0) / (CLOCKS_PER_SEC);
 //    double total_run_time = (double) (clock() - startRunTime) / (CLOCKS_PER_SEC);
@@ -346,7 +346,7 @@ auto const_filter_rates32(size_t number_of_pds, float load_factor, size_t f, siz
 //                 nom_set_init_time,
 //                 init_time, insertion_time, lookup_time, total_run_time, os);
 //
-////    os << a;
+////    os << pd;
 //    return os;
 //*/
 //}
@@ -392,7 +392,7 @@ auto template_rates(size_t number_of_pds, float load_factor, size_t f, size_t m,
     test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
                init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 }
 
@@ -438,7 +438,7 @@ filter_rates(size_t number_of_pds, float load_factor, size_t f, size_t m, size_t
     test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
                init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 }
 
@@ -482,7 +482,7 @@ filter_rates_simple_pd(size_t number_of_pds, float load_factor, size_t f, size_t
     test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
                init_time, insertion_time, lookup_time, total_run_time, os);
 
-//    os << a;
+//    os << pd;
     return os;
 }
 
@@ -991,7 +991,7 @@ void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f
             else { result_array[1] += 1; }
         } else {
             if (in_filter) {
-                cout << "Had a false negative!" << endl;
+                cout << "Had pd false negative!" << endl;
             } else {
                 result_array[0] += 1;
             }
@@ -1038,7 +1038,7 @@ void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f
             else { result_array[1] += 1; }
         } else {
             if (c1 and (not c2)) {
-                cout << "Had a false negative!" << endl;
+                cout << "Had pd false negative!" << endl;
             } else {
                 result_array[0] += 1;
             }
@@ -1088,7 +1088,7 @@ void filter_fp_rates(size_t number_of_pds, float load_factor, size_t m, size_t f
 //    test_table(n, 0, lookup_reps, set_ratio, counter, member_set_init_time, nom_set_init_time,
 //               init_time, insertion_time, lookup_time, total_run_time, os);
 //
-////    os << a;
+////    os << pd;
 //    return os;
 //}
 */

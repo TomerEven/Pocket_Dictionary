@@ -404,12 +404,12 @@ BODY_BLOCK_TYPE Body::read_FP_from_vector_by_index(size_t bit_start_index) {
 /*
 void Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_end_index, FP_TYPE remainder) {
 //    return;
-    size_t a = -1, b = 0, c = -1, d = 0;
-    auto r1 = find_att(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
+    size_t pd = -1, b = 0, c = -1, d = 0;
+    auto r1 = find_att(abstract_body_start_index, abstract_body_end_index, remainder, &pd, &b);
     auto r2 = vector_find(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
 
     bool c1 = r1 == r2;
-    bool c2 = c1 and (a == c);
+    bool c2 = c1 and (pd == c);
     bool c3 = c2 and (b == d);
 
     if (!c3) {
@@ -417,7 +417,7 @@ void Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_
 
         printf("abst_start_index = %zu, abst_end_index = %zu\n", abstract_body_start_index, abstract_body_end_index);
         printf("actual result(r1) = %d, expected result(r2) = %d\n", r1, r2);
-        printf("actual B_index(a)= %zu, expected B_index(c) = %zu\n", a, c);
+        printf("actual B_index(pd)= %zu, expected B_index(c) = %zu\n", pd, c);
         printf("actual bit_index(b) = %zu, expected bit_index(d) = %zu\n", b, d);
 
         cout << "vector print_with no spaces" << endl;
@@ -437,7 +437,7 @@ void Body::validate_find(size_t abstract_body_start_index, size_t abstract_body_
 
         cout << "\nPrints end" << endl;
 
-        find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &a, &b);
+        find_attempt(abstract_body_start_index, abstract_body_end_index, remainder, &pd, &b);
         vector_find_kth_interval_simple(abstract_body_start_index, abstract_body_end_index, remainder, &c, &d);
         assert(false);
     }

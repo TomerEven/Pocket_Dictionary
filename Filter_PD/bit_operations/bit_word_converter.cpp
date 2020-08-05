@@ -27,7 +27,7 @@ void print_array_as_integers(const T *a, std::size_t size) {
 template<typename T>
 auto print_array_as_consecutive_memory(const T *a, std::size_t size, std::ostream &os) -> std::ostream & {
     for (std::size_t i = 0; i < size; ++i) {
-        os << my_bin(a[i]);
+        os << my_bin(a[i], sizeof(T) * CHAR_BIT);
     }
     os << std::endl;
     return os;
@@ -78,7 +78,7 @@ template<typename T>
 auto compare_vector_and_array(const vector<bool> *v, const T *a, size_t a_size) -> int {
     size_t slot_size = sizeof(T) * CHAR_BIT;
     size_t number_of_words_to_read = min(a_size, INTEGER_ROUND(v->size(), slot_size));
-//    size_t size = min(v->size(), sizeof(a) / sizeof(a[0]));
+//    size_t size = min(v->size(), sizeof(pd) / sizeof(pd[0]));
     for (size_t i = 0; i < number_of_words_to_read; i += slot_size) {
         if (a[i] != read_FP_from_vector_by_index(v, i, slot_size))
             return i;
@@ -207,7 +207,7 @@ auto equality_vec_array(const vector<bool> *v, const T *a, size_t a_size, size_t
     size_t step = slot_size;
     for (size_t i = 0; i < size; ++i) {
         if (a[i] != read_T_word_from_vector<T>(v, i * step, (i + 1) * step)) {
-//            print_array_as_consecutive_memory(&a[i],a_size - i);
+//            print_array_as_consecutive_memory(&pd[i],a_size - i);
 
             cout << "\n\n equality_vec_array error in index: " << i << endl;
             print_array_as_consecutive_memory(a, a_size, cout);
@@ -230,9 +230,9 @@ void print_bit_vector_as_words(const vector<bool> *v, size_t word_size) {
     from_bit_vector_to_array_of_words(v, a, number_of_words);
 
     print_array_as_integers(a, number_of_words);
-    /*cout << "[" << a[0];
+    /*cout << "[" << pd[0];
     for (size_t i = 1; i < number_of_words; ++i) {
-        cout << ", " << a[i];
+        cout << ", " << pd[i];
     }
     cout << "]" << endl;*/
 }
@@ -293,9 +293,9 @@ void from_array_to_vector_by_bit_limits(vector<bool> *vec, const T *a, size_t ab
     assert(dont_skip_mid_att != skip_mid);
     if (!skip_mid) {
         size_t mid_start_index, length;
-        std::tie(mid_start_index, length) = from_array_to_vector_by_bit_limits_mid(vec, a, abs_bit_start_index,
+        std::tie(mid_start_index, length) = from_array_to_vector_by_bit_limits_mid(vec, pd, abs_bit_start_index,
                                                                                    abs_bit_end_index);
-        from_array_to_vector(vec, &(a[mid_start_index]), length);
+        from_array_to_vector(vec, &(pd[mid_start_index]), length);
     }
 */
     size_t mid_start_index, length;
@@ -350,22 +350,22 @@ auto from_array_to_vector_by_bit_limits_mid(size_t abs_bit_start_index, size_t a
 
 
 /*
-auto compare_vector_and_array(const vector<bool> *v, const uint8_t *a) -> int {
+auto compare_vector_and_array(const vector<bool> *v, const uint8_t *pd) -> int {
     assert(false);
-    size_t size = min(v->size(), sizeof(a) / sizeof(a[0]));
-    size_t step = sizeof(a[0]) * sizeof(char);
+    size_t size = min(v->size(), sizeof(pd) / sizeof(pd[0]));
+    size_t step = sizeof(pd[0]) * sizeof(char);
     for (size_t i = 0; i < size; i += step) {
-        if (a[i] != read_FP_from_vector_by_index(v, i, step)) return i;
+        if (pd[i] != read_FP_from_vector_by_index(v, i, step)) return i;
     }
     return -1;
 
 }
 
-auto compare_vector_and_array(const vector<bool> *v, const uint32_t *a) -> int {
-    size_t size = min(v->size(), sizeof(a) / sizeof(a[0]));
-    size_t step = sizeof(a[0]) * sizeof(char);
+auto compare_vector_and_array(const vector<bool> *v, const uint32_t *pd) -> int {
+    size_t size = min(v->size(), sizeof(pd) / sizeof(pd[0]));
+    size_t step = sizeof(pd[0]) * sizeof(char);
     for (size_t i = 0; i < size; i += step) {
-        if (a[i] != read_FP_from_vector_by_index(v, i, step)) return i;
+        if (pd[i] != read_FP_from_vector_by_index(v, i, step)) return i;
     }
     return -1;
 }
@@ -386,6 +386,28 @@ auto my_bin(T n, size_t length) -> string {
     }
     return s;
 }
+
+template<typename T>
+auto reverse_word(T word){
+    T res = 0;
+    size_t word_size = sizeof(T) * CHAR_BIT;
+    uint64_t b = 1ULL;
+    for (int i = 0; i < word_size; ++i) {
+        res <<= 1ul;
+        if (b & word)
+            res++;
+        b <<= 1ul;
+    }
+    return res;
+}
+template<typename T>
+auto reverse_array(T* source, T* dest, size_t arr_size){
+    for (int i = 0; i < arr_size; ++i) {
+        dest[i] = reverse_word(source[i]);
+    }
+}
+
+
 
 void vector_differences_printer(const vector<bool> *valid_vec, const vector<bool> *att_vec) {
     print_bit_vector_as_words(att_vec);

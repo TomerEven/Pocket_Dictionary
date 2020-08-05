@@ -16,9 +16,9 @@ bool v_extract_symbol_single(T *a, size_t a_size, size_t bit_start_index, size_t
     if (c_res == v_res) return true;
 
     auto index = bit_start_index / slot_size;
-    printf("start: %zu\nend: %zu\nindex: %lu\na[i]:%u\n", bit_start_index, bit_end_index, index, a[index]);
+    printf("start: %zu\nend: %zu\nindex: %lu\npd[i]:%u\n", bit_start_index, bit_end_index, index, a[index]);
     if ((bit_start_index / 32) < (bit_end_index / 32)) {
-        printf("a[i+1]:%u\n", a[index + 1]);
+        printf("pd[i+1]:%u\n", a[index + 1]);
     }
 
     printf("\n[%zu,%zu,%lu,%u,%u]\n", bit_start_index, bit_end_index, index, a[index], a[index + 1]);

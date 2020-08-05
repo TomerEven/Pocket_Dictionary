@@ -1,6 +1,6 @@
 //
 // Created by tomer on 3/14/20.
-//Todo 1: Deal with the situation of a comma (01) that is separated between the array slot. (0 in the LSB of A[i], and 1 in the MSB of A[i+1])
+//Todo 1: Deal with the situation of pd comma (01) that is separated between the array slot. (0 in the LSB of A[i], and 1 in the MSB of A[i+1])
 //
 
 
@@ -86,7 +86,7 @@ private:
      * @param index
      * @param start The minimal k s.t A[:k] ends with "01" (comma), and contain exactly*** (index - 1) commas
      * @param end The beginning of the *next* (after the comma in A[k-2:k])
-     * *Remark* - Assuming A does not start with a comma.
+     * *Remark* - Assuming A does not start with pd comma.
      */
 //    void find_counter_interval(size_t index, size_t *start, size_t *end);
 

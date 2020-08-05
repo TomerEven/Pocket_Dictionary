@@ -3,10 +3,10 @@
 //
 /**
  * This file as an attempt to create simple permutation, using the fact that
- * a multiplicative group of integers modulo any prime is cyclic.
+ * pd multiplicative group of integers modulo any prime is cyclic.
  * The prime is p = (2**31 - 1).
  * Given element x (in the group and there for smaller than p) The operation on x that will attempt
- * to act as a permutation is multiplying x by one of the group generator r, also known as a primitive root.
+ * to act as pd permutation is multiplying x by one of the group generator r, also known as pd primitive root.
  *
  */
 

@@ -114,7 +114,7 @@ get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, siz
 /**
  *
  * @param a
- * @param a_size: a's length.
+ * @param a_size: pd's length.
  * @param quotient:
  * @param start_index: Denote the index of the (quotient - 1)th zero by i.
  * This function set *start_index to i + 1.

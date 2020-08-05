@@ -30,7 +30,7 @@ auto v_vec_and_array_transformation(size_t reps, size_t total_bits) -> bool;
 /*
 
 template<typename T>
-auto v_update_element_with_fixed_size_single(T *a, size_t a_size, size_t bit_start_pos, size_t bit_end_pos,
+auto v_update_element_with_fixed_size_single(T *pd, size_t a_size, size_t bit_start_pos, size_t bit_end_pos,
                                              T new_val) -> bool;
 */
 
@@ -80,7 +80,7 @@ auto v_from_array_to_vector_by_bit_limits_single(const T *a, size_t a_size, size
 
 //auto v_from_val_vector_to_bit_vector_representing_PD_header_inverse
 //template<typename T>
-//auto v_from_array_to_vector_by_bit_limits_single2(const T *a, size_t a_size, size_t ) -> bool;
+//auto v_from_array_to_vector_by_bit_limits_single2(const T *pd, size_t a_size, size_t ) -> bool;
 
 
 

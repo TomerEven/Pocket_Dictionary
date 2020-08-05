@@ -63,7 +63,7 @@ public:
     auto insert(CPD_TYPE q, CPD_TYPE r) -> counter_status;
 
     /**
-     * when an element is dropped from a higher level.
+     * when an element is dropped from pd higher level.
      * @param q
      * @param r
      * @param counter
@@ -102,7 +102,7 @@ public:
 private:
 
     /**
-     * Called when the inserted element is a member of the PD.
+     * Called when the inserted element is pd member of the PD.
      * @param r
      * @param end_index
      * @param A_index
@@ -112,12 +112,12 @@ private:
     auto insert_inc_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status;
 
     /**
-     * Called when the inserted element is \NOT a member of the PD.
+     * Called when the inserted element is \NOT pd member of the PD.
      * @param r
      * @param end_index
      * @param A_index
      * @param rel_bit_index
-     * @return not a member;
+     * @return not pd member;
      */
     auto insert_new_helper(CPD_TYPE r, size_t end_index, size_t A_index, size_t rel_bit_index) -> counter_status;
 
@@ -215,7 +215,7 @@ private:
 
 
     /**
-     * Denote the remainder at A[A_index][rel_bit_start_index:rel_bit_start_index + fp_size], by r. (python syntax where A is a binary string)
+     * Denote the remainder at A[A_index][rel_bit_start_index:rel_bit_start_index + fp_size], by r. (python syntax where A is pd binary string)
      * Returns r's unpacked index.
      * @param A_index
      * @param rel_bit_start_index
@@ -339,7 +339,7 @@ get_a_size(size_t q_range, size_t max_distinct_element, size_t remainder_size, s
 
 /*
 class CPD {
-    CPD_TYPE *a;
+    CPD_TYPE *pd;
     const uint_fast16_t fp_size, max_distinct_capacity, size;
     const bool header_and_body_has_joined_slot;
 

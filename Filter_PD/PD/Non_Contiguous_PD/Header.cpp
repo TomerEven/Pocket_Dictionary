@@ -89,7 +89,7 @@ void Header::pull(uint_fast16_t quotient, size_t start, size_t end) {
 }
 
 /**
- * Used as a wrapper here, for different implementation of get_interval function.
+ * Used as pd wrapper here, for different implementation of get_interval function.
  * @param quotient
  * @param start_index
  * @param end_index
@@ -150,7 +150,7 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
         size_t j = 0;
         while (a[j] == MASK32) j++;
         *end_index = (j) * HEADER_BLOCK_SIZE + __builtin_clz(~a[j]);
-//        uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+//        uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
 //        *end_index = (j) * HEADER_BLOCK_SIZE + select_r(~slot2, 1);
 //        cout << "h0" << endl;
         return;
@@ -167,22 +167,22 @@ void get_interval_by_rank(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quot
             size_t j = i + 1;
             while (a[j] == MASK32) j++;
             *end_index = (j) * HEADER_BLOCK_SIZE + __builtin_clz(~a[j]);
-//            uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+//            uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
 //            *end_index = (j) * HEADER_BLOCK_SIZE + select_r(~slot2, 1);
 //            cout << "h5" << endl;
             return;
             /*if (bit_pos == HEADER_BLOCK_SIZE - 1) {
                 *start_index = (i + 1) * HEADER_BLOCK_SIZE;
                 size_t j = i + 1;
-                while (a[j] == MASK32) j++;
-                uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+                while (pd[j] == MASK32) j++;
+                uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
                 *end_index = (j) * HEADER_BLOCK_SIZE + bit_rank(~slot2, 1);
                 cout << "h1" << endl;
             } else {
                 *start_index = (i) * HEADER_BLOCK_SIZE + bit_pos + 1;
                 size_t j = i + 1;
-                while (a[j] == MASK32) j++;
-                uint64_t slot2 = ((ulong) (a[j]) << 32ul) | 4294967295ul;
+                while (pd[j] == MASK32) j++;
+                uint64_t slot2 = ((ulong) (pd[j]) << 32ul) | 4294967295ul;
                 *end_index = (j) * HEADER_BLOCK_SIZE + select_r(~slot2, 1);
                 cout << "h2" << endl;
             }
@@ -218,7 +218,7 @@ void get_interval_by_rank2(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quo
         return;
     }
 //    size_t i = *start_index / HEADER_BLOCK_SIZE, mask_bit = HEADER_BLOCK_SIZE - (*start_index % HEADER_BLOCK_SIZE);
-//    *end_index = __builtin_clz(~a[i] & MASK(mask_bit));
+//    *end_index = __builtin_clz(~pd[i] & MASK(mask_bit));
     *end_index = select_r(~slot, quotient + 1);
 
 }
@@ -330,7 +330,7 @@ void Header::header_to_word_array(uint32_t *a, size_t a_size) {
 //            x <<= 1ul;
 //            x = H[i * 4 + j];
 //        }
-//        a[a_index] = x;
+//        pd[a_index] = x;
 */
         a_index++;
     }
@@ -391,17 +391,17 @@ void Header::vector_get_interval(size_t quotient, size_t *start_index, size_t *e
 }
 
 void Header::insert(size_t quotient) {
-    size_t a = -1, b = -1;
-    this->vector_get_interval(quotient, &a, &b);
-    vec.insert(vec.begin() + a, true);
+    size_t pd = -1, b = -1;
+    this->vector_get_interval(quotient, &pd, &b);
+    vec.insert(vec.begin() + pd, true);
     vec.pop_back();
 }
 
 void Header::remove(uint_fast16_t quotient) {
-    size_t a = -1, b = -1;
-    this->vector_get_interval(quotient, &a, &b);
-    assert(a < b);
-    vec.erase(vec.begin() + a);
+    size_t pd = -1, b = -1;
+    this->vector_get_interval(quotient, &pd, &b);
+    assert(pd < b);
+    vec.erase(vec.begin() + pd);
     vec.push_back(false);
 }
 
@@ -413,7 +413,7 @@ uint32_t Header::sum_vector() {
 }
 
 void Header::validate_get_interval(size_t quotient) {
-    size_t a = -1, b = -1, va = -1, vb = -1, c = -1, d = -1;
+    size_t pd = -1, b = -1, va = -1, vb = -1, c = -1, d = -1;
     get_interval(quotient, &va, &vb);
     get_interval_attempt(H, size, quotient, &c, &d);
     bool cond2 = (c == va) && (d == vb);
@@ -469,7 +469,7 @@ get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, siz
 
         while (cond) {
             for (i; i < HEADER_BLOCK_SIZE; i++) {
-                if (b & (a[array_index]))
+                if (b & (pd[array_index]))
                     bit_index++;
                 else {
                     cond = false;
@@ -483,22 +483,22 @@ get_interval_old(const HEADER_BLOCK_TYPE *a, size_t a_size, size_t quotient, siz
         }
         *end_index = bit_index + 1;
         for (int i = 0; i < a_size; ++i) {
-            auto reversed = (a[i]) ^((MASK(HEADER_BLOCK_SIZE)));
+            auto reversed = (pd[i]) ^((MASK(HEADER_BLOCK_SIZE)));
             u32 floor_log = floor_log2(reversed);
             *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
 
         }
-        auto reversed = (a[index]) ^((MASK(HEADER_BLOCK_SIZE)));
+        auto reversed = (pd[index]) ^((MASK(HEADER_BLOCK_SIZE)));
         u32 floor_log = floor_log2(reversed);
         *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
 //        if ()
         size_t index = 0;
         while (true) {
-            if (a[index] == 0) {
+            if (pd[index] == 0) {
                 index++;
                 continue;
             }
-            auto reversed = (a[index]) ^((MASK(HEADER_BLOCK_SIZE)));
+            auto reversed = (pd[index]) ^((MASK(HEADER_BLOCK_SIZE)));
             u32 floor_log = floor_log2(reversed);
             *end_index = HEADER_BLOCK_SIZE - floor_log - 1;
             return;*/
